@@ -3,8 +3,6 @@ package screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import utilities.SpriteAdapter;
@@ -12,15 +10,12 @@ import utilities.SpriteCollector;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
-	Texture img;
 	SpriteCollector SC;
 	
 	@Override
 	public void show() {
 		SC = SpriteCollector.getInstace();
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-		SC.addSprite(new SpriteAdapter(new Sprite(img)));	
 	}
 
 	@Override
@@ -28,7 +23,6 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		//batch.draw(img, 0, 0);
 		drawSprites();
 		batch.end();
 		
@@ -70,7 +64,6 @@ public class GameScreen implements Screen{
 	@Override
 	public void dispose() {
 		batch.dispose();
-		img.dispose();
 		
 	}
 
