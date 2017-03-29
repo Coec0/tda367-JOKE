@@ -3,17 +3,17 @@ package utilities;
 import com.badlogic.gdx.utils.Array;
 
 public class SpriteCollector {
-	static SpriteCollector SC;
+	private static SpriteCollector instance;
 	private Array<SpriteAdapter> sprites;
 	
 	private SpriteCollector(){
 		sprites = new Array<SpriteAdapter>(false, 10);
 	}
 	
-	public SpriteCollector getInstace(){
-		if (SC == null)
-			SC = new SpriteCollector();
-		return SC;
+	public static SpriteCollector getInstace(){
+		if (instance == null)
+			instance = new SpriteCollector();
+		return instance;
 	}
 	
 	/**

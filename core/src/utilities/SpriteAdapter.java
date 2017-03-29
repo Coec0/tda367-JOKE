@@ -1,5 +1,6 @@
 package utilities;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class SpriteAdapter {
@@ -9,7 +10,12 @@ public class SpriteAdapter {
 	private static int uniqueID = 0;
 	
 	public SpriteAdapter(Sprite sprite){
-		this.sprite = sprite;
+		this.sprite = new Sprite(sprite);
+		ID = uniqueID++;
+	}
+	
+	public SpriteAdapter(Texture texture){
+		this.sprite = new Sprite(texture);
 		ID = uniqueID++;
 	}
 	
