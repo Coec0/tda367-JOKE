@@ -1,5 +1,5 @@
 package towers;
 
-public class Soldier {
+public class Soldier extends Tower {
 
 }

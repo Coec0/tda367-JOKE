@@ -1,5 +1,5 @@
 package towers;
 
-public class Tower {
+public abstract class Tower {
 
 }

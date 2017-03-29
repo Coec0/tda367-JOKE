@@ -1,5 +1,5 @@
 package enemies;
 
-public class Alien {
+public class Alien extends Enemy{
 
 }
