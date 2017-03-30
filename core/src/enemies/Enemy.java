@@ -6,11 +6,18 @@ public abstract class Enemy {
 	private Point pos;
 	private float speed;
 	private float health; //Maybe int in future
-	
 	public Enemy(Point pos, float speed, float health) {
 		this.pos = pos;
 		this.speed = speed;
 		this.health = health;
+	}
+	
+	public boolean isDead(){
+		return health<=0;
+	}
+	
+	public void hurt(float dmg){
+		health -= dmg;
 	}
 	
 	public Point getPos() {
@@ -32,10 +39,5 @@ public abstract class Enemy {
 	public float getHealth() {
 		return health;
 	}
-
-	
-	
-	
-	
 
 }
