@@ -4,23 +4,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class SpriteAdapter {
-	private Sprite sprite;
+public class SpriteAdapter extends Sprite{
 	private int ID;
-	private int x=0;
-	private int y=0;
 	
 	private static int uniqueID = 0;
 	
+	public SpriteAdapter(){
+		super();
+	}
+	
 	public SpriteAdapter(int x, int y){
-		this.x = x;
-		this.y = Gdx.graphics.getHeight() - y;
-		this.sprite = new Sprite();
+		super(new Sprite());
+		super.setPosition(x, Gdx.graphics.getHeight() - y);
 		ID = uniqueID++;
 	}
 	
 	public SpriteAdapter(Texture texture){
-		this.sprite = new Sprite(texture);
+		super(texture);
 		ID = uniqueID++;
 	}
 
@@ -28,16 +28,14 @@ public class SpriteAdapter {
 		return ID;
 	}
 	
+	@Override
 	public void setTexture(Texture texture){
-		this.sprite = new Sprite(texture);
-		this.sprite.setPosition(x, y);
-		sprite.setTexture(texture);
+		super.setSize(Math.abs(texture.getWidth()), Math.abs(texture.getHeight()));
+		super.setTexture(texture);
+		super.setRegion(0, 0, texture.getWidth(), texture.getHeight());
+		super.setOrigin(texture.getWidth() / 2, texture.getHeight() / 2);
 	}
-	
-	public Sprite getSprite(){
-		return sprite;
-	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
