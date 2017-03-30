@@ -1,21 +1,20 @@
 package enemies;
 
-import java.awt.Point;
-
 public class Alien extends Enemy{
-	private final static float SPEED=5;
-	private final static Point START_POS=new Point(0,0);
+	private final static float SPEED=1;
+	private final static int X = 0;
+	private final static int Y = 0;
 	
 	public Alien(){
-		super(START_POS, SPEED, 30);
+		super(X, Y, SPEED, 30);
 	}
 	
 	public Alien(float health){
-		super(START_POS, SPEED, health);
+		super(X, Y, SPEED, health);
 	}
 	
-	public Alien(Point pos, float speed, float health) {
-		super(pos, speed, health);
+	public Alien(int x, int y, float speed, float health) {
+		super(x, y, speed, health);
 	}
 
 }
