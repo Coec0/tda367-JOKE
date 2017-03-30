@@ -10,16 +10,20 @@ public class SpriteAdapter extends Sprite{
 	
 	public SpriteAdapter(){
 		super();
+		super.setOriginCenter();
+		ID = uniqueID++;
 	}
 	
 	public SpriteAdapter(int x, int y){
-		super(new Sprite());
+		super();
 		super.setPosition(x, y);
+		super.setOriginCenter();
 		ID = uniqueID++;
 	}
 	
 	public SpriteAdapter(Texture texture){
 		super(texture);
+		super.setOriginCenter();
 		ID = uniqueID++;
 	}
 
@@ -28,11 +32,18 @@ public class SpriteAdapter extends Sprite{
 	}
 	
 	@Override
+	public void setSize(float width, float height){
+		super.setSize(width, height);
+		super.setOriginCenter();
+	}
+	
+	@Override
 	public void setTexture(Texture texture){
 		super.setSize(Math.abs(texture.getWidth()), Math.abs(texture.getHeight()));
 		super.setTexture(texture);
 		super.setRegion(0, 0, texture.getWidth(), texture.getHeight());
-		super.setOrigin(texture.getWidth() / 2, texture.getHeight() / 2);
+		//super.setOrigin(texture.getWidth() / 2, texture.getHeight() / 2);
+		super.setOriginCenter();
 	}
 
 	@Override
