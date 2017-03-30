@@ -15,7 +15,7 @@ public class SpriteAdapter extends Sprite{
 	
 	public SpriteAdapter(int x, int y){
 		super(new Sprite());
-		super.setPosition(x, Gdx.graphics.getHeight() - y);
+		super.setPosition(x, y);
 		ID = uniqueID++;
 	}
 	
