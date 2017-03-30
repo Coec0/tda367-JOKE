@@ -5,20 +5,27 @@ import com.badlogic.gdx.utils.Array;
 public class PathFinder{
 	private Array<Node> shortestPath;
 	private Array<Node> allNodes;
-	private float pixelJump = 5; //replacement for speed
+	private float speed = 10;
 	
 	public PathFinder(Array<Node> allNodes){
 			this.allNodes = allNodes;
 	}
 	
+	public void setSpeed(float speed){
+		this.speed = speed;
+	}
+	
 	private void calculateShortest(){
-		shortestPath = calcPixelPath(allNodes.get(0), allNodes); //just for testing. will be replaced with dijekstra
+		shortestPath = calcPixelPath(speed, allNodes); //just for testing. will be replaced with dijekstra
 	}
 	
 	public Array<Node> getShortestPath(){
-		if (shortestPath != null){
+		
+		if (shortestPath == null){
 			calculateShortest();
+			System.out.println(shortestPath.size);
 		}
+		System.out.println(shortestPath.size);
 		return shortestPath;
 	}
 	
@@ -26,36 +33,49 @@ public class PathFinder{
 		this.allNodes = allNodes;
 	}
 	
-	//Calc pixels for sprites to jump to. Assumes speed 1
-	private Array<Node> calcPixelPath(Node firstNode, Array<Node> pathNodes){ //perhaps split this into an own class
+	//calculates the specific coordinates between nodes with a certain jump
+	private Array<Node> calcPixelPath(float speed, Array<Node> pathNodes){
 		
 		Array<Node> path = new Array<Node>();
 		
-		for(Node goal : pathNodes){
-			Node current = firstNode;
-			Node start = firstNode;
-			Node delta = new Node(goal.getX() - start.getX(), goal.getY() - start.getY()); 
-			float startDistance = (float) Math.sqrt(delta.getX()*delta.getX() + delta.getY()*delta.getY()); //bad converting???
-			Node direction = new Node(delta.getX()/startDistance, delta.getY()/startDistance);
+		for(int i = 0; i < pathNodes.size -1; i++){
+			Node goal = pathNodes.get(i+1);
+			Node start = pathNodes.get(i);
+			Node current = start;	//acts like a sprite. "Walks" along the node lines.
+			float startX = start.getX();
+			float startY = start.getY();
+			float deltaX = goal.getX() - startX;	
+			float deltaY = goal.getY() - startY;
+			float startDistance = (float) Math.sqrt(deltaX*deltaX + deltaY*deltaY); //to conmpare with currentdistance to see if we have arrived at node yet
+			Node direction = new Node(deltaX/startDistance, deltaY/startDistance); //normalized direction
 			
-			Node deltaCurrent = new Node(current.getX() - start.getX(), current.getY() - start.getY());
-			float currentDistance = (float) Math.sqrt(deltaCurrent.getX()*deltaCurrent.getX() + deltaCurrent.getY()*deltaCurrent.getY());
+			float deltaCurrentX;
+			float deltaCurrentY;
+			float currentDistance = 0; //start at zero because startDistance will never be <0
 			
 			while(currentDistance <= startDistance){
-					Node nextStep = new Node(current.getX() * direction.getX() * this.pixelJump, current.getY() * direction.getY() * this.pixelJump);
+					Node nextStep = new Node(current.getX() + (direction.getX() * speed), current.getY() + (direction.getY() * speed));
+					//nextstep: gives coordnitaes for the next step with a certain speed or jump. Moves from current position to current + direction*jump
+					//slowly increments towards the goal node
 					path.add(nextStep);
-					current = nextStep;
-					deltaCurrent = new Node(current.getX() - start.getX(), current.getY() - start.getY());
-					currentDistance = (float) Math.sqrt(deltaCurrent.getX()*deltaCurrent.getX() + deltaCurrent.getY()*deltaCurrent.getY()); 
-			} //now might jump over goalNode
-			
-			
+					current = nextStep; //update current
+					deltaCurrentX = current.getX() - start.getX();
+					deltaCurrentY = current.getY() - start.getY();
+					currentDistance = (float) Math.sqrt(deltaCurrentX*deltaCurrentX + deltaCurrentY*deltaCurrentY); 
+			}
+			path.pop(); //remove last node to avoid going beond the goal node
+			path.add(pathNodes.get(i+1)); //add goal node instead so we land on the correct node. 
+			current = pathNodes.get(i+1);	//update current to match
 		}
-		
+		for(Node node : path){
+			System.out.println(node.getX() + "  " + node.getY());
+		}
 		return path;
 		
 		
 	}
+	
+
 	
 	
 	
