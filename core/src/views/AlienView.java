@@ -7,10 +7,9 @@ import utilities.SpriteCollector;
 
 public class AlienView {
 	private Texture texture;
-	SpriteCollector SC;
+	private SpriteCollector SC = SpriteCollector.getInstance();
 	
 	public AlienView(){
-		SC = SpriteCollector.getInstace();
 		texture = new Texture("badlogic.jpg");
 	}
 	

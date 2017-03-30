@@ -2,17 +2,15 @@ package utilities;
 
 import com.badlogic.gdx.utils.Array;
 
-public class SpriteCollector {
-	private static SpriteCollector instance;
+public final class SpriteCollector {
+	private static final SpriteCollector instance = new SpriteCollector();
 	private Array<SpriteAdapter> sprites;
 	
 	private SpriteCollector(){
 		sprites = new Array<SpriteAdapter>(false, 10);
 	}
 	
-	public static SpriteCollector getInstace(){
-		if (instance == null)
-			instance = new SpriteCollector();
+	public static SpriteCollector getInstance(){
 		return instance;
 	}
 	

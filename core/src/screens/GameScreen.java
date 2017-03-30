@@ -10,11 +10,10 @@ import utilities.SpriteCollector;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
-	SpriteCollector SC;
+	private SpriteCollector SC = SpriteCollector.getInstance();
 	
 	@Override
 	public void show() {
-		SC = SpriteCollector.getInstace();
 		batch = new SpriteBatch();
 	}
 
