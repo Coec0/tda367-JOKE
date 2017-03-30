@@ -30,7 +30,7 @@ public class GameScreen implements Screen{
 	private void drawSprites() {
 		if(SC.getSprites() != null){
 			for(SpriteAdapter sprite : SC.getSprites()){
-				sprite.getSprite().draw(batch);
+				sprite.draw(batch);
 			}
 		}
 		
