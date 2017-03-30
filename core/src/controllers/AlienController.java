@@ -2,6 +2,7 @@ package controllers;
 
 import com.badlogic.gdx.InputAdapter;
 
+import enemies.Alien;
 import models.AlienModel;
 import utilities.UpdateObserver;
 import views.AlienView;
@@ -28,6 +29,10 @@ public class AlienController extends InputAdapter implements UpdateObserver {
 	@Override
 	public void update(float deltaTime) {
 		AModel.moveAllAliens();
+		if(AModel.getAlien(0)!=null){
+			for(Alien alien : AModel.getAllAliens())
+			alien.getSpriteAdapter().rotate(10*(float)Math.cos((alien.getPos().getX())));
+		}
 	}
 
 }

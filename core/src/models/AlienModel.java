@@ -45,8 +45,14 @@ public class AlienModel {
 		return aliens.peek();
 	}
 	
+	public Array<Alien> getAllAliens(){
+		return aliens;
+	}
+	
 	public Alien getAlien(int index){
-		return aliens.get(index);
+		if(aliens.size>index)
+			return aliens.get(index);
+		return null;
 	}
 	
 	public void moveAlien(Alien alien){

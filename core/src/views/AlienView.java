@@ -18,14 +18,16 @@ public class AlienView {
 	}
 	
 	public void addToView(SpriteAdapter sprite, int x, int y){
-		sprite.setSize(sprite.getHeight()/4, sprite.getWidth()/4);
+		
 		sprite.setPosition(x, y);
 		addToView(sprite);
 	}
 	
 	public void addToView(SpriteAdapter sprite){
-		if(sprite.getTexture() == null)
+		if(sprite.getTexture() == null){
 			sprite.setTexture(texture);
+			sprite.setSize(sprite.getWidth()/2, sprite.getHeight()/2);
+		}
 		SC.addSprite(sprite);
 	}
 	
