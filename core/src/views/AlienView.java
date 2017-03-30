@@ -18,6 +18,7 @@ public class AlienView {
 	}
 	
 	public void addToView(SpriteAdapter sprite, int x, int y){
+		sprite.setSize(sprite.getHeight()/4, sprite.getWidth()/4);
 		sprite.setPosition(x, y);
 		addToView(sprite);
 	}

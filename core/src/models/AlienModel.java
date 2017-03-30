@@ -14,17 +14,20 @@ public class AlienModel {
 	public AlienModel(){
 		aliens = new Array<Alien>(false, 10);
 		
-		nodes.add(new Node(0,0)); //just to test the pathfinder class
-		nodes.add(new Node(200,400));
-		nodes.add(new Node(640,50));
-		nodes.add(new Node(23,30));
+		nodes.add(new Node(0,360)); //just to test the pathfinder class
+		nodes.add(new Node(500,360));
+		nodes.add(new Node(500,200));
+		nodes.add(new Node(780,200));
+		nodes.add(new Node(780,360));
+		nodes.add(new Node(1280,360));
 		
 		finder = new PathFinder(nodes);
 		path = finder.getShortestPath();
 	}
 	
 	public void createAlien(){
-		aliens.add(new Alien());
+		
+		aliens.add(new Alien((int)path.get(0).getX(),(int)path.get(0).getY()));
 	}
 	
 	public void createAlien(int amount){
