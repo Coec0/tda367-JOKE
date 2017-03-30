@@ -10,7 +10,7 @@ public class AlienView {
 	private SpriteCollector SC = SpriteCollector.getInstance();
 	
 	public AlienView(){
-		texture = new Texture("badlogic.jpg");
+		texture = new Texture("alien.png");
 	}
 	
 	public void removeFromView(SpriteAdapter sprite){
