@@ -1,0 +1,35 @@
+Datum: 29 mars
+Ordförande: Kevin
+Deltagare: Alla
+
+1. Mål
+    - Skissa upp domänmodellen i Paint eller dylikt, bifoga i RAD
+
+2. Rapport
+Allt som skulle göras ha gjorts.
+
+3. Diskussion
+    - JavaFX
+    - Designmodell
+        - AlienModel, AlienController, AlienView
+            - EnemyModel, EnemyController, EnemyView istället?
+        - SpriteCollector
+        - GameScreen, MenuScreen, Screen
+    - Pixlar vs Tiles
+        - Vad är lättast att implementera?
+        - Spara Tiles till en senare iteration?
+        - Strunta i Tiles och kör bara på pixlar?
+    - Behöver GameScreen använda sig av MVC där GameScreen är View?
+
+4. Bestämt
+    - Vi ska använda MVC i de inre delarna av programmet, dvs EnemyModel, EnemyController och EnemyView samt motsvarande för Tower.
+    - Kör på pixlar tills vidare
+    - Ska fortfarande försöka ha något körbart innan söndag
+    - SpriteCollector
+    - GameScreen kommer troligtvis inte att använda sig av MVC
+
+5. Inför nästa möte
+    - Oscar ska skapa ett skelett för programmet
+    - Kevin ska skissa upp domänmodellen på datorn och inkludera i RAD:en
+    - Emil ska skriva lite på RAD:en
+    - Johan ska titta lite noggrannare på git-sekvensen och RAD:en

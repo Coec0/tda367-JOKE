@@ -1,0 +1,33 @@
+Datum: 22 mars
+Ordförande: Kaj
+Deltagare: Alla
+
+1. Mål
+    - Installera libgdx och lägga upp grunden för projektet i git repon
+
+2. Rapport
+    - Första mötet, inget att rapportera
+
+3. Diskussion
+    - Touch eller Desktop?
+    - Idéer
+    - Val av plattform
+    - Första iterationen
+    - Hur vi ska strukturera projektet
+    - Bra java-design → bra kod
+
+4. Bestämt
+    - Fokusera väldigt lite på designen i början och mer på funktionalitet
+    - PathFinder ska använda en Strategy Pattern, Fastest / Slowest
+    - Tower ska använda sig av en State Pattern för att avgöra vilken fiende som är aktuell
+    - Enemy ska traska längs en linje och svänga vid rätt tillfälle
+    - Tower ska kunna sättas ut, behöver inte bry sig om radius osv i detta läge
+    - Vi behöver en GameController, GameView
+    - GameController ska ta hand om alla objekt, kan behöva refaktoriseras
+
+5. Inför nästa möte
+Imorgon EDIT-huset
+
+    - Installera libgdx och lägg upp grunden för projektet i git repon
+    - Sätta sig in i libgdx
+    - Pulla projektet och få det att fungera ihop med valfri IDE

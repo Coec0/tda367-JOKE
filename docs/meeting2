@@ -1,0 +1,33 @@
+Datum: 23 mars
+Ordförande: Kaj
+Deltagare: Alla
+
+1. Mål
+Påbörja RAD och få ett preliminärt utkast. Börja spåna på Use cases. Ett preliminärt GUI.
+
+2. Rapport
+Projektet är upplagt i git repon och alla har installerat libgdx. Sätta sig in i libgdx är pågående.
+
+3. Diskussion
+    - Hur attacker ska fungera för användaren
+    - Hur specialattacker ska fungera
+    - Hur torn påverkar spelet
+    - Den politiska kopplingen till spelet
+    - Kartans struktur
+    - Hur GUI ska se ut
+    - Pengarsystemet
+
+4. Bestämt
+    - Torn kostar pengar. Man får pengar av att döda fiender.
+    - Specialattacker ska vara gratis med cooldown.
+    - Cooldownen ska påverkas av ”politisk orientering”
+    - Kartans struktur ska ha flera vägar i form av ett gridnät där alla vägar går till målet, där vägarna kan begränsar i form av murar.
+    - Mätare med republikaner och demokrater där spelarens val påverkar om man blir mer republikan eller mer demokrat
+    - Mer republikan ska ge lägre cooldown på republikanska ”attacker” samt motsvarande för demokrater.
+
+5. Inför nästa möte
+Onsdag 29 mars
+
+    - Skriva mer på RAD
+    - Skriva något enstaka Use case
+    - Sätta sig in libgdx
