@@ -5,13 +5,15 @@ import com.badlogic.gdx.utils.Array;
 import enemies.Alien;
 import utilities.Node;
 import utilities.PathFinder;
+import utilities.SpriteCollector;
+import utilities.UpdateObserver;
 
-public class AlienModel {
+public class AlienModel implements UpdateObserver {
 	Array<Alien> aliens;
 	PathFinder finder;
 	Array<Node> nodes = new Array<Node>();
 	Array<Node> path;
-	public AlienModel(){
+	public AlienModel() {
 		aliens = new Array<Alien>(false, 10);
 		
 		nodes.add(new Node(0,360)); //just to test the pathfinder class
@@ -35,10 +37,12 @@ public class AlienModel {
 			aliens.add(new Alien());
 	}
 	
-	public void moveAllAliens(){
-		for(Alien alien : aliens){
-			moveAlien(alien);
-		}
+	private void moveAllAliens(float deltaTime){
+		//if(aliens.size>0){
+			for(Alien alien : aliens){
+				moveAlien(alien, deltaTime);
+			}
+		//}
 	}
 	
 	public Alien peekAlien(){
@@ -55,14 +59,16 @@ public class AlienModel {
 		return null;
 	}
 	
-	public void moveAlien(Alien alien){
-		int position = alien.getNodeArrayPos()+(int)alien.getSpeed();
+	public void moveAlien(Alien alien, float deltaTime){
+		int position = (int)(alien.getNodeArrayPos()+((int)alien.getSpeed()*deltaTime));
+		System.out.println(position);
 		if(position >= path.size){
 			//TODO
 			//Lose life method
+			SpriteCollector.getInstance().removeSprite(alien.getSpriteAdapter());
 		} else {	
 			alien.setPos(path.get(position));
-			alien.increaseNodeArrayPos((int)alien.getSpeed());
+			alien.setNodeArrayPos(position);
 		}
 	}
 	
@@ -73,5 +79,10 @@ public class AlienModel {
 		if(alien.isDead()){
 			aliens.removeValue(alien, false);
 		}
+	}
+
+	@Override
+	public void update(float deltaTime) {
+		moveAllAliens(deltaTime);
 	}
 }

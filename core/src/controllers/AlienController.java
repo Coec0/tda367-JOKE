@@ -12,9 +12,9 @@ public class AlienController extends InputAdapter implements UpdateObserver {
 	AlienView AView;
 	AlienModel AModel;
 
-	public AlienController() {
-		AView = new AlienView();
-		AModel = new AlienModel();
+	public AlienController(AlienView AView, AlienModel AModel) {
+		this.AView = AView;
+		this.AModel = AModel;
 
 	}
 
@@ -28,11 +28,11 @@ public class AlienController extends InputAdapter implements UpdateObserver {
 
 	@Override
 	public void update(float deltaTime) {
-		AModel.moveAllAliens();
+	/*	AModel.moveAllAliens();
 		if(AModel.getAlien(0)!=null){
 			for(Alien alien : AModel.getAllAliens())
 			alien.getSpriteAdapter().rotate(10*(float)Math.cos((alien.getPos().getX())));
-		}
+		}*/
 	}
 
 }
