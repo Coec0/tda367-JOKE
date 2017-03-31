@@ -1,15 +1,18 @@
 package controllers;
 
+import models.AlienModel;
 import models.TowerModel;
 import views.TowerView;
 
 public class TowerController {
-    TowerView view;
-    TowerModel model;
+    TowerView TView;
+    TowerModel TModel;
+    AlienModel AModeL;
 
-    public TowerController(){
-        view = new TowerView();
-        model = new TowerModel();
+    public TowerController(TowerModel TModel, AlienModel AModel, TowerView TView){
+        this.TView = TView;
+        this.TModel = TModel;
+        this.AModeL = AModel;
     }
 
 
