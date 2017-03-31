@@ -7,13 +7,13 @@ import java.awt.*;
 
 public abstract class Tower {
     private Node pos;
-    private int radius;
+    private float radius;
     private String name;
     private int cost;
-    private int damage;
+    private float damage;
 
 
-    public Tower(Node pos, int radius, String name, int cost, int damage){
+    public Tower(Node pos, float radius, String name, int cost, float damage){
         this.pos = pos;
         this.radius = radius;
         this.name = name;
@@ -33,7 +33,7 @@ public abstract class Tower {
         return this.name;
     }
 
-    public int getRadius(){
+    public float getRadius(){
         return this.radius;
     }
 
@@ -41,7 +41,7 @@ public abstract class Tower {
         return this.cost;
     }
 
-    public int getDamage(){
+    public float getDamage(){
         return this.damage;
     }
 
