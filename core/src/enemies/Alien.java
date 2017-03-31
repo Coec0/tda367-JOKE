@@ -1,7 +1,7 @@
 package enemies;
 
 public class Alien extends Enemy{
-	private final static float SPEED=1;
+	private final static float SPEED=100;
 	private final static float HEALTH=30;
 	private final static int X = 0;
 	private final static int Y = 0;

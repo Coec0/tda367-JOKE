@@ -6,20 +6,25 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.Array;
 
 import controllers.AlienController;
+import models.AlienModel;
 import screens.GameScreen;
 import utilities.UpdateObserver;
+import views.AlienView;
 
 public class IllegalAliensMain extends Game {
 
 	AlienController AController;
 	@Override
 	public void create() {
+		AlienView AW= new AlienView();
+		AlienModel AM= new AlienModel();
 		
-		AController = new AlienController();
+		AController = new AlienController(AW, AM);
 		
 		// JUST FOR TESTING
 		Gdx.input.setInputProcessor(AController);
-		this.addObserver(AController);
+		this.addObserver(AM);
+		//this.addObserver(observer);
 		Screen GameScreen = new GameScreen();
 		setScreen(GameScreen);
 	}
