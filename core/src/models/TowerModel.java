@@ -1,14 +1,12 @@
 package models;
 
 import com.badlogic.gdx.utils.Array;
-import controllers.TowerController;
+
 import towers.Soldier;
 import towers.Tank;
 import towers.Tower;
 import utilities.Node;
 import utilities.SpriteAdapter;
-
-import java.util.ArrayList;
 
 public class TowerModel {
     Array<Tower> towers;
@@ -16,7 +14,7 @@ public class TowerModel {
 
     public TowerModel(AlienModel AModel){
         towers = new Array<Tower>(false, 100);
-        AModel = new AlienModel();
+        //AModel = new AlienModel();
     }
 
     public void createSoldier(Node pos){

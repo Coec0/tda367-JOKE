@@ -5,39 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.Array;
 
-import controllers.AlienController;
-
-import controllers.TowerController;
-import models.AlienModel;
-import models.TowerModel;
 import screens.GameScreen;
 import utilities.UpdateObserver;
-import views.AlienView;
-import views.TowerView;
 
 
 public class IllegalAliensMain extends Game {
 
-	AlienController AController;
-	TowerController TController;
 	@Override
 	public void create() {
-
-		//Maybe move to Screen later
-		
-		AlienView AW= new AlienView();
-		AlienModel AM= new AlienModel();
-		TowerModel TM = new TowerModel(AM);
-		TowerView TW = new TowerView();
-		
-		AController = new AlienController(AW, AM);
-		TController = new TowerController(TM, AM, TW);
-		
-		// JUST FOR TESTING
-		Gdx.input.setInputProcessor(AController);
-		this.addObserver(AM);
-		//this.addObserver(observer);
-		Screen GameScreen = new GameScreen();
+		Screen GameScreen = new GameScreen(this);
 		setScreen(GameScreen);
 	}
 

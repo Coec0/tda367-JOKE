@@ -16,7 +16,7 @@ public class PathFinder{
 		this.speed = speed;
 	}
 	
-	private void calculateShortest(){
+	public void calculateShortest(){
 		shortestPath = calcPixelPath(speed, allNodes); //just for testing. will be replaced with dijekstra
 	}
 	

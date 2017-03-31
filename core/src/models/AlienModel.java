@@ -10,21 +10,11 @@ import utilities.UpdateObserver;
 
 public class AlienModel implements UpdateObserver {
 	Array<Alien> aliens;
-	PathFinder finder;
-	Array<Node> nodes = new Array<Node>();
 	Array<Node> path;
 	Array<Node> direction;
-	public AlienModel() {
+	public AlienModel(PathFinder finder) {
 		aliens = new Array<Alien>(false, 10);
 		
-		nodes.add(new Node(0,360)); //just to test the pathfinder class
-		nodes.add(new Node(500,360));
-		nodes.add(new Node(500,200));
-		nodes.add(new Node(780,200));
-		nodes.add(new Node(780,360));
-		nodes.add(new Node(1280,360));
-		
-		finder = new PathFinder(nodes);
 		path = finder.getShortestPath();
 		direction = finder.getDirectionList();
 	}
