@@ -70,9 +70,7 @@ public class PathFinder{
 			path.add(pathNodes.get(i+1)); //add goal node instead so we land on the correct node. 
 			current = pathNodes.get(i+1);	//update current to match
 		}
-		for(Node node : path){
-			System.out.println(node.getX() + "  " + node.getY());
-		}
+	
 		return path;
 	}
 	

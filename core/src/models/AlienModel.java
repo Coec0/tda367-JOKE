@@ -13,6 +13,7 @@ public class AlienModel implements UpdateObserver {
 	PathFinder finder;
 	Array<Node> nodes = new Array<Node>();
 	Array<Node> path;
+	Array<Node> direction;
 	public AlienModel() {
 		aliens = new Array<Alien>(false, 10);
 		
@@ -25,6 +26,7 @@ public class AlienModel implements UpdateObserver {
 		
 		finder = new PathFinder(nodes);
 		path = finder.getShortestPath();
+		direction = finder.getDirectionList();
 	}
 	
 	public void createAlien(){
@@ -61,7 +63,6 @@ public class AlienModel implements UpdateObserver {
 	
 	public void moveAlien(Alien alien, float deltaTime){
 		int position = (int)(alien.getNodeArrayPos()+((int)alien.getSpeed()*deltaTime));
-		System.out.println(position);
 		if(position >= path.size){
 			//TODO
 			//Lose life method
@@ -69,6 +70,7 @@ public class AlienModel implements UpdateObserver {
 		} else {	
 			alien.setPos(path.get(position));
 			alien.setNodeArrayPos(position);
+			alien.setDirection(direction.get(position));
 		}
 	}
 	
