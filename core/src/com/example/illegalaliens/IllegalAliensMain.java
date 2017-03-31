@@ -27,7 +27,7 @@ public class IllegalAliensMain extends Game {
 		
 		AlienView AW= new AlienView();
 		AlienModel AM= new AlienModel();
-		TowerModel TM = new TowerModel();
+		TowerModel TM = new TowerModel(AM);
 		TowerView TW = new TowerView();
 		
 		AController = new AlienController(AW, AM);

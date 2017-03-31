@@ -13,7 +13,6 @@ public class AlienController extends InputAdapter{
 	public AlienController(AlienView AView, AlienModel AModel) {
 		this.AView = AView;
 		this.AModel = AModel;
-
 	}
 
 	// JUST FOR TESTING

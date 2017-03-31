@@ -10,7 +10,7 @@ public class TowerView {
 
 
     public TowerView(){
-        texture = new Texture("tank.png");
+        texture = new Texture("soldier.png");
     }
 
     public void removeFromView(SpriteAdapter sprite){
@@ -18,7 +18,6 @@ public class TowerView {
     }
 
     public void addToView(SpriteAdapter sprite, int x, int y){
-
         sprite.setPosition(x, y);
         addToView(sprite);
     }
@@ -26,7 +25,7 @@ public class TowerView {
     public void addToView(SpriteAdapter sprite){
         if(sprite.getTexture() == null){
             sprite.setTexture(texture);
-            sprite.setSize(sprite.getWidth()/2, sprite.getHeight()/2);
+            sprite.setSize(sprite.getWidth()/3, sprite.getHeight()/3);
         }
         SC.addSprite(sprite);
     }

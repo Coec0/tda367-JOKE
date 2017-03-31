@@ -2,31 +2,36 @@ package towers;
 
 import enemies.Enemy;
 import utilities.Node;
+import utilities.SpriteAdapter;
 
 import java.awt.*;
 
 public abstract class Tower {
-    private Node pos;
     private float radius;
     private String name;
     private int cost;
     private float damage;
 
+    private SpriteAdapter pos;
 
-    public Tower(Node pos, float radius, String name, int cost, float damage){
+
+    public Tower(SpriteAdapter pos, float radius, String name, int cost, float damage){
         this.pos = pos;
         this.radius = radius;
         this.name = name;
         this.cost = cost;
         this.damage = damage;
     }
-
-    public void setPos(Node pos){
-        this.pos = pos;
+    public Node getPos() {
+        return new Node(pos.getX(),pos.getY());
     }
 
-    public Node getPos(){
-        return this.pos;
+    public void setPos(Node pos) {
+        this.pos.setPosition(pos.getX(), pos.getY());
+    }
+
+    public SpriteAdapter getSpriteAdapter(){
+        return pos;
     }
 
     public String getName(){
