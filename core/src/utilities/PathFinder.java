@@ -6,6 +6,7 @@ public class PathFinder{
 	private Array<Node> shortestPath;
 	private Array<Node> allNodes;
 	private float speed = 10;
+	private Array<Node> directionList = new Array<Node>(); 
 	
 	public PathFinder(Array<Node> allNodes){
 			this.allNodes = allNodes;
@@ -37,6 +38,7 @@ public class PathFinder{
 	private Array<Node> calcPixelPath(float speed, Array<Node> pathNodes){
 		
 		Array<Node> path = new Array<Node>();
+		directionList.clear(); //because directionList has to match path
 		
 		for(int i = 0; i < pathNodes.size -1; i++){
 			Node goal = pathNodes.get(i+1);
@@ -58,6 +60,7 @@ public class PathFinder{
 					//nextstep: gives coordnitaes for the next step with a certain speed or jump. Moves from current position to current + direction*jump
 					//slowly increments towards the goal node
 					path.add(nextStep);
+					this.directionList.add(direction); //add right after so that directionList matches with path
 					current = nextStep; //update current
 					deltaCurrentX = current.getX() - start.getX();
 					deltaCurrentY = current.getY() - start.getY();
@@ -71,8 +74,10 @@ public class PathFinder{
 			System.out.println(node.getX() + "  " + node.getY());
 		}
 		return path;
-		
-		
+	}
+	
+	public Array<Node> getDirectionList(){
+		return this.directionList;
 	}
 	
 
