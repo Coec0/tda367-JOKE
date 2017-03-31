@@ -63,6 +63,11 @@ public class GameScreen implements Screen{
 	@Override
 	public void dispose() {
 		batch.dispose();
+		if(SC.getSprites() != null){
+			for(SpriteAdapter sprite : SC.getSprites()){
+				sprite.getTexture().dispose();
+			}
+		}
 		
 	}
 
