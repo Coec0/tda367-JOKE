@@ -1,12 +1,12 @@
 package models;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 import towers.Soldier;
 import towers.Tank;
 import towers.Tower;
 import utilities.Node;
-import utilities.SpriteAdapter;
 
 public class TowerModel {
     Array<Tower> towers;
@@ -18,14 +18,18 @@ public class TowerModel {
     }
 
     public void createSoldier(Node pos){
-        towers.add(new Soldier(new SpriteAdapter(0,0)));
+        towers.add(new Soldier((int)pos.getX(), Gdx.graphics.getHeight() -(int)pos.getY()));
     }
     public void createTank(Node pos){
-        towers.add(new Tank(new SpriteAdapter(5,5)));
+        towers.add(new Tank((int)pos.getX(), (int)pos.getY()));
     }
 
     public Tower getTower(int index){
         return towers.get(index);
+    }
+    
+    public Tower peekTower(){
+        return towers.peek();
     }
 
     public void sellTower(int index){

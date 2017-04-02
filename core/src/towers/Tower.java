@@ -15,8 +15,8 @@ public abstract class Tower {
     private SpriteAdapter pos;
 
 
-    public Tower(SpriteAdapter pos, float radius, String name, int cost, float damage){
-        this.pos = pos;
+    public Tower(int x, int y, float radius, String name, int cost, float damage){
+        this.pos = new SpriteAdapter(x, y);
         this.radius = radius;
         this.name = name;
         this.cost = cost;
@@ -28,6 +28,10 @@ public abstract class Tower {
 
     public void setPos(Node pos) {
         this.pos.setPosition(pos.getX(), pos.getY());
+    }
+    
+    public void setPos(int x, int y) {
+        this.pos.setPosition(x, y);
     }
 
     public SpriteAdapter getSpriteAdapter(){

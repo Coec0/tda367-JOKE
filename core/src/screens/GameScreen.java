@@ -52,10 +52,15 @@ public class GameScreen implements Screen{
 		@SuppressWarnings("unused")
 		TowerController TController = new TowerController(TM, AM, TW);	
 		
+
 		ewc = new EnemyWavesCreator(AController);
 		IAMain.addObserver(ewc);
 		EnemyWavesController waveCont = new EnemyWavesController(ewc);
-		Gdx.input.setInputProcessor(waveCont);
+		
+		//TODO
+		//Gdx.input.setInputProcessor(waveCont);
+		Gdx.input.setInputProcessor(TController);
+
 		IAMain.addObserver(AM);
 		
 	}

@@ -1,13 +1,15 @@
 package controllers;
 
+import com.badlogic.gdx.InputAdapter;
+
 import models.AlienModel;
 import models.TowerModel;
 import utilities.Node;
-import utilities.SpriteAdapter;
 import views.TowerView;
 
-public class TowerController {
-    TowerView TView;
+public class TowerController extends InputAdapter {
+
+	TowerView TView;
     TowerModel TModel;
     AlienModel AModeL;
 
@@ -15,9 +17,14 @@ public class TowerController {
         this.TView = TView;
         this.TModel = TModel;
         this.AModeL = AModel;
-        TModel.createSoldier(new Node (2, 3));
-        TView.addToView(TModel.getTower(0).getSpriteAdapter());
+        
     }
 
+    @Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    	TModel.createSoldier(new Node (screenX, screenY));
+        TView.addToView(TModel.peekTower().getSpriteAdapter());
+		return super.touchDown(screenX, screenY, pointer, button);
+	}
 
 }

@@ -11,8 +11,8 @@ public class Soldier extends Tower {
     private static final int COST = 50;
     private static final int DAMAGE = 5;
 
-    public Soldier(SpriteAdapter POS){
-        super(POS, RADIUS, NAME, COST, DAMAGE);
+    public Soldier(int x, int y){
+        super(x, y, RADIUS, NAME, COST, DAMAGE);
     }
 
 }
