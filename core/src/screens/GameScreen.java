@@ -11,6 +11,7 @@ import controllers.AlienController;
 import controllers.TowerController;
 import models.AlienModel;
 import models.TowerModel;
+import utilities.EnemyWavesCreator;
 import utilities.Node;
 import utilities.PathFinder;
 import utilities.SpriteAdapter;
@@ -25,6 +26,7 @@ public class GameScreen implements Screen{
 	Array<Node> nodes = new Array<Node>();
 	PathFinder finder;
 	IllegalAliensMain IAMain;
+	EnemyWavesCreator ewc;
 	
 	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
@@ -42,11 +44,14 @@ public class GameScreen implements Screen{
 		TowerModel TM = new TowerModel(AM);
 		TowerView TW = new TowerView();
 		
+		
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
 		@SuppressWarnings("unused")
 		TowerController TController = new TowerController(TM, AM, TW);	
 		
+		ewc = new EnemyWavesCreator(AController);
+		IAMain.addObserver(ewc);
 		Gdx.input.setInputProcessor(AController);
 		IAMain.addObserver(AM);
 		
