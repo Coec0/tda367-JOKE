@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.IllegalAliensMain;
 
 import controllers.AlienController;
+import controllers.EnemyWavesController;
 import controllers.TowerController;
 import models.AlienModel;
 import models.TowerModel;
@@ -27,6 +28,7 @@ public class GameScreen implements Screen{
 	PathFinder finder;
 	IllegalAliensMain IAMain;
 	EnemyWavesCreator ewc;
+	EnemyWavesController waveCont;
 	
 	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
@@ -52,7 +54,8 @@ public class GameScreen implements Screen{
 		
 		ewc = new EnemyWavesCreator(AController);
 		IAMain.addObserver(ewc);
-		Gdx.input.setInputProcessor(AController);
+		EnemyWavesController waveCont = new EnemyWavesController(ewc);
+		Gdx.input.setInputProcessor(waveCont);
 		IAMain.addObserver(AM);
 		
 	}

@@ -27,7 +27,7 @@ public class EnemyWavesCreator implements UpdateObserver {
 	@Override
 	public void update(float deltaTime) {
 		frames++;
-		if(frames > 30){
+		if(frames > 15){
 			if(counter > 0){
 				cont.spawnAlien();
 				counter--;
