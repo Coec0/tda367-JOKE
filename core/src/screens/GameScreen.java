@@ -26,13 +26,13 @@ public class GameScreen implements Screen{
 	PathFinder finder;
 	IllegalAliensMain IAMain;
 	
-	public GameScreen(IllegalAliensMain illegalAliensMain) {
+	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
+		this.batch = batch;
 	}
 
 	@Override
 	public void show() {
-		batch = new SpriteBatch();
 		addNodes();
 		finder = new PathFinder(nodes);
 		finder.calculateShortest();

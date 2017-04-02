@@ -3,19 +3,25 @@ package com.example.illegalaliens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
-import screens.GameScreen;
+import screens.MainMenuScreen;
 import utilities.UpdateObserver;
 
 
 public class IllegalAliensMain extends Game {
-
+	SpriteBatch batch;
+	
 	@Override
 	public void create() {
-		Screen GameScreen = new GameScreen(this);
-		setScreen(GameScreen);
+		batch = new SpriteBatch();
+		//GameScreen = new GameScreen(this, batch);
+		setScreen(new MainMenuScreen(this,batch));
+		//setScreen(GameScreen);
 	}
+	
+	
 
 	private Array<UpdateObserver> observers = new Array<UpdateObserver>(false, 10);
 
