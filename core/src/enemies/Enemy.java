@@ -43,10 +43,11 @@ public abstract class Enemy {
 		float newX = newDir.getX();
 		float newY = newDir.getY();
 
-		float oldLength = (float) Math.sqrt(oldX*oldX + oldY*oldY);
-		float newLength = (float) Math.sqrt(newX*newX + newY*newY);
-
-		return (float) (Math.acos((oldX*newX + newY*oldY) / (oldLength*newLength)) * (180/Math.PI));
+		return (float) (Math.acos(
+				(oldX * newX + newY * oldY)
+				/ (direction.getLength() * newDir.getLength()))
+				* (180/Math.PI)
+		);
 	}
 
 	/**
