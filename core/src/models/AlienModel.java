@@ -9,10 +9,13 @@ import utilities.SpriteCollector;
 import utilities.UpdateObserver;
 
 public class AlienModel implements UpdateObserver {
-	Array<Alien> aliens;
-	Array<Node> path;
-	Array<Node> direction;
-	public AlienModel(PathFinder finder) {
+	private PathFinder finder = PathFinder.getInstance();
+
+	private Array<Alien> aliens;
+	private Array<Node> path;
+	private Array<Node> direction;
+
+	public AlienModel() {
 		aliens = new Array<Alien>(false, 10);
 		
 		path = finder.getShortestPath();

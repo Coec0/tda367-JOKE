@@ -23,9 +23,9 @@ import views.TowerView;
 public class GameScreen implements Screen{
 	SpriteBatch batch;
 	private SpriteCollector SC = SpriteCollector.getInstance();
+	private PathFinder finder = PathFinder.getInstance();
 	
-	Array<Node> nodes = new Array<Node>();
-	PathFinder finder;
+	private Array<Node> nodes = new Array<Node>();
 	IllegalAliensMain IAMain;
 	EnemyWavesCreator ewc;
 	EnemyWavesController waveCont;
@@ -38,11 +38,10 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		addNodes();
-		finder = new PathFinder(nodes);
-		finder.calculateShortest();
+		finder.calculateShortest(nodes);
 		
 		AlienView AW= new AlienView();
-		AlienModel AM= new AlienModel(finder);
+		AlienModel AM = new AlienModel();
 		TowerModel TM = new TowerModel(AM);
 		TowerView TW = new TowerView();
 		

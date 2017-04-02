@@ -2,31 +2,41 @@ package utilities;
 
 import com.badlogic.gdx.utils.Array;
 
-public class PathFinder{
+public final class PathFinder {
+	private static final PathFinder instance = new PathFinder();
+
 	private Array<Node> shortestPath;
 	private Array<Node> allNodes;
 	private float speed = 10;
 	private Array<Node> directionList = new Array<Node>(); 
-	
-	public PathFinder(Array<Node> allNodes){
-			this.allNodes = allNodes;
+
+	private PathFinder() {
+		allNodes = new Array<Node>();
 	}
+
+	public static PathFinder getInstance() {
+		return instance;
+	}
+
+//	public PathFinder(Array<Node> allNodes){
+//			this.allNodes = allNodes;
+//	}
 	
 	public void setSpeed(float speed){
 		this.speed = speed;
 	}
 	
-	public void calculateShortest(){
-		shortestPath = calcPixelPath(speed, allNodes); //just for testing. will be replaced with dijekstra
+	public void calculateShortest(Array<Node> nodes){
+		shortestPath = calcPixelPath(speed, nodes); //just for testing. will be replaced with dijekstra
 	}
-	
+
 	public Array<Node> getShortestPath(){
 		
-		if (shortestPath == null){
-			calculateShortest();
-			System.out.println(shortestPath.size);
-		}
-		System.out.println(shortestPath.size);
+//		if (shortestPath == null){
+//			calculateShortest();
+//			System.out.println(shortestPath.size);
+//		}
+//		System.out.println(shortestPath.size);
 		return shortestPath;
 	}
 	
