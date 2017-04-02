@@ -23,25 +23,41 @@ public abstract class Enemy {
 		health -= dmg;
 	}
 	
-	public void setDirection(Node newDir){ 
+	public void setDirection(Node newDir){
+		if (isAngleNegative(newDir)) {
+			pos.rotate(-getAngle(newDir));
+		} else {
+			pos.rotate(getAngle(newDir));
+		}
+		direction = newDir; //update direction
+	}
+
+	/**
+	 * Calculate angle using dot product with old direction and new direction
+	 * @param newDir
+	 * @return angle
+	 */
+	private float getAngle(Node newDir) {
 		float oldX = direction.getX();
 		float oldY = direction.getY();
 		float newX = newDir.getX();
 		float newY = newDir.getY();
-		
+
 		float oldLength = (float) Math.sqrt(oldX*oldX + oldY*oldY);
 		float newLength = (float) Math.sqrt(newX*newX + newY*newY);
-		
-		float angle = (float) (Math.acos((oldX*newX + newY*oldY) / (oldLength*newLength)) * (180/Math.PI)); 
-		//dot-product devided with length of both vector gives the angle
-		
-		float determinant = oldX*newY - oldY*newX; //check the determinat to know if angle is negetiv or not
-		if(determinant < 0){ 
-			pos.rotate(-angle);
-		}else{
-			pos.rotate(angle);
-		}
-		direction = newDir; //update direction
+
+		return (float) (Math.acos((oldX*newX + newY*oldY) / (oldLength*newLength)) * (180/Math.PI));
+	}
+
+	/**
+	 * Check if angle is positive using determinant
+	 * @param newDir
+	 * @return true if angle is positive
+	 */
+	private boolean isAngleNegative(Node newDir) {
+		float determinant = direction.getX() * newDir.getY() - direction.getY() * newDir.getX();
+
+		return determinant < 0;
 	}
 	
 	public Node getDirection(){
