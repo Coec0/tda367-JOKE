@@ -13,6 +13,7 @@ public abstract class Tower {
     private float damage;
     private Enemy target;
 
+
     private SpriteAdapter pos;
 
 
@@ -22,6 +23,7 @@ public abstract class Tower {
         this.name = name;
         this.cost = cost;
         this.damage = damage;
+        
     }
     public Node getPos() {
         return new Node(pos.getX(),pos.getY());
@@ -60,12 +62,38 @@ public abstract class Tower {
     }
 
     public void setTarget(Enemy target){
+    	//System.out.println(target.getPos().getX() + "   "  + target.getPos().getY());
+    	testFunction(target.getPos());
     	this.target = target;
     }
     
     public Enemy getTarget(){
     	return target;
     }
+    
+    
+    //we probably need to move this fuction to a helper class. I just copy-pasted from enemy for now (test)
+    
+    public void testFunction (Node newDir){
+    	float oldX = pos.getX();
+		float oldY = pos.getY();
+		float newX = newDir.getX();
+		float newY = newDir.getY();
+		
+		
+		float angle = (float) Math.toDegrees(Math.atan2(newY - oldY, newX - oldX));
+		
+		if(angle >= 0){
+			angle += 360;
+		}
+		pos.setRotation(angle);
+    }
+    
+    
+    
+
+    
+	
     
    
 

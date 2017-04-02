@@ -53,6 +53,7 @@ public class GameScreen implements Screen{
 		
 
 		ewc = new EnemyWavesCreator(AController);
+		IAMain.addObserver(TM);
 		IAMain.addObserver(ewc);
 		EnemyWavesController waveCont = new EnemyWavesController(ewc);
 		
@@ -67,7 +68,7 @@ public class GameScreen implements Screen{
 	private void addNodes() {
 		//Maybe move to "Map" class (MVC?)
 		nodes.add(new Node(0,360));
-		nodes.add(new Node(500,360));
+		nodes.add(new Node(700,252));
 		nodes.add(new Node(500,200));
 		nodes.add(new Node(780,200));
 		nodes.add(new Node(780,360));

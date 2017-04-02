@@ -8,8 +8,9 @@ import towers.Soldier;
 import towers.Tank;
 import towers.Tower;
 import utilities.Node;
+import utilities.UpdateObserver;
 
-public class TowerModel {
+public class TowerModel implements UpdateObserver{
     Array<Tower> towers;
     Array<Alien> aliens;
 
@@ -47,17 +48,22 @@ public class TowerModel {
     	float deltaX = enemyNode.getX() - tower.getPos().getX();
     	float deltaY = enemyNode.getY() - tower.getPos().getY();
     	
-    	if((deltaX*deltaX) + (deltaY*deltaY) <= (tower.getRadius()*tower.getRadius())){
+    	if((deltaX*deltaX) + (deltaY*deltaY) < (tower.getRadius()*tower.getRadius())){
     		return true;
     	}
+    	
     	return false;
+    	
     }
 
     public void findTargets(){
+    	
         for(Tower tower : towers){
         	for(Alien alien : aliens){
         		if(checkIfInRadius(tower,alien.getPos())){
+        			
         			tower.setTarget(alien); //dosent consider if tower wants to shoot first, last, strogest etc. TODO
+        			
         		}
         	}
         }
@@ -74,5 +80,12 @@ public class TowerModel {
     public void rotate(){
 
     }
+
+	@Override
+	public void update(float deltaTime) {
+		findTargets();
+		
+		
+	}
    
 }

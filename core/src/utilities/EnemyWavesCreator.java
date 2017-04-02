@@ -11,7 +11,7 @@ public class EnemyWavesCreator implements UpdateObserver {
 	private int wave;
 	private Array<Enemy> enemies;
 	private AlienController cont;
-	private int counter = 10;
+	private int counter = 1;
 	private int frames;
 	
 	public EnemyWavesCreator(AlienController cont){
@@ -21,7 +21,7 @@ public class EnemyWavesCreator implements UpdateObserver {
 	}
 	
 	public void nextWave(){
-			counter = 10;
+			counter = 1;
 	}
 		
 	@Override
