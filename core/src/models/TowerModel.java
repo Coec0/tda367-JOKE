@@ -3,6 +3,7 @@ package models;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
+import enemies.Alien;
 import towers.Soldier;
 import towers.Tank;
 import towers.Tower;
@@ -10,11 +11,12 @@ import utilities.Node;
 
 public class TowerModel {
     Array<Tower> towers;
+    Array<Alien> aliens;
 
 
     public TowerModel(AlienModel AModel){
         towers = new Array<Tower>(false, 100);
-        //AModel = new AlienModel();
+        aliens = AModel.getAllAliens();
     }
 
     public void createSoldier(Node pos){
@@ -41,13 +43,23 @@ public class TowerModel {
         //TODO
     }
 
-    public boolean checkIfInRadius(){
-        return (5 < towers.get(0).getRadius());
+    public boolean checkIfInRadius(Tower tower, Node enemyNode){
+    	float deltaX = enemyNode.getX() - tower.getPos().getX();
+    	float deltaY = enemyNode.getY() - tower.getPos().getY();
+    	
+    	if((deltaX*deltaX) + (deltaY*deltaY) <= (tower.getRadius()*tower.getRadius())){
+    		return true;
+    	}
+    	return false;
     }
 
-    public void target(){
-        if(checkIfInRadius()){
-            shoot();
+    public void findTargets(){
+        for(Tower tower : towers){
+        	for(Alien alien : aliens){
+        		if(checkIfInRadius(tower,alien.getPos())){
+        			tower.setTarget(alien); //dosent consider if tower wants to shoot first, last, strogest etc. TODO
+        		}
+        	}
         }
     }
 
@@ -62,4 +74,5 @@ public class TowerModel {
     public void rotate(){
 
     }
+   
 }

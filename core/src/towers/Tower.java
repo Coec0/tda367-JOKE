@@ -11,6 +11,7 @@ public abstract class Tower {
     private String name;
     private int cost;
     private float damage;
+    private Enemy target;
 
     private SpriteAdapter pos;
 
@@ -55,12 +56,18 @@ public abstract class Tower {
     }
 
     public void shoot(Enemy enemy){
-
+    	
     }
 
-    public void target(Enemy enemy){
-
+    public void setTarget(Enemy target){
+    	this.target = target;
     }
+    
+    public Enemy getTarget(){
+    	return target;
+    }
+    
+   
 
 
 
