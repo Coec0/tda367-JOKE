@@ -32,7 +32,23 @@ public class SpriteAdapter extends Sprite{
 	}
 	
 	@Override
+	public void setPosition(float x, float y) {
+		super.setPosition(x-super.getOriginX(), y-super.getOriginY());
+	}
+	
+	@Override
+	public float getX() {
+		return super.getX()+super.getOriginX();
+	}
+	
+	@Override
+	public float getY() {
+		return super.getY()+super.getOriginY();
+	}
+
+	@Override
 	public void setSize(float width, float height){
+		super.translate((super.getWidth()-width)/2, (super.getHeight()-height)/2);
 		super.setSize(width, height);
 		super.setOriginCenter();
 	}
@@ -44,6 +60,8 @@ public class SpriteAdapter extends Sprite{
 		super.setRegion(0, 0, texture.getWidth(), texture.getHeight());
 		//super.setOrigin(texture.getWidth() / 2, texture.getHeight() / 2);
 		super.setOriginCenter();
+		super.translate(-texture.getWidth()/2, -texture.getHeight()/2);
+		System.out.println(texture.getHeight());
 	}
 
 	@Override
