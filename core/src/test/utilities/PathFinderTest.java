@@ -1,4 +1,4 @@
-package test.utilities;
+package utilities;
 
 import org.junit.Test;
 import utilities.PathFinder;
