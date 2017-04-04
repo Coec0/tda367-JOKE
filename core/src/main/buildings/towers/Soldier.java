@@ -1,4 +1,4 @@
-package towers;
+package buildings.towers;
 
 public class Soldier extends Tower {
     private static final int RADIUS = 100;

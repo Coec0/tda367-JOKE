@@ -1,4 +1,4 @@
-package towers.targetmethods;
+package buildings.towers.targetmethods;
 
 import enemies.Alien;
 

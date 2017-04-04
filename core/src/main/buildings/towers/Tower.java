@@ -1,4 +1,4 @@
-package towers;
+package buildings.towers;
 
 import enemies.Enemy;
 import utilities.Node;

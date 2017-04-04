@@ -1,4 +1,4 @@
-package towers;
+package buildings.towers;
 
 public class Tank extends Tower{
 

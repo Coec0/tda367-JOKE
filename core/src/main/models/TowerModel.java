@@ -3,10 +3,10 @@ package models;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
+import buildings.towers.Soldier;
+import buildings.towers.Tank;
+import buildings.towers.Tower;
 import enemies.Alien;
-import towers.Soldier;
-import towers.Tank;
-import towers.Tower;
 import utilities.Node;
 import utilities.UpdateObserver;
 
