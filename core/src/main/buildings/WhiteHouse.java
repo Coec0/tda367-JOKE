@@ -1,5 +1,7 @@
 package buildings;
 
-public class WhiteHouse {
+import utilities.SpriteAdapter;
 
+public class WhiteHouse {
+	
 }
