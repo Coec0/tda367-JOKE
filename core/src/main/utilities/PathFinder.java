@@ -7,7 +7,7 @@ public final class PathFinder {
 
 	private Array<Node> shortestPath;
 	private Array<Node> allNodes;
-	private float speed = 10;
+	private float speed;
 	private Array<Node> directionList = new Array<Node>(); 
 
 	private PathFinder() {
@@ -27,7 +27,7 @@ public final class PathFinder {
 	}
 	
 	public void calculateShortest(Array<Node> nodes){
-		shortestPath = calcPixelPath(speed, nodes); //just for testing. will be replaced with dijekstra
+		shortestPath = getFullPath(10, nodes); //just for testing. will be replaced with dijekstra
 	}
 
 	public Array<Node> getShortestPath(){
@@ -45,43 +45,107 @@ public final class PathFinder {
 	}
 	
 	//calculates the specific coordinates between nodes with a certain jump
-	private Array<Node> calcPixelPath(float speed, Array<Node> pathNodes){
+
+	/**
+	 * Returns the full path of pixels between multiple Nodes
+	 * @param speed
+	 * @param pathNodes
+	 * @return full path
+	 */
+	private Array<Node> getFullPath(float speed, Array<Node> pathNodes){
 		
-		Array<Node> path = new Array<Node>();
+		Array<Node> fullPath = new Array<Node>();
 		directionList.clear(); //because directionList has to match path
 		
-		for(int i = 0; i < pathNodes.size -1; i++){
-			Node goal = pathNodes.get(i+1);
+		for (int i = 0; i < pathNodes.size - 1; i++) {
 			Node start = pathNodes.get(i);
-			Node current = start;	//acts like a sprite. "Walks" along the node lines.
-			float startX = start.getX();
-			float startY = start.getY();
-			float deltaX = goal.getX() - startX;	
-			float deltaY = goal.getY() - startY;
-			float startDistance = (float) Math.sqrt(deltaX*deltaX + deltaY*deltaY); //to conmpare with currentdistance to see if we have arrived at node yet
-			Node direction = new Node(deltaX/startDistance, deltaY/startDistance); //normalized direction
-			
-			float deltaCurrentX;
-			float deltaCurrentY;
-			float currentDistance = 0; //start at zero because startDistance will never be <0
-			
-			while(currentDistance <= startDistance){
-					Node nextStep = new Node(current.getX() + (direction.getX() * speed), current.getY() + (direction.getY() * speed));
-					//nextstep: gives coordnitaes for the next step with a certain speed or jump. Moves from current position to current + direction*jump
-					//slowly increments towards the goal node
-					path.add(nextStep);
-					this.directionList.add(direction); //add right after so that directionList matches with path
-					current = nextStep; //update current
-					deltaCurrentX = current.getX() - start.getX();
-					deltaCurrentY = current.getY() - start.getY();
-					currentDistance = (float) Math.sqrt(deltaCurrentX*deltaCurrentX + deltaCurrentY*deltaCurrentY); 
+			Node goal = pathNodes.get(i+1);
+
+			Array<Node> pixelPath = getPixelPath(start, goal, speed);
+
+			for (Node pixel : pixelPath) {
+				fullPath.add(pixel);
 			}
-			path.pop(); //remove last node to avoid going beond the goal node
-			path.add(pathNodes.get(i+1)); //add goal node instead so we land on the correct node. 
-			current = pathNodes.get(i+1);	//update current to match
 		}
 	
-		return path;
+		return fullPath;
+	}
+
+	/**
+	 * Returns the pixels between two given Nodes
+	 * @param start
+	 * @param goal
+	 * @return
+	 */
+	private Array<Node> getPixelPath(Node start, Node goal, float speed) {
+		Array<Node> pixelPath = new Array<Node>();
+
+		Node current = start;
+		Node direction = normalizedNode(start,goal);
+
+		float currentDistance = 0;
+
+		while(currentDistance <= getDistance(start, goal)) {
+			Node nextStep = new Node(current.getX() + (direction.getX() * speed), current.getY() + (direction.getY() * speed));
+
+			pixelPath.add(nextStep);
+
+			directionList.add(direction);
+
+			current = nextStep;
+			currentDistance = (float) getDistance(start, current);
+		}
+		pixelPath.pop();
+		pixelPath.add(goal);
+
+		return pixelPath;
+	}
+
+	/**
+	 * Returns the distance between two given nodes
+	 * @param start
+	 * @param goal
+	 * @return distance
+	 */
+	private double getDistance(Node start, Node goal) {
+		float deltaX = getDeltaX(start, goal);
+		float deltaY = getDeltaY(start, goal);
+
+		return Math.sqrt(deltaX*deltaX + deltaY*deltaY);
+	}
+
+	/**
+	 * Returns the difference on the x-axis between two given nodes
+	 * @param start
+	 * @param goal
+	 * @return deltaX
+	 */
+	private float getDeltaX(Node start, Node goal) {
+		return goal.getX() - start.getX();
+	}
+
+	/**
+	 * Returns the difference on the y-axis between two given nodes
+	 * @param start
+	 * @param goal
+	 * @return deltaY
+	 */
+	private float getDeltaY(Node start, Node goal) {
+		return goal.getY() - start.getY();
+	}
+
+	/**
+	 * Returns Node with normalized direction
+	 * @param start
+	 * @param goal
+	 * @return Node with normalized direction
+	 */
+	private Node normalizedNode(Node start, Node goal) {
+		float startDistance = (float) getDistance(start, goal);
+		float deltaX = getDeltaX(start, goal);
+		float deltaY = getDeltaY(start, goal);
+
+		return new Node(deltaX/startDistance, deltaY/startDistance);
 	}
 	
 	public Array<Node> getDirectionList(){
