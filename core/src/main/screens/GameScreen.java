@@ -1,6 +1,8 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,7 +11,6 @@ import com.example.illegalaliens.IllegalAliensMain;
 
 import controllers.AlienController;
 import controllers.BuildingController;
-import controllers.EnemyWavesController;
 import models.AlienModel;
 import models.BuildingModel;
 import utilities.EnemyWavesCreator;
@@ -28,7 +29,7 @@ public class GameScreen implements Screen{
 	private Array<Node> nodes = new Array<Node>();
 	IllegalAliensMain IAMain;
 	EnemyWavesCreator ewc;
-	EnemyWavesController waveCont;
+	
 	
 	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
@@ -48,18 +49,18 @@ public class GameScreen implements Screen{
 		
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
-		@SuppressWarnings("unused")
-		BuildingController TController = new BuildingController(TM, AM, TW);	
 		
-
-		ewc = new EnemyWavesCreator(AController);
+		InputAdapter EWC = new EnemyWavesCreator(AController);
+		InputAdapter TController = new BuildingController(TM, AM, TW);	
+		
 		IAMain.addObserver(TM);
-		IAMain.addObserver(ewc);
-		EnemyWavesController waveCont = new EnemyWavesController(ewc);
+		IAMain.addObserver( (EnemyWavesCreator) EWC);
 		
-		//TODO
-		//Gdx.input.setInputProcessor(waveCont);
-		Gdx.input.setInputProcessor(TController);
+		InputMultiplexer imp = new InputMultiplexer();
+		imp.addProcessor(EWC);
+		imp.addProcessor(TController);
+		
+		Gdx.input.setInputProcessor(imp);
 
 		IAMain.addObserver(AM);
 		

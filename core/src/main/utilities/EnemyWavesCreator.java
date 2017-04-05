@@ -1,15 +1,16 @@
 package utilities;
 
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.utils.Array;
 
 import controllers.AlienController;
 import enemies.Alien;
 import enemies.Enemy;
 
-public class EnemyWavesCreator implements UpdateObserver {
+public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 	
-	private int wave;
-	private Array<Enemy> enemies;
+
 	private AlienController cont;
 	private int counter = 1;
 	private int frames;
@@ -35,5 +36,14 @@ public class EnemyWavesCreator implements UpdateObserver {
 			frames = 0;
 			
 		}
+	}
+	
+	@Override
+	public boolean keyDown (int keycode) {
+		if(keycode == Keys.SPACE){	
+			nextWave();
+			return true;
+		}
+		return false;
 	}
 }
