@@ -1,10 +1,12 @@
 package views;
 
 import com.badlogic.gdx.graphics.Texture;
+
+import utilities.BuildingObserver;
 import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
 
-public class BuildingView {
+public class BuildingView implements BuildingObserver{
     private Texture texture;
     private SpriteCollector SC = SpriteCollector.getInstance();
 
@@ -29,5 +31,10 @@ public class BuildingView {
         }
         SC.addSprite(sprite);
     }
+
+	@Override
+	public void actOnBuildingChange(SpriteAdapter SA) {
+		addToView(SA);
+	}
 
 }

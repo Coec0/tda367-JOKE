@@ -9,21 +9,21 @@ import views.BuildingView;
 
 public class BuildingController extends InputAdapter {
 
-	BuildingView TView;
-    BuildingModel TModel;
+	BuildingView BView;
+    BuildingModel BModel;
     AlienModel AModeL;
 
-    public BuildingController(BuildingModel TModel, AlienModel AModel, BuildingView TView){
-        this.TView = TView;
-        this.TModel = TModel;
+    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView){
+        this.BView = BView;
+        this.BModel = BModel;
         this.AModeL = AModel;
         
+        BModel.addObserver(BView);
     }
 
     @Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	TModel.createSoldier(new Node (screenX, screenY));
-        TView.addToView(TModel.peekTower().getSpriteAdapter());
+    	BModel.createSoldier(new Node (screenX, screenY));
 		return super.touchDown(screenX, screenY, pointer, button);
 	}
 

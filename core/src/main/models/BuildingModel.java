@@ -9,7 +9,9 @@ import buildings.towers.Soldier;
 import buildings.towers.Tank;
 import buildings.towers.Tower;
 import enemies.Alien;
+import utilities.BuildingObserver;
 import utilities.Node;
+import utilities.SpriteAdapter;
 import utilities.UpdateObserver;
 
 public class BuildingModel implements UpdateObserver{
@@ -25,13 +27,16 @@ public class BuildingModel implements UpdateObserver{
 
     public void createSoldier(Node pos){
         towers.add(new Soldier((int)pos.getX(), Gdx.graphics.getHeight() -(int)pos.getY()));
+        notifyObservers(towers.peek().getSpriteAdapter());
     }
     public void createTank(Node pos){
         towers.add(new Tank((int)pos.getX(), (int)pos.getY()));
+        notifyObservers(towers.peek().getSpriteAdapter());
     }
     
     public void createWhiteHouse(Node pos){
     	buildings.add(new WhiteHouse("WhiteHouse", 360, 1200));
+    	notifyObservers(buildings.peek().getSpriteAdapter());
     }
 
     public Tower getTower(int index){
@@ -88,8 +93,21 @@ public class BuildingModel implements UpdateObserver{
 	@Override
 	public void update(float deltaTime) {
 		findTargets();
-		
-		
 	}
+	
+	private Array<BuildingObserver> observers = new Array<BuildingObserver>(false, 10);
+
+	  public void addObserver(BuildingObserver observer) {
+	    observers.add(observer);
+	  }
+
+	  public void removeObserver(BuildingObserver observer) {
+		  observers.removeValue(observer, false);
+	  }
+
+	  private void notifyObservers(SpriteAdapter SA) {
+	    for (BuildingObserver observer : observers)
+	      observer.actOnBuildingChange(SA);
+	  }
    
 }
