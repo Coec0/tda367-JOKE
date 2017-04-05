@@ -28,18 +28,18 @@ public class BuildingModel implements UpdateObserver {
 		this.radar = radar;
 	}
 
-	public void createSoldier(Node pos) {
-		towers.add(new Soldier((int) pos.getX(), Gdx.graphics.getHeight() - (int) pos.getY()));
+	public void createSoldier(int x, int y) {
+		towers.add(new Soldier(x, Gdx.graphics.getHeight() - y));
 		notifyObservers(towers.peek());
 	}
 
-	public void createTank(Node pos) {
-		towers.add(new Tank((int) pos.getX(), Gdx.graphics.getHeight() - (int) pos.getY()));
+	public void createTank(int x, int y) {
+		towers.add(new Tank(x, Gdx.graphics.getHeight() - y));
 		notifyObservers(towers.peek());
 	}
 
-	public void createWhiteHouse(Node pos) {
-		buildings.add(new WhiteHouse("WhiteHouse", (int) pos.getX(), Gdx.graphics.getHeight() - (int) pos.getY()));
+	public void createWhiteHouse(int x, int y) {
+		buildings.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y));
 		notifyObservers(buildings.peek());
 		;
 	}
