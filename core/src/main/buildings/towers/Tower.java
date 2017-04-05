@@ -10,7 +10,7 @@ public abstract class Tower extends Building {
 	private float damage;
 	private Enemy target;
 
-	public Tower(int x, int y, float radius, String name, int cost, float damage) {
+	protected Tower(int x, int y, float radius, String name, int cost, float damage) {
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;

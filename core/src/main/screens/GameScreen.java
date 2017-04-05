@@ -9,16 +9,16 @@ import com.example.illegalaliens.IllegalAliensMain;
 
 import controllers.AlienController;
 import controllers.EnemyWavesController;
-import controllers.TowerController;
+import controllers.BuildingController;
 import models.AlienModel;
-import models.TowerModel;
+import models.BuildingModel;
 import utilities.EnemyWavesCreator;
 import utilities.Node;
 import utilities.PathFinder;
 import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
 import views.AlienView;
-import views.TowerView;
+import views.BuildingView;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
@@ -42,14 +42,14 @@ public class GameScreen implements Screen{
 		
 		AlienView AW= new AlienView();
 		AlienModel AM = new AlienModel();
-		TowerModel TM = new TowerModel(AM);
-		TowerView TW = new TowerView();
+		BuildingModel TM = new BuildingModel(AM);
+		BuildingView TW = new BuildingView();
 		
 		
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
 		@SuppressWarnings("unused")
-		TowerController TController = new TowerController(TM, AM, TW);	
+		BuildingController TController = new BuildingController(TM, AM, TW);	
 		
 
 		ewc = new EnemyWavesCreator(AController);

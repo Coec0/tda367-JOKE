@@ -3,6 +3,8 @@ package models;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
+import buildings.Building;
+import buildings.WhiteHouse;
 import buildings.towers.Soldier;
 import buildings.towers.Tank;
 import buildings.towers.Tower;
@@ -10,12 +12,13 @@ import enemies.Alien;
 import utilities.Node;
 import utilities.UpdateObserver;
 
-public class TowerModel implements UpdateObserver{
+public class BuildingModel implements UpdateObserver{
     Array<Tower> towers;
+    Array<Building> buildings;
     Array<Alien> aliens;
 
 
-    public TowerModel(AlienModel AModel){
+    public BuildingModel(AlienModel AModel){
         towers = new Array<Tower>(false, 100);
         aliens = AModel.getAllAliens();
     }
@@ -25,6 +28,10 @@ public class TowerModel implements UpdateObserver{
     }
     public void createTank(Node pos){
         towers.add(new Tank((int)pos.getX(), (int)pos.getY()));
+    }
+    
+    public void createWhiteHouse(Node pos){
+    	buildings.add(new WhiteHouse("WhiteHouse", 360, 1200));
     }
 
     public Tower getTower(int index){
@@ -53,15 +60,12 @@ public class TowerModel implements UpdateObserver{
     	}
     	
     	return false;
-    	
     }
 
-    public void findTargets(){
-    	
+    private void findTargets(){
         for(Tower tower : towers){
         	for(Alien alien : aliens){
         		if(checkIfInRadius(tower,alien.getPos())){
-        			
         			tower.setTarget(alien); //dosent consider if tower wants to shoot first, last, strogest etc. TODO
         			
         		}

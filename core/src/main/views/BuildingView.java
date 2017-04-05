@@ -4,12 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
 
-public class TowerView {
+public class BuildingView {
     private Texture texture;
     private SpriteCollector SC = SpriteCollector.getInstance();
 
 
-    public TowerView(){
+    public BuildingView(){
         texture = new Texture("soldier.png");
     }
 

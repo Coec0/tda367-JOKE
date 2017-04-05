@@ -3,17 +3,17 @@ package controllers;
 import com.badlogic.gdx.InputAdapter;
 
 import models.AlienModel;
-import models.TowerModel;
+import models.BuildingModel;
 import utilities.Node;
-import views.TowerView;
+import views.BuildingView;
 
-public class TowerController extends InputAdapter {
+public class BuildingController extends InputAdapter {
 
-	TowerView TView;
-    TowerModel TModel;
+	BuildingView TView;
+    BuildingModel TModel;
     AlienModel AModeL;
 
-    public TowerController(TowerModel TModel, AlienModel AModel, TowerView TView){
+    public BuildingController(BuildingModel TModel, AlienModel AModel, BuildingView TView){
         this.TView = TView;
         this.TModel = TModel;
         this.AModeL = AModel;
