@@ -19,6 +19,8 @@ public class BuildingController extends InputAdapter {
         this.AModeL = AModel;
         
         BModel.addObserver(BView);
+        
+        BModel.createWhiteHouse(new Node(1280,360));
     }
 
     @Override

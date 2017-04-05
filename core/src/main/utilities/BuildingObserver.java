@@ -1,5 +1,7 @@
 package utilities;
 
+import buildings.Building;
+
 public interface BuildingObserver {
-	void actOnBuildingChange(SpriteAdapter SA);
+	void actOnBuildingChange(Building building);
 }

@@ -11,7 +11,6 @@ import buildings.towers.Tower;
 import enemies.Alien;
 import utilities.BuildingObserver;
 import utilities.Node;
-import utilities.SpriteAdapter;
 import utilities.UpdateObserver;
 
 public class BuildingModel implements UpdateObserver{
@@ -22,21 +21,22 @@ public class BuildingModel implements UpdateObserver{
 
     public BuildingModel(AlienModel AModel){
         towers = new Array<Tower>(false, 100);
+        buildings = new Array<Building>(false, 100);
         aliens = AModel.getAllAliens();
     }
 
     public void createSoldier(Node pos){
         towers.add(new Soldier((int)pos.getX(), Gdx.graphics.getHeight() -(int)pos.getY()));
-        notifyObservers(towers.peek().getSpriteAdapter());
+        notifyObservers(towers.peek());
     }
     public void createTank(Node pos){
         towers.add(new Tank((int)pos.getX(), (int)pos.getY()));
-        notifyObservers(towers.peek().getSpriteAdapter());
+        notifyObservers(towers.peek());
     }
     
     public void createWhiteHouse(Node pos){
-    	buildings.add(new WhiteHouse("WhiteHouse", 360, 1200));
-    	notifyObservers(buildings.peek().getSpriteAdapter());
+    	buildings.add(new WhiteHouse("WhiteHouse", (int)pos.getX(), Gdx.graphics.getHeight() -(int)pos.getY()));
+    	notifyObservers(buildings.peek());;
     }
 
     public Tower getTower(int index){
@@ -105,9 +105,9 @@ public class BuildingModel implements UpdateObserver{
 		  observers.removeValue(observer, false);
 	  }
 
-	  private void notifyObservers(SpriteAdapter SA) {
+	  private void notifyObservers(Building building) {
 	    for (BuildingObserver observer : observers)
-	      observer.actOnBuildingChange(SA);
+	      observer.actOnBuildingChange(building);
 	  }
    
 }

@@ -8,8 +8,8 @@ import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.IllegalAliensMain;
 
 import controllers.AlienController;
-import controllers.EnemyWavesController;
 import controllers.BuildingController;
+import controllers.EnemyWavesController;
 import models.AlienModel;
 import models.BuildingModel;
 import utilities.EnemyWavesCreator;
