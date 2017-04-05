@@ -1,0 +1,42 @@
+Datum: 3 april
+Ordförande: Kaj
+Deltagare: Alla
+
+1. Mål
+Inga direkta problem
+
+2. Rapport
+Bra, alla har gjort det som skulle göras från förra mötet. Väldigt mycket har gjorts under tiden sen förra mötet och vi har nu ett fullt körbart program.
+
+Kaj förklarar lite hur vi för tillfället har löst hur Soldier håller koll på vilka Aliens som finns inom radien.
+
+Oscar berättar att han ändrat hur vi behandlar koordinater.
+
+3. Diskussion
+    - InputHandler? För att det bara går att ha en inputprocessor
+    - Hur vi ska styra Aliens med WaveCreator
+    - AlienModel  AlienController  AlienView
+    - Controllerns roll i en MVC pattern
+    - Hur vi ska implementera projektiler som Soldier ska skjuta
+        - Bullet, Missile
+    - Radar för endast Tower eller flera objekt?
+    - ProjectileModel, ProjectileController, ProjectileView
+    - MapObject som implementerar InputProcessor?
+    - PlaceableObject som extendar MapObject?
+
+4. Bestämt
+    - Hur vi ska implementera projektiler, kommer att använda MVC för projektiler och subklasser för olika typer av projektiler
+    - Titta mer på hur vi ska använda fler inputprocessors
+    - Hjälpklass Radar kommer att skapas
+    - Undersöka Controllerns roll ytterligare
+
+5. Inför nästa möte
+    - Fixa att Solider ska kunna skjuta Aliens
+    - White House ska kunna ta skada samt lose condition
+    - Kunna anropa WaveCreator för att skapa nya Waves
+    - Börja kika på hur UI fungerar i libgdx och hur detta ska implementeras i vårt program
+
+    - Emil ska fixa Projectiles
+    - Johan ska få jUnit att fungera och ”städa kod”
+    - Kaj ska fixa så att Waves går att skicka
+    - Oscar fixar White House
