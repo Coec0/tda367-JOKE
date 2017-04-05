@@ -12,7 +12,7 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 	
 
 	private AlienController cont;
-	private int counter = 1;
+	private int counter = 0;
 	private int frames;
 	
 	public EnemyWavesCreator(AlienController cont){
@@ -22,13 +22,13 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 	}
 	
 	public void nextWave(){
-			counter = 1;
+			counter = 10;
 	}
 		
 	@Override
 	public void update(float deltaTime) {
 		frames++;
-		if(frames > 15){
+		if(frames > 10){
 			if(counter > 0){
 				cont.spawnAlien();
 				counter--;
