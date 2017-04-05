@@ -4,19 +4,26 @@ import buildings.Building;
 import enemies.Enemy;
 import projectiles.Projectile;
 import utilities.Node;
+import utilities.Radar;
 
 public abstract class Tower extends Building {
 	private float radius;
 	private int cost;
 	private float damage;
 	private Enemy target;
+	private Radar radar;
 
-	protected Tower(int x, int y, float radius, String name, int cost, float damage) {
+	protected Tower(int x, int y, float radius, String name, int cost, float damage, Radar radar) {
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;
 		this.damage = damage;
+		this.radar = radar;
 
+	}
+	
+	public Radar getRadar(){
+		return this.radar;
 	}
 
 	public float getRadius() {

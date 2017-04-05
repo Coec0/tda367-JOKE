@@ -1,5 +1,6 @@
 package buildings.towers.targetmethods;
 
+import buildings.towers.Tower;
 import enemies.Alien;
 
 /**
@@ -8,7 +9,7 @@ import enemies.Alien;
 public class TargetStrongest implements ITargetState  {
 
 	@Override
-	public Alien getEnemy() {
+	public Alien getEnemy(Tower tower) {
 		// TODO Auto-generated method stub
 		return null;
 	}

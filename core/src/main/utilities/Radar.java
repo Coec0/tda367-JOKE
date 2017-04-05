@@ -28,4 +28,11 @@ public class Radar {
 		
 		return knownAliens;
     }
+	
+	public float getDistance(Node from, Node to){
+		float deltaX = to.getX() - from.getX();
+    	float deltaY = to.getY() - from.getY();
+    	
+    	return (float)Math.sqrt((deltaX*deltaX) + (deltaY*deltaY));
+	}
 }
