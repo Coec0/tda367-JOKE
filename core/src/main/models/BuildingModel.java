@@ -11,18 +11,21 @@ import buildings.towers.Tower;
 import enemies.Alien;
 import utilities.BuildingObserver;
 import utilities.Node;
+import utilities.Radar;
 import utilities.UpdateObserver;
 
 public class BuildingModel implements UpdateObserver{
     Array<Tower> towers;
     Array<Building> buildings;
     Array<Alien> aliens;
+    private Radar radar;
 
 
-    public BuildingModel(AlienModel AModel){
+    public BuildingModel(Radar radar){
         towers = new Array<Tower>(false, 100);
         buildings = new Array<Building>(false, 100);
-        aliens = AModel.getAllAliens();
+        //aliens = AModel.getAllAliens();
+        this.radar = radar;
     }
 
     public void createSoldier(Node pos){
@@ -68,12 +71,13 @@ public class BuildingModel implements UpdateObserver{
     }
 
     private void findTargets(){
+    	Array<Alien> foundAliens;
         for(Tower tower : towers){
-        	for(Alien alien : aliens){
-        		if(checkIfInRadius(tower,alien.getPos())){
-        			tower.setTarget(alien); //dosent consider if tower wants to shoot first, last, strogest etc. TODO
-        			tower.shoot(alien);
-        		}
+
+        	foundAliens = radar.scan(tower.getPos(), tower.getRadius()); //tmp
+        	if(foundAliens.size > 0){
+        			tower.setTarget(foundAliens.peek()); //dosent consider if tower wants to shoot first, last, strogest etc. TODO
+
         	}
         }
     }

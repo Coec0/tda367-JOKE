@@ -16,6 +16,7 @@ import models.BuildingModel;
 import utilities.EnemyWavesCreator;
 import utilities.Node;
 import utilities.PathFinder;
+import utilities.Radar;
 import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
 import views.AlienView;
@@ -25,6 +26,7 @@ public class GameScreen implements Screen{
 	SpriteBatch batch;
 	private SpriteCollector SC = SpriteCollector.getInstance();
 	private PathFinder finder = PathFinder.getInstance();
+	
 	
 	private Array<Node> nodes = new Array<Node>();
 	IllegalAliensMain IAMain;
@@ -43,7 +45,8 @@ public class GameScreen implements Screen{
 		
 		AlienView AW= new AlienView();
 		AlienModel AM = new AlienModel();
-		BuildingModel TM = new BuildingModel(AM);
+		Radar radar = new Radar(AM);
+		BuildingModel TM = new BuildingModel(radar);
 		BuildingView TW = new BuildingView();
 		
 		

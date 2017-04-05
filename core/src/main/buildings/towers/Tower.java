@@ -42,7 +42,7 @@ public abstract class Tower extends Building {
 	public void setTarget(Enemy target) {
 		// System.out.println(target.getPos().getX() + " " +
 		// target.getPos().getY());
-		testFunction(target.getPos());
+		rotateTowards(target.getPos());
 		this.target = target;
 	}
 
@@ -53,7 +53,7 @@ public abstract class Tower extends Building {
 	// we probably need to move this fuction to a helper class. I just
 	// copy-pasted from enemy for now (test)
 
-	public void testFunction(Node newDir) {
+	public void rotateTowards(Node newDir) {
 		float oldX = super.getPos().getX();
 		float oldY = super.getPos().getY();
 		float newX = newDir.getX();
