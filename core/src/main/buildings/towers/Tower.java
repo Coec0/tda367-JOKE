@@ -2,6 +2,7 @@ package buildings.towers;
 
 import buildings.Building;
 import enemies.Enemy;
+import projectiles.Projectile;
 import utilities.Node;
 
 public abstract class Tower extends Building {
@@ -22,6 +23,7 @@ public abstract class Tower extends Building {
 		return this.radius;
 	}
 
+
 	public int getCost() {
 		return this.cost;
 	}
@@ -30,9 +32,12 @@ public abstract class Tower extends Building {
 		return this.damage;
 	}
 
-	public void shoot(Enemy enemy) {
-
+	public  void shoot(Enemy enemy){
+		makeProjectile();
 	}
+
+	public abstract Projectile makeProjectile();
+
 
 	public void setTarget(Enemy target) {
 		// System.out.println(target.getPos().getX() + " " +

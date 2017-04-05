@@ -72,23 +72,12 @@ public class BuildingModel implements UpdateObserver{
         	for(Alien alien : aliens){
         		if(checkIfInRadius(tower,alien.getPos())){
         			tower.setTarget(alien); //dosent consider if tower wants to shoot first, last, strogest etc. TODO
-        			
+        			tower.shoot(alien);
         		}
         	}
         }
     }
 
-    public void shoot(){
-
-    }
-
-    public float calcDistance(){
-        return 5;
-    }
-
-    public void rotate(){
-
-    }
 
 	@Override
 	public void update(float deltaTime) {

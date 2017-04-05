@@ -1,5 +1,8 @@
 package buildings.towers;
 
+import projectiles.Missile;
+import projectiles.Projectile;
+
 public class Tank extends Tower{
 
     private static final int RADIUS = 10;
@@ -11,4 +14,8 @@ public class Tank extends Tower{
         super(x, y, RADIUS, NAME, COST, DAMAGE);
     }
 
+    @Override
+    public Projectile makeProjectile() {
+        return new Missile();
+    }
 }
