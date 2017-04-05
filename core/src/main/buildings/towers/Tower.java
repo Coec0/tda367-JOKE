@@ -1,35 +1,41 @@
 package buildings.towers;
 
+import com.badlogic.gdx.utils.Array;
+
 import buildings.Building;
+import buildings.towers.targetmethods.ITargetState;
+import buildings.towers.targetmethods.TargetLast;
 import enemies.Enemy;
 import projectiles.Projectile;
 import utilities.Node;
-import utilities.Radar;
 
 public abstract class Tower extends Building {
 	private float radius;
 	private int cost;
 	private float damage;
 	private Enemy target;
-	private Radar radar;
+	private ITargetState TState;
 
-	protected Tower(int x, int y, float radius, String name, int cost, float damage, Radar radar) {
+	protected Tower(int x, int y, float radius, String name, int cost, float damage){
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;
 		this.damage = damage;
-		this.radar = radar;
+		this.TState = new TargetLast();
 
 	}
-	
-	public Radar getRadar(){
-		return this.radar;
+
+	public void setTargetState(ITargetState state) {
+		this.TState = state;
+	}
+
+	public ITargetState getTargetState() {
+		return TState;
 	}
 
 	public float getRadius() {
 		return this.radius;
 	}
-
 
 	public int getCost() {
 		return this.cost;
@@ -39,18 +45,15 @@ public abstract class Tower extends Building {
 		return this.damage;
 	}
 
-	public  void shoot(Enemy enemy){
+	public void shoot(Enemy enemy) {
 		makeProjectile();
 	}
-
+	
 	public abstract Projectile makeProjectile();
 
-
-	public void setTarget(Enemy target) {
-		// System.out.println(target.getPos().getX() + " " +
-		// target.getPos().getY());
+	public void setTarget(Array<Enemy> targets) {
+		this.target = TState.getEnemy(super.getPos(), targets);
 		rotateTowards(target.getPos());
-		this.target = target;
 	}
 
 	public Enemy getTarget() {
@@ -73,5 +76,6 @@ public abstract class Tower extends Building {
 		}
 		super.getSpriteAdapter().setRotation(angle);
 	}
+	
 
 }

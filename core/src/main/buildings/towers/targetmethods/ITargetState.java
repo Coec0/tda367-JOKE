@@ -1,11 +1,13 @@
 package buildings.towers.targetmethods;
 
-import buildings.towers.Tower;
-import enemies.Alien;
+import com.badlogic.gdx.utils.Array;
+
+import enemies.Enemy;
+import utilities.Node;
 
 /**
  * Created by Emil on 2017-03-31.
  */
 public interface ITargetState {
-	Alien getEnemy(Tower tower); //Maybe edit to Building in future
+	Enemy getEnemy(Node pos, Array<Enemy> enemies); //Maybe edit to Building in future
 }

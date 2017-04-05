@@ -3,6 +3,7 @@ package utilities;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Alien;
+import enemies.Enemy;
 import models.AlienModel;
 
 public class Radar {
@@ -15,8 +16,8 @@ public class Radar {
 	}
 
 	
-	public Array<Alien> scan(Node center, float radius){
-		Array<Alien> knownAliens = new Array<Alien>();
+	public Array<Enemy> scan(Node center, float radius){
+		Array<Enemy> knownAliens = new Array<Enemy>();
 		for(Alien alien : aModel.getAllAliens()){
 			float deltaX = alien.getPos().getX() - center.getX();
 	    	float deltaY = alien.getPos().getY() - center.getY();
@@ -28,11 +29,5 @@ public class Radar {
 		
 		return knownAliens;
     }
-	
-	public float getDistance(Node from, Node to){
-		float deltaX = to.getX() - from.getX();
-    	float deltaY = to.getY() - from.getY();
-    	
-    	return (float)Math.sqrt((deltaX*deltaX) + (deltaY*deltaY));
-	}
+
 }

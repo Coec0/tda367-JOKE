@@ -2,28 +2,20 @@ package buildings.towers.targetmethods;
 
 import com.badlogic.gdx.utils.Array;
 
-import buildings.towers.Tower;
-import enemies.Alien;
+import enemies.Enemy;
+import utilities.Node;
 
-/**
- * Created by Emil on 2017-03-31.
- */
 public class TargetLast implements ITargetState {
 
-	@Override
-	public Alien getEnemy(Tower tower) {
-
-		Array<Alien> Aliens = tower.getRadar().scan(tower.getPos(), tower.getRadius());
-		Alien furthest = Aliens.first();
-		float furthestDist = tower.getRadar().getDistance(tower.getPos(), furthest.getPos());
-		float dist;
-		for (Alien alien : Aliens) {
-			dist = tower.getRadar().getDistance(tower.getPos(), alien.getPos());
-			if (dist > furthestDist) {
-				furthestDist = dist;
-				furthest = alien;
+	public Enemy getEnemy(Node pos, Array<Enemy> enemies) {
+		int last=enemies.first().getNodeArrayPos();
+		Enemy lastE = enemies.first();
+		for(Enemy enemy: enemies){
+			if(enemy.getNodeArrayPos()<last){
+				last = enemy.getNodeArrayPos();
+				lastE = enemy;
 			}
 		}
-		return furthest;
+		return lastE;
 	}
 }
