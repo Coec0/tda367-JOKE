@@ -11,39 +11,38 @@ import java.awt.*;
  */
 public abstract class Projectile {
 
-    private float radius;
     private float damage;
     private float speed;
     private boolean areaOfEffect;
+
     private Texture texture;
-    private Node currentPosition;
 
-   // private Enemy enemy;
-
-    //private final Node targetPosition = enemy.getPos();
+    private Node direction;
+    private Node position;
 
 
-    public Projectile(float radius, float damage, float speed, boolean areaOfEffect, Texture texture){
-        this.radius = radius;
+    public Projectile(float damage, float speed, boolean areaOfEffect, Texture texture, Node direction, Node position){
         this.damage = damage;
         this.speed = speed;
         this.areaOfEffect = areaOfEffect;
         this.texture=texture;
+        this.direction = direction;
+        this.position = position;
     }
 
     public void setPosition(Node position){
-        this.currentPosition = position;
+        this.position = position;
     }
 
-    /*
+
     public void move(){
         Node newPosition;
-        float newX = targetPosition.getX() + speed;
-        float newY = targetPosition.getY() + speed;
+        float newX = position.getX() + speed;
+        float newY = position.getY() + speed;
         newPosition = new Node(newX, newY);
         setPosition(newPosition);
     }
-*/
+
     public void hitEnemy(Enemy enemy){
         enemy.hurt(damage);
     }

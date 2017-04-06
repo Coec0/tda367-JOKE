@@ -16,6 +16,6 @@ public class Tank extends Tower{
 
     @Override
     public Projectile makeProjectile() {
-        return new Missile();
+        return new Missile(super.getTarget().getPos(), super.getPos());
     }
 }
