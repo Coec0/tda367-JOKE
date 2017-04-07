@@ -1,0 +1,49 @@
+Datum: 6 apr
+Ordförande: Kaj
+Deltagare: Alla
+
+1. Mål
+Strul med Projectiles
+
+2. Rapport
+    - Oscar skapade ett White House och bytte från Tower MVC till Building MVC. Tower extendar Building.
+    - Emil har skapat Projectiles och strukturen.
+    - Johan har fått jUnit att fungera och städat i Kaj-lgoritmen. Har skapat en första ”ok” test klass för SpriteCollector.
+    - Kaj har fixat så att Waves nu går att skicka. Upptäckte att libgdx har en InputMultiplexer för att hantera flera inputsprocessors.
+
+3. Diskussion
+    - Projectiles måste ha en riktning, hur löser vi detta?
+    - Hur ska vi planera projektet efter påsk?
+
+4. Bestämt
+    - Två veckor innan inlämningsdatum vill vi ha något som är minst en trea.
+    - En vecka innan inlämningsdatum ska vi sluta koda och bara fokusera på rapporten
+
+    Vecka 4: Torn, Alien, UI, Map
+    Vecka 5: Superkraft, politik, uppgradering
+    Vecka 6: Fler maps
+    Vecka 7: Optimering, effekter
+    Vecka 8: Buggtest, finslipa
+
+5. Inför nästa möte
+Förslag på arbetsuppgifter till nästa möte efter påsk:
+    - GUI-design
+        - Nya Towers
+        - Map
+        - Snyggare White House
+        - Fler Enemies
+        - Projectiles
+    - UI-designförslag
+    - Refaktorisera
+        - Kommentera. JavaDoc
+    - Kunna skjuta en Enemy
+    - EndGameScreen
+    - Ta skada för Alien och White House
+    - Utveckla WaveCreator
+    - JUnit
+    - Pengasystem
+
+Johan: Kolla mer på libgdx för att implementera programmets UI, fler JUnit-tester, refaktorisera, EndGameScreen
+Emil: Kunna skjuta en Enemy, nya Tower
+Kaj: Påbörja JUnit, Dijekstra, utveckla WaveCreator, Map
+Oscar: Ta skada för Alien och White House, Pengasystem, fler fiender och jobba på story
