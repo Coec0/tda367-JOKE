@@ -37,4 +37,37 @@ public class Node{
 		return Math.sqrt(x * x + y * y);
 	}
 
+	/**
+	 * Returns the distance to another node
+	 * @param other
+	 * @return distance
+	 */
+	public double getDistanceTo(Node other) {
+		float dx = getDeltaX(other);
+		float dy = getDeltaY(other);
+
+		return Math.sqrt(dx*dx + dy*dy);
+	}
+
+	/**
+	 * Returns a new Node with normalized direction
+	 * @param other
+	 * @return Node with normalized direction
+	 */
+	public Node getAsNormalizedNode(Node other) {
+		float startDistance = (float) getDistanceTo(other);
+		float dx = getDeltaX(other);
+		float dy = getDeltaY(other);
+
+		return new Node(dx/startDistance, dy/startDistance);
+	}
+
+	private float getDeltaX(Node other) {
+		return other.x - this.x;
+	}
+
+	private float getDeltaY(Node other) {
+		return other.y - this.y;
+	}
+
 }

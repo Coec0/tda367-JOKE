@@ -81,85 +81,30 @@ public final class PathFinder {
 		Array<Node> pixelPath = new Array<Node>();
 
 		Node current = start;
-		Node direction = normalizedNode(start,goal);
+		Node direction = start.getAsNormalizedNode(goal);
 
 		float currentDistance = 0;
 
-		while(currentDistance <= getDistance(start, goal)) {
-			Node nextStep = new Node(current.getX() + (direction.getX() * speed), current.getY() + (direction.getY() * speed));
+		while(currentDistance <= start.getDistanceTo(goal)) {
+			Node nextStep = new Node(
+					current.getX() + (direction.getX() * speed),
+					current.getY() + (direction.getY() * speed)
+			);
 
 			pixelPath.add(nextStep);
 
 			directionList.add(direction);
 
 			current = nextStep;
-			currentDistance = (float) getDistance(start, current);
+			currentDistance = (float) start.getDistanceTo(current);
 		}
 		pixelPath.pop();
 		pixelPath.add(goal);
 
 		return pixelPath;
 	}
-
-	/**
-	 * Returns the distance between two given nodes
-	 * @param start
-	 * @param goal
-	 * @return distance
-	 */
-	private double getDistance(Node start, Node goal) {
-		float deltaX = getDeltaX(start, goal);
-		float deltaY = getDeltaY(start, goal);
-
-		return Math.sqrt(deltaX*deltaX + deltaY*deltaY);
-	}
-
-	/**
-	 * Returns the difference on the x-axis between two given nodes
-	 * @param start
-	 * @param goal
-	 * @return deltaX
-	 */
-	private float getDeltaX(Node start, Node goal) {
-		return goal.getX() - start.getX();
-	}
-
-	/**
-	 * Returns the difference on the y-axis between two given nodes
-	 * @param start
-	 * @param goal
-	 * @return deltaY
-	 */
-	private float getDeltaY(Node start, Node goal) {
-		return goal.getY() - start.getY();
-	}
-
-	/**
-	 * Returns Node with normalized direction
-	 * @param start
-	 * @param goal
-	 * @return Node with normalized direction
-	 */
-	private Node normalizedNode(Node start, Node goal) {
-		float startDistance = (float) getDistance(start, goal);
-		float deltaX = getDeltaX(start, goal);
-		float deltaY = getDeltaY(start, goal);
-
-		return new Node(deltaX/startDistance, deltaY/startDistance);
-	}
 	
 	public Array<Node> getDirectionList(){
 		return this.directionList;
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-		
 }
