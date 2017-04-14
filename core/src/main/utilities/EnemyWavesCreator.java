@@ -12,42 +12,62 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 	
 
 	private AlienController cont;
-	private int counter = 0;
+	private int enemyCounter = 0;
 	private int frames;
 	
 	private Array<Level> levels = new Array<Level>();
 	
-	private int wavesLeft;
-	private int currentLevel;
+	private Level currentLevel;
+	private int currentWaveIndex;
+	private boolean waveON;
+	
 	
 	private Array<Enemy> wave;
 	
 	
 	
 	public EnemyWavesCreator(AlienController cont){
-		Array<Enemy> tmpEnemies = new Array<Enemy>();
-		tmpEnemies.add(new Alien());
-		levels.add(new Level(1,5,tmpEnemies)); //levels has to be hardcoded. Maybe in textfile in future?
-		levels.add(new Level(2,7,tmpEnemies));
 		this.cont = cont;
-		currentLevel = 0;
-		wavesLeft = levels.get(currentLevel).getWavesAmount();
+		Array<LevelHelperObject> tmpEnemies = new Array<LevelHelperObject>();
+		tmpEnemies.add(new LevelHelperObject(new Alien(),5));
+		levels.add(new Level(5,tmpEnemies)); //levels has to be hardcoded. Maybe in textfile in future?
+		levels.add(new Level(7,tmpEnemies));
+		nextLevel();
+		currentWaveIndex = 0;
 	}
 	
 	
-	public void createWave(){
+	private void spawnNextEnemy(){ 
+		if(enemyCounter < wave.size){
+			cont.spawnAlien(); //we need to add mehon in cont that does .spawn(Enemy enemy)
+			enemyCounter++;
+		}else{
+			waveON = false;
+		}
+		
+		
 		
 	}
 	
 	public void nextWave(){
-			counter = 10;
+		currentWaveIndex++;
+		if(currentWaveIndex >= currentLevel.getWavesAmount()){
+			nextLevel();
+			currentWaveIndex = 0;
+		}
+		wave = currentLevel.getNextWave(true);
+		enemyCounter = 0;
+		
 	}
 		
-	
+	private void nextLevel(){
+		currentLevel = levels.pop();
+	}
 	@Override
 	public boolean keyDown (int keycode) {
-		if(keycode == Keys.SPACE){	
+		if(keycode == Keys.SPACE){
 			nextWave();
+			waveON = true;
 			return true;
 		}
 		return false;
@@ -57,9 +77,8 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 	public void update(float deltaTime) {
 		frames++;
 		if(frames > 10){
-			if(counter > 0){
-				cont.spawnAlien();
-				counter--;
+			if(waveON){
+				spawnNextEnemy();
 			}
 			frames = 0;
 			

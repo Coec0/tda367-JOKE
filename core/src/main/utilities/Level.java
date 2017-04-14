@@ -6,29 +6,39 @@ import enemies.Enemy;
 
 public class Level {
 	
-	private  Array<Enemy> spawnableEnemies;
-	private int difficulty; 
+	private  Array<LevelHelperObject> spawnableEnemies;
 	private int wavesAmount;
+	private int currentWave = 0;
 	
-	public Level(int difficulty,int wavesAmount,Array<Enemy> spawnableEnemies){
+	public Level(int wavesAmount,Array<LevelHelperObject> spawnableEnemies){
 		this.spawnableEnemies = spawnableEnemies;
 		this.wavesAmount = wavesAmount;
-		this.difficulty = difficulty;
 	}
 	
-	public int getDifficulty(){
-		return difficulty;
+	public Array<Enemy> getNextWave(boolean shuffle){
+		Array<Enemy> wave = new Array<Enemy>();
+		currentWave++;
+		for(LevelHelperObject WHO : spawnableEnemies){
+			WHO.setAmount(WHO.getAmount() * currentWave); //need balanceing in future
+			for(int i = 0; i < WHO.getAmount(); i++){
+				wave.add(WHO.getEnemy());
+			}
+		}
+		
+		if(shuffle){
+			wave.shuffle();
+		}
+		
+		return wave;
 	}
+	
 	
 	public int getWavesAmount(){
 		return wavesAmount;
 	}
 	
-	public void setDifficulty(int difficulty){
-		this.difficulty = difficulty;
-	}
 	
-	public Array<Enemy> getSpawnableEnemies(){
+	public Array<LevelHelperObject> getSpawnableEnemies(){
 		return spawnableEnemies;
 	}
 	
