@@ -9,9 +9,11 @@ public abstract class Enemy {
 	private float health; //Maybe int in future
 	private int nodeArrayPos = 0;
 	private Node direction = new Node(0,1); //x and y values for the start direction. Faces towards east now
-
-	public Enemy(int x, int y, float speed, float health) {
+	private float radius;
+	
+	public Enemy(int x, int y, float speed, float health,float radius) {
 		this.pos = new SpriteAdapter(x, y);
+		this.radius = radius;
 		this.speed = speed;
 		this.health = health;
 	}
@@ -30,6 +32,10 @@ public abstract class Enemy {
 			pos.rotate(getAngle(newDir));
 		}
 		direction = newDir; //update direction
+	}
+	
+	public float getRadius(){
+		return radius;
 	}
 
 	/**

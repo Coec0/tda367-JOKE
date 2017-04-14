@@ -18,14 +18,30 @@ public class Radar {
 	
 	public Array<Enemy> scan(Node center, float radius){
 		Array<Enemy> knownAliens = new Array<Enemy>();
+		
 		for(Alien alien : aModel.getAllAliens()){
+			float distance = (float) center.getDistanceTo(alien.getPos());
+			if(distance <= radius+alien.getRadius()){
+				knownAliens.add(alien);
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*for(Alien alien : aModel.getAllAliens()){
 			float deltaX = alien.getPos().getX() - center.getX();
 	    	float deltaY = alien.getPos().getY() - center.getY();
 	    	
 	    	if((deltaX*deltaX) + (deltaY*deltaY) < radius*radius){
 	    		knownAliens.add(alien);
 	    	}
-		}
+		}*/
 		
 		return knownAliens;
     }
