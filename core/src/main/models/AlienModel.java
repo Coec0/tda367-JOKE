@@ -4,9 +4,9 @@ import com.badlogic.gdx.utils.Array;
 
 import enemies.Alien;
 import enemies.Enemy;
+import utilities.AlienObserver;
 import utilities.Node;
 import utilities.PathFinder;
-import utilities.SpriteCollector;
 import utilities.UpdateObserver;
 
 public class AlienModel implements UpdateObserver {
@@ -26,6 +26,7 @@ public class AlienModel implements UpdateObserver {
 	public void createAlien(){
 		
 		aliens.add(new Alien((int)path.get(0).getX(),(int)path.get(0).getY()));
+		notifyObservers(aliens.peek(), false);
 	}
 	
 	public void createAlien(int amount){
@@ -69,7 +70,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void removeEnemy(Enemy enemy){
-		SpriteCollector.getInstance().removeSprite(enemy.getSpriteAdapter());
+		notifyObservers(enemy, true);
 		aliens.removeValue(enemy, false);
 		enemy=null; //Clear
 	}
@@ -86,5 +87,20 @@ public class AlienModel implements UpdateObserver {
 	@Override
 	public void update(float deltaTime) {
 		moveAllAliens();
+	}
+	
+	private Array<AlienObserver> observers = new Array<AlienObserver>(false, 10);
+
+	public void addObserver(AlienObserver observer) {
+		observers.add(observer);
+	}
+
+	public void removeObserver(AlienObserver observer) {
+		observers.removeValue(observer, false);
+	}
+
+	private void notifyObservers(Enemy enemy, boolean remove) {
+		for (AlienObserver observer : observers)
+			observer.actOnEnemyChange(enemy, remove);
 	}
 }

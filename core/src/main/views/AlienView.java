@@ -2,15 +2,18 @@ package views;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import enemies.Alien;
+import enemies.Enemy;
+import utilities.AlienObserver;
 import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
 
-public class AlienView {
-	private Texture texture;
+public class AlienView implements AlienObserver {
+	private Texture alien;
 	private SpriteCollector SC = SpriteCollector.getInstance();
 	
 	public AlienView(){
-		texture = new Texture("alien.png");
+		alien = new Texture("alien.png");
 	}
 	
 	public void removeFromView(SpriteAdapter sprite){
@@ -24,11 +27,33 @@ public class AlienView {
 	}
 	
 	public void addToView(SpriteAdapter sprite){
-		if(sprite.getTexture() == null){
-			sprite.setTexture(texture);
-			sprite.setSize(sprite.getWidth()/2, sprite.getHeight()/2);
-		}
 		SC.addSprite(sprite);
+	}
+	
+	public void addToView(Enemy enemy){
+    	SpriteAdapter sprite = enemy.getSpriteAdapter();
+        if(sprite.getTexture() == null){
+            sprite.setTexture(selectTexture(enemy));
+            sprite.setSize(sprite.getWidth()/2, sprite.getHeight()/2);
+        }
+        addToView(sprite);
+    }
+
+	private Texture selectTexture(Enemy enemy) {
+		
+		if(enemy instanceof Alien)
+			return alien;
+		return null;
+		
+	}
+
+	@Override
+	public void actOnEnemyChange(Enemy enemy, boolean remove) {
+		if(!remove)
+			addToView(enemy);
+		else
+			removeFromView(enemy.getSpriteAdapter());
+		
 	}
 	
 }
