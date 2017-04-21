@@ -17,13 +17,13 @@ import utilities.UpdateObserver;
 
 public class BuildingModel implements UpdateObserver {
 	Array<Tower> towers;
-	Array<Building> buildings;
+	Array<WhiteHouse> whitehouses;
 	Array<Alien> aliens;
 	private Radar radar;
 
 	public BuildingModel(Radar radar) {
 		towers = new Array<Tower>(false, 100);
-		buildings = new Array<Building>(false, 100);
+		whitehouses = new Array<WhiteHouse>(false, 4);
 		// aliens = AModel.getAllAliens();
 		this.radar = radar;
 	}
@@ -39,8 +39,8 @@ public class BuildingModel implements UpdateObserver {
 	}
 
 	public void createWhiteHouse(int x, int y) {
-		buildings.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y));
-		notifyObservers(buildings.peek());
+		whitehouses.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y));
+		notifyObservers(whitehouses.peek());
 		;
 	}
 
@@ -82,10 +82,26 @@ public class BuildingModel implements UpdateObserver {
 			}
 		}
 	}
+	
+	private void checkWhitehouses(){
+		Array<Enemy> closeAliens;
+		for (WhiteHouse whitehouse : whitehouses) {
+			closeAliens = radar.scan(whitehouse.getPos(), 5); //5 radius for now
+			if (closeAliens.size > 0) {
+				for (Enemy enemy : closeAliens){
+					if(!enemy.isDead()){
+						whitehouse.removeHealth();
+						enemy.kill();
+					}
+				}
+			}
+		}
+	}
 
 	@Override
 	public void update(float deltaTime) {
 		findTargets();
+		checkWhitehouses();
 	}
 
 	private Array<BuildingObserver> observers = new Array<BuildingObserver>(false, 10);

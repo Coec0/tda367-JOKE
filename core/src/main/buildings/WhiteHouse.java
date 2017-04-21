@@ -1,7 +1,7 @@
 package buildings;
 
 public class WhiteHouse extends Building{
-	private int health;
+	private int health=20; //temp
 	private float money;
 	
 	public WhiteHouse(String name, int x, int y){
@@ -14,6 +14,7 @@ public class WhiteHouse extends Building{
 	
 	public void removeHealth(){
 		health -=1;
+		System.out.println(health);
 	}
 	
 	public void setHealth(int amount){
