@@ -25,6 +25,10 @@ public abstract class Enemy {
 		health -= dmg;
 	}
 	
+	public void kill(){
+		health=0;
+	}
+	
 	public void setDirection(Node newDir){
 		if (isAngleNegative(newDir)) {
 			pos.rotate(-getAngle(newDir));
