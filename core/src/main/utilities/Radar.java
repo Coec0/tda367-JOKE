@@ -2,7 +2,6 @@ package utilities;
 
 import com.badlogic.gdx.utils.Array;
 
-import enemies.Alien;
 import enemies.Enemy;
 import models.AlienModel;
 
@@ -19,7 +18,7 @@ public class Radar {
 	public Array<Enemy> scan(Node center, float radius){
 		Array<Enemy> knownAliens = new Array<Enemy>();
 		
-		for(Alien alien : aModel.getAllAliens()){
+		for(Enemy alien : aModel.getAllAliens()){
 			float distance = (float) center.getDistanceTo(alien.getPos());
 			if(distance <= radius+alien.getRadius()){
 				knownAliens.add(alien);
