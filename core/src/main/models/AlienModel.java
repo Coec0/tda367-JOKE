@@ -3,6 +3,7 @@ package models;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Alien;
+import enemies.Enemy;
 import utilities.Node;
 import utilities.PathFinder;
 import utilities.SpriteCollector;
@@ -11,12 +12,12 @@ import utilities.UpdateObserver;
 public class AlienModel implements UpdateObserver {
 	private PathFinder finder = PathFinder.getInstance();
 
-	private Array<Alien> aliens;
+	private Array<Enemy> aliens;
 	private Array<Node> path;
 	private Array<Node> direction;
 
 	public AlienModel() {
-		aliens = new Array<Alien>(false, 10);
+		aliens = new Array<Enemy>(false, 10);
 		
 		path = finder.getShortestPath();
 		direction = finder.getDirectionList();
@@ -34,32 +35,32 @@ public class AlienModel implements UpdateObserver {
 	
 	private void moveAllAliens(float deltaTime){
 		//if(aliens.size>0){
-			for(Alien alien : aliens){
+			for(Enemy alien : aliens){
 				moveAlien(alien, deltaTime);
 			}
 		//}
 	}
 	
-	public Alien peekAlien(){
+	public Enemy peekAlien(){
 		return aliens.peek();
 	}
 	
-	public Array<Alien> getAllAliens(){
+	public Array<Enemy> getAllAliens(){
 		return aliens;
 	}
 	
-	public Alien getAlien(int index){
+	public Enemy getAlien(int index){
 		if(aliens.size>index)
 			return aliens.get(index);
 		return null;
 	}
 	
-	public void moveAlien(Alien alien, float deltaTime){
+	public void moveAlien(Enemy alien, float deltaTime){
 		int position = (int)(alien.getNodeArrayPos()+((int)alien.getSpeed()*deltaTime));
 		if(position >= path.size){
 			//TODO
 			//Lose life method
-			SpriteCollector.getInstance().removeSprite(alien.getSpriteAdapter());
+			removeEnemy(alien);
 		} else {	
 			alien.setPos(path.get(position));
 			alien.setNodeArrayPos(position);
@@ -67,12 +68,18 @@ public class AlienModel implements UpdateObserver {
 		}
 	}
 	
+	public void removeEnemy(Enemy enemy){
+		SpriteCollector.getInstance().removeSprite(enemy.getSpriteAdapter());
+		aliens.removeValue(enemy, false);
+		enemy=null; //Clear
+	}
+	
 	//Gonna listen from a tower that attacked it
 	public void damaged(Alien alien, float dmg){
 		alien.hurt(dmg);
 		
 		if(alien.isDead()){
-			aliens.removeValue(alien, false);
+			removeEnemy(alien);
 		}
 	}
 
