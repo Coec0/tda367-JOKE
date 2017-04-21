@@ -33,10 +33,10 @@ public class AlienModel implements UpdateObserver {
 			aliens.add(new Alien());
 	}
 	
-	private void moveAllAliens(float deltaTime){
+	private void moveAllAliens(){
 		//if(aliens.size>0){
 			for(Enemy alien : aliens){
-				moveAlien(alien, deltaTime);
+				moveAlien(alien);
 			}
 		//}
 	}
@@ -55,8 +55,8 @@ public class AlienModel implements UpdateObserver {
 		return null;
 	}
 	
-	public void moveAlien(Enemy alien, float deltaTime){
-		int position = (int)(alien.getNodeArrayPos()+((int)alien.getSpeed()*deltaTime));
+	public void moveAlien(Enemy alien){
+		int position = (int)(alien.getNodeArrayPos()+((int)alien.getSpeed()*0.01));
 		if(position >= path.size){
 			//TODO
 			//Lose life method
@@ -85,6 +85,6 @@ public class AlienModel implements UpdateObserver {
 
 	@Override
 	public void update(float deltaTime) {
-		moveAllAliens(deltaTime);
+		moveAllAliens();
 	}
 }
