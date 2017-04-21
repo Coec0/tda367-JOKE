@@ -52,8 +52,11 @@ public class BuildingView implements BuildingObserver{
 	}
 
 	@Override
-	public void actOnBuildingChange(Building building) {
-		addToView(building);
+	public void actOnBuildingChange(Building building, boolean remove) {
+		if(!remove)
+			addToView(building);
+		else
+			removeFromView(building.getSpriteAdapter());
 		
 	}
 	

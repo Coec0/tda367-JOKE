@@ -30,17 +30,17 @@ public class BuildingModel implements UpdateObserver {
 
 	public void createSoldier(int x, int y) {
 		towers.add(new Soldier(x, Gdx.graphics.getHeight() - y));
-		notifyObservers(towers.peek());
+		notifyObservers(towers.peek(), false);
 	}
 
 	public void createTank(int x, int y) {
 		towers.add(new Tank(x, Gdx.graphics.getHeight() - y));
-		notifyObservers(towers.peek());
+		notifyObservers(towers.peek(), false);
 	}
 
 	public void createWhiteHouse(int x, int y) {
 		whitehouses.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y));
-		notifyObservers(whitehouses.peek());
+		notifyObservers(whitehouses.peek(), false);
 		;
 	}
 
@@ -114,9 +114,9 @@ public class BuildingModel implements UpdateObserver {
 		observers.removeValue(observer, false);
 	}
 
-	private void notifyObservers(Building building) {
+	private void notifyObservers(Building building, boolean remove) {
 		for (BuildingObserver observer : observers)
-			observer.actOnBuildingChange(building);
+			observer.actOnBuildingChange(building, remove);
 	}
 
 }
