@@ -3,7 +3,9 @@ package models;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Alien;
+import enemies.AlienWithHelmet;
 import enemies.Enemy;
+import enemies.SneakyAlien;
 import utilities.AlienObserver;
 import utilities.Node;
 import utilities.PathFinder;
@@ -23,9 +25,18 @@ public class AlienModel implements UpdateObserver {
 		direction = finder.getDirectionList();
 	}
 	
-	public void createAlien(){
-		
+	public void createAlien(){ //Clean these methods in future
 		aliens.add(new Alien((int)path.get(0).getX(),(int)path.get(0).getY()));
+		notifyObservers(aliens.peek(), false);
+	}
+	
+	public void createAlienWithHelmet(){
+		aliens.add(new AlienWithHelmet((int)path.get(0).getX(),(int)path.get(0).getY()));
+		notifyObservers(aliens.peek(), false);
+	}
+	
+	public void createSneakyAlien(){
+		aliens.add(new SneakyAlien((int)path.get(0).getX(),(int)path.get(0).getY()));
 		notifyObservers(aliens.peek(), false);
 	}
 	
@@ -76,7 +87,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	//Gonna listen from a tower that attacked it
-	public void damaged(Alien alien, float dmg){
+	public void damaged(Enemy alien, float dmg){
 		alien.hurt(dmg);
 		
 		if(alien.isDead()){
