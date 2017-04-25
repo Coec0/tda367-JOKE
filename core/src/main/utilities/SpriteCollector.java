@@ -87,6 +87,7 @@ public final class SpriteCollector {
 	public void drawText(SpriteBatch batch) {
 		if(getTexts() != null){
 			for(TextArea text : getTexts()){
+				font.setColor(text.getColor());
 				font.draw(batch, text.getText(),text.getX(), text.getY());
 			}
 		}
