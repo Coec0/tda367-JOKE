@@ -63,11 +63,11 @@ public class Node{
 	}
 
 	public float getDeltaX(Node other) {
-		return Math.abs(other.x - this.x);
+		return other.x - this.x;
 	}
 
 	public float getDeltaY(Node other) {
-		return Math.abs(other.y - this.y);
+		return other.y - this.y;
 	}
 
 }
