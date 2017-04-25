@@ -12,13 +12,9 @@ public class Soldier extends Tower {
         super(x, y, RADIUS, NAME, COST);
     }
 
-
-
-    public void shoot(){
-
-    }
     @Override
     public Projectile makeProjectile() {
+        System.out.println("makeProjectile");
         return new Bullet(super.getTarget().getPos(), super.getPos());
     }
 }

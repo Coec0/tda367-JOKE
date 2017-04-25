@@ -11,9 +11,8 @@ public class ArtilleryRound extends Projectile {
     private static final float DAMAGE = 15;
     private static final float SPEED = 50;
     private static final boolean AREAOFEFFECT = true;
-    private static final Texture TEXTURE = new Texture("missile.png");
 
     public ArtilleryRound(Node DIRECTION, Node POSITION){
-        super(DAMAGE, SPEED, AREAOFEFFECT, TEXTURE, DIRECTION, POSITION);
+        super(DAMAGE, SPEED, AREAOFEFFECT, DIRECTION, POSITION);
     }
 }

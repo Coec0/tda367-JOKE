@@ -20,7 +20,6 @@ public abstract class Tower extends Building {
 		this.radius = radius;
 		this.cost = cost;
 		this.TState = new TargetLast();
-
 	}
 
 	public void setTargetState(ITargetState state) {
@@ -41,13 +40,16 @@ public abstract class Tower extends Building {
 
 	public void shoot(Enemy enemy) {
 		makeProjectile();
-	}
-	
+        System.out.println("shoot");
+    }
+
 	public abstract Projectile makeProjectile();
 
 	public void setTarget(Array<Enemy> targets) {
 		this.target = TState.getEnemy(super.getPos(), targets);
 		rotateTowards(target.getPos());
+		shoot(target);
+		System.out.println("settarget");
 	}
 
 	public Enemy getTarget() {

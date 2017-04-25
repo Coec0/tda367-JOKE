@@ -13,10 +13,9 @@ public class Missile extends Projectile {
     private static final float DAMAGE = 40;
     private static final float SPEED = 10;
     private static final boolean AREAOFEFFECT = true;
-    private static final Texture TEXTURE = new Texture("missile.png");
 
     public Missile(Node DIRECTION, Node POSITION){
-        super(DAMAGE, SPEED, AREAOFEFFECT, TEXTURE, DIRECTION, POSITION);
+        super(DAMAGE, SPEED, AREAOFEFFECT, DIRECTION, POSITION);
     }
 
 }
