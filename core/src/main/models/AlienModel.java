@@ -6,6 +6,7 @@ import enemies.AlienFactory;
 import enemies.Enemy;
 import utilities.AlienObserver;
 import utilities.EnemyWavesCreator;
+import utilities.MapNode;
 import utilities.Node;
 import utilities.PathFinder;
 import utilities.UpdateObserver;

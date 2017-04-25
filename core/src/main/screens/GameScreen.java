@@ -34,6 +34,7 @@ public class GameScreen implements Screen{
 	
 	
 	private Array<Node> nodes = new Array<Node>();
+	Array<MapNode> Mapnodes;
 	IllegalAliensMain IAMain;
 	EnemyWavesCreator ewc;
 	
@@ -46,7 +47,7 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		addNodes();
-		finder.calculateShortest(nodes);
+		finder.calculateShortest(Mapnodes, Mapnodes.get(0),Mapnodes.peek());
 		
 		AlienView AW= new AlienView();
 		AlienModel AM = new AlienModel();
@@ -80,7 +81,7 @@ public class GameScreen implements Screen{
 	private void addNodes() {
 		
 		Map map = new Map("AlphaMap");
-		Array<MapNode> Mapnodes = map.getMapNodes();
+		Mapnodes = map.getMapNodes();
 		System.out.println(Mapnodes.size);
 		nodes.clear();
 		for(MapNode tmp : Mapnodes){

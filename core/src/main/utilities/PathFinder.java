@@ -6,12 +6,14 @@ public final class PathFinder {
 	private static final PathFinder instance = new PathFinder();
 
 	private Array<Node> shortestPath;
-	private Array<Node> allNodes;
+	private Array<MapNode> allNodes;
 	private float speed;
 	private Array<Node> directionList = new Array<Node>(); 
+	private DijkstraSolver DSolver;
 
 	private PathFinder() {
-		allNodes = new Array<Node>();
+		allNodes = new Array<MapNode>();
+		
 	}
 
 	public static PathFinder getInstance() {
@@ -26,8 +28,10 @@ public final class PathFinder {
 		this.speed = speed;
 	}
 	
-	public void calculateShortest(Array<Node> nodes){
-		shortestPath = getFullPath(10, nodes); //just for testing. will be replaced with dijekstra
+	public void calculateShortest(Array<MapNode> nodes,MapNode startNode, MapNode endNode){
+		DSolver = new DijkstraSolver(nodes);
+		shortestPath = DSolver.solve(startNode, endNode);
+		shortestPath = getFullPath(10,shortestPath);
 	}
 
 	public Array<Node> getShortestPath(){
@@ -40,7 +44,7 @@ public final class PathFinder {
 		return shortestPath;
 	}
 	
-	public void setAllNodes(Array<Node> allNodes){
+	public void setAllNodes(Array<MapNode> allNodes){
 		this.allNodes = allNodes;
 	}
 	
