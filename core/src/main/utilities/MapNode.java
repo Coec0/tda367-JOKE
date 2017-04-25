@@ -7,20 +7,29 @@ public class MapNode {
 	private Node pos;
 	private Array<String> neighbors;
 	private String prevID;
-	private float weight;
+	private float pathLenght;
+	private boolean visited = false;
 	
 	public MapNode(String ID, Node pos){
 		this.ID = ID;
 		this.pos = pos;
 		neighbors = new Array<String>();
-		weight = Float.MAX_VALUE; //might have to find better solution to inf
+		pathLenght = Float.MAX_VALUE; //might have to find better solution to inf
 	}
-	public float getWeight() {
-		return weight;
+	public float getPathLenght() {
+		return pathLenght;
 	}
 	
-	public void setWeight(float weight) {
-		this.weight = weight;
+	public void visit(){
+		visited = true;
+	}
+	
+	public boolean Visited(){
+		return visited;
+	}
+	
+	public void setPathLenght(float pathLenght) {
+		this.pathLenght = pathLenght;
 	}
 	
 	public String getPrevID() {
@@ -49,6 +58,10 @@ public class MapNode {
 	
 	public Array<String> getNeighbors(){
 		return neighbors;
+	}
+	
+	public float getDistanceTo(MapNode other) {
+		return (float) pos.getDistanceTo(other.getPos());
 	}
 	
 	
