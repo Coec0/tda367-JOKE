@@ -62,12 +62,12 @@ public class Node{
 		return new Node(dx/startDistance, dy/startDistance);
 	}
 
-	private float getDeltaX(Node other) {
-		return other.x - this.x;
+	public float getDeltaX(Node other) {
+		return Math.abs(other.x - this.x);
 	}
 
-	private float getDeltaY(Node other) {
-		return other.y - this.y;
+	public float getDeltaY(Node other) {
+		return Math.abs(other.y - this.y);
 	}
 
 }
