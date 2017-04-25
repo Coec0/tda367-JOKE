@@ -12,7 +12,7 @@ public class Map {
 	private String currentMapName;
 	private Texture map;
 	private Scanner scanner;
-	private Array<Node> mapNodes;
+	private Array<MapNode> mapNodes;
 	
 	public Map(String mapName){
 		setMap(mapName);
@@ -22,21 +22,37 @@ public class Map {
 		if(mapName.equals("AlphaMap")){
 			currentMapName = mapName;
 			map = new Texture("AlphaMap.png");
+			mapNodes = new Array<MapNode>();
 			readNodes(mapName);
+			
 			return true;
 		}
 		return false;
 	}
 	
-	public Texture getMap(){
-		return map;
-	}
 	
-	public String getMapName(){
-		return currentMapName;
-	}
 	
 	private void readNodes(String mapName){
+		setScanner(mapName);
+		mapNodes.clear();
+		MapNode mapNode;
+		while(scanner.hasNextLine()){
+			String[] segments = scanner.nextLine().split(";");
+			
+			int xCord = Integer.parseInt(segments[1]);
+			int yCord = Integer.parseInt(segments[2]);
+			
+			mapNode = new MapNode(segments[0] , new Node(xCord,yCord));
+			
+			for(int i = 3; i < segments.length; i++){
+				mapNode.addNeighbor(segments[i]);
+			}
+			mapNodes.add(mapNode);
+		}
+		
+	}
+	
+	private void setScanner(String mapName){
 		if(mapName.equals("AlphaMap")){
 			try {
 				scanner = new Scanner(new File("AlphaMapNodes.txt"));
@@ -45,24 +61,18 @@ public class Map {
 				e.printStackTrace();
 				return;
 			}
-			
 		}
-		
-		mapNodes = new Array<Node>();
-		//MapNode tmpNode;
-		Node pos;
-		String[] segments;
-		while(scanner.hasNextLine()){
-			segments = scanner.nextLine().split(";");
-			pos = new Node(Integer.parseInt(segments[1]),Integer.parseInt(segments[2]));
-			//tmpNode = new MapNode(segments[0],pos);
-			mapNodes.add(pos);
-			System.out.println(segments[0]);
-		}
-		
 	}
 	
-	public Array<Node> getMapNodes(){
+	public Array<MapNode> getMapNodes(){
 		return mapNodes;
+	}
+	
+	public Texture getMap(){
+		return map;
+	}
+	
+	public String getMapName(){
+		return currentMapName;
 	}
 }

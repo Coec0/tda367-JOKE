@@ -16,6 +16,7 @@ import models.AlienModel;
 import models.BuildingModel;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
+import utilities.MapNode;
 import utilities.Node;
 import utilities.PathFinder;
 import utilities.Radar;
@@ -75,7 +76,14 @@ public class GameScreen implements Screen{
 	private void addNodes() {
 		
 		Map map = new Map("AlphaMap");
-		nodes = map.getMapNodes();
+		Array<MapNode> Mapnodes = map.getMapNodes();
+		System.out.println(Mapnodes.size);
+		nodes.clear();
+		for(MapNode tmp : Mapnodes){
+			nodes.add(tmp.getPos());
+			System.out.println(tmp.getPos().getX() + " " + tmp.getPos().getY());
+			
+		}
 		backgroundSprite = new Sprite(map.getMap());
 		
 		
