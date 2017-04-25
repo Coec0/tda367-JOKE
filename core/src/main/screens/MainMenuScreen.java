@@ -3,20 +3,24 @@ package screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.example.illegalaliens.IllegalAliensMain;
+import stages.MainMenuStage;
 
 public class MainMenuScreen implements Screen {
 
 	private IllegalAliensMain game;
-	private BitmapFont font;
 	private SpriteBatch batch;
+
+	private MainMenuStage mainMenuStage;
 	
 	public MainMenuScreen(IllegalAliensMain game, SpriteBatch batch){
 		this.game = game;
 		this.batch = batch;
-		font = new BitmapFont();
+
+		mainMenuStage = new MainMenuStage(game);
+
+		Gdx.input.setInputProcessor(mainMenuStage);
 	}
 	@Override
 	public void show() {
@@ -28,17 +32,10 @@ public class MainMenuScreen implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
-		
+
 		batch.begin();
-		font.draw(batch, "Welcome to IllegalAliens!!! ",Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight()/2);
-		font.draw(batch, "Tap anywhere to begin!", Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight()/2 - 100);
+		mainMenuStage.draw();
 		batch.end();
-		
-		if (Gdx.input.isTouched()) {
-			game.setGameScreen();
-			dispose();
-		}
 	}
 
 	@Override
@@ -67,8 +64,7 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		font.dispose();
-		
+
 	}
 	
 
