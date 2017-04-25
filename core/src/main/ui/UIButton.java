@@ -15,6 +15,7 @@ public class UIButton extends InputAdapter{
 	private int height;
 	
 	private String name;
+	private String text;
 	
 	
 	public UIButton(int x, int y, String name) {
@@ -23,10 +24,11 @@ public class UIButton extends InputAdapter{
 		this.setY(y);
 	}
 	
-	public UIButton(int x, int y, int width, int height, String name){
+	public UIButton(int x, int y, int width, int height, String name, String text){
 		this(x,y, name);
 		this.setHeight(height);
 		this.setWidth(width);
+		this.text = text;
 	}
 
 	@Override
@@ -83,6 +85,14 @@ public class UIButton extends InputAdapter{
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 }

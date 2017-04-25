@@ -12,7 +12,7 @@ public class HUD {
 	
 	public HUD(InputMultiplexer IM){
 		this.IM = IM;
-		UIButton nextWave = new UIButton(Gdx.graphics.getWidth()-100,Gdx.graphics.getHeight()-70, 100, 70, "nextWave");
+		UIButton nextWave = new UIButton(Gdx.graphics.getWidth()-100,Gdx.graphics.getHeight()-70, 100, 70, "nextWave", "Send next wave");
 		addButton(nextWave);
 	}
 	
