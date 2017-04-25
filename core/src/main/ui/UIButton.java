@@ -28,8 +28,10 @@ public class UIButton extends InputAdapter{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		if(x<screenX && y<screenY && y+height>screenY && x+width>screenX)
+		if(x<screenX && y<screenY && y+height>screenY && x+width>screenX){
 			System.out.println("HIT");
+			notifyListeners(new ActionEvent(this,0,"asd")); //Fix when i know how this will be useful
+		}
 		return super.touchDown(screenX, screenY, pointer, button);
 	}
 	
