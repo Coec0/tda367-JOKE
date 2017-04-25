@@ -1,6 +1,7 @@
 package buildings.towers;
 
 import projectiles.Projectile;
+import projectiles.RangerBullet;
 import projectiles.SniperBullet;
 
 /**
@@ -10,14 +11,13 @@ public class Ranger extends Tower {
     private static final int RADIUS = 750;
     private static final String NAME = "RANGER";
     private static final int COST = 300;
-    private static final int DAMAGE = 15;
 
     public Ranger(int x, int y){
-        super(x, y, RADIUS, NAME, COST, DAMAGE);
+        super(x, y, RADIUS, NAME, COST);
     }
 
     @Override
     public Projectile makeProjectile() {
-        return new SniperBullet(super.getTarget().getPos(), super.getPos());
+        return new RangerBullet(super.getTarget().getPos(), super.getPos());
     }
 }

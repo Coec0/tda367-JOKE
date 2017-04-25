@@ -14,9 +14,7 @@ public abstract class Projectile {
     private float damage;
     private float speed;
     private boolean areaOfEffect;
-
     private Texture texture;
-
     private Node direction;
     private Node position;
 

@@ -11,10 +11,9 @@ public class Howitzer extends Tower {
     private static final int RADIUS = 10;
     private static final String NAME = "HOWITZER";
     private static final int COST = 100;
-    private static final int DAMAGE = 10;
 
     public Howitzer(int x, int y){
-        super(x, y, RADIUS, NAME, COST, DAMAGE);
+        super(x, y, RADIUS, NAME, COST);
     }
 
     @Override

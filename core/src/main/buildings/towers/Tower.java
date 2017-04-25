@@ -12,15 +12,13 @@ import utilities.Node;
 public abstract class Tower extends Building {
 	private float radius;
 	private int cost;
-	private float damage;
 	private Enemy target;
 	private ITargetState TState;
 
-	protected Tower(int x, int y, float radius, String name, int cost, float damage){
+	protected Tower(int x, int y, float radius, String name, int cost){
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;
-		this.damage = damage;
 		this.TState = new TargetLast();
 
 	}
@@ -39,10 +37,6 @@ public abstract class Tower extends Building {
 
 	public int getCost() {
 		return this.cost;
-	}
-
-	public float getDamage() {
-		return this.damage;
 	}
 
 	public void shoot(Enemy enemy) {
