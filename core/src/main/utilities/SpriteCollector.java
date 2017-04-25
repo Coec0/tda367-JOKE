@@ -1,5 +1,6 @@
 package utilities;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 public final class SpriteCollector {
@@ -37,4 +38,17 @@ public final class SpriteCollector {
 	public void removeSprite(SpriteAdapter sprite){
 		sprites.removeValue(sprite, false);
 	}	
+	
+	/**
+	 * Draw all sprites. Must be called from 'render()' method
+	 * @param batch
+	 */
+	public void drawSprites(SpriteBatch batch) {
+		if(getSprites() != null){
+			for(SpriteAdapter sprite : getSprites()){
+				sprite.draw(batch);
+			}
+		}
+		
+	}
 }

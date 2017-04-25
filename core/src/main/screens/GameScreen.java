@@ -112,19 +112,12 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		backgroundSprite.draw(batch);
-		drawSprites();
+		SC.drawSprites(batch);
 		batch.end();
 		
 	}
 
-	private void drawSprites() {
-		if(SC.getSprites() != null){
-			for(SpriteAdapter sprite : SC.getSprites()){
-				sprite.draw(batch);
-			}
-		}
-		
-	}
+	
 
 	@Override
 	public void resize(int width, int height) {
