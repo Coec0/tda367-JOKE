@@ -9,26 +9,16 @@ import enemies.Alien;
 import enemies.AlienFactory;
 import enemies.Enemy;
 
-public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
+public class EnemyWavesCreator{
 	
-
-	private AlienController cont;
 	private int enemyCounter = 0;
 	private int frames;
 	
 	private Array<Level> levels = new Array<Level>();
-	
 	private Level currentLevel;
 	private int currentWaveIndex;
-	private boolean waveON;
 	
-	
-	private Array<Enemy> wave;
-	
-	
-	
-	public EnemyWavesCreator(AlienController cont){
-		this.cont = cont;
+	public EnemyWavesCreator(){
 		Array<LevelHelperObject> tmpEnemies = new Array<LevelHelperObject>();
 		tmpEnemies.add(new LevelHelperObject(new Alien(),5));
 		levels.add(new Level(5,tmpEnemies)); //levels has to be hardcoded. Maybe in textfile in future?
@@ -38,33 +28,35 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 	}
 	
 	
-	private void spawnNextEnemy(){ 
+	/*private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
 			cont.spawnAlien(AlienFactory.createAlien()); //TODO remove hardcoded alien!
 			enemyCounter++;
 		}else{
 			waveON = false;
-		}
+		}*/
 		
 		
 		
-	}
 	
-	public void nextWave(){
+	
+	public Array<Enemy> getNextWave(){
 		currentWaveIndex++;
 		if(currentWaveIndex >= currentLevel.getWavesAmount()){
 			nextLevel();
 			currentWaveIndex = 0;
 		}
-		wave = currentLevel.getNextWave(true);
 		enemyCounter = 0;
+		return currentLevel.getNextWave(true);
+		
 		
 	}
 		
 	private void nextLevel(){
 		currentLevel = levels.pop();
 	}
-	@Override
+	
+	/*@Override
 	public boolean keyDown (int keycode) {
 		if(keycode == Keys.SPACE){
 			nextWave();
@@ -72,8 +64,9 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 			return true;
 		}
 		return false;
-	}
+	}*/
 	
+	/*
 	@Override
 	public void update(float deltaTime) {
 		frames++;
@@ -85,4 +78,5 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 			
 		}
 	}
+	*/
 }

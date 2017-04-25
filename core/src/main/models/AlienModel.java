@@ -2,8 +2,10 @@ package models;
 
 import com.badlogic.gdx.utils.Array;
 
+import enemies.AlienFactory;
 import enemies.Enemy;
 import utilities.AlienObserver;
+import utilities.EnemyWavesCreator;
 import utilities.Node;
 import utilities.PathFinder;
 import utilities.UpdateObserver;
@@ -14,10 +16,16 @@ public class AlienModel implements UpdateObserver {
 	private Array<Enemy> aliens;
 	private Array<Node> path;
 	private Array<Node> direction;
+	
+	private int frames = 10; //value-time inbetween aliens
+	private boolean waveON;
+	private EnemyWavesCreator EWC;
+	private Array<Enemy> wave;
+	private int enemyCounter = 0;
 
 	public AlienModel() {
+		EWC = new EnemyWavesCreator();
 		aliens = new Array<Enemy>(false, 10);
-		
 		path = finder.getShortestPath();
 		direction = finder.getDirectionList();
 	}
@@ -77,11 +85,34 @@ public class AlienModel implements UpdateObserver {
 			removeEnemy(alien);
 		}
 	}
-
+	
+	public void startNextWave(){
+		wave = EWC.getNextWave();
+		waveON = true;
+	}
+	
 	@Override
 	public void update(float deltaTime) {
 		moveAllAliens();
+		frames++;
+		if(frames > 10){
+			if(waveON){
+				spawnNextEnemy();
+			}
+			frames = 0;
+			
+		}
 	}
+	
+	private void spawnNextEnemy(){ 
+		if(enemyCounter < wave.size){
+			addAlien(AlienFactory.createAlien()); //TODO remove hardcoded alien!
+			enemyCounter++;
+		}else{
+			waveON = false;
+		}
+	}
+	
 	
 	private Array<AlienObserver> observers = new Array<AlienObserver>(false, 10);
 

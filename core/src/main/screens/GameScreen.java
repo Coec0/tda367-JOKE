@@ -57,19 +57,19 @@ public class GameScreen implements Screen{
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
 		
-		InputAdapter EWC = new EnemyWavesCreator(AController);
+		//InputAdapter EWC = new EnemyWavesCreator(AController);
 		InputAdapter TController = new BuildingController(TM, AM, TW);	
 		
 		IAMain.addObserver(TM);
-		IAMain.addObserver( (EnemyWavesCreator) EWC);
+		IAMain.addObserver(AM);
 		
 		InputMultiplexer imp = new InputMultiplexer();
-		imp.addProcessor(EWC);
+		imp.addProcessor(AController);
 		imp.addProcessor(TController);
 		
 		Gdx.input.setInputProcessor(imp);
 
-		IAMain.addObserver(AM);
+		
 		
 	}
 

@@ -1,10 +1,13 @@
 package controllers;
 
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
+
 import enemies.Enemy;
 import models.AlienModel;
 import views.AlienView;
 
-public class AlienController{
+public class AlienController extends InputAdapter{
 
 	AlienView AView;
 	AlienModel AModel;
@@ -17,5 +20,14 @@ public class AlienController{
 
 	public void spawnAlien(Enemy enemy){
 		AModel.addAlien(enemy);
+	}
+	
+	@Override
+	public boolean keyDown (int keycode) {
+		if(keycode == Keys.SPACE){
+			AModel.startNextWave();
+			return true;
+		}
+		return false;
 	}
 }
