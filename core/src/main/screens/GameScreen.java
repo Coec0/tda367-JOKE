@@ -48,8 +48,6 @@ public class GameScreen implements Screen{
 		addNodes();
 		finder.calculateShortest(nodes);
 		
-		
-		
 		AlienView AW= new AlienView();
 		AlienModel AM = new AlienModel();
 		Radar radar = new Radar(AM);
@@ -91,19 +89,6 @@ public class GameScreen implements Screen{
 			
 		}
 		backgroundSprite = new Sprite(map.getMap());
-		
-		
-		
-		
-		/*
-		//Maybe move to "Map" class (MVC?)
-		nodes.add(new Node(0,360));
-		nodes.add(new Node(500,360));
-		nodes.add(new Node(500,200));
-		nodes.add(new Node(780,200));
-		nodes.add(new Node(780,360));
-		nodes.add(new Node(1280,360));
-		*/
 	}
 
 	@Override
@@ -112,7 +97,7 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		backgroundSprite.draw(batch);
-		SC.drawSprites(batch);
+		SC.drawAll(batch);
 		batch.end();
 		
 	}

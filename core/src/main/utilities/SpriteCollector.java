@@ -1,14 +1,19 @@
 package utilities;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 public final class SpriteCollector {
 	private static final SpriteCollector instance = new SpriteCollector();
 	private Array<SpriteAdapter> sprites;
+	private Array<TextArea> textAreas;
+	private BitmapFont font;
 	
 	private SpriteCollector(){
 		sprites = new Array<SpriteAdapter>(false, 10);
+		textAreas = new Array<TextArea>(false, 10);
+		font = new BitmapFont();
 	}
 	
 	public static SpriteCollector getInstance(){
@@ -49,6 +54,49 @@ public final class SpriteCollector {
 				sprite.draw(batch);
 			}
 		}
-		
+	}
+	
+	/**
+	 * Get all the texts that should be drawn
+	 * @return
+	 */
+	public Array<TextArea> getTexts(){
+		return textAreas;
+	}
+	
+	/**
+	 * Add text that should be drawn by the screen
+	 * @param text
+	 */
+	public void addText(TextArea text){
+		textAreas.add(text);
+	}
+	
+	/**
+	 * Remove a specific text
+	 * @param text
+	 */
+	public void removeText(TextArea text){
+		textAreas.removeValue(text, false);
+	}
+	
+	/**
+	 * Draw all texts. Must be called from 'render()' method
+	 * @param batch
+	 */
+	public void drawText(SpriteBatch batch) {
+		if(getTexts() != null){
+			for(TextArea text : getTexts()){
+				font.draw(batch, text.getText(),text.getX(), text.getY());
+			}
+		}
+	}
+	/**
+	 * Draws everything. Must be called from 'render()' method
+	 * @param batch
+	 */
+	public void drawAll(SpriteBatch batch){
+		drawText(batch);
+		drawSprites(batch);
 	}
 }
