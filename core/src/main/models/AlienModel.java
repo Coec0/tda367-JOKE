@@ -2,10 +2,7 @@ package models;
 
 import com.badlogic.gdx.utils.Array;
 
-import enemies.Alien;
-import enemies.AlienWithHelmet;
 import enemies.Enemy;
-import enemies.SneakyAlien;
 import utilities.AlienObserver;
 import utilities.Node;
 import utilities.PathFinder;
@@ -25,24 +22,10 @@ public class AlienModel implements UpdateObserver {
 		direction = finder.getDirectionList();
 	}
 	
-	public void createAlien(){ //Clean these methods in future
-		aliens.add(new Alien((int)path.get(0).getX(),(int)path.get(0).getY()));
+	public void addAlien(Enemy enemy){
+		enemy.setPos(new Node((int)path.get(0).getX(),(int)path.get(0).getY()));
+		aliens.add(enemy);
 		notifyObservers(aliens.peek(), false);
-	}
-	
-	public void createAlienWithHelmet(){
-		aliens.add(new AlienWithHelmet((int)path.get(0).getX(),(int)path.get(0).getY()));
-		notifyObservers(aliens.peek(), false);
-	}
-	
-	public void createSneakyAlien(){
-		aliens.add(new SneakyAlien((int)path.get(0).getX(),(int)path.get(0).getY()));
-		notifyObservers(aliens.peek(), false);
-	}
-	
-	public void createAlien(int amount){
-		for(int i=0; i<amount; i++)
-			aliens.add(new Alien());
 	}
 	
 	private void moveAllAliens(){

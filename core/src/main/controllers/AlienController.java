@@ -1,5 +1,6 @@
 package controllers;
 
+import enemies.Enemy;
 import models.AlienModel;
 import views.AlienView;
 
@@ -14,8 +15,7 @@ public class AlienController{
 		AModel.addObserver(AView);
 	}
 
-	public void spawnAlien(){
-		AModel.createAlien();
-		//AView.addToView(AModel.peekAlien().getSpriteAdapter());
+	public void spawnAlien(Enemy enemy){
+		AModel.addAlien(enemy);
 	}
 }

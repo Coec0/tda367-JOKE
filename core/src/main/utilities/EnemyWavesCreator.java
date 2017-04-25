@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 
 import controllers.AlienController;
 import enemies.Alien;
+import enemies.AlienFactory;
 import enemies.Enemy;
 
 public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
@@ -39,7 +40,7 @@ public class EnemyWavesCreator extends InputAdapter implements UpdateObserver  {
 	
 	private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
-			cont.spawnAlien(); //we need to add mehon in cont that does .spawn(Enemy enemy)
+			cont.spawnAlien(AlienFactory.createAlien()); //TODO remove hardcoded alien!
 			enemyCounter++;
 		}else{
 			waveON = false;
