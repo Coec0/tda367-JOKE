@@ -14,14 +14,17 @@ public class UIButton extends InputAdapter{
 	private int width;
 	private int height;
 	
+	private String name;
 	
-	public UIButton(int x, int y) {
+	
+	public UIButton(int x, int y, String name) {
+		this.name=name;
 		this.setX(x);
 		this.setY(y);
 	}
 	
-	public UIButton(int x, int y, int width, int height){
-		this(x,y);
+	public UIButton(int x, int y, int width, int height, String name){
+		this(x,y, name);
 		this.setHeight(height);
 		this.setWidth(width);
 	}
@@ -30,7 +33,7 @@ public class UIButton extends InputAdapter{
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		if(x<screenX && y<screenY && y+height>screenY && x+width>screenX){
 			System.out.println("HIT");
-			notifyListeners(new ActionEvent(this,0,"asd")); //Fix when i know how this will be useful
+			notifyListeners(new ActionEvent(this,0,name)); //Fix when i know how this will be useful
 		}
 		return super.touchDown(screenX, screenY, pointer, button);
 	}

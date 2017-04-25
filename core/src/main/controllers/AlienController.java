@@ -1,5 +1,8 @@
 package controllers;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 
@@ -7,7 +10,7 @@ import enemies.Enemy;
 import models.AlienModel;
 import views.AlienView;
 
-public class AlienController extends InputAdapter{
+public class AlienController extends InputAdapter implements ActionListener{
 
 	AlienView AView;
 	AlienModel AModel;
@@ -29,5 +32,13 @@ public class AlienController extends InputAdapter{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals("nextWave")){
+			AModel.startNextWave();
+		}
+		
 	}
 }

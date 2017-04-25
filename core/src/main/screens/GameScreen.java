@@ -14,6 +14,7 @@ import controllers.AlienController;
 import controllers.BuildingController;
 import models.AlienModel;
 import models.BuildingModel;
+import ui.HUD;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
 import utilities.MapNode;
@@ -47,6 +48,8 @@ public class GameScreen implements Screen{
 		addNodes();
 		finder.calculateShortest(nodes);
 		
+		
+		
 		AlienView AW= new AlienView();
 		AlienModel AM = new AlienModel();
 		Radar radar = new Radar(AM);
@@ -68,6 +71,9 @@ public class GameScreen implements Screen{
 		imp.addProcessor(TController);
 		
 		Gdx.input.setInputProcessor(imp);
+		
+		HUD hud = new HUD(imp);
+		hud.addHUDListener(AController);
 
 		
 		
