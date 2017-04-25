@@ -1,12 +1,12 @@
 package utilities;
 
-public class DijkstraNode {
+public class MapNode {
 	private String ID;
 	private Node pos;
 	private String prevID;
 	private float weight;
 	
-	public DijkstraNode(String ID, Node pos){
+	public MapNode(String ID, Node pos){
 		this.ID = ID;
 		this.pos = pos;
 		weight = Float.MAX_VALUE; //might have to find better solution to inf
