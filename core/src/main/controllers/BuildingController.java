@@ -2,6 +2,7 @@ package controllers;
 
 import com.badlogic.gdx.InputAdapter;
 
+import buildings.towers.TowerFactory;
 import models.AlienModel;
 import models.BuildingModel;
 import views.BuildingView;
@@ -24,7 +25,7 @@ public class BuildingController extends InputAdapter {
 
     @Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	BModel.createSoldier(screenX, screenY);
+    	BModel.addTower(TowerFactory.createSoldier(screenX, screenY));
 		return super.touchDown(screenX, screenY, pointer, button);
 	}
 

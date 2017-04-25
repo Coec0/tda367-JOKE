@@ -5,8 +5,6 @@ import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
 import buildings.WhiteHouse;
-import buildings.towers.Soldier;
-import buildings.towers.Tank;
 import buildings.towers.Tower;
 import enemies.Alien;
 import enemies.Enemy;
@@ -28,22 +26,16 @@ public class BuildingModel implements UpdateObserver {
 		this.radar = radar;
 	}
 
-	public void createSoldier(int x, int y) {
-		towers.add(new Soldier(x, Gdx.graphics.getHeight() - y));
-		notifyObservers(towers.peek(), false);
-	}
-
-	public void createTank(int x, int y) {
-		towers.add(new Tank(x, Gdx.graphics.getHeight() - y));
+	public void addTower(Tower tower){
+		towers.add(tower);
 		notifyObservers(towers.peek(), false);
 	}
 
 	public void createWhiteHouse(int x, int y) {
 		whitehouses.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y));
 		notifyObservers(whitehouses.peek(), false);
-		;
 	}
-
+	
 	public Tower getTower(int index) {
 		return towers.get(index);
 	}
