@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.IllegalAliensMain;
@@ -14,6 +15,7 @@ import controllers.BuildingController;
 import models.AlienModel;
 import models.BuildingModel;
 import utilities.EnemyWavesCreator;
+import utilities.Map;
 import utilities.Node;
 import utilities.PathFinder;
 import utilities.Radar;
@@ -24,6 +26,7 @@ import views.BuildingView;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
+	private Sprite backgroundSprite;
 	private SpriteCollector SC = SpriteCollector.getInstance();
 	private PathFinder finder = PathFinder.getInstance();
 	
@@ -70,6 +73,15 @@ public class GameScreen implements Screen{
 	}
 
 	private void addNodes() {
+		
+		Map map = new Map("AlphaMap");
+		nodes = map.getMapNodes();
+		backgroundSprite = new Sprite(map.getMap());
+		
+		
+		
+		
+		/*
 		//Maybe move to "Map" class (MVC?)
 		nodes.add(new Node(0,360));
 		nodes.add(new Node(500,360));
@@ -77,6 +89,7 @@ public class GameScreen implements Screen{
 		nodes.add(new Node(780,200));
 		nodes.add(new Node(780,360));
 		nodes.add(new Node(1280,360));
+		*/
 	}
 
 	@Override
@@ -84,6 +97,7 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
+		backgroundSprite.draw(batch);
 		drawSprites();
 		batch.end();
 		

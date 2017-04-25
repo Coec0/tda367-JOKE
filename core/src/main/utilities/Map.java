@@ -5,13 +5,14 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Array;
 
 public class Map {
 	
 	private String currentMapName;
 	private Texture map;
 	private Scanner scanner;
-	
+	private Array<Node> mapNodes;
 	
 	public Map(String mapName){
 		setMap(mapName);
@@ -21,6 +22,7 @@ public class Map {
 		if(mapName.equals("AlphaMap")){
 			currentMapName = mapName;
 			map = new Texture("AlphaMap.png");
+			readNodes(mapName);
 			return true;
 		}
 		return false;
@@ -34,7 +36,7 @@ public class Map {
 		return currentMapName;
 	}
 	
-	private void getNodes(String mapName){
+	private void readNodes(String mapName){
 		if(mapName.equals("AlphaMap")){
 			try {
 				scanner = new Scanner(new File("AlphaMapNodes.txt"));
@@ -45,11 +47,22 @@ public class Map {
 			}
 			
 		}
-		String line;
+		
+		mapNodes = new Array<Node>();
+		//MapNode tmpNode;
+		Node pos;
+		String[] segments;
 		while(scanner.hasNextLine()){
-			line = scanner.nextLine();
-			
+			segments = scanner.nextLine().split(";");
+			pos = new Node(Integer.parseInt(segments[1]),Integer.parseInt(segments[2]));
+			//tmpNode = new MapNode(segments[0],pos);
+			mapNodes.add(pos);
+			System.out.println(segments[0]);
 		}
 		
+	}
+	
+	public Array<Node> getMapNodes(){
+		return mapNodes;
 	}
 }
