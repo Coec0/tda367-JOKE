@@ -4,11 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.IllegalAliensMain;
 
 import controllers.AlienController;
@@ -17,6 +21,7 @@ import controllers.ProjectileController;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
+import stages.HUDStage;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
 import utilities.MapNode;
@@ -42,6 +47,10 @@ public class GameScreen implements Screen{
 	IllegalAliensMain IAMain;
 	EnemyWavesCreator ewc;
 	
+	private Camera camera;
+	private Viewport WP;
+	HUDView HV;
+	HUDStage HS;
 	
 	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
@@ -66,7 +75,12 @@ public class GameScreen implements Screen{
         ProjectileController PC = new ProjectileController(PM, PW);
 		
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
-		InputAdapter TController = new BuildingController(TM, AM, TW, PC);
+        
+		camera = new OrthographicCamera();
+		WP = new StretchViewport(1280, 720, camera);
+		WP.apply();
+		//camera.position.set(1280/2, 720/2, 0);
+		InputAdapter TController = new BuildingController(TM, AM, TW, PC, WP);
 		
 		IAMain.addObserver(TM);
 		IAMain.addObserver(AM);
@@ -77,10 +91,11 @@ public class GameScreen implements Screen{
 		
 		Gdx.input.setInputProcessor(imp);
 		
-		HUDView HV = new HUDView(AController, imp);
-		//hud.addHUDListener(AController);
+		HV = new HUDView();
+		HS = new HUDStage(AController); 
+		imp.addProcessor(HS);
+		HV.addToView(HS);
 
-		
 		
 	}
 
@@ -102,6 +117,8 @@ public class GameScreen implements Screen{
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		camera.update();
+		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		backgroundSprite.draw(batch);
 		SC.drawAll(batch);
@@ -113,8 +130,8 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
+		WP.update(width, height, true);
+		HS.getViewport().update(width, height);
 	}
 
 	@Override

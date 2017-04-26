@@ -1,6 +1,8 @@
 package controllers;
 
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import buildings.towers.TowerFactory;
 import models.AlienModel;
@@ -13,12 +15,14 @@ public class BuildingController extends InputAdapter {
     BuildingModel BModel;
     AlienModel AModeL;
     ProjectileController PController;
+    Viewport WP;
 
-    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, ProjectileController PController){
+    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, ProjectileController PController, Viewport WP){
         this.BView = BView;
         this.BModel = BModel;
         this.AModeL = AModel;
         this.PController = PController;
+        this.WP = WP;
         
         BModel.addObserver(BView);
         
@@ -27,8 +31,10 @@ public class BuildingController extends InputAdapter {
 
     @Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	BModel.addTower(TowerFactory.createSoldier(screenX, screenY, PController));
-		return super.touchDown(screenX, screenY, pointer, button);
+    	Vector3 v = new Vector3 (screenX , screenY, 0);
+    	WP.unproject(v);
+    	BModel.addTower(TowerFactory.createSoldier((int)v.x, (int)v.y, PController));
+		return super.touchDown((int)v.x, (int)v.y, pointer, button);
 	}
 
 }
