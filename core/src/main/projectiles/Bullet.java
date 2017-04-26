@@ -10,7 +10,7 @@ import utilities.Node;
 public class Bullet extends Projectile {
 
     private static final float DAMAGE = 10;
-    private static final float SPEED = 150;
+    private static final float SPEED = 10;
     private static final boolean AREAOFEFFECT = false;
 
     public Bullet(Node DIRECTION, Node POSITION){

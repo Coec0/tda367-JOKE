@@ -28,7 +28,7 @@ public class ProjectileModel implements UpdateObserver{
 
     public void moveAll(){
         for (Projectile p : projectiles) {
-            p.setPosition(p.getNewPosition());
+            p.setSpritePosition(p.getNewPosition());
         }
     }
 
