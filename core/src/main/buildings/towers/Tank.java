@@ -9,7 +9,7 @@ public class Tank extends Tower{
     private static final int RADIUS = 10;
     private static final String NAME = "TANK";
     private static final int COST = 100;
-    private static final double COOLDOWN = 4;
+    private static final long COOLDOWN = 4000;
 
 
     public Tank(int x, int y, ProjectileController PController){

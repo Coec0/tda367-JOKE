@@ -16,10 +16,11 @@ public abstract class Tower extends Building {
 	private Enemy target;
 	private ITargetState TState;
 	private ProjectileController PController;
-    private double cooldown;
+    private long cooldown;
     private double currentCooldown;
+    private boolean isInCooldown;
 
-	protected Tower(int x, int y, float radius, String name, int cost, double cooldown,ProjectileController PController){
+	protected Tower(int x, int y, float radius, String name, int cost, long cooldown,ProjectileController PController){
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;
@@ -27,6 +28,15 @@ public abstract class Tower extends Building {
 		this.PController = PController;
 		this.cooldown=cooldown;
 	}
+
+	private void setCooldown(boolean cooldown){
+	    this.isInCooldown = cooldown;
+    }
+
+    private void startCooldown(){
+	    this.isInCooldown = true;
+	    new Cooldown().start();
+    }
 
 	public void setTargetState(ITargetState state) {
 		this.TState = state;
@@ -46,18 +56,13 @@ public abstract class Tower extends Building {
 	}
 
 	public void shoot() {
-	    //if (currentCooldown==0) {
-            makeProjectile(PController);
-            //currentCooldown = cooldown;
-        //}
-        //reduceCooldown();
+    if (!isInCooldown){
+        startCooldown();
+        makeProjectile(PController);
+    }
     }
 
-    public void reduceCooldown(){
-        if(currentCooldown > 0){
-            currentCooldown--;
-        }
-    }
+
 
 
 	public abstract Projectile makeProjectile(ProjectileController PController);
@@ -87,6 +92,21 @@ public abstract class Tower extends Building {
 		}
 		super.getSpriteAdapter().setRotation(angle);
 	}
-	
+
+
+	class Cooldown extends Thread{
+	    @Override
+        public void run(){
+	        try{
+	            Thread.sleep(cooldown);
+            }
+            catch(InterruptedException ie){
+
+            }
+            finally{
+                isInCooldown = false;
+            }
+        }
+    }
 
 }

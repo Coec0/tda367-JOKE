@@ -9,7 +9,7 @@ public class Soldier extends Tower {
     private static final int RADIUS = 500;
     private static final String NAME = "SOLDIER";
     private static final int COST = 50;
-    private static final double COOLDOWN = 0.5;
+    private static final long COOLDOWN = 500;
 
 
     public Soldier(int x, int y, ProjectileController PController){
