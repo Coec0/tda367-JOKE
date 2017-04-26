@@ -2,6 +2,7 @@ package projectiles;
 
 import com.badlogic.gdx.graphics.Texture;
 import enemies.Enemy;
+import models.ProjectileModel;
 import utilities.Node;
 import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
@@ -21,17 +22,16 @@ public abstract class Projectile {
     private Node direction;
     private Node position;
     private SpriteAdapter sprite;
-    private ProjectileView PW;
+
 
     public Projectile(float damage, float speed, boolean areaOfEffect, Node direction, Node position){
         this.damage = damage;
         this.speed = speed;
         this.areaOfEffect = areaOfEffect;
-        this.direction = direction.getAsNormalizedNode(position);
+        this.direction = createVector(direction);
+        //System.out.println(this.direction.getX() + " " + this.direction.getY());
         this.position = position;
         this.sprite = new SpriteAdapter((int)position.getX(), (int)position.getY());
-        PW = new ProjectileView();
-        PW.addToView(this);
     }
 
     public void setPosition(Node position){
@@ -40,8 +40,9 @@ public abstract class Projectile {
 
     public Node getNewPosition(){
         Node newPosition;
-        float newX = (position.getX()+ direction.getX()) * speed;
-        float newY = (position.getY() + direction.getY()) * speed;
+        float newX = position.getX()+ (direction.getX() * speed);
+        float newY = position.getY() + (direction.getY() * speed);
+        System.out.println(newX + "  " + newY);
         newPosition = new Node(newX, newY);
         return newPosition;
     }
@@ -49,9 +50,19 @@ public abstract class Projectile {
         return position;
     }
 
+    public Node createVector(Node other){
+        float x = other.getX();
+        float y = other.getY();
+
+        float pyt = (float) Math.sqrt(x*x + y*y);
+
+        return new Node(x/pyt,y/pyt);
+    }
+
     public SpriteAdapter getSpriteAdapter(){
         return sprite;
     }
+
 
 
 }

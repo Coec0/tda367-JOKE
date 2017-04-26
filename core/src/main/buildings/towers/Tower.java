@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Array;
 import buildings.Building;
 import buildings.towers.targetmethods.ITargetState;
 import buildings.towers.targetmethods.TargetLast;
+import controllers.ProjectileController;
 import enemies.Enemy;
 import projectiles.Projectile;
 import utilities.Node;
@@ -14,12 +15,14 @@ public abstract class Tower extends Building {
 	private int cost;
 	private Enemy target;
 	private ITargetState TState;
+	private ProjectileController PController;
 
-	protected Tower(int x, int y, float radius, String name, int cost){
+	protected Tower(int x, int y, float radius, String name, int cost, ProjectileController PController){
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;
 		this.TState = new TargetLast();
+		this.PController = PController;
 	}
 
 	public void setTargetState(ITargetState state) {
@@ -39,17 +42,15 @@ public abstract class Tower extends Building {
 	}
 
 	public void shoot(Enemy enemy) {
-		makeProjectile();
-        System.out.println("shoot");
+		makeProjectile(PController);
     }
 
-	public abstract Projectile makeProjectile();
+	public abstract Projectile makeProjectile(ProjectileController PController);
 
 	public void setTarget(Array<Enemy> targets) {
 		this.target = TState.getEnemy(super.getPos(), targets);
 		rotateTowards(target.getPos());
 		shoot(target);
-		System.out.println("settarget");
 	}
 
 	public Enemy getTarget() {

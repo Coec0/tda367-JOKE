@@ -12,6 +12,7 @@ import com.example.illegalaliens.IllegalAliensMain;
 
 import controllers.AlienController;
 import controllers.BuildingController;
+import controllers.ProjectileController;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
@@ -58,13 +59,14 @@ public class GameScreen implements Screen{
 		BuildingModel TM = new BuildingModel(radar);
 		BuildingView TW = new BuildingView();
 		ProjectileModel PM = new ProjectileModel();
-		
+		ProjectileView PW = new ProjectileView();
 		
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
+        ProjectileController PC = new ProjectileController(PM, PW);
 		
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
-		InputAdapter TController = new BuildingController(TM, AM, TW);	
+		InputAdapter TController = new BuildingController(TM, AM, TW, PC);
 		
 		IAMain.addObserver(TM);
 		IAMain.addObserver(AM);

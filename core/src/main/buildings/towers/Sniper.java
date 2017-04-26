@@ -1,5 +1,6 @@
 package buildings.towers;
 
+import controllers.ProjectileController;
 import projectiles.Missile;
 import projectiles.Projectile;
 import projectiles.SniperBullet;
@@ -14,12 +15,12 @@ public class Sniper extends Tower {
     private static final String NAME = "SNIPER";
     private static final int COST = 150;
 
-    public Sniper(int x, int y){
-        super(x, y, RADIUS, NAME, COST);
+    public Sniper(int x, int y, ProjectileController PController){
+        super(x, y, RADIUS, NAME, COST, PController);
     }
 
     @Override
-    public Projectile makeProjectile() {
+    public Projectile makeProjectile(ProjectileController PController) {
         return new SniperBullet(super.getTarget().getPos(), super.getPos());
     }
 
