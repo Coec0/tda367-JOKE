@@ -1,7 +1,6 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -80,7 +79,7 @@ public class GameScreen implements Screen{
 		WP = new StretchViewport(1280, 720, camera);
 		WP.apply();
 		//camera.position.set(1280/2, 720/2, 0);
-		InputAdapter TController = new BuildingController(TM, AM, TW, PC, WP);
+		BuildingController TController = new BuildingController(TM, AM, TW, PC, WP);
 		
 		IAMain.addObserver(TM);
 		IAMain.addObserver(AM);
@@ -92,7 +91,7 @@ public class GameScreen implements Screen{
 		Gdx.input.setInputProcessor(imp);
 		
 		HV = new HUDView();
-		HS = new HUDStage(AController); 
+		HS = new HUDStage(AController, TController); 
 		imp.addProcessor(HS);
 		HV.addToView(HS);
 

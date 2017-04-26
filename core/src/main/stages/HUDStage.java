@@ -10,9 +10,10 @@ public class HUDStage extends Stage {
 
 	private Skin skin;
 	
-	public HUDStage(ClickListener CL){
+	public HUDStage(ClickListener AlienC, ClickListener BuildingC){
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
-		nextWaveButton(CL);
+		nextWaveButton(AlienC);
+		towerButton(620, "soldier", BuildingC);
 		
 	}
 	private void addButton(int x, int y, float width, float height, String name, String text, ClickListener CL) {
@@ -33,5 +34,14 @@ public class HUDStage extends Stage {
 		int nWaveX = Gdx.graphics.getWidth()-nWaveWidth;
 		int nWaveY = 0;
 		addButton(nWaveX, nWaveY, nWaveWidth, nWaveHeight,"nextWave", "Send next wave", CL);
+	}
+	
+	private void towerButton(int y, String name, ClickListener CL){
+		int Width = 200;
+		int Height = 100;
+		int X = Gdx.graphics.getWidth()-Width;
+		int Y = y;
+		addButton(X, Y, Width, Height, name, "Select "+name, CL);
+		
 	}
 }
