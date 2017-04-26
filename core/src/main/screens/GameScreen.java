@@ -67,7 +67,7 @@ public class GameScreen implements Screen{
 		Radar radar = new Radar(AM);
 		BuildingModel TM = new BuildingModel(radar);
 		BuildingView TW = new BuildingView();
-		ProjectileModel PM = new ProjectileModel();
+		ProjectileModel PM = new ProjectileModel(radar);
 		ProjectileView PW = new ProjectileView();
 		
 		//Maybe move these later

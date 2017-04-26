@@ -15,14 +15,16 @@ public class ProjectileModel implements UpdateObserver{
 
     private Radar radar;
 
-    public ProjectileModel(){
+    public ProjectileModel(Radar radar){
         projectiles = new Array<Projectile>();
+        this.radar = radar;
+        
     }
 
     @Override
     public void update(float deltaTime) {
         moveAll();
-        //checkIfHitEnemy();
+        checkIfHitEnemy();
     }
 
     public void addProjectile(Projectile projectile){
@@ -34,17 +36,18 @@ public class ProjectileModel implements UpdateObserver{
             p.setSpritePosition(p.getNewPosition());
         }
     }
-/*
+
     public void checkIfHitEnemy(){
         for (Projectile projectile : projectiles) {
-            Array<Enemy> enemies = radar.scan(projectile.getPosition(), 5);
+            Array<Enemy> enemies = radar.scan(projectile.getPosition(), projectile.getRadius()); //hardcoded
             if (enemies.size != 0) {
                 for (Enemy enemy : enemies) {
                     enemy.hurt(projectile.getDamage());
+                    System.out.println(enemy.getHealth());
                 }
             }
         }
     }
-*/
+
 
 }

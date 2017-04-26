@@ -41,6 +41,9 @@ public class AlienModel implements UpdateObserver {
 		//if(aliens.size>0){
 			for(Enemy alien : aliens){
 				moveAlien(alien);
+				if(alien.isDead()){ //check if alien is dead
+					removeEnemy(alien);
+				}
 			}
 		//}
 	}

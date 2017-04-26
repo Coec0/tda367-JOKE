@@ -12,8 +12,9 @@ public class Bullet extends Projectile {
     private static final float DAMAGE = 10;
     private static final float SPEED = 10;
     private static final boolean AREAOFEFFECT = false;
+    private static final float RADIUS = 20; 
 
     public Bullet(Node DIRECTION, Node POSITION){
-        super(DAMAGE, SPEED, AREAOFEFFECT, DIRECTION, POSITION);
+        super(DAMAGE, SPEED, AREAOFEFFECT, RADIUS, DIRECTION, POSITION);
     }
 }
