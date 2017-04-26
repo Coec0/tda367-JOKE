@@ -16,8 +16,6 @@ import controllers.ProjectileController;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
-import projectiles.Projectile;
-import ui.HUD;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
 import utilities.MapNode;
@@ -28,7 +26,7 @@ import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
 import views.AlienView;
 import views.BuildingView;
-import views.ProjectileView;
+import views.HUDView;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
@@ -77,8 +75,8 @@ public class GameScreen implements Screen{
 		
 		Gdx.input.setInputProcessor(imp);
 		
-		HUD hud = new HUD(imp);
-		hud.addHUDListener(AController);
+		HUDView HV = new HUDView(AController, imp);
+		//hud.addHUDListener(AController);
 
 		
 		
@@ -106,7 +104,7 @@ public class GameScreen implements Screen{
 		backgroundSprite.draw(batch);
 		SC.drawAll(batch);
 		batch.end();
-		
+		SC.drawStages();
 	}
 
 	

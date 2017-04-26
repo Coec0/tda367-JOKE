@@ -2,17 +2,20 @@ package utilities;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
 public final class SpriteCollector {
 	private static final SpriteCollector instance = new SpriteCollector();
 	private Array<SpriteAdapter> sprites;
 	private Array<TextArea> textAreas;
+	private Array<Stage> stages;
 	private BitmapFont font;
 	
 	private SpriteCollector(){
 		sprites = new Array<SpriteAdapter>(false, 10);
 		textAreas = new Array<TextArea>(false, 10);
+		stages = new Array<Stage>(false, 10);
 		font = new BitmapFont();
 	}
 	
@@ -45,7 +48,7 @@ public final class SpriteCollector {
 	}	
 	
 	/**
-	 * Draw all sprites. Must be called from 'render()' method
+	 * Draw all sprites. Must be called inside SpriteBatch
 	 * @param batch
 	 */
 	public void drawSprites(SpriteBatch batch) {
@@ -81,7 +84,7 @@ public final class SpriteCollector {
 	}
 	
 	/**
-	 * Draw all texts. Must be called from 'render()' method
+	 * Draw all texts. Must be called inside SpriteBatch
 	 * @param batch
 	 */
 	public void drawText(SpriteBatch batch) {
@@ -92,8 +95,47 @@ public final class SpriteCollector {
 			}
 		}
 	}
+	
 	/**
-	 * Draws everything. Must be called from 'render()' method
+	 * Add stage that should be drawn by the screen
+	 * @param stage
+	 */
+	public void addStage(Stage stage){
+		stages.add(stage);
+		System.out.println(getStages().size);
+	}
+	
+	/**
+	 * Remove a specific stage
+	 * @param stage
+	 */
+	public void removeStage(Stage stage){
+		stages.removeValue(stage, false);
+	}
+	
+	/**
+	 * Get all the stages that should be drawn
+	 * @return
+	 */
+	public Array<Stage> getStages(){
+		return stages;
+	}
+	
+	
+	/**
+	 * Draw all stages. Must NOT be called inside SpriteBatch
+	 * @param batch
+	 */
+	public void drawStages() {
+		if(getStages() != null){
+			for(Stage stage : getStages()){
+				stage.draw();
+			}
+		}
+	}
+	
+	/**
+	 * Draws everything except stages. Must be called inside SpriteBatch
 	 * @param batch
 	 */
 	public void drawAll(SpriteBatch batch){
