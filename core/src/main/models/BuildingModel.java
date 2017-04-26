@@ -70,7 +70,7 @@ public class BuildingModel implements UpdateObserver {
 			foundAliens = radar.scan(tower.getPos(), tower.getRadius()); // tmp
 			if (foundAliens.size > 0) {
 				tower.setTarget(foundAliens);
-
+				tower.shoot();
 			}
 		}
 	}

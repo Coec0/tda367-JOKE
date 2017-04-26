@@ -54,6 +54,9 @@ public abstract class Projectile {
     public Node getPosition(){
         return position;
     }
+    public float getDamage(){
+        return damage;
+    }
 
     public Node createDirectionVector(){
         float x = position.getDeltaX(direction);

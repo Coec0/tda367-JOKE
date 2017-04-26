@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import enemies.Enemy;
 import projectiles.Projectile;
 import utilities.Node;
+import utilities.Radar;
 import utilities.UpdateObserver;
 
 /**
@@ -12,6 +13,7 @@ import utilities.UpdateObserver;
 public class ProjectileModel implements UpdateObserver{
     private Array<Projectile> projectiles;
 
+    private Radar radar;
 
     public ProjectileModel(){
         projectiles = new Array<Projectile>();
@@ -20,6 +22,7 @@ public class ProjectileModel implements UpdateObserver{
     @Override
     public void update(float deltaTime) {
         moveAll();
+        //checkIfHitEnemy();
     }
 
     public void addProjectile(Projectile projectile){
@@ -31,9 +34,17 @@ public class ProjectileModel implements UpdateObserver{
             p.setSpritePosition(p.getNewPosition());
         }
     }
-
-   /* public void hitEnemy(Enemy enemy){
-        enemy.hurt(damage);
-    }*/
+/*
+    public void checkIfHitEnemy(){
+        for (Projectile projectile : projectiles) {
+            Array<Enemy> enemies = radar.scan(projectile.getPosition(), 5);
+            if (enemies.size != 0) {
+                for (Enemy enemy : enemies) {
+                    enemy.hurt(projectile.getDamage());
+                }
+            }
+        }
+    }
+*/
 
 }

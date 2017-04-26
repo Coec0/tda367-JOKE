@@ -16,13 +16,16 @@ public abstract class Tower extends Building {
 	private Enemy target;
 	private ITargetState TState;
 	private ProjectileController PController;
+    private double cooldown;
+    private double currentCooldown;
 
-	protected Tower(int x, int y, float radius, String name, int cost, ProjectileController PController){
+	protected Tower(int x, int y, float radius, String name, int cost, double cooldown,ProjectileController PController){
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;
 		this.TState = new TargetLast();
 		this.PController = PController;
+		this.cooldown=cooldown;
 	}
 
 	public void setTargetState(ITargetState state) {
@@ -33,6 +36,7 @@ public abstract class Tower extends Building {
 		return TState;
 	}
 
+
 	public float getRadius() {
 		return this.radius;
 	}
@@ -41,16 +45,26 @@ public abstract class Tower extends Building {
 		return this.cost;
 	}
 
-	public void shoot(Enemy enemy) {
-		makeProjectile(PController);
+	public void shoot() {
+	    //if (currentCooldown==0) {
+            makeProjectile(PController);
+            //currentCooldown = cooldown;
+        //}
+        //reduceCooldown();
     }
+
+    public void reduceCooldown(){
+        if(currentCooldown > 0){
+            currentCooldown--;
+        }
+    }
+
 
 	public abstract Projectile makeProjectile(ProjectileController PController);
 
 	public void setTarget(Array<Enemy> targets) {
 		this.target = TState.getEnemy(super.getPos(), targets);
 		rotateTowards(target.getPos());
-		shoot(target);
 	}
 
 	public Enemy getTarget() {

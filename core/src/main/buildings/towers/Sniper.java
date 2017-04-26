@@ -14,9 +14,10 @@ public class Sniper extends Tower {
     private static final int RADIUS = 100;
     private static final String NAME = "SNIPER";
     private static final int COST = 150;
+    private static final double COOLDOWN = 3;
 
     public Sniper(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, PController);
+        super(x, y, RADIUS, NAME, COST, COOLDOWN,PController);
     }
 
     @Override

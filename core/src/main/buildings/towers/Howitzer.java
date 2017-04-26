@@ -12,9 +12,10 @@ public class Howitzer extends Tower {
     private static final int RADIUS = 10;
     private static final String NAME = "HOWITZER";
     private static final int COST = 100;
+    private static final double COOLDOWN = 4;
 
     public Howitzer(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, PController);
+        super(x, y, RADIUS, NAME, COST, COOLDOWN ,PController);
     }
 
     @Override

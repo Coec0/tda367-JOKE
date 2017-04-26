@@ -9,9 +9,11 @@ public class Soldier extends Tower {
     private static final int RADIUS = 500;
     private static final String NAME = "SOLDIER";
     private static final int COST = 50;
+    private static final double COOLDOWN = 0.5;
+
 
     public Soldier(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, PController);
+        super(x, y, RADIUS, NAME, COST, COOLDOWN ,PController);
     }
 
     @Override

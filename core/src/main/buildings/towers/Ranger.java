@@ -12,9 +12,10 @@ public class Ranger extends Tower {
     private static final int RADIUS = 750;
     private static final String NAME = "RANGER";
     private static final int COST = 300;
+    private static final double COOLDOWN = 1;
 
     public Ranger(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, PController);
+        super(x, y, RADIUS, NAME, COST, COOLDOWN,PController);
     }
 
     @Override
