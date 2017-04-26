@@ -27,6 +27,7 @@ import utilities.SpriteCollector;
 import views.AlienView;
 import views.BuildingView;
 import views.HUDView;
+import views.ProjectileView;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
