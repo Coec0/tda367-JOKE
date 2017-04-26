@@ -12,17 +12,26 @@ public class HUDStage extends Stage {
 	
 	public HUDStage(ClickListener CL){
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
-		addStartButton(CL);
+		nextWaveButton(CL);
+		
 	}
-	private void addStartButton(ClickListener CL) {
-        TextButton startButton = new TextButton("Start game", skin, "default");
-        startButton.setTransform(false);
-        startButton.setWidth(200f);
-        startButton.setHeight(20f);
-        startButton.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-        startButton.addListener(CL);
-
-        this.addActor(startButton);
+	private void addButton(int x, int y, float width, float height, String name, String text, ClickListener CL) {
+        TextButton Button = new TextButton(text, skin, "default");
+        Button.setName(name);
+        Button.setTransform(false);
+        Button.setWidth(width);
+        Button.setHeight(height);
+        Button.setPosition(x, y);
+        Button.addListener(CL);
+        this.addActor(Button);
         
     }
+	
+	private void nextWaveButton(ClickListener CL){
+		int nWaveWidth = 300;
+		int nWaveHeight = 50;
+		int nWaveX = Gdx.graphics.getWidth()-nWaveWidth;
+		int nWaveY = 0;
+		addButton(nWaveX, nWaveY, nWaveWidth, nWaveHeight,"nextWave", "Send next wave", CL);
+	}
 }
