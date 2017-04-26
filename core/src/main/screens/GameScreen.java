@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.IllegalAliensMain;
 
@@ -140,6 +141,11 @@ public class GameScreen implements Screen{
 		if(SC.getSprites() != null){
 			for(SpriteAdapter sprite : SC.getSprites()){
 				sprite.getTexture().dispose();
+			}
+		}
+		if(SC.getStages() != null){
+			for(Stage stage : SC.getStages()){
+				stage.dispose();
 			}
 		}
 		
