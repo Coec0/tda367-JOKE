@@ -22,10 +22,12 @@ public abstract class Projectile {
     private Node direction;
     private Node position;
     private SpriteAdapter sprite;
+    private float radius;
 
 
-    public Projectile(float damage, float speed, boolean areaOfEffect, Node direction, Node position){
+    public Projectile(float damage, float speed, boolean areaOfEffect, float radius, Node direction, Node position){
         this.damage = damage;
+        this.radius = radius;
         this.speed = speed;
         this.areaOfEffect = areaOfEffect;
         this.direction = direction;
@@ -42,11 +44,14 @@ public abstract class Projectile {
     public void setPosition(Node position){
         this.position = position;
     }
+    
+    public float getRadius(){
+    	return radius;
+    }
     public Node getNewPosition(){
         Node newPosition;
         float newX = position.getX()+ (direction.getX() * speed);
         float newY = position.getY() + (direction.getY() * speed);
-        System.out.println(newX + "  " + newY);
         newPosition = new Node(newX, newY);
         setPosition(newPosition);
         return newPosition;
