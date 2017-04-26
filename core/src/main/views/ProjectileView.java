@@ -24,6 +24,15 @@ public class ProjectileView {
         SC.addSprite(sprite);
     }
 
+    public void addToView(Projectile projectile){
+        SpriteAdapter sprite = projectile.getSpriteAdapter();
+        if(sprite.getTexture() == null){
+            sprite.setTexture(selectTexture(projectile));
+            sprite.setSize(sprite.getWidth()/2, sprite.getHeight()/2);
+        }
+        addToView(sprite);
+    }
+
     private Texture selectTexture(Projectile projectile) {
 
         if(projectile instanceof Bullet)

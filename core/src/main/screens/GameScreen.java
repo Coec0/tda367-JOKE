@@ -14,6 +14,8 @@ import controllers.AlienController;
 import controllers.BuildingController;
 import models.AlienModel;
 import models.BuildingModel;
+import models.ProjectileModel;
+import projectiles.Projectile;
 import ui.HUD;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
@@ -25,6 +27,7 @@ import utilities.SpriteAdapter;
 import utilities.SpriteCollector;
 import views.AlienView;
 import views.BuildingView;
+import views.ProjectileView;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
@@ -54,6 +57,7 @@ public class GameScreen implements Screen{
 		Radar radar = new Radar(AM);
 		BuildingModel TM = new BuildingModel(radar);
 		BuildingView TW = new BuildingView();
+		ProjectileModel PM = new ProjectileModel();
 		
 		
 		//Maybe move these later
@@ -64,7 +68,7 @@ public class GameScreen implements Screen{
 		
 		IAMain.addObserver(TM);
 		IAMain.addObserver(AM);
-		
+		IAMain.addObserver(PM);
 		InputMultiplexer imp = new InputMultiplexer();
 		imp.addProcessor(AController);
 		imp.addProcessor(TController);
