@@ -1,5 +1,7 @@
 package buildings.towers;
 
+import buildings.towers.cooldownstates.ICooldownState;
+import buildings.towers.cooldownstates.NoCooldown;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
@@ -17,8 +19,7 @@ public abstract class Tower extends Building {
 	private ITargetState TState;
 	private ProjectileController PController;
     private long cooldown;
-    private double currentCooldown;
-    private boolean isInCooldown;
+    private ICooldownState cooldownState = NoCooldown.getInstance();
 
 	protected Tower(int x, int y, float radius, String name, int cost, long cooldown,ProjectileController PController){
 		super(name, x, y);
@@ -29,12 +30,11 @@ public abstract class Tower extends Building {
 		this.cooldown=cooldown;
 	}
 
-	private void setCooldown(boolean cooldown){
-	    this.isInCooldown = cooldown;
+    public void setCooldownState(ICooldownState state){
+	    cooldownState = state;
     }
 
-    private void startCooldown(){
-	    this.isInCooldown = true;
+    public void startCooldown(){
 	    new Cooldown().start();
     }
 
@@ -46,7 +46,9 @@ public abstract class Tower extends Building {
 		return TState;
 	}
 
-
+    public ProjectileController getPController(){
+        return PController;
+    }
 	public float getRadius() {
 		return this.radius;
 	}
@@ -56,16 +58,9 @@ public abstract class Tower extends Building {
 	}
 
 	public void shoot() {
-    if (!isInCooldown){
-        startCooldown();
-        makeProjectile(PController);
+        cooldownState.shoot(this);
     }
-    }
-
-
-
-
-	public abstract Projectile makeProjectile(ProjectileController PController);
+    public abstract Projectile makeProjectile(ProjectileController PController);
 
 	public void setTarget(Array<Enemy> targets) {
 		this.target = TState.getEnemy(super.getPos(), targets);
@@ -104,7 +99,7 @@ public abstract class Tower extends Building {
 
             }
             finally{
-                isInCooldown = false;
+                cooldownState = NoCooldown.getInstance();
             }
         }
     }
