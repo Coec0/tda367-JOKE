@@ -28,7 +28,7 @@ public class ProjectileView {
         SpriteAdapter sprite = projectile.getSpriteAdapter();
         if(sprite.getTexture() == null){
             sprite.setTexture(selectTexture(projectile));
-            sprite.setSize(sprite.getWidth()/2, sprite.getHeight()/2);
+            sprite.setSize(sprite.getWidth()/4, sprite.getHeight()/4);
         }
         addToView(sprite);
     }
