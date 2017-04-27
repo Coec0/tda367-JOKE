@@ -1,0 +1,34 @@
+Datum: 24 april
+Ordförande: Kaj
+Deltagare: Alla
+
+1. Mål
+Inga större problem som hindrar oss från att gå vidare.
+
+2. Rapport
+Emil har gjort nya Tower och nya Projectiles.
+Kaj har börjat på Map, pratar lite om hur han funderat kring rutnätet, har utvecklat WaveCreator, påbörjat Dijekstra
+Oscar har gjort nya Aliens, skrivit på storyn och har fixat ett pengasystem.
+Johan har kollat på att lägga till UI, har skrivit en JUnit och har börjat på en EndGameScreen.
+
+3. Diskussion
+    - Ena screenen skapar nästa screen, ska vi verkligen ha det så?
+    - Ska alla grundobjekt skapas på samma ställe som sades på föresläsning?
+    - createAlien eller addAlien?
+    - AlienFactory?
+
+    - Buggar:
+        - Speed för Alien, Alien kan inte gå framåt vid för låg hastighet
+        - Fel om man förstorar fönstret och försöker placera ut en Tower, muspekaren blir på fel ställe
+
+4. Bestämt
+    - Alla Screens ska skapas i Main-klassen
+    - Fortsatta oklarheter kring om alla grundobjekt ska skapas på samma ställe
+    - Ändra till addAlien istället för createAlien, på samma sätt för Tower
+    - Vi vill ha en AlienFactory och TowerFactory osv
+
+5. Inför nästa möte
+Från förra mötet bestämde vi att vi skulle fokusera på Torn, Alien, UI och Map under vecka 4.
+
+Oscar och Johan jobbar på ett få fram ett UI.
+Kaj och Emil jobbar vidare på Torn, Alien och Map.
