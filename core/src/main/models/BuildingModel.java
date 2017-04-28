@@ -30,6 +30,12 @@ public class BuildingModel implements UpdateObserver {
 		towers.add(tower);
 		notifyObservers(towers.peek(), false);
 	}
+	
+	public void addTower(Tower tower, int x, int y){
+		tower.setPos(x, y);
+		towers.add(tower);
+		notifyObservers(towers.peek(), false);
+	}
 
 	public void createWhiteHouse(int x, int y) {
 		whitehouses.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y));

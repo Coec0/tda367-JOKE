@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import buildings.towers.Tower;
 import buildings.towers.TowerFactory;
 import models.AlienModel;
 import models.BuildingModel;
@@ -18,6 +19,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     AlienModel AModeL;
     ProjectileController PController;
     Viewport WP;
+    Tower selected;
 
     public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, ProjectileController PController, Viewport WP){
         this.BView = BView;
@@ -34,15 +36,18 @@ public class BuildingController extends ClickListener implements InputProcessor 
     @Override
     public void clicked(InputEvent event, float x, float y){
 		 if(event.getTarget().getParent().getName().equals("soldier")){
-			System.out.println("SELECTS SOLDIER");
+			selected = TowerFactory.createSoldier((int)x, (int)y, PController);
 		 }
     }
     
     @Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	Vector3 v = new Vector3 (screenX , screenY, 0);
-    	WP.unproject(v);
-    	BModel.addTower(TowerFactory.createSoldier((int)v.x, (int)v.y, PController));
+    	if(selected != null){
+    		Vector3 v = new Vector3 (screenX , screenY, 0);
+    		WP.unproject(v);
+    		BModel.addTower(selected, (int)v.x,(int) v.y);
+    		selected = null;
+    	}
 		return false;
 	}
 
