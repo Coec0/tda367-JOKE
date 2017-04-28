@@ -129,8 +129,8 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		WP.update(width, height, true);
-		HS.getViewport().update(width, height);
+		WP.update(width-200, height, true);
+		HS.getViewport().update(width-200, height);
 	}
 
 	@Override

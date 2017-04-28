@@ -29,7 +29,7 @@ public class AlienController extends ClickListener implements ActionListener, In
 	
 	 @Override
      public void clicked(InputEvent event, float x, float y){
-		 if(event.getTarget().getParent().getName().equals("nextWave"))
+		 if(event.getListenerActor().getName().equals("nextWave"))
 			 AModel.startNextWave();
      }
 	
