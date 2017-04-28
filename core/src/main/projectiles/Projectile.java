@@ -5,7 +5,7 @@ import enemies.Enemy;
 import models.ProjectileModel;
 import utilities.Node;
 import utilities.SpriteAdapter;
-import utilities.SpriteCollector;
+import utilities.DrawablesCollector;
 import utilities.UpdateObserver;
 import views.ProjectileView;
 

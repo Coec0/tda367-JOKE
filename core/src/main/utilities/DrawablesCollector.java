@@ -5,21 +5,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
-public final class SpriteCollector {
-	private static final SpriteCollector instance = new SpriteCollector();
+public final class DrawablesCollector {
+	private static final DrawablesCollector instance = new DrawablesCollector();
 	private Array<SpriteAdapter> sprites;
-	private Array<TextArea> textAreas;
 	private Array<Stage> stages;
 	private BitmapFont font;
 	
-	private SpriteCollector(){
+	private DrawablesCollector(){
 		sprites = new Array<SpriteAdapter>(false, 10);
-		textAreas = new Array<TextArea>(false, 10);
 		stages = new Array<Stage>(false, 10);
 		font = new BitmapFont();
 	}
 	
-	public static SpriteCollector getInstance(){
+	public static DrawablesCollector getInstance(){
 		return instance;
 	}
 	
@@ -58,43 +56,8 @@ public final class SpriteCollector {
 			}
 		}
 	}
-	
-	/**
-	 * Get all the texts that should be drawn
-	 * @return
-	 */
-	public Array<TextArea> getTexts(){
-		return textAreas;
-	}
-	
-	/**
-	 * Add text that should be drawn by the screen
-	 * @param text
-	 */
-	public void addText(TextArea text){
-		textAreas.add(text);
-	}
-	
-	/**
-	 * Remove a specific text
-	 * @param text
-	 */
-	public void removeText(TextArea text){
-		textAreas.removeValue(text, false);
-	}
-	
-	/**
-	 * Draw all texts. Must be called inside SpriteBatch
-	 * @param batch
-	 */
-	public void drawText(SpriteBatch batch) {
-		if(getTexts() != null){
-			for(TextArea text : getTexts()){
-				font.setColor(text.getColor());
-				font.draw(batch, text.getText(),text.getX(), text.getY());
-			}
-		}
-	}
+
+
 	
 	/**
 	 * Add stage that should be drawn by the screen
@@ -139,7 +102,6 @@ public final class SpriteCollector {
 	 * @param batch
 	 */
 	public void drawAll(SpriteBatch batch){
-		drawText(batch);
 		drawSprites(batch);
 	}
 }

@@ -8,11 +8,11 @@ import enemies.Enemy;
 import enemies.SneakyAlien;
 import utilities.AlienObserver;
 import utilities.SpriteAdapter;
-import utilities.SpriteCollector;
+import utilities.DrawablesCollector;
 
 public class AlienView implements AlienObserver {
 	private Texture alien, alienWithHelmet, sneakyAlien;
-	private SpriteCollector SC = SpriteCollector.getInstance();
+	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	
 	public AlienView(){
 		alien = new Texture("alien.png");

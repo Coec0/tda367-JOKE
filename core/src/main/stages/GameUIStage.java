@@ -6,11 +6,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class HUDStage extends Stage {
+public class GameUIStage extends Stage {
 
 	private Skin skin;
 	
-	public HUDStage(ClickListener AlienC, ClickListener BuildingC){
+	public GameUIStage(ClickListener AlienC, ClickListener BuildingC){
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		nextWaveButton(AlienC);
 		towerButton(620, "soldier", BuildingC);

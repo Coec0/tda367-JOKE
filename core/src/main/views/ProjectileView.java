@@ -3,14 +3,14 @@ package views;
 import com.badlogic.gdx.graphics.Texture;
 import projectiles.*;
 import utilities.SpriteAdapter;
-import utilities.SpriteCollector;
+import utilities.DrawablesCollector;
 
 /**
  * Created by Emil on 2017-04-25.
  */
 public class ProjectileView {
     private Texture bullet, missile, rangerBullet, sniperBullet, artilleryRound;
-    private SpriteCollector SC = SpriteCollector.getInstance();
+    private DrawablesCollector SC = DrawablesCollector.getInstance();
 
     public ProjectileView(){
         bullet = new Texture("bullet.png");

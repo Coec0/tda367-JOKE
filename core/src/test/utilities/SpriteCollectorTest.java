@@ -10,7 +10,7 @@ public class SpriteCollectorTest {
 
     @Test
     public void getInstance() throws Exception {
-        SpriteCollector spriteCollector = SpriteCollector.getInstance();
+        DrawablesCollector spriteCollector = DrawablesCollector.getInstance();
         assertNotNull(spriteCollector);
     }
 

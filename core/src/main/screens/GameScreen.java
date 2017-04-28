@@ -20,7 +20,7 @@ import controllers.ProjectileController;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
-import stages.HUDStage;
+import stages.GameUIStage;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
 import utilities.MapNode;
@@ -28,16 +28,16 @@ import utilities.Node;
 import utilities.PathFinder;
 import utilities.Radar;
 import utilities.SpriteAdapter;
-import utilities.SpriteCollector;
+import utilities.DrawablesCollector;
 import views.AlienView;
 import views.BuildingView;
-import views.HUDView;
+import views.GameUIView;
 import views.ProjectileView;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
 	private Sprite backgroundSprite;
-	private SpriteCollector SC = SpriteCollector.getInstance();
+	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	private PathFinder finder = PathFinder.getInstance();
 	
 	
@@ -48,8 +48,8 @@ public class GameScreen implements Screen{
 	
 	private Camera camera;
 	private Viewport WP;
-	HUDView HV;
-	HUDStage HS;
+	GameUIView HV;
+	GameUIStage HS;
 	
 	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
@@ -90,8 +90,8 @@ public class GameScreen implements Screen{
 		
 		Gdx.input.setInputProcessor(imp);
 		
-		HV = new HUDView();
-		HS = new HUDStage(AController, TController); 
+		HV = new GameUIView();
+		HS = new GameUIStage(AController, TController); 
 		imp.addProcessor(HS);
 		HV.addToView(HS);
 

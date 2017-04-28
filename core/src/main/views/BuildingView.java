@@ -7,11 +7,11 @@ import buildings.WhiteHouse;
 import buildings.towers.Soldier;
 import utilities.BuildingObserver;
 import utilities.SpriteAdapter;
-import utilities.SpriteCollector;
+import utilities.DrawablesCollector;
 
 public class BuildingView implements BuildingObserver{
     private Texture soldier, whitehouse;
-    private SpriteCollector SC = SpriteCollector.getInstance();
+    private DrawablesCollector SC = DrawablesCollector.getInstance();
 
 
     public BuildingView(){
