@@ -61,7 +61,6 @@ public class SpriteAdapter extends Sprite{
 		//super.setOrigin(texture.getWidth() / 2, texture.getHeight() / 2);
 		super.setOriginCenter();
 		super.translate(-texture.getWidth()/2, -texture.getHeight()/2);
-		System.out.println(texture.getHeight());
 	}
 
 	@Override
