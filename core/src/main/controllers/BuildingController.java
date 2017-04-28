@@ -48,9 +48,6 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		selected = null;
     		BView.removePlaceTexture();
     	}
-    	Vector3 v = new Vector3 (screenX , screenY, 0);
-    	WP.unproject(v);
-    	BModel.addTower(TowerFactory.createSoldier((int)v.x, (int)v.y));
 		return false;
 	}
 
