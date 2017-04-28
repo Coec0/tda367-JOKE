@@ -35,7 +35,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
 
     @Override
     public void clicked(InputEvent event, float x, float y){
-		 if(event.getTarget().getParent().getName().equals("soldier")){
+    	System.out.println(event.getListenerActor().getName());
+		 if(event.getListenerActor().getName().equals("soldier")){
 			selected = TowerFactory.createSoldier((int)x, (int)y, PController); // x and y never used
 			BView.placeTexture(selected);
 		 }
