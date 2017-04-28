@@ -12,6 +12,7 @@ import utilities.DrawablesCollector;
 public class BuildingView implements BuildingObserver{
     private Texture soldier, whitehouse;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
+    private SpriteAdapter onMouse;
 
 
     public BuildingView(){
@@ -41,6 +42,21 @@ public class BuildingView implements BuildingObserver{
         addToView(sprite);
     }
 
+    public void placeTexture(Building building){
+    	onMouse = new SpriteAdapter(selectTexture(building));
+    	onMouse.setSize(onMouse.getWidth()/3, onMouse.getHeight()/3);
+    	onMouse.setAlpha(0.5f);
+    	addToView(onMouse);
+    }
+    
+    public void movePlaceTexture(float x, float y){
+    	onMouse.setPosition(x, y);
+    }
+    
+    public void removePlaceTexture(){
+    	removeFromView(onMouse);
+    }
+    
 	private Texture selectTexture(Building building) {
 		
 		if(building instanceof WhiteHouse)

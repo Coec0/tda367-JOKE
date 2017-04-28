@@ -36,7 +36,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
     @Override
     public void clicked(InputEvent event, float x, float y){
 		 if(event.getTarget().getParent().getName().equals("soldier")){
-			selected = TowerFactory.createSoldier((int)x, (int)y, PController);
+			selected = TowerFactory.createSoldier((int)x, (int)y, PController); // x and y never used
+			BView.placeTexture(selected);
 		 }
     }
     
@@ -47,10 +48,21 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		WP.unproject(v);
     		BModel.addTower(selected, (int)v.x,(int) v.y);
     		selected = null;
+    		BView.removePlaceTexture();
     	}
 		return false;
 	}
 
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		if(selected != null){
+			Vector3 v = new Vector3 (screenX , screenY, 0);
+    		WP.unproject(v);
+			BView.movePlaceTexture(v.x, v.y);
+		}
+		return false;
+	}
+    
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
@@ -77,12 +89,6 @@ public class BuildingController extends ClickListener implements InputProcessor 
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
 		// TODO Auto-generated method stub
 		return false;
 	}
