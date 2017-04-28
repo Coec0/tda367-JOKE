@@ -20,12 +20,7 @@ import controllers.ProjectileController;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
-<<<<<<< HEAD
 import stages.GameUIStage;
-=======
-import projectiles.Projectile;
-import stages.HUDStage;
->>>>>>> Listener for towers and projectiles. Projectiles now get removed after hitting an enemy.
 import utilities.EnemyWavesCreator;
 import utilities.Map;
 import utilities.MapNode;
