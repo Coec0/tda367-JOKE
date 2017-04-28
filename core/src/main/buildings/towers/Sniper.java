@@ -16,13 +16,14 @@ public class Sniper extends Tower {
     private static final int COST = 150;
     private static final long COOLDOWN = 3000;
 
-    public Sniper(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN,PController);
+    public Sniper(int x, int y){
+        super(x, y, RADIUS, NAME, COST, COOLDOWN);
     }
 
     @Override
-    public Projectile makeProjectile(ProjectileController PController) {
-        return new SniperBullet(super.getTarget().getPos(), super.getPos());
-    }
+    public Projectile makeProjectile() {
+        Projectile p = new SniperBullet(super.getTarget().getPos(), super.getPos());
+        super.notifyObservers(p, "spawn");
+        return p;    }
 
 }

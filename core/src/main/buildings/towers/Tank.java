@@ -12,14 +12,14 @@ public class Tank extends Tower{
     private static final long COOLDOWN = 4000;
 
 
-    public Tank(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN ,PController);
+    public Tank(int x, int y){
+        super(x, y, RADIUS, NAME, COST, COOLDOWN);
     }
 
     @Override
-    public Projectile makeProjectile(ProjectileController PController) {
-        Projectile projectile = new Missile(super.getTarget().getPos(), super.getPos());
-        PController.spawnProjectile(projectile);
-        return projectile;
+    public Projectile makeProjectile() {
+        Projectile p = new Missile(super.getTarget().getPos(), super.getPos());
+        super.notifyObservers(p, "spawn");
+        return p;
     }
 }

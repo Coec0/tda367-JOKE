@@ -20,7 +20,12 @@ import controllers.ProjectileController;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
+<<<<<<< HEAD
 import stages.GameUIStage;
+=======
+import projectiles.Projectile;
+import stages.HUDStage;
+>>>>>>> Listener for towers and projectiles. Projectiles now get removed after hitting an enemy.
 import utilities.EnemyWavesCreator;
 import utilities.Map;
 import utilities.MapNode;
@@ -69,17 +74,16 @@ public class GameScreen implements Screen{
 		BuildingView TW = new BuildingView();
 		ProjectileModel PM = new ProjectileModel(radar);
 		ProjectileView PW = new ProjectileView();
-		
+		ProjectileController PC = new ProjectileController(PM, PW, TM);
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
-        ProjectileController PC = new ProjectileController(PM, PW);
-		
+
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
         
 		camera = new OrthographicCamera();
 		WP = new StretchViewport(width, height, camera);
 		//camera.position.set(1280/2, 720/2, 0);
-		BuildingController TController = new BuildingController(TM, AM, TW, PC, WP);
+		BuildingController TController = new BuildingController(TM, AM, TW, WP);
 		
 		IAMain.addObserver(TM);
 		IAMain.addObserver(AM);

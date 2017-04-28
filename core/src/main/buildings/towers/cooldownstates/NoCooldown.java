@@ -21,6 +21,6 @@ public class NoCooldown implements ICooldownState {
     public void shoot(Tower tower){
         tower.setCooldownState(Cooldown.getInstance());
         tower.startCooldown();
-        tower.makeProjectile(tower.getPController());
+        tower.makeProjectile();
     }
 }

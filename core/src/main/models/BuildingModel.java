@@ -8,10 +8,8 @@ import buildings.WhiteHouse;
 import buildings.towers.Tower;
 import enemies.Alien;
 import enemies.Enemy;
-import utilities.BuildingObserver;
-import utilities.Node;
-import utilities.Radar;
-import utilities.UpdateObserver;
+import projectiles.Projectile;
+import utilities.*;
 
 public class BuildingModel implements UpdateObserver {
 	Array<Tower> towers;
@@ -19,7 +17,7 @@ public class BuildingModel implements UpdateObserver {
 	Array<Alien> aliens;
 	private Radar radar;
 
-	public BuildingModel(Radar radar) {
+    public BuildingModel(Radar radar) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		// aliens = AModel.getAllAliens();
@@ -44,6 +42,10 @@ public class BuildingModel implements UpdateObserver {
 	
 	public Tower getTower(int index) {
 		return towers.get(index);
+	}
+
+	public Array<Tower> getTowers(){
+		return towers;
 	}
 
 	public Tower peekTower() {
@@ -116,5 +118,6 @@ public class BuildingModel implements UpdateObserver {
 		for (BuildingObserver observer : observers)
 			observer.actOnBuildingChange(building, remove);
 	}
+
 
 }

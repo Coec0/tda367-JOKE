@@ -11,22 +11,22 @@ import controllers.ProjectileController;
 import enemies.Enemy;
 import projectiles.Projectile;
 import utilities.Node;
+import utilities.ProjectileObserver;
 
-public abstract class Tower extends Building {
+public abstract class Tower extends Building{
 	private float radius;
 	private int cost;
 	private Enemy target;
 	private ITargetState TState;
-	private ProjectileController PController;
     private long cooldown;
     private ICooldownState cooldownState = NoCooldown.getInstance();
+    private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
 
-	protected Tower(int x, int y, float radius, String name, int cost, long cooldown,ProjectileController PController){
+	protected Tower(int x, int y, float radius, String name, int cost, long cooldown){
 		super(name, x, y);
 		this.radius = radius;
 		this.cost = cost;
 		this.TState = new TargetLast();
-		this.PController = PController;
 		this.cooldown=cooldown;
 	}
 
@@ -46,9 +46,6 @@ public abstract class Tower extends Building {
 		return TState;
 	}
 
-    public ProjectileController getPController(){
-        return PController;
-    }
 	public float getRadius() {
 		return this.radius;
 	}
@@ -59,8 +56,11 @@ public abstract class Tower extends Building {
 
 	public void shoot() {
         cooldownState.shoot(this);
+
     }
-    public abstract Projectile makeProjectile(ProjectileController PController);
+
+
+    public abstract Projectile makeProjectile();
 
 	public void setTarget(Array<Enemy> targets) {
 		this.target = TState.getEnemy(super.getPos(), targets);
@@ -87,6 +87,21 @@ public abstract class Tower extends Building {
 		}
 		super.getSpriteAdapter().setRotation(angle);
 	}
+    public void removeObserver(ProjectileObserver observer) {
+        observers.removeValue(observer, false);
+    }
+
+    public void notifyObservers(Projectile projectile, String change){
+        for (ProjectileObserver observer : observers){
+            observer.actOnProjectileChange(projectile, change);
+        }
+    }
+
+
+    public void addObserver(ProjectileObserver observer){
+        observers.add(observer);
+    }
+
 
 
 	class Cooldown extends Thread{

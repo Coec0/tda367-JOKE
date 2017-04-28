@@ -14,12 +14,13 @@ public class Ranger extends Tower {
     private static final int COST = 300;
     private static final long COOLDOWN = 1000;
 
-    public Ranger(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN,PController);
+    public Ranger(int x, int y){
+        super(x, y, RADIUS, NAME, COST, COOLDOWN);
     }
 
     @Override
-    public Projectile makeProjectile(ProjectileController PController) {
-        return new RangerBullet(super.getTarget().getPos(), super.getPos());
-    }
+    public Projectile makeProjectile() {
+        Projectile p = new RangerBullet(super.getTarget().getPos(), super.getPos());
+        super.notifyObservers(p, "spawn");
+        return p;    }
 }

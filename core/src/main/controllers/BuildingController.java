@@ -17,15 +17,13 @@ public class BuildingController extends ClickListener implements InputProcessor 
 	BuildingView BView;
     BuildingModel BModel;
     AlienModel AModeL;
-    ProjectileController PController;
     Viewport WP;
     Tower selected;
 
-    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, ProjectileController PController, Viewport WP){
+    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, Viewport WP){
         this.BView = BView;
         this.BModel = BModel;
         this.AModeL = AModel;
-        this.PController = PController;
         this.WP = WP;
         
         BModel.addObserver(BView);
@@ -43,6 +41,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     
     @Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+<<<<<<< HEAD
     	if(selected != null){
     		Vector3 v = new Vector3 (screenX , screenY, 0);
     		WP.unproject(v);
@@ -50,6 +49,11 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		selected = null;
     		BView.removePlaceTexture();
     	}
+=======
+    	Vector3 v = new Vector3 (screenX , screenY, 0);
+    	WP.unproject(v);
+    	BModel.addTower(TowerFactory.createSoldier((int)v.x, (int)v.y));
+>>>>>>> Listener for towers and projectiles. Projectiles now get removed after hitting an enemy.
 		return false;
 	}
 

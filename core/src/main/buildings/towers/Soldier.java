@@ -12,14 +12,14 @@ public class Soldier extends Tower {
     private static final long COOLDOWN = 500;
 
 
-    public Soldier(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN ,PController);
+    public Soldier(int x, int y){
+        super(x, y, RADIUS, NAME, COST, COOLDOWN);
     }
 
     @Override
-    public Projectile makeProjectile(ProjectileController PController) {
-        Projectile projectile = new Bullet(super.getTarget().getPos(), super.getPos());
-        PController.spawnProjectile(projectile);
-        return projectile;
-    }
+    public Projectile makeProjectile() {
+        Projectile p = new Bullet(super.getTarget().getPos(), super.getPos());
+        super.notifyObservers(p, "spawn");
+        System.out.print("Hejkorv");
+        return p;    }
 }

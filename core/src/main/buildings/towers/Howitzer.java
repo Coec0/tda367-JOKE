@@ -14,12 +14,13 @@ public class Howitzer extends Tower {
     private static final int COST = 100;
     private static final long COOLDOWN = 4000;
 
-    public Howitzer(int x, int y, ProjectileController PController){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN ,PController);
+    public Howitzer(int x, int y){
+        super(x, y, RADIUS, NAME, COST, COOLDOWN );
     }
 
     @Override
-    public Projectile makeProjectile(ProjectileController PController) {
-        return new ArtilleryRound(super.getTarget().getPos(), super.getPos());
-    }
+    public Projectile makeProjectile() {
+        Projectile p = new ArtilleryRound(super.getTarget().getPos(), super.getPos());
+        super.notifyObservers(p, "spawn");
+        return p;    }
 }
