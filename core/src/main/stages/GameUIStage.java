@@ -29,7 +29,7 @@ public class GameUIStage extends Stage {
     }
 	
 	private void nextWaveButton(ClickListener CL){
-		int nWaveWidth = 300;
+		int nWaveWidth = 200;
 		int nWaveHeight = 50;
 		int nWaveX = Gdx.graphics.getWidth()-nWaveWidth;
 		int nWaveY = 0;

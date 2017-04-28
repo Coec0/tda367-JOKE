@@ -39,7 +39,8 @@ public class GameScreen implements Screen{
 	private Sprite backgroundSprite;
 	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	private PathFinder finder = PathFinder.getInstance();
-	
+	private final int width = 1280;
+	private final int height = 720;
 	
 	private Array<Node> nodes = new Array<Node>();
 	Array<MapNode> Mapnodes;
@@ -76,8 +77,7 @@ public class GameScreen implements Screen{
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
         
 		camera = new OrthographicCamera();
-		WP = new StretchViewport(1280, 720, camera);
-		WP.apply();
+		WP = new StretchViewport(width, height, camera);
 		//camera.position.set(1280/2, 720/2, 0);
 		BuildingController TController = new BuildingController(TM, AM, TW, PC, WP);
 		
@@ -117,6 +117,7 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
+		WP.apply();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		backgroundSprite.draw(batch);
@@ -129,8 +130,11 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		WP.update(width-200, height, true);
-		HS.getViewport().update(width-200, height);
+		WP.update(width-200*width/this.width, height, true);
+		HS.getViewport().update(width, height, true);
+		//HS.getViewport().setWorldSize(width, height);
+		System.out.println("X:" + HS.getViewport().getScreenX());
+		System.out.println("Y:" + HS.getViewport().getScreenY());
 	}
 
 	@Override

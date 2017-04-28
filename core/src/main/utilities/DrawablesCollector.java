@@ -1,6 +1,5 @@
 package utilities;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -9,12 +8,10 @@ public final class DrawablesCollector {
 	private static final DrawablesCollector instance = new DrawablesCollector();
 	private Array<SpriteAdapter> sprites;
 	private Array<Stage> stages;
-	private BitmapFont font;
 	
 	private DrawablesCollector(){
 		sprites = new Array<SpriteAdapter>(false, 10);
 		stages = new Array<Stage>(false, 10);
-		font = new BitmapFont();
 	}
 	
 	public static DrawablesCollector getInstance(){
@@ -92,6 +89,7 @@ public final class DrawablesCollector {
 	public void drawStages() {
 		if(getStages() != null){
 			for(Stage stage : getStages()){
+				stage.getViewport().apply();
 				stage.draw();
 			}
 		}
