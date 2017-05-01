@@ -1,0 +1,32 @@
+Datum: 27 april
+Ordförande: Kaj
+Deltagare: Alla
+
+1. Mål
+Inga direkta problem.
+
+2. Rapport
+Oscar och Johan har börjat på ett UI och fixat fungerande knappar. Lite om principen med Stage och Screen.
+
+Kaj och Emil har fixat cooldown för Tower, DijkstraNode hittar snabbaste vägen, Map är implementerat, fiender kan dö.
+
+3. Diskussion
+    - Injicera ProjectileController i alla Towers? Eller implementera en lyssnare istället?
+    - Framerate vs sekunder i Cooldown för Projectiles
+    - Byta namn på HUDStage?
+    - Hur ska UI ska se ut mer konkret?
+    - Storleken på fönstret
+
+4. Bestämt
+    - Implementera en lyssnare för ProjectileController
+    - Cooldown i Projectiles ska vara kopplat framerate
+    - HUDStage ska bytas till GameUIStage
+    - Alla är med på hur UI kan tänkas se ut och vad som måste göras
+    - Att allt i fönstret måste förminskas
+    - Bättre waves
+
+5. Inför nästa möte
+Kunna klicka och sätta ut en Tower.
+
+Oscar och Johan jobbar vidare på UI.
+Kaj och Emil jobbar vidare på Tower och Projectiles.
