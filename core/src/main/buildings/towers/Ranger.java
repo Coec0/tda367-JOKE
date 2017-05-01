@@ -1,5 +1,6 @@
 package buildings.towers;
 
+import buildings.towers.towerupgrades.RangerUpgrade;
 import controllers.ProjectileController;
 import projectiles.Projectile;
 import projectiles.RangerBullet;
@@ -16,6 +17,10 @@ public class Ranger extends Tower {
 
     public Ranger(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN);
+    }
+
+    public Tower upgradeTower() {
+        return new RangerUpgrade((int)this.getPos().getX(), (int)this.getPos().getY());
     }
 
     @Override

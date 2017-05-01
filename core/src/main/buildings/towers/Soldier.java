@@ -1,5 +1,6 @@
 package buildings.towers;
 
+import buildings.towers.towerupgrades.SoldierUpgrade;
 import controllers.ProjectileController;
 import projectiles.Bullet;
 import projectiles.Missile;
@@ -14,6 +15,11 @@ public class Soldier extends Tower {
 
     public Soldier(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN);
+    }
+
+
+    public Tower upgradeTower() {
+        return new SoldierUpgrade((int)this.getPos().getX(), (int)this.getPos().getY());
     }
 
     @Override

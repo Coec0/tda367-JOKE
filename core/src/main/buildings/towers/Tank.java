@@ -1,5 +1,6 @@
 package buildings.towers;
 
+import buildings.towers.towerupgrades.TankUpgrade;
 import controllers.ProjectileController;
 import projectiles.Missile;
 import projectiles.Projectile;
@@ -14,6 +15,10 @@ public class Tank extends Tower{
 
     public Tank(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN);
+    }
+
+    public Tower upgradeTower() {
+        return new TankUpgrade((int)this.getPos().getX(), (int)this.getPos().getY());
     }
 
     @Override

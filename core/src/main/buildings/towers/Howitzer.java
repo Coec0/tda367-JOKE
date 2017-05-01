@@ -1,5 +1,6 @@
 package buildings.towers;
 
+import buildings.towers.towerupgrades.HowitzerUpgrade;
 import controllers.ProjectileController;
 import projectiles.ArtilleryRound;
 import projectiles.Missile;
@@ -16,6 +17,10 @@ public class Howitzer extends Tower {
 
     public Howitzer(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN );
+    }
+
+    public Tower upgradeTower() {
+        return new HowitzerUpgrade((int)this.getPos().getX(), (int)this.getPos().getY());
     }
 
     @Override
