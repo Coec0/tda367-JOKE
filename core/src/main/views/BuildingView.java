@@ -11,7 +11,7 @@ import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class BuildingView implements BuildingObserver{
-    private Texture soldier,tank, whitehouse;
+    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
     private SpriteAdapter onMouse;
 
@@ -20,6 +20,9 @@ public class BuildingView implements BuildingObserver{
         soldier = new Texture("soldier.png");
         tank = new Texture("tank.png");
         whitehouse = new Texture("sexywhitehouse.png");
+        //howitzer = new Texture("");
+        //ranger = new Texture("");
+        //sniper = new Texture("");
     }
 
     public void removeFromView(SpriteAdapter sprite){
