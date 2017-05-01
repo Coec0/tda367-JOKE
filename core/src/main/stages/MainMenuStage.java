@@ -18,23 +18,11 @@ public class MainMenuStage extends Stage {
         this.game = game;
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
-        addWelcomeText();
-        addStartButton();
+        this.addActor(addStartButton());
+        this.addActor(addWelcomeText());
     }
 
-    private void addWelcomeText() {
-        TextField welcomeText = new TextField("", skin, "default");
-
-        welcomeText.setText("Welcome to Illegal Aliens. Press the Start button to start the game.");
-        welcomeText.setWidth(500f);
-        welcomeText.setHeight(30f);
-        welcomeText.setDisabled(true);
-        welcomeText.setPosition(Gdx.graphics.getWidth()/2 - 150, Gdx.graphics.getHeight()/2 + 100);
-
-        this.addActor(welcomeText);
-    }
-
-    private void addStartButton() {
+    private TextButton addStartButton() {
         TextButton startButton = new TextButton("Start game", skin, "default");
 
         startButton.setWidth(200f);
@@ -48,6 +36,18 @@ public class MainMenuStage extends Stage {
             }
         });
 
-        this.addActor(startButton);
+        return startButton;
+    }
+
+    private TextField addWelcomeText() {
+        TextField welcomeText = new TextField("", skin, "default");
+
+        welcomeText.setText("Welcome to Illegal Aliens. Press the Start button to start the game.");
+        welcomeText.setWidth(500f);
+        welcomeText.setHeight(30f);
+        welcomeText.setDisabled(true);
+        welcomeText.setPosition(Gdx.graphics.getWidth()/2 - 150, Gdx.graphics.getHeight()/2 + 100);
+
+        return welcomeText;
     }
 }
