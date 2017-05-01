@@ -32,7 +32,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void addAlien(Enemy enemy){
-		enemy.setPos(new Node((int)path.get(0).getX(),(int)path.get(0).getY()));
+//		enemy.setPos(new Node((int)path.get(0).getX(),(int)path.get(0).getY()));
 		aliens.add(enemy);
 		notifyObservers(aliens.peek(), false);
 	}
