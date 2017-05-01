@@ -37,6 +37,10 @@ public class BuildingController extends ClickListener implements InputProcessor 
 			selected = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
 			BView.placeTexture(selected);
 		 }
+		 if(event.getListenerActor().getName().equals("tank")){
+				selected = TowerFactory.createTank((int)x, (int)y); // x and y never used
+				BView.placeTexture(selected);
+			 }
     }
     
     @Override

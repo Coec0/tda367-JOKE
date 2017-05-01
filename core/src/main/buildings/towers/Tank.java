@@ -6,7 +6,7 @@ import projectiles.Projectile;
 
 public class Tank extends Tower{
 
-    private static final int RADIUS = 10;
+    private static final int RADIUS = 1000;
     private static final String NAME = "TANK";
     private static final int COST = 100;
     private static final long COOLDOWN = 4000;

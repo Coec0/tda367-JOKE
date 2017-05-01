@@ -5,18 +5,20 @@ import com.badlogic.gdx.graphics.Texture;
 import buildings.Building;
 import buildings.WhiteHouse;
 import buildings.towers.Soldier;
+import buildings.towers.Tank;
 import utilities.BuildingObserver;
-import utilities.SpriteAdapter;
 import utilities.DrawablesCollector;
+import utilities.SpriteAdapter;
 
 public class BuildingView implements BuildingObserver{
-    private Texture soldier, whitehouse;
+    private Texture soldier,tank, whitehouse;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
     private SpriteAdapter onMouse;
 
 
     public BuildingView(){
         soldier = new Texture("soldier.png");
+        tank = new Texture("tank.png");
         whitehouse = new Texture("sexywhitehouse.png");
     }
 
@@ -63,6 +65,8 @@ public class BuildingView implements BuildingObserver{
 			return whitehouse;
 		if(building instanceof Soldier)
 			return soldier;
+		if(building instanceof Tank)
+			return tank;
 		return null;
 		
 	}
