@@ -12,8 +12,15 @@ public class TargetStrongest implements ITargetState  {
 
 	@Override
 	public Enemy getEnemy(Node pos, Array<Enemy> enemies) {
-		// TODO Auto-generated method stub
-		return null;
+		float strongest = enemies.first().getHealth();
+		Enemy strongestE = enemies.first();
+        for (Enemy enemy : enemies){
+		    if(enemy.getHealth() > strongest){
+		        strongest = enemy.getHealth();
+		        strongestE = enemy;
+            }
+        }
+		return strongestE;
 	}
 
 }

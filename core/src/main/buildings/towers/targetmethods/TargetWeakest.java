@@ -12,8 +12,15 @@ public class TargetWeakest implements ITargetState  {
 
 	@Override
 	public Enemy getEnemy(Node pos, Array<Enemy> enemies) {
-		// TODO Auto-generated method stub
-		return null;
+		float weakest = enemies.first().getHealth();
+		Enemy weakestE = enemies.first();
+		for (Enemy enemy : enemies){
+			if(enemy.getHealth() < weakest){
+				weakest = enemy.getHealth();
+				weakestE = enemy;
+			}
+		}
+		return weakestE;
 	}
 
 
