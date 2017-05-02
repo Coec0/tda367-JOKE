@@ -12,7 +12,7 @@ import utilities.PathFinder;
 import utilities.UpdateObserver;
 
 public class AlienModel implements UpdateObserver {
-	private PathFinder finder = PathFinder.getInstance();
+	private PathFinder finder;
 
 	private Array<Enemy> aliens;
 	private Array<Node> path;
@@ -24,7 +24,8 @@ public class AlienModel implements UpdateObserver {
 	private Array<Enemy> wave;
 	private int enemyCounter = 0;
 
-	public AlienModel() {
+	public AlienModel(PathFinder finder) {
+		this.finder = finder;
 		EWC = new EnemyWavesCreator();
 		aliens = new Array<Enemy>(false, 10);
 		path = finder.getShortestPath();
@@ -32,7 +33,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void addAlien(Enemy enemy){
-//		enemy.setPos(new Node((int)path.get(0).getX(),(int)path.get(0).getY()));
+		enemy.setPos(new Node((int)path.get(0).getX(),(int)path.get(0).getY()));
 		aliens.add(enemy);
 		notifyObservers(aliens.peek(), false);
 	}

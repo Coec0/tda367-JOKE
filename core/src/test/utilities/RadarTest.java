@@ -13,8 +13,9 @@ import static org.junit.Assert.*;
  * @author Johan Svennungsson
  */
 public class RadarTest {
-
-    private AlienModel alienModel = new AlienModel();
+	
+	private PathFinder finder = new PathFinder();
+    private AlienModel alienModel = new AlienModel(finder);
     private Radar radar = new Radar(alienModel);
     private Soldier soldier = new Soldier(100, 100);
     private Alien alien = new Alien();

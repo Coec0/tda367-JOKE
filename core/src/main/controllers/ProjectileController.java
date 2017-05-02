@@ -53,7 +53,6 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
         public void actOnProjectileChange (Projectile projectile, String change){
             if (change.equals("spawn")) {
                 spawnProjectile(projectile);
-                System.out.println("Spawnp");
             } else if (change.equals("remove")) {
                 removeProjectile(projectile);
             }

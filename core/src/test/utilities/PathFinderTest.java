@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class PathFinderTest {
     @Test
     public void getShortestPath() throws Exception {
-        PathFinder pathFinder = PathFinder.getInstance();
+        PathFinder pathFinder = new PathFinder();
         assertNotNull(pathFinder); //tests passed
 //        assertNull(pathFinder); //tests failed
 

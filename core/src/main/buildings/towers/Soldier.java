@@ -26,6 +26,5 @@ public class Soldier extends Tower {
     public Projectile makeProjectile() {
         Projectile p = new Bullet(super.getTarget().getPos(), super.getPos());
         super.notifyObservers(p, "spawn");
-        System.out.print("Hejkorv");
         return p;    }
 }

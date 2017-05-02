@@ -3,7 +3,7 @@ package utilities;
 import com.badlogic.gdx.utils.Array;
 
 public final class PathFinder {
-	private static final PathFinder instance = new PathFinder();
+	
 
 	private Array<Node> shortestPath;
 	private Array<MapNode> allNodes;
@@ -11,14 +11,12 @@ public final class PathFinder {
 	private Array<Node> directionList = new Array<Node>(); 
 	private DijkstraSolver DSolver;
 
-	private PathFinder() {
+	public PathFinder() {
 		allNodes = new Array<MapNode>();
 		
 	}
 
-	public static PathFinder getInstance() {
-		return instance;
-	}
+
 
 //	public PathFinder(Array<Node> allNodes){
 //			this.allNodes = allNodes;

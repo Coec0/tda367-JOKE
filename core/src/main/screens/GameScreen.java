@@ -39,7 +39,7 @@ public class GameScreen implements Screen{
 	SpriteBatch batch;
 	private Sprite backgroundSprite;
 	private DrawablesCollector SC = DrawablesCollector.getInstance();
-	private PathFinder finder = PathFinder.getInstance();
+	private PathFinder finder;
 	private final int width = 1280;
 	private final int height = 720;
 	
@@ -61,10 +61,10 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		addNodes();
+		finder = new PathFinder();
 		finder.calculateShortest(Mapnodes, Mapnodes.get(0),Mapnodes.peek());
-		
 		AlienView AW= new AlienView();
-		AlienModel AM = new AlienModel();
+		AlienModel AM = new AlienModel(finder);
 		Radar radar = new Radar(AM);
 		BuildingModel TM = new BuildingModel(radar);
 		BuildingView TW = new BuildingView();
