@@ -7,7 +7,6 @@ import models.ProjectileModel;
 import projectiles.Projectile;
 import utilities.BuildingObserver;
 import utilities.ProjectileObserver;
-import utilities.UpdateObserver;
 import views.ProjectileView;
 
 /**
@@ -16,12 +15,10 @@ import views.ProjectileView;
 public class ProjectileController implements ProjectileObserver, BuildingObserver {
     private ProjectileModel PM;
     private ProjectileView PW;
-    private BuildingModel BM;
 
     public ProjectileController(ProjectileModel PM, ProjectileView PW, BuildingModel BM) {
         this.PM = PM;
         this.PW = PW;
-        this.BM = BM;
         PM.addObserver(this);
         BM.addObserver(this);
     }
@@ -36,8 +33,7 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
         PW.removeFromView(projectile.getSpriteAdapter());
     }
 
-    public void updateTowerObservers(boolean remove) {
-        for (Tower tower : BM.getTowers()) {
+    public void updateTowerObservers(Tower tower, boolean remove) {
             if(!remove){
                 tower.addObserver(this);
 
@@ -45,8 +41,6 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
             else{
                 tower.removeObserver(this);
             }
-
-        }
 
     }
         @Override
@@ -61,6 +55,7 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
 
     @Override
     public void actOnBuildingChange(Building building, boolean remove) {
-       updateTowerObservers(remove);
+    if(building instanceof Tower)	// Not a good fix, should prob make another observer instead
+       updateTowerObservers((Tower)building, remove);
     }
 }
