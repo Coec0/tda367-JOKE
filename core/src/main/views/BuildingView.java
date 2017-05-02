@@ -1,5 +1,7 @@
 package views;
 
+import buildings.towers.Marine;
+import buildings.towers.Ranger;
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.Building;
@@ -11,7 +13,7 @@ import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class BuildingView implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper;
+    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
     private SpriteAdapter onMouse;
 
@@ -21,7 +23,8 @@ public class BuildingView implements BuildingObserver{
         tank = new Texture("tank.png");
         whitehouse = new Texture("sexywhitehouse.png");
         //howitzer = new Texture("");
-        //ranger = new Texture("");
+        ranger = new Texture("ranger.png");
+        marine = new Texture("marine.png");
         //sniper = new Texture("");
     }
 
@@ -70,6 +73,10 @@ public class BuildingView implements BuildingObserver{
 			return soldier;
 		if(building instanceof Tank)
 			return tank;
+		if(building instanceof Marine)
+		    return marine;
+		if(building instanceof Ranger)
+		    return ranger;
 		return null;
 		
 	}
