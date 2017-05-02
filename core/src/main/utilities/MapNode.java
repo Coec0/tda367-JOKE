@@ -20,6 +20,11 @@ public class MapNode {
 		return pathLenght;
 	}
 	
+	public void reset(){
+		pathLenght = Float.MAX_VALUE;
+		visited = false;
+	}
+	
 	public void visit(){
 		visited = true;
 	}

@@ -46,7 +46,7 @@ public class Map {
 			
 			for(int i = 3; i < segments.length; i++){
 				mapNode.addNeighbor(segments[i]);
-				System.out.println(segments[i]);
+				//System.out.println(mapNode.getID() +": "+ segments[i]);
 			}
 			mapNodes.add(mapNode);
 		}

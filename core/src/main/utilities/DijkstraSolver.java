@@ -14,19 +14,19 @@ public class DijkstraSolver {
 	}
 	
 	public Array<Node> solve(MapNode startNode, MapNode endNode){
+		resetMapNodes();
 		
 		this.startNode = startNode;
 		this.endNode = endNode;
 		startNode.setPathLenght(0);
 		setCurrentNode(startNode);
-				
 		weighNeighbors();
+		
 		while(true){
 			if(pickNewCurrentNode()){
 				break;
 			}
 			weighNeighbors();
-			System.out.println("Ogge");
 			
 		}
 		return findPath();
@@ -37,11 +37,13 @@ public class DijkstraSolver {
 		Array<Node> path = new Array<Node>();
 		String prevID;
 		
-		while(tmpNode != startNode){
-			System.out.println("Kevin");
+		while( !tmpNode.equals(startNode)){
+			
 			path.add(tmpNode.getPos());
 			prevID = tmpNode.getPrevID();
+			System.out.println(prevID);
 			tmpNode = findNode(prevID);
+			
 		}
 		path.add(startNode.getPos());
 		path.reverse();
@@ -62,9 +64,9 @@ public class DijkstraSolver {
 		MapNode prospect = currentNode; //just to have a starting value
 		float minPathLength = Float.MAX_VALUE;
 		for(String ID : currentNode.getNeighbors()){
-			System.out.println("whiskey");
 			neighbor = findNode(ID);
-			if( !neighbor.Visited()){	//neighbor.getPathLenght() < minPathLength && 
+			if( !neighbor.Visited() ){   //&& neighbor.getPathLenght() <= minPathLength){ 
+				System.out.println("DijkstraSolver: hejdåre");
 				minPathLength = neighbor.getPathLenght();
 				prospect = neighbor;
 				
@@ -101,5 +103,11 @@ public class DijkstraSolver {
 	private void setCurrentNode(MapNode node){
 		currentNode = node;
 		node.visit();
+	}
+	
+	private void resetMapNodes(){
+		for(MapNode MN : allNodes){
+			MN.reset();
+		}
 	}
 }

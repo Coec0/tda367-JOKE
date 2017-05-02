@@ -23,12 +23,14 @@ public class AlienModel implements UpdateObserver {
 	private EnemyWavesCreator EWC;
 	private Array<Enemy> wave;
 	private int enemyCounter = 0;
+	private Array<MapNode> startingPos;
 
-	public AlienModel(PathFinder finder) {
+	public AlienModel(PathFinder finder, Array<MapNode> startingPos) {
+		this.startingPos = startingPos;
 		this.finder = finder;
 		EWC = new EnemyWavesCreator();
 		aliens = new Array<Enemy>(false, 10);
-		path = finder.getShortestPath();
+		path = finder.getShortestPath(this.startingPos.get(0));
 		direction = finder.getDirectionList();
 	}
 	

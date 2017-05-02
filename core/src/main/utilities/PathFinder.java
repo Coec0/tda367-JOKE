@@ -5,14 +5,18 @@ import com.badlogic.gdx.utils.Array;
 public final class PathFinder {
 	
 
-	private Array<Node> shortestPath;
+	private Array<Array<Node>> shortestPaths;
 	private Array<MapNode> allNodes;
-	private float speed;
 	private Array<Node> directionList = new Array<Node>(); 
 	private DijkstraSolver DSolver;
+	private MapNode endNode;
+	
 
-	public PathFinder() {
-		allNodes = new Array<MapNode>();
+	public PathFinder(Array<MapNode> allNodes, MapNode endNode) {
+		this.endNode = endNode;
+		this.allNodes = allNodes;
+		shortestPaths = new Array<Array<Node>>();
+		DSolver = new DijkstraSolver(allNodes);
 		
 	}
 
@@ -22,24 +26,31 @@ public final class PathFinder {
 //			this.allNodes = allNodes;
 //	}
 	
-	public void setSpeed(float speed){
-		this.speed = speed;
-	}
 	
-	public void calculateShortest(Array<MapNode> nodes,MapNode startNode, MapNode endNode){
-		DSolver = new DijkstraSolver(nodes);
-		shortestPath = DSolver.solve(startNode, endNode);
-		shortestPath = getFullPath(10,shortestPath);
+	
+	public void calculateShortest(MapNode startNode){
+		Array<Node> tmp = DSolver.solve(startNode, endNode);
+		shortestPaths.add(getFullPath(10,tmp)); //10 = speed
 	}
 
-	public Array<Node> getShortestPath(){
+	public Array<Node> getShortestPath(MapNode startNode){
 		
-//		if (shortestPath == null){
-//			calculateShortest();
-//			System.out.println(shortestPath.size);
-//		}
-//		System.out.println(shortestPath.size);
-		return shortestPath;
+		if(shortestPaths.size == 0){ //check if empty to prevent nUllpointer
+			calculateShortest(startNode);
+			return shortestPaths.get(0); //might as well return right away to save some time
+		}
+
+		for(Array<Node> nodeArray : shortestPaths){
+			System.out.println("PathFinder: " + nodeArray.get(0).getX() + " : " + nodeArray.get(0).getY());
+			if(nodeArray.get(0).equals(startNode.getPos())){ //checks if startingNode in each calculated path is the same as startNode
+				System.out.println("PathFinder: hejehj");
+				return nodeArray;
+			}
+		}
+		
+		calculateShortest(startNode); //now it only calculates if the path did not exist before
+		System.out.println("PathFinder: " + shortestPaths.peek().get(0).getX() + " " + shortestPaths.peek().get(0).getY());
+		return shortestPaths.peek(); //returns the the path we just added
 	}
 	
 	public void setAllNodes(Array<MapNode> allNodes){
@@ -64,7 +75,7 @@ public final class PathFinder {
 			Node goal = pathNodes.get(i+1);
 
 			Array<Node> pixelPath = getPixelPath(start, goal, speed);
-
+				
 			for (Node pixel : pixelPath) {
 				fullPath.add(pixel);
 			}

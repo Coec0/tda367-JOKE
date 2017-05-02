@@ -61,10 +61,16 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		addNodes();
-		finder = new PathFinder();
-		finder.calculateShortest(Mapnodes, Mapnodes.get(0),Mapnodes.peek());
+		finder = new PathFinder(Mapnodes, Mapnodes.get(23));
+		System.out.println("GameScreen: " + Mapnodes.get(23).getID());
+		finder.getShortestPath(Mapnodes.get(0));
 		AlienView AW= new AlienView();
-		AlienModel AM = new AlienModel(finder);
+		//only tmp untill waves crator is done
+		Array<MapNode> startingNodes = new Array<MapNode>();
+		startingNodes.add(Mapnodes.get(2));
+	
+		
+		AlienModel AM = new AlienModel(finder, startingNodes);
 		Radar radar = new Radar(AM);
 		BuildingModel TM = new BuildingModel(radar);
 		BuildingView TW = new BuildingView();
@@ -104,12 +110,9 @@ public class GameScreen implements Screen{
 		
 		Map map = new Map("AlphaMap");
 		Mapnodes = map.getMapNodes();
-		System.out.println(Mapnodes.size);
 		nodes.clear();
 		for(MapNode tmp : Mapnodes){
 			nodes.add(tmp.getPos());
-			System.out.println(tmp.getPos().getX() + " " + tmp.getPos().getY());
-			
 		}
 		backgroundSprite = new Sprite(map.getMap());
 	}
