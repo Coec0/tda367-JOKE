@@ -41,15 +41,12 @@ public final class PathFinder {
 		}
 
 		for(Array<Node> nodeArray : shortestPaths){
-			System.out.println("PathFinder: " + nodeArray.get(0).getX() + " : " + nodeArray.get(0).getY());
 			if(nodeArray.get(0).equals(startNode.getPos())){ //checks if startingNode in each calculated path is the same as startNode
-				System.out.println("PathFinder: hejehj");
 				return nodeArray;
 			}
 		}
 		
 		calculateShortest(startNode); //now it only calculates if the path did not exist before
-		System.out.println("PathFinder: " + shortestPaths.peek().get(0).getX() + " " + shortestPaths.peek().get(0).getY());
 		return shortestPaths.peek(); //returns the the path we just added
 	}
 	

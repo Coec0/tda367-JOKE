@@ -69,7 +69,6 @@ public class DijkstraSolver {
 		MapNode prospect = currentNode; //just to have a starting value
 		for(MapNode node : allNodes){
 			if( !node.Visited() && node.getPathLenght() <= currentMinValue){
-				System.out.println("Dijkstra :"+ node.getID());
 				prospect = node;
 				currentMinValue = node.getPathLenght();
 			}
@@ -104,7 +103,6 @@ public class DijkstraSolver {
 			
 			path.add(tmpNode.getPos());
 			prevID = tmpNode.getPrevID();
-			System.out.println(prevID);
 			tmpNode = findNode(prevID);
 			
 		}

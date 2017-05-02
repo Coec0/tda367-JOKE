@@ -28,7 +28,7 @@ public abstract class Projectile {
     public Projectile(float damage, float speed, boolean areaOfEffect, float radius, Node direction, Node position){
         this.damage = damage;
         this.radius = radius;
-        this.speed = speed;
+        this.speed = 5;
         this.areaOfEffect = areaOfEffect;
         this.direction = direction;
         //System.out.println(this.direction.getX() + " " + this.direction.getY());
@@ -38,7 +38,13 @@ public abstract class Projectile {
     }
 
     public void setSpritePosition(Node position){
-        this.sprite.setPosition(position.getX(), position.getY());
+        sprite.setPosition(position.getX(), position.getY());
+    }
+    
+    public void setNewPosition(){
+    	Node newPos = getNewPosition();
+    	setSpritePosition(newPos);
+    	setPosition(newPos);
     }
 
     public void setPosition(Node position){
@@ -48,12 +54,10 @@ public abstract class Projectile {
     public float getRadius(){
     	return radius;
     }
-    public Node getNewPosition(){
-        Node newPosition;
-        float newX = position.getX()+ (direction.getX() * speed);
-        float newY = position.getY() + (direction.getY() * speed);
-        newPosition = new Node(newX, newY);
-        setPosition(newPosition);
+    private Node getNewPosition(){
+        float newX = position.getX() + (direction.getX() * 5);
+        float newY = position.getY() + (direction.getY() * 5);
+        Node newPosition = new Node(newX, newY);
         return newPosition;
     }
     public Node getPosition(){
@@ -63,11 +67,10 @@ public abstract class Projectile {
         return damage;
     }
 
-    public Node createDirectionVector(){
+    private Node createDirectionVector(){
         float x = position.getDeltaX(direction);
         float y = position.getDeltaY(direction);
         float pyt = (float) Math.sqrt(x*x + y*y);
-
         return new Node(x/pyt,y/pyt);
     }
 

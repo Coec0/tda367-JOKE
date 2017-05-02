@@ -39,7 +39,7 @@ public class ProjectileModel implements UpdateObserver{
     }
 
     public void move(Projectile p){
-            p.setSpritePosition(p.getNewPosition());
+            p.setNewPosition();
     }
 
     public boolean checkIfHitEnemies(Projectile projectile) {
