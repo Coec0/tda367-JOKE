@@ -1,11 +1,11 @@
 package buildings.towers;
 
 import buildings.towers.towerupgrades.TankUpgrade;
-import controllers.ProjectileController;
+import politics.parties.Democrat;
 import projectiles.Missile;
 import projectiles.Projectile;
 
-public class Tank extends Tower{
+public class Tank extends Tower implements Democrat{
 
     private static final int RADIUS = 1000;
     private static final String NAME = "TANK";
@@ -27,4 +27,18 @@ public class Tank extends Tower{
         super.notifyObservers(p, "spawn");
         return p;
     }
+
+
+	@Override
+	public int getVotes() {
+		// TODO Auto-generated method stub
+		return 10;
+	}
+
+	@Override
+	public void setVotes(int votes) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
