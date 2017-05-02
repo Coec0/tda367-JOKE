@@ -55,8 +55,8 @@ public abstract class Projectile {
     	return radius;
     }
     private Node getNewPosition(){
-        float newX = position.getX() + (direction.getX() * 5);
-        float newY = position.getY() + (direction.getY() * 5);
+        float newX = position.getX() + (direction.getX() * speed);
+        float newY = position.getY() + (direction.getY() * speed);
         Node newPosition = new Node(newX, newY);
         return newPosition;
     }
