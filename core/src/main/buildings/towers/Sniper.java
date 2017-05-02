@@ -1,6 +1,6 @@
 package buildings.towers;
 
-import buildings.towers.towerupgrades.SniperUpgrade;
+
 import controllers.ProjectileController;
 import projectiles.Missile;
 import projectiles.Projectile;
@@ -15,15 +15,13 @@ public class Sniper extends Tower {
     private static final int RADIUS = 100;
     private static final String NAME = "SNIPER";
     private static final int COST = 150;
-    private static final long COOLDOWN = 3000;
+    private static final int COOLDOWN = 10;
 
     public Sniper(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN);
     }
 
-    public Tower upgradeTower() {
-        return new SniperUpgrade((int)this.getPos().getX(), (int)this.getPos().getY());
-    }
+   
 
     @Override
     public Projectile makeProjectile() {

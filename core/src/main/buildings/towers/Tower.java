@@ -1,7 +1,5 @@
 package buildings.towers;
 
-import buildings.towers.cooldownstates.ICooldownState;
-import buildings.towers.cooldownstates.NoCooldown;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
@@ -19,25 +17,34 @@ public abstract class Tower extends Building{
 	private int cost;
 	private Enemy target;
 	private ITargetState TState;
-    private long cooldown;
-    private ICooldownState cooldownState = NoCooldown.getInstance();
+    
+    
     private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
+    private int cooldown;
+    private int cooldownTimer;
 
-	protected Tower(int x, int y, float radius, String name, int cost, long cooldown){
+	protected Tower(int x, int y, float radius, String name, int cost, int cooldown){
 		super(name, x, y);
+		this.cooldown = cooldown;
+		cooldownTimer = cooldown; 
 		this.radius = radius;
 		this.cost = cost;
 		this.TState = new TargetLast();
 		this.cooldown=cooldown;
 	}
 
-    public void setCooldownState(ICooldownState state){
-	    cooldownState = state;
+    
+    
+    public boolean isInCooldown(){
+    	cooldownTimer--;
+    	if(cooldownTimer <= 0){
+    		cooldownTimer = cooldown;
+    		return false;
+    	}
+    	return true;
     }
 
-    public void startCooldown(){
-	    new Cooldown().start();
-    }
+   
 
 	public void setTargetState(ITargetState state) {
 		this.TState = state;
@@ -56,17 +63,26 @@ public abstract class Tower extends Building{
 	}
 
 	public void shoot() {
-        cooldownState.shoot(this);
-
+		this.makeProjectile();
     }
 
 
     public abstract Projectile makeProjectile();
 
 	public void setTarget(Array<Enemy> targets) {
-		this.target = TState.getEnemy(super.getPos(), targets);
-		rotateTowards(target.getPos());
+		if(targets.size == 0){
+			target = null;
+		}else{
+			this.target = TState.getEnemy(super.getPos(), targets);
+			rotateTowards(target.getPos());
+		}
+		
 	}
+	
+	public boolean hasTarget(){
+		return target != null;
+	}
+	
 
 	public Enemy getTarget() {
 		return target;
@@ -103,21 +119,5 @@ public abstract class Tower extends Building{
         observers.add(observer);
     }
 
-
-
-	class Cooldown extends Thread{
-	    @Override
-        public void run(){
-	        try{
-	            Thread.sleep(cooldown);
-            }
-            catch(InterruptedException ie){
-
-            }
-            finally{
-                cooldownState = NoCooldown.getInstance();
-            }
-        }
-    }
 
 }

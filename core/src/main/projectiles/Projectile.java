@@ -28,7 +28,7 @@ public abstract class Projectile {
     public Projectile(float damage, float speed, boolean areaOfEffect, float radius, Node direction, Node position){
         this.damage = damage;
         this.radius = radius;
-        this.speed = 5;
+        this.speed = speed;
         this.areaOfEffect = areaOfEffect;
         this.direction = direction;
         //System.out.println(this.direction.getX() + " " + this.direction.getY());

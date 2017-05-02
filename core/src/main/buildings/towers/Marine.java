@@ -10,7 +10,7 @@ public class Marine extends Tower {
     private static final int RADIUS = 10;
     private static final String NAME = "MARINE";
     private static final int COST = 100;
-    private static final long COOLDOWN = 4000;
+    private static int COOLDOWN = 50;
 
     public Marine(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN );

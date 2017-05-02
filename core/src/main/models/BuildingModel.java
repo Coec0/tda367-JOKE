@@ -68,6 +68,14 @@ public class BuildingModel implements UpdateObserver {
 	public void upgradeTower(int index) {
 		// TODO
 	}
+	
+	public void fireAllTowers(){
+		for(Tower tower : towers){
+			if(!tower.isInCooldown() && tower.hasTarget()){
+				tower.shoot();
+			}
+		}
+	}
 
 	public boolean checkIfInRadius(Tower tower, Node enemyNode) {
 		float deltaX = enemyNode.getX() - tower.getPos().getX();
@@ -80,16 +88,14 @@ public class BuildingModel implements UpdateObserver {
 		return false;
 	}
 
-	private void findTargets() {
+	private void setTargets() {
 		Array<Enemy> foundAliens;
 		for (Tower tower : towers) {
 
 			foundAliens = radar.scan(tower.getPos(), tower.getRadius()); // tmp
-			if (foundAliens.size > 0) {
-				tower.setTarget(foundAliens);
-				tower.shoot();
-			}
+			tower.setTarget(foundAliens);
 		}
+		
 	}
 	
 	private void checkWhitehouses(){
@@ -109,8 +115,10 @@ public class BuildingModel implements UpdateObserver {
 
 	@Override
 	public void update(float deltaTime) {
-		findTargets();
+		setTargets();
+		fireAllTowers();
 		checkWhitehouses();
+		
 	}
 
 	private Array<BuildingObserver> observers = new Array<BuildingObserver>(false, 10);

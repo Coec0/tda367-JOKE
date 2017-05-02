@@ -10,7 +10,7 @@ public class Engineer extends Tower{
     private static final int RADIUS = 10;
     private static final String NAME = "ENGINEER";
     private static final int COST = 100;
-    private static final long COOLDOWN = 4000;
+    private static final int COOLDOWN = 50;
 
     public Engineer(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN );
