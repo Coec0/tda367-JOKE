@@ -21,6 +21,8 @@ import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
 import stages.GameUIStage;
+import stages.PoliticalMeterStage;
+import utilities.DrawablesCollector;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
 import utilities.MapNode;
@@ -28,7 +30,6 @@ import utilities.Node;
 import utilities.PathFinder;
 import utilities.Radar;
 import utilities.SpriteAdapter;
-import utilities.DrawablesCollector;
 import views.AlienView;
 import views.BuildingView;
 import views.GameUIView;
@@ -90,9 +91,11 @@ public class GameScreen implements Screen{
 		Gdx.input.setInputProcessor(imp);
 		
 		HV = new GameUIView();
+		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		HS = new GameUIStage(AController, TController); 
 		imp.addProcessor(HS);
 		HV.addToView(HS);
+		HV.addToView(PMS);
 
 		
 	}
@@ -130,10 +133,10 @@ public class GameScreen implements Screen{
 	@Override
 	public void resize(int width, int height) {
 		WP.update(width-200*width/this.width, height, true);
-		HS.getViewport().update(width, height, true);
-		//HS.getViewport().setWorldSize(width, height);
-		System.out.println("X:" + HS.getViewport().getScreenX());
-		System.out.println("Y:" + HS.getViewport().getScreenY());
+		
+		for(Stage stage : SC.getStages()){
+			stage.getViewport().update(width, height, true);
+		}
 	}
 
 	@Override
