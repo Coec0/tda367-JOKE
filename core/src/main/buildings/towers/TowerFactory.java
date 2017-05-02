@@ -21,4 +21,18 @@ public class TowerFactory {
 		return new Howitzer(x, y);
 	}
 
+	public static Bazooka createBazooka(int x, int y) {
+		return new Bazooka(x, y);
+	}
+
+	public static Marine createMarine(int x, int y) {
+		return new Marine(x, y);
+	}
+
+	public static Engineer createEngineer(int x, int y) {
+		return new Engineer(x, y);
+	}
+
+
+
 }
