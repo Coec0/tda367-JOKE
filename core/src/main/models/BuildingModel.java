@@ -8,8 +8,11 @@ import buildings.WhiteHouse;
 import buildings.towers.Tower;
 import enemies.Alien;
 import enemies.Enemy;
-import projectiles.Projectile;
-import utilities.*;
+import politics.parties.Party;
+import utilities.BuildingObserver;
+import utilities.Node;
+import utilities.Radar;
+import utilities.UpdateObserver;
 
 public class BuildingModel implements UpdateObserver {
 	Array<Tower> towers;
@@ -23,16 +26,22 @@ public class BuildingModel implements UpdateObserver {
 		// aliens = AModel.getAllAliens();
 		this.radar = radar;
 	}
+    
+    private void voteTower(Tower tower){
+    	if(tower instanceof Party){
+    		whitehouses.peek().voteParty((Party)tower);
+    	}
+    }
 
 	public void addTower(Tower tower){
 		towers.add(tower);
+		voteTower(tower);
 		notifyObservers(towers.peek(), false);
 	}
 	
 	public void addTower(Tower tower, int x, int y){
 		tower.setPos(x, y);
-		towers.add(tower);
-		notifyObservers(towers.peek(), false);
+		this.addTower(tower);
 	}
 
 	public void createWhiteHouse(int x, int y) {

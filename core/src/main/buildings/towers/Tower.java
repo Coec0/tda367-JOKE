@@ -9,6 +9,7 @@ import buildings.towers.targetmethods.ITargetState;
 import buildings.towers.targetmethods.TargetLast;
 import controllers.ProjectileController;
 import enemies.Enemy;
+import politics.parties.Party;
 import projectiles.Projectile;
 import utilities.Node;
 import utilities.ProjectileObserver;
