@@ -7,7 +7,6 @@ public class DijkstraSolver {
 	private MapNode startNode;
 	private MapNode endNode;
 	private MapNode currentNode;
-	private boolean searching = true;
 	
 	public DijkstraSolver(Array<MapNode> allNodes){
 		this.allNodes = allNodes;
@@ -15,41 +14,18 @@ public class DijkstraSolver {
 	
 	public Array<Node> solve(MapNode startNode, MapNode endNode){
 		resetMapNodes();
-		
 		this.startNode = startNode;
 		this.endNode = endNode;
 		startNode.setPathLenght(0);
 		setCurrentNode(startNode);
 		weighNeighbors();
 		
-		while(true){
-			if(pickNewCurrentNode()){
-				break;
-			}
+		while(isDone()){
+			setNextCurrent();
 			weighNeighbors();
-			
 		}
 		return findPath();
 	}
-	
-	private Array<Node> findPath(){
-		MapNode tmpNode = endNode;
-		Array<Node> path = new Array<Node>();
-		String prevID;
-		
-		while( !tmpNode.equals(startNode)){
-			
-			path.add(tmpNode.getPos());
-			prevID = tmpNode.getPrevID();
-			System.out.println(prevID);
-			tmpNode = findNode(prevID);
-			
-		}
-		path.add(startNode.getPos());
-		path.reverse();
-		return path;	
-	}
-	
 	
 	private void weighNeighbors(){
 		MapNode neighbor;
@@ -59,29 +35,6 @@ public class DijkstraSolver {
 		}
 	}
 	
-	private boolean pickNewCurrentNode(){
-		MapNode neighbor;
-		MapNode prospect = currentNode; //just to have a starting value
-		float minPathLength = Float.MAX_VALUE;
-		for(String ID : currentNode.getNeighbors()){
-			neighbor = findNode(ID);
-			if( !neighbor.Visited() ){   //&& neighbor.getPathLenght() <= minPathLength){ 
-				System.out.println("DijkstraSolver: hejdåre");
-				minPathLength = neighbor.getPathLenght();
-				prospect = neighbor;
-				
-				
-			}
-			
-		}
-		
-		if(prospect.equals(currentNode)){
-			return true;
-		}
-		
-		setCurrentNode(prospect);
-		return false;
-	}
 	
 	private void weighNeighbor(MapNode node){
 		if(currentNode.getPathLenght() + currentNode.getDistanceTo(node) < node.getPathLenght()){
@@ -109,5 +62,54 @@ public class DijkstraSolver {
 		for(MapNode MN : allNodes){
 			MN.reset();
 		}
+	}
+	
+	private void setNextCurrent(){
+		float currentMinValue = Float.MAX_VALUE;
+		MapNode prospect = currentNode; //just to have a starting value
+		for(MapNode node : allNodes){
+			if( !node.Visited() && node.getPathLenght() <= currentMinValue){
+				System.out.println("Dijkstra :"+ node.getID());
+				prospect = node;
+				currentMinValue = node.getPathLenght();
+			}
+		}
+
+		setCurrentNode(prospect);
+	}
+	
+	private boolean isDone(){
+		int counter = 0;
+		for(MapNode node : allNodes){
+			if(!node.Visited() && node.getPathLenght() == Float.MAX_VALUE){	//return true if all nonvisited nodes have pathlenght inf
+				return true;
+			}else if(node.Visited()){
+				counter++;
+			}
+		}
+		
+		if(counter == allNodes.size){ //return true if we have visited all nodes
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private Array<Node> findPath(){
+		MapNode tmpNode = endNode;
+		Array<Node> path = new Array<Node>();
+		String prevID;
+		
+		while( !tmpNode.equals(startNode)){
+			
+			path.add(tmpNode.getPos());
+			prevID = tmpNode.getPrevID();
+			System.out.println(prevID);
+			tmpNode = findNode(prevID);
+			
+		}
+		path.add(startNode.getPos());
+		path.reverse();
+		return path;	
 	}
 }

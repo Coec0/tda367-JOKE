@@ -67,7 +67,7 @@ public class GameScreen implements Screen{
 		AlienView AW= new AlienView();
 		//only tmp untill waves crator is done
 		Array<MapNode> startingNodes = new Array<MapNode>();
-		startingNodes.add(Mapnodes.get(2));
+		startingNodes.add(Mapnodes.get(3));
 	
 		
 		AlienModel AM = new AlienModel(finder, startingNodes);
