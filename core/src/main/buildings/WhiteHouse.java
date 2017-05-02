@@ -1,13 +1,47 @@
 package buildings;
 
+import com.badlogic.gdx.utils.ArrayMap;
+
+import politics.parties.Party;
+
 public class WhiteHouse extends Building{
 	private int health=20; //temp
 	private float money;
+	private ArrayMap<Integer, String> pVotes;
 	
 	public WhiteHouse(String name, int x, int y){
 		super(name, x, y);
+		pVotes = new ArrayMap<Integer, String>(false, 7);
 	}
 	
+	/**
+	 * Vote for party. Any class that implements a subclass to "Party" will work
+	 * @param party
+	 */
+	public <T extends Party> void voteParty(T party){
+		
+		for(Class<?> iFace : party.getClass().getInterfaces()){
+			if(iFace.getInterfaces().length > 0){ //Checks so we dont vote with "Party" interface
+				if(Party.class.isAssignableFrom(iFace)){ //Checks if Party is superclass
+					System.out.println("Party: "+ party.getClass().getInterfaces()[0].getSimpleName());
+					setPartyValue(party.getClass().getInterfaces()[0].getSimpleName(), party.getVotes());
+				}
+			}
+			
+		}
+	}
+	
+	
+	private void setPartyValue(String party, int votes) {
+		if(pVotes.containsValue(party, false)){
+			int index = pVotes.indexOfValue(party, false);
+			pVotes.setKey(index, pVotes.getKeyAt(index)+votes);
+		} else {
+			pVotes.put(votes, party);
+		}
+		System.out.println("VOTES PARTY = "+ pVotes.getKey(party, false));
+	}
+
 	public void removeHealth(int amount){
 		health -=amount;
 	}
@@ -32,9 +66,7 @@ public class WhiteHouse extends Building{
 	public int getHealth(){
 		return health;
 	}
-	
-	
-	
+
 	public void addMoney(float amount){
 		money += amount;
 	}
