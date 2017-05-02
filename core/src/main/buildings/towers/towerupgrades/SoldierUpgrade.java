@@ -21,4 +21,5 @@ public class SoldierUpgrade extends Tower {
     public Projectile makeProjectile() {
         return null;
     }
+
 }

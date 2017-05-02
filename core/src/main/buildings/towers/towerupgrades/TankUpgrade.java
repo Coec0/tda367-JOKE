@@ -1,6 +1,5 @@
 package buildings.towers.towerupgrades;
 
-import buildings.towers.Tank;
 import buildings.towers.Tower;
 import projectiles.Projectile;
 
@@ -23,4 +22,5 @@ public class TankUpgrade extends Tower {
     public Projectile makeProjectile() {
         return null;
     }
+
 }

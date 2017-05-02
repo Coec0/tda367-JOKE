@@ -1,10 +1,8 @@
 package buildings.towers;
 
 import buildings.towers.towerupgrades.RangerUpgrade;
-import controllers.ProjectileController;
 import projectiles.Projectile;
 import projectiles.RangerBullet;
-import projectiles.SniperBullet;
 
 /**
  * Created by Emil on 2017-04-17.
@@ -28,4 +26,5 @@ public class Ranger extends Tower {
         Projectile p = new RangerBullet(super.getTarget().getPos(), super.getPos());
         super.notifyObservers(p, "spawn");
         return p;    }
+
 }

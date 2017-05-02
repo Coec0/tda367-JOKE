@@ -21,4 +21,5 @@ public class RangerUpgrade extends Tower {
     public Projectile makeProjectile() {
         return null;
     }
+
 }
