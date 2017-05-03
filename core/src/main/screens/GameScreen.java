@@ -110,7 +110,7 @@ public class GameScreen implements Screen{
 		for(MapNode tmp : Mapnodes){
 			nodes.add(tmp.getPos());
 		}
-		backgroundSprite = new Sprite(map.getMap());
+		backgroundSprite = new Sprite(map.getTexture());
 	}
 
 	@Override
