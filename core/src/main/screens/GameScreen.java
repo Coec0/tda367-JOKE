@@ -92,13 +92,12 @@ public class GameScreen implements Screen{
 		imp.addProcessor(TController);
 		
 		Gdx.input.setInputProcessor(imp);
-		
-		HV = new GameUIView();
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		HS = new GameUIStage(AController, TController); 
+		HV = new GameUIView(PMS, HS);
+		
 		imp.addProcessor(HS);
-		HV.addToView(HS);
-		HV.addToView(PMS);
+		TM.getWhiteHouses().peek().addObserver(HV);
 
 		
 	}

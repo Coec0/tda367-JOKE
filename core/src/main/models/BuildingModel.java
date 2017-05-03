@@ -49,6 +49,9 @@ public class BuildingModel implements UpdateObserver {
 		notifyObservers(whitehouses.peek(), false);
 	}
 	
+	public Array<WhiteHouse> getWhiteHouses(){
+		return whitehouses;
+	}
 	public Tower getTower(int index) {
 		return towers.get(index);
 	}
