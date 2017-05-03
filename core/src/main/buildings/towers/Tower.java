@@ -14,13 +14,13 @@ public abstract class Tower extends Building{
 	private int cost;
 	private Enemy target;
 	private ITargetState TState;
-    
-    
-    private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
+	private float damage;
+
+	private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
     private int cooldown;
     private int cooldownTimer;
 
-	protected Tower(int x, int y, float radius, String name, int cost, int cooldown,float size){
+	protected Tower(int x, int y, float radius, String name, int cost, int cooldown,float size, float damage){
 		super(name, x, y,size);
 		this.cooldown = cooldown;
 		cooldownTimer = cooldown; 
@@ -28,6 +28,7 @@ public abstract class Tower extends Building{
 		this.cost = cost;
 		this.TState = new TargetLast();
 		this.cooldown=cooldown;
+		this.damage = damage;
 	}
 
     
@@ -65,6 +66,10 @@ public abstract class Tower extends Building{
 
 	public void setCooldown(int cooldown){
 		this.cooldown = cooldown;
+	}
+
+	public void setDamage(float damage){
+		this.damage = damage;
 	}
 
 	public void shoot() {

@@ -10,12 +10,10 @@ import java.awt.*;
  */
 public class Missile extends Projectile {
 
-    private static final float DAMAGE = 40;
-    private static final float SPEED = 10;
     private static final boolean AREAOFEFFECT = true;
     private static final float RADIUS = 20; 
 
-    public Missile(Node DIRECTION, Node POSITION){
+    public Missile(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){
         super(DAMAGE, SPEED, AREAOFEFFECT,RADIUS, DIRECTION, POSITION);
     }
 

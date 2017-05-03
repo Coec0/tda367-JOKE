@@ -9,12 +9,10 @@ import utilities.Node;
  */
 public class Bullet extends Projectile {
 
-    private static final float DAMAGE = 10;
-    private static final float SPEED = 10;
     private static final boolean AREAOFEFFECT = false;
     private static final float RADIUS = 20; 
 
-    public Bullet(Node DIRECTION, Node POSITION){
+    public Bullet(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){
         super(DAMAGE, SPEED, AREAOFEFFECT, RADIUS, DIRECTION, POSITION);
     }
 }
