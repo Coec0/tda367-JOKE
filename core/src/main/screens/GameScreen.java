@@ -70,11 +70,11 @@ public class GameScreen implements Screen{
 		
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes());
 		Radar radar = new Radar(AM);
-		BuildingModel TM = new BuildingModel(radar);
+		BuildingModel BM = new BuildingModel(radar);
 		BuildingView TW = new BuildingView();
 		ProjectileModel PM = new ProjectileModel(radar);
 		ProjectileView PW = new ProjectileView();
-		ProjectileController PC = new ProjectileController(PM, PW, TM);
+		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
 
@@ -83,9 +83,9 @@ public class GameScreen implements Screen{
 		camera = new OrthographicCamera();
 		WP = new StretchViewport(width, height, camera);
 		//camera.position.set(1280/2, 720/2, 0);
-		BuildingController TController = new BuildingController(TM, AM, TW, WP);
+		BuildingController TController = new BuildingController(BM, AM, TW, WP);
 		
-		IAMain.addObserver(TM);
+		IAMain.addObserver(BM);
 		IAMain.addObserver(AM);
 		IAMain.addObserver(PM);
 		InputMultiplexer imp = new InputMultiplexer();
@@ -93,15 +93,16 @@ public class GameScreen implements Screen{
 		imp.addProcessor(TController);
 		
 		Gdx.input.setInputProcessor(imp);
+		
 		SelectedBuildingStage SBS = new SelectedBuildingStage(TController);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
+		HS = new GameUIStage(AController, TController);
 		
-		HS = new GameUIStage(AController, TController); 
 		HV = new GameUIView(PMS, HS, SBS);
-		
+		BM.addObserver(HV);
 		imp.addProcessor(HS);
 		imp.addProcessor(SBS);
-		TM.getWhiteHouses().peek().addObserver(HV);
+		BM.getWhiteHouses().peek().addObserver(HV);
 
 		
 	}
@@ -137,9 +138,7 @@ public class GameScreen implements Screen{
 	public void resize(int width, int height) {
 		WP.update(width-200*width/this.width, height, true);
 		
-		for(Stage stage : SC.getStages()){
-			stage.getViewport().update(width, height, true);
-		}
+		SC.refreshStagesVP();
 	}
 
 	@Override

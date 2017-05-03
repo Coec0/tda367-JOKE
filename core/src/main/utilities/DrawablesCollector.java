@@ -1,5 +1,6 @@
 package utilities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -31,7 +32,8 @@ public final class DrawablesCollector {
 	 * @param sprite
 	 */
 	public void addSprite(SpriteAdapter sprite){
-		sprites.add(sprite);
+		if(!sprites.contains(sprite, false))
+			sprites.add(sprite);
 	}
 	
 	/**
@@ -57,11 +59,15 @@ public final class DrawablesCollector {
 
 	
 	/**
-	 * Add stage that should be drawn by the screen
+	 * Add stage that should be drawn by the screen. Also runs refreshStagesVP() to make
+	 * sure the viewport is right.
 	 * @param stage
 	 */
 	public void addStage(Stage stage){
-		stages.add(stage);
+		if(!stages.contains(stage, false)){
+			stages.add(stage);
+			refreshStagesVP();
+		}
 	}
 	
 	/**
@@ -100,5 +106,14 @@ public final class DrawablesCollector {
 	 */
 	public void drawAll(SpriteBatch batch){
 		drawSprites(batch);
+	}
+	
+	/**
+	 * Refreshes the stages ViewPorts. Should be called after resizing window
+	 */
+	public void refreshStagesVP(){
+		for(Stage stage : getStages()){
+			stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+		}
 	}
 }

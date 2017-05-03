@@ -8,24 +8,32 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import buildings.Building;
+
 public class SelectedBuildingStage extends Stage{
 	private Skin skin;
-	private Label description;
+	private Label description, name;
+	private Building selectedBuilding;
 	
 	public SelectedBuildingStage(ClickListener buildingC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		Table table = new Table();
 		table.setZIndex(9001); // Put on top
-		table.setDebug(true);
+		//table.setDebug(true);
 		table.setPosition(Gdx.graphics.getWidth() - 200, 0);
 		table.setWidth(200);
 		table.setHeight(720);
 		
-		//description = new Label(building.getDescription(), skin);
-		
+		description = new Label("", skin);
+		name = new Label("", skin);
+		name.setWidth(200);
+		description.setWrap(true);
+
+		table.add(name).expand().top();
+		table.row();
 		table.add(getTargetsTable(buildingC));
 		table.row();
-		table.add(description).expand().bottom();
+		table.add(description).width(180).bottom();
 		
 		this.addActor(table);
 	}
@@ -52,6 +60,12 @@ public class SelectedBuildingStage extends Stage{
 		table.row();
 		table.add(addTargetButton("tFar", "Target furthest", buildingC)).expand().bottom();
 		return table;
+	}
+	
+	public void setBuilding(Building building){
+		selectedBuilding = building;
+		description.setText(building.getDescription());
+		name.setText(building.getName());
 	}
 	
 	private TextButton addTextButton(int x, int y, float width, float height, String name, String text,
