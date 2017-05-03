@@ -1,15 +1,7 @@
 package projectiles;
 
-import com.badlogic.gdx.graphics.Texture;
-import enemies.Enemy;
-import models.ProjectileModel;
 import utilities.Node;
 import utilities.SpriteAdapter;
-import utilities.DrawablesCollector;
-import utilities.UpdateObserver;
-import views.ProjectileView;
-
-import java.awt.*;
 
 /**
  * Created by Emil on 2017-04-04.
@@ -54,7 +46,7 @@ public abstract class Projectile {
     public float getRadius(){
     	return radius;
     }
-    private Node getNewPosition(){
+    public Node getNewPosition(){
         float newX = position.getX() + (direction.getX() * speed);
         float newY = position.getY() + (direction.getY() * speed);
         Node newPosition = new Node(newX, newY);

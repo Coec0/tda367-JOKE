@@ -1,9 +1,9 @@
 package models;
 
 import com.badlogic.gdx.utils.Array;
+
 import enemies.Enemy;
 import projectiles.Projectile;
-import utilities.Node;
 import utilities.ProjectileObserver;
 import utilities.Radar;
 import utilities.UpdateObserver;
@@ -36,10 +36,11 @@ public class ProjectileModel implements UpdateObserver{
 
     public void addProjectile(Projectile projectile){
         projectiles.add(projectile);
+        projectile.getSpriteAdapter().rotateTowards(projectile.getNewPosition(), 90);
     }
 
     public void move(Projectile p){
-            p.setNewPosition();
+            p.setNewPosition();   
     }
 
     public boolean checkIfHitEnemies(Projectile projectile) {
