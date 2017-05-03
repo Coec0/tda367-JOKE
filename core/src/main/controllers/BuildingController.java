@@ -1,5 +1,6 @@
 package controllers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -9,6 +10,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import buildings.Building;
 import buildings.towers.Tower;
 import buildings.towers.TowerFactory;
+import buildings.towers.targetmethods.TargetClosest;
+import buildings.towers.targetmethods.TargetFirst;
+import buildings.towers.targetmethods.TargetFurthest;
+import buildings.towers.targetmethods.TargetLast;
+import buildings.towers.targetmethods.TargetStrongest;
+import buildings.towers.targetmethods.TargetWeakest;
 import models.AlienModel;
 import models.BuildingModel;
 import utilities.Node;
@@ -37,6 +44,31 @@ public class BuildingController extends ClickListener implements InputProcessor 
 
     @Override
     public void clicked(InputEvent event, float x, float y){
+    	if(event.getListenerActor().getName().equals("tFirst")){
+    		Tower tower = (Tower)highlighted; //TODO fix safer solution
+    		tower.setTargetState(new TargetFirst());
+    	}
+    	if(event.getListenerActor().getName().equals("tLast")){
+    		Tower tower = (Tower)highlighted; //TODO fix safer solution
+    		tower.setTargetState(new TargetLast());
+    	}
+    	if(event.getListenerActor().getName().equals("tStrong")){
+    		Tower tower = (Tower)highlighted; //TODO fix safer solution
+    		tower.setTargetState(new TargetStrongest());
+    	}
+    	if(event.getListenerActor().getName().equals("tWeak")){
+    		Tower tower = (Tower)highlighted; //TODO fix safer solution
+    		tower.setTargetState(new TargetWeakest());
+    	}
+    	if(event.getListenerActor().getName().equals("tClose")){
+    		Tower tower = (Tower)highlighted; //TODO fix safer solution
+    		tower.setTargetState(new TargetClosest());
+    	}
+    	if(event.getListenerActor().getName().equals("tFar")){
+    		Tower tower = (Tower)highlighted; //TODO fix safer solution
+    		tower.setTargetState(new TargetFurthest());
+    	}
+    	
 		 if(event.getListenerActor().getName().equals("soldier")){
 			onMouse = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
 			BView.placeTexture(onMouse);
@@ -75,6 +107,9 @@ public class BuildingController extends ClickListener implements InputProcessor 
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     	Vector3 v = new Vector3 (screenX , screenY, 0);
 		WP.unproject(v);
+		if(v.x >= Gdx.graphics.getWidth()-200) //TODO NEEDS FIXING ASAP! CREATES SOME BUGS
+			return false;
+		
     	if(onMouse != null){
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
