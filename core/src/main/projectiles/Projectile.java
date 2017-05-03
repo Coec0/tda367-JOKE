@@ -29,6 +29,15 @@ public abstract class Projectile {
         this.direction = createDirectionVector();
     }
 
+    public void setDamage(float damage){
+        this.damage = damage;
+    }
+
+    public void setAreaOfEffect(boolean areaOfEffect){
+        this.areaOfEffect = areaOfEffect;
+    }
+
+
     public void setSpritePosition(Node position){
         sprite.setPosition(position.getX(), position.getY());
     }

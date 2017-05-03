@@ -1,5 +1,6 @@
 package models;
 
+import buildings.towers.TowerUpgrader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
@@ -19,12 +20,14 @@ public class BuildingModel implements UpdateObserver {
 	Array<WhiteHouse> whitehouses;
 	Array<Alien> aliens;
 	private Radar radar;
+	private TowerUpgrader upgrader;
 
     public BuildingModel(Radar radar) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		// aliens = AModel.getAllAliens();
 		this.radar = radar;
+		upgrader = new TowerUpgrader();
 	}
     
     private void voteTower(Tower tower){
@@ -68,8 +71,8 @@ public class BuildingModel implements UpdateObserver {
 		towers.removeIndex(index);
 	}
 
-	public void upgradeTower(int index) {
-		// TODO
+	public void upgradeTower(Tower tower) {
+
 	}
 	
 	public void fireAllTowers(){

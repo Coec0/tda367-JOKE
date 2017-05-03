@@ -59,6 +59,14 @@ public abstract class Tower extends Building{
 		return this.cost;
 	}
 
+	public void setRadius(float radius){
+    	this.radius = radius;
+	}
+
+	public void setCooldown(int cooldown){
+		this.cooldown = cooldown;
+	}
+
 	public void shoot() {
 		this.makeProjectile();
     }
