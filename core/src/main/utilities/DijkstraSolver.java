@@ -16,7 +16,7 @@ public class DijkstraSolver {
 		resetMapNodes();
 		this.startNode = startNode;
 		this.endNode = endNode;
-		startNode.setPathLenght(0);
+		startNode.setPathLength(0);
 		setCurrentNode(startNode);
 		weighNeighbors();
 		
@@ -37,8 +37,8 @@ public class DijkstraSolver {
 	
 	
 	private void weighNeighbor(MapNode node){
-		if(currentNode.getPathLenght() + currentNode.getDistanceTo(node) < node.getPathLenght()){
-			node.setPathLenght(currentNode.getPathLenght() + currentNode.getDistanceTo(node));
+		if(currentNode.getPathLength() + currentNode.getDistanceTo(node) < node.getPathLength()){
+			node.setPathLength(currentNode.getPathLength() + currentNode.getDistanceTo(node));
 			node.setPrevID(currentNode.getID());
 		}
 		
@@ -68,9 +68,9 @@ public class DijkstraSolver {
 		float currentMinValue = Float.MAX_VALUE;
 		MapNode prospect = currentNode; //just to have a starting value
 		for(MapNode node : allNodes){
-			if( !node.Visited() && node.getPathLenght() <= currentMinValue){
+			if( !node.hasBeenVisited() && node.getPathLength() <= currentMinValue){
 				prospect = node;
-				currentMinValue = node.getPathLenght();
+				currentMinValue = node.getPathLength();
 			}
 		}
 
@@ -80,9 +80,9 @@ public class DijkstraSolver {
 	private boolean isDone(){
 		int counter = 0;
 		for(MapNode node : allNodes){
-			if(!node.Visited() && node.getPathLenght() == Float.MAX_VALUE){	//return true if all nonvisited nodes have pathlenght inf
+			if(!node.hasBeenVisited() && node.getPathLength() == Float.MAX_VALUE){	//return true if all nonvisited nodes have pathlenght inf
 				return true;
-			}else if(node.Visited()){
+			}else if(node.hasBeenVisited()){
 				counter++;
 			}
 		}

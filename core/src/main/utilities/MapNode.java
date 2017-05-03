@@ -3,25 +3,28 @@ package utilities;
 import com.badlogic.gdx.utils.Array;
 
 public class MapNode {
+
 	private String ID;
 	private Node pos;
 	private Array<String> neighbors;
 	private String prevID;
-	private float pathLenght;
-	private boolean visited = false;
+	private float pathLength;
+	private boolean visited;
 	
 	public MapNode(String ID, Node pos){
 		this.ID = ID;
 		this.pos = pos;
 		neighbors = new Array<String>();
-		pathLenght = Float.MAX_VALUE; //might have to find better solution to inf
+		pathLength = Float.MAX_VALUE; //might have to find better solution to inf
+		visited = false;
 	}
-	public float getPathLenght() {
-		return pathLenght;
+
+	public float getPathLength() {
+		return pathLength;
 	}
 	
 	public void reset(){
-		pathLenght = Float.MAX_VALUE;
+		pathLength = Float.MAX_VALUE;
 		visited = false;
 	}
 	
@@ -29,12 +32,12 @@ public class MapNode {
 		visited = true;
 	}
 	
-	public boolean Visited(){
+	public boolean hasBeenVisited() {
 		return visited;
 	}
 	
-	public void setPathLenght(float pathLenght) {
-		this.pathLenght = pathLenght;
+	public void setPathLength(float pathLength) {
+		this.pathLength = pathLength;
 	}
 	
 	public String getPrevID() {
