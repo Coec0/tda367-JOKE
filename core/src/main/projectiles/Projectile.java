@@ -7,29 +7,26 @@ import utilities.SpriteAdapter;
  * Created by Emil on 2017-04-04.
  */
 public abstract class Projectile {
-    private boolean areaOfEffect;
     private Node direction;
     private Node position;
     private SpriteAdapter sprite;
     private float radius;
     private float speed;
     private float damage;
+    private int health;
 
-    public Projectile(float damage, float speed, boolean areaOfEffect, float radius, Node direction, Node position){
+    public Projectile(int health, float damage, float speed,float radius, Node direction, Node position){
         this.radius = radius;
         this.speed = speed;
-        this.areaOfEffect = areaOfEffect;
         this.direction = direction;
         //System.out.println(this.direction.getX() + " " + this.direction.getY());
         this.position = position;
         this.sprite = new SpriteAdapter((int)position.getX(), (int)position.getY());
         this.direction = createDirectionVector();
         this.damage = damage;
+        this.health = health;
     }
 
-    public void setAreaOfEffect(boolean areaOfEffect){
-        this.areaOfEffect = areaOfEffect;
-    }
 
 
     public void setSpritePosition(Node position){
@@ -48,6 +45,14 @@ public abstract class Projectile {
     
     public float getRadius(){
     	return radius;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void reduceHealth(){
+        health--;
     }
     public Node getNewPosition(){
         float newX = position.getX() + (direction.getX() * speed);

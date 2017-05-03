@@ -3,6 +3,7 @@ package models;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Enemy;
+import projectiles.IAOEProjectile;
 import projectiles.Projectile;
 import utilities.ProjectileObserver;
 import utilities.Radar;
@@ -27,7 +28,12 @@ public class ProjectileModel implements UpdateObserver{
         for (Projectile projectile : projectiles){
             move(projectile);
             if (checkIfHitEnemies(projectile)){
-                damageEnemies(projectile);
+                if(projectile instanceof IAOEProjectile){
+                    aoeDamage(projectile);
+                }
+                else{
+                    singleDamage(projectile);
+                }
             }
             checkForRemoval(projectile);
         }
@@ -48,17 +54,33 @@ public class ProjectileModel implements UpdateObserver{
         return (enemies.size != 0);
     }
 
+
     public Array<Enemy> scan(Projectile projectile){
         Array<Enemy> enemies = radar.scan(projectile.getPosition(), projectile.getRadius()); //hardcoded
         return enemies;
     }
 
-    public void damageEnemies(Projectile projectile){
-        Array<Enemy> enemies = scan(projectile);
+    public Array<Enemy> aoeScan(Projectile projectile){
+        Array<Enemy> enemies = radar.scan(projectile.getPosition(), ((IAOEProjectile) projectile).getAOERadius()); //hardcoded
+        return enemies;
+    }
+
+
+
+    public void aoeDamage(Projectile projectile){
+        Array<Enemy> enemies = aoeScan(projectile);
         for (Enemy enemy: enemies){
         enemy.hurt(projectile.getDamage());
         }
+        projectile.reduceHealth();
     }
+
+    public void singleDamage(Projectile projectile){
+        Enemy enemy = scan(projectile).first();
+        enemy.hurt(projectile.getDamage());
+        projectile.reduceHealth();
+    }
+
 
 
     public boolean ifOutOfBounds(Projectile p){
@@ -71,9 +93,8 @@ public class ProjectileModel implements UpdateObserver{
     }
 
 
-
     public void checkForRemoval(Projectile p){
-            if (ifOutOfBounds(p) || checkIfHitEnemies(p)){
+            if (ifOutOfBounds(p) || checkIfHitEnemies(p) || p.getHealth() == 0){
                 notifyObservers(p, "remove");
             }
     }

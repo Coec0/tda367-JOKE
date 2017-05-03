@@ -8,13 +8,23 @@ import java.awt.*;
 /**
  * Created by Emil on 2017-04-04.
  */
-public class Missile extends Projectile {
+public class Missile extends Projectile implements IAOEProjectile{
 
-    private static final boolean AREAOFEFFECT = true;
-    private static final float RADIUS = 20; 
+    private static final float AREAOFEFFECTRADIUS = 5000;
+    private static final float RADIUS = 20;
+    private static final int HEALTH = 1;
 
     public Missile(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){
-        super(DAMAGE, SPEED, AREAOFEFFECT,RADIUS, DIRECTION, POSITION);
+        super(HEALTH, DAMAGE, SPEED,RADIUS, DIRECTION, POSITION);
     }
 
+    @Override
+    public float getAOERadius() {
+        return AREAOFEFFECTRADIUS;
+    }
+
+    @Override
+    public void setAOERadius() {
+
+    }
 }

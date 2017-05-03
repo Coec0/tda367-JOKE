@@ -6,12 +6,23 @@ import utilities.Node;
 /**
  * Created by Emil on 2017-04-17.
  */
-public class ArtilleryRound extends Projectile {
+public class ArtilleryRound extends Projectile implements IAOEProjectile {
 
-    private static final boolean AREAOFEFFECT = true;
-    private static final float RADIUS = 20; 
+    private static final float AREAOFEFFECTRADIUS = 30;
+    private static final float RADIUS = 20;
+    private static final int HEALTH = 1;
 
     public ArtilleryRound(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){
-        super(DAMAGE, SPEED, AREAOFEFFECT, RADIUS, DIRECTION, POSITION);
+        super(HEALTH, DAMAGE, SPEED, RADIUS, DIRECTION, POSITION);
+    }
+
+    @Override
+    public float getAOERadius() {
+        return AREAOFEFFECTRADIUS;
+    }
+
+    @Override
+    public void setAOERadius() {
+
     }
 }

@@ -13,7 +13,7 @@ public class Tank extends Tower implements Democrat{
     private static final int COOLDOWN = 50;
     private static String DESCRIPTION = "Great damage but shoots slow";
     private static final float SIZE = 50;
-    private static final float DAMAGE = 40;
+    private static final float DAMAGE = 500;
     private static final float SPEED = 50;
 
 
