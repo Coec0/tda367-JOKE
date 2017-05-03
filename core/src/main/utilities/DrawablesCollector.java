@@ -62,7 +62,6 @@ public final class DrawablesCollector {
 	 */
 	public void addStage(Stage stage){
 		stages.add(stage);
-		System.out.println(getStages().size);
 	}
 	
 	/**
