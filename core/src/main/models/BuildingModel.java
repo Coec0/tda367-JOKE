@@ -1,12 +1,12 @@
 package models;
 
-import buildings.towers.TowerUpgrader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
 import buildings.WhiteHouse;
 import buildings.towers.Tower;
+import buildings.towers.TowerUpgrader;
 import enemies.Alien;
 import enemies.Enemy;
 import politics.parties.Party;
@@ -47,10 +47,18 @@ public class BuildingModel implements UpdateObserver {
     	}
     }
 
+    public void clickedBuilding(Building building){
+    	notifyObservers(building, false, true);
+    }
+    
+	public void deselect(Building building) {
+		notifyObservers(building, true, true);
+	}
+    
 	public void addTower(Tower tower){
 		towers.add(tower);
 		voteTower(tower);
-		notifyObservers(towers.peek(), false);
+		notifyObservers(towers.peek(), false, false);
 	}
 	
 	public void addTower(Tower tower, int x, int y){
@@ -60,7 +68,7 @@ public class BuildingModel implements UpdateObserver {
 
 	public void createWhiteHouse(int x, int y) {
 		whitehouses.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y,100)); //just tmp size for WH
-		notifyObservers(whitehouses.peek(), false);
+		notifyObservers(whitehouses.peek(), false, false);
 	}
 	
 	public Array<WhiteHouse> getWhiteHouses(){
@@ -148,10 +156,12 @@ public class BuildingModel implements UpdateObserver {
 		observers.removeValue(observer, false);
 	}
 
-	private void notifyObservers(Building building, boolean remove) {
+	private void notifyObservers(Building building, boolean remove, boolean clickedOn) {
 		for (BuildingObserver observer : observers)
-			observer.actOnBuildingChange(building, remove);
+			observer.actOnBuildingChange(building, remove, clickedOn);
 	}
+
+
 
 
 }

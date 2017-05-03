@@ -54,8 +54,8 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
 
 
     @Override
-    public void actOnBuildingChange(Building building, boolean remove) {
-    if(building instanceof Tower)	// Not a good fix, should prob make another observer instead
+    public void actOnBuildingChange(Building building, boolean remove, boolean clickedOn) {
+    if(building instanceof Tower && !clickedOn)	// Not a good fix, should prob make another observer instead
        updateTowerObservers((Tower)building, remove);
     }
 }

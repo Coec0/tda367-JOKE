@@ -82,15 +82,28 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	}else{
     		Building clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){
-    			System.out.println("BuildingCont: Tower clicked"); 
-    			highlighted = clicked;
+    			buildingClicked(clicked);
     		}else{
-    			highlighted = null;
-    			System.out.println("BuildingCont: Ground Clicked"); 
+    			groundClicked();
     		}
     	}
 		return false;
 	}
+    
+    private void buildingClicked(Building building){
+    	System.out.println("BuildingCont: Tower clicked"); 
+		highlighted = building;
+		BModel.clickedBuilding(building);
+		
+    }
+    
+    private void groundClicked(){
+    	if(highlighted != null)
+    		BModel.deselect(highlighted);
+    	highlighted = null;
+		System.out.println("BuildingCont: Ground Clicked");
+    }
+    
     
     public Building getClickedBuilding(int x, int y){
     
