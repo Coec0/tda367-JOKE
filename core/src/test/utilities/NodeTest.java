@@ -1,8 +1,7 @@
 package utilities;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import java.awt.*;
 
 import static org.junit.Assert.*;
 
@@ -12,25 +11,30 @@ import static org.junit.Assert.*;
  */
 public class NodeTest {
 
+    private Node node;
+    private Node other;
+
+    @Before
+    public void setUp() throws Exception {
+        node = new Node(100,100);
+        other = new Node(200,200);
+    }
+
     @Test
     public void getDeltaX() throws Exception {
-        Node node = new Node(100,0);
-        Node other = new Node(0,100);
-
-        assertEquals(node.getDeltaX(other), 100, 0);
+        Node another = new Node(-100,-100);
+        assertEquals(node.getDeltaX(another), -200, 0);
     }
 
     @Test
     public void getDeltaY() throws Exception {
-        Node node = new Node(0,0);
         Node other = new Node(100,150);
 
-        assertEquals(node.getDeltaY(other), 150, 0);
+        assertEquals(node.getDeltaY(other), 50, 0);
     }
 
     @Test
     public void getLength() throws Exception {
-        Node node = new Node(100,200);
         float x = node.getX();
         float y = node.getY();
 
@@ -40,35 +44,29 @@ public class NodeTest {
 
     @Test
     public void getDistanceTo() throws Exception {
-        Node start = new Node(200,200);
-        Node goal = new Node(100,100);
-        float dx = start.getDeltaX(goal);
-        float dy = start.getDeltaY(goal);
+        float dx = node.getDeltaX(other);
+        float dy = node.getDeltaY(other);
 
         double testDistance = Math.sqrt(dx*dx + dy*dy);
 
-        assertEquals(start.getDistanceTo(goal), testDistance, 0);
+        assertEquals(node.getDistanceTo(other), testDistance, 0);
     }
 
     @Test
     public void getAsNormalizedNode() throws Exception {
-        Node node = new Node(100, 100);
-        Node another = new Node(200,200);
-
-        float startDistance = (float) node.getDistanceTo(another);
-        float dx = node.getDeltaX(another);
-        float dy = node.getDeltaY(another);
+        float startDistance = (float) node.getDistanceTo(other);
+        float dx = node.getDeltaX(other);
+        float dy = node.getDeltaY(other);
 
         float normalizedX = dx/startDistance;
         float normalizedY = dy/startDistance;
 
-        assertEquals(node.getAsNormalizedNode(another).getX(), normalizedX, 0);
-        assertEquals(node.getAsNormalizedNode(another).getY(), normalizedY, 0);
+        assertEquals(node.getAsNormalizedNode(other).getX(), normalizedX, 0);
+        assertEquals(node.getAsNormalizedNode(other).getY(), normalizedY, 0);
     }
 
     @Test
     public void setCord() throws Exception {
-        Node node = new Node(100, 100);
         node.setCord(150,200);
 
         assertEquals(node.getY(), 200, 0);
