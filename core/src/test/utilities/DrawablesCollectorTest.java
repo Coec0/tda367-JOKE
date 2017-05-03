@@ -35,7 +35,7 @@ public class DrawablesCollectorTest {
         drawablesCollector.addSprite(spriteAdapter);
 
         assertEquals(drawablesCollector.getSprites().size, 1);
-        assertTrue(drawablesCollector.getSprites().contains(spriteAdapter, false));
+        assertEquals(drawablesCollector.getSprites().contains(spriteAdapter, false), true);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class DrawablesCollectorTest {
         drawablesCollector.removeSprite(spriteAdapter);
 
         assertEquals(drawablesCollector.getSprites().size, 0);
-        assertFalse(drawablesCollector.getSprites().contains(spriteAdapter, false));
+        assertEquals(drawablesCollector.getSprites().contains(spriteAdapter, false), false);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class DrawablesCollectorTest {
         drawablesCollector.addStage(stage);
 
         assertEquals(drawablesCollector.getStages().size, 1);
-        assertTrue(drawablesCollector.getStages().contains(stage, false));
+        assertEquals(drawablesCollector.getStages().contains(stage, false), true);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class DrawablesCollectorTest {
         drawablesCollector.removeStage(stage);
 
         assertEquals(drawablesCollector.getStages().size, 0);
-        assertFalse(drawablesCollector.getStages().contains(stage, false));
+        assertEquals(drawablesCollector.getStages().contains(stage, false), false);
     }
 
     @Test
