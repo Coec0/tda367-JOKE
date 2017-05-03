@@ -13,6 +13,7 @@ public class Map {
 	private Texture map;
 	private Scanner scanner;
 	private Array<MapNode> mapNodes;
+	private Array<MapNode> startingNodes;
 	
 	public Map(String mapName){
 		setMap(mapName);
@@ -24,7 +25,23 @@ public class Map {
 			map = new Texture("AlphaMap.png");
 			mapNodes = new Array<MapNode>();
 			readNodes(mapName);
-			
+			setStartingNodes();
+			return true;
+		}
+		return false;
+	}
+	
+	public Array<MapNode> getStartingNodes(){
+		return startingNodes;
+	}
+	
+	public boolean setStartingNodes(){
+		if(currentMapName.equals("AlphaMap")){
+			startingNodes = new Array<MapNode>();
+			startingNodes.add(mapNodes.get(0));
+			startingNodes.add(mapNodes.get(1));
+			startingNodes.add(mapNodes.get(2));
+			startingNodes.add(mapNodes.get(3));
 			return true;
 		}
 		return false;
