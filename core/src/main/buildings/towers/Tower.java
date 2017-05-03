@@ -5,11 +5,8 @@ import com.badlogic.gdx.utils.Array;
 import buildings.Building;
 import buildings.towers.targetmethods.ITargetState;
 import buildings.towers.targetmethods.TargetLast;
-import controllers.ProjectileController;
 import enemies.Enemy;
-import politics.parties.Party;
 import projectiles.Projectile;
-import utilities.Node;
 import utilities.ProjectileObserver;
 
 public abstract class Tower extends Building{
@@ -74,7 +71,7 @@ public abstract class Tower extends Building{
 			target = null;
 		}else{
 			this.target = TState.getEnemy(super.getPos(), targets);
-			rotateTowards(target.getPos());
+			super.getSpriteAdapter().rotateTowards(target.getPos());
 		}
 		
 	}
@@ -88,22 +85,6 @@ public abstract class Tower extends Building{
 		return target;
 	}
 
-	// we probably need to move this fuction to a helper class. I just
-	// copy-pasted from enemy for now (test)
-
-	public void rotateTowards(Node newDir) {
-		float oldX = super.getPos().getX();
-		float oldY = super.getPos().getY();
-		float newX = newDir.getX();
-		float newY = newDir.getY();
-
-		float angle = (float) Math.toDegrees(Math.atan2(newY - oldY, newX - oldX));
-
-		if (angle >= 0) {
-			angle += 360;
-		}
-		super.getSpriteAdapter().setRotation(angle);
-	}
     public void removeObserver(ProjectileObserver observer) {
         observers.removeValue(observer, false);
     }

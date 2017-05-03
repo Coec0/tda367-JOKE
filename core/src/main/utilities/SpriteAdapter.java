@@ -31,6 +31,30 @@ public class SpriteAdapter extends Sprite{
 		return ID;
 	}
 	
+	/**
+	 * Rotates this sprite towards input node. Offset the starting angle
+	 * @param node
+	 * @param offset
+	 * Degrees
+	 */
+	public void rotateTowards(Node node, float offset){
+		float oldX = getX();
+		float oldY = getY();
+		float newX = node.getX();
+		float newY = node.getY();
+		float angle = (float) Math.toDegrees(Math.atan2(newY - oldY, newX - oldX));
+		angle -= offset;
+		if (angle >= 0) {
+			angle += 360;
+		}
+		this.setRotation(angle);
+	}
+	
+	public void rotateTowards(Node node){
+		rotateTowards(node, 0);
+	}
+	
+	
 	@Override
 	public void setPosition(float x, float y) {
 		super.setPosition(x-super.getOriginX(), y-super.getOriginY());

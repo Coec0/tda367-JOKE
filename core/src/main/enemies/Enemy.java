@@ -27,18 +27,8 @@ public abstract class Enemy {
 	
 	public void rotateEnemy() {
 		if(nodeArrayPos + 1 < path.size){
-		float oldX = pos.getX();
-		float oldY = pos.getY();
-		float newX = path.get(nodeArrayPos + 1).getX();
-		float newY = path.get(nodeArrayPos + 1).getY();
-		float angle = (float) Math.toDegrees(Math.atan2(newY - oldY, newX - oldX));
-		angle -= 90;
-		if (angle >= 0) {
-			angle += 360;
+			this.getSpriteAdapter().rotateTowards(path.get(nodeArrayPos + 1), 90);
 		}
-		pos.setRotation(angle);
-		}
-		
 	}
 	
 	public void setStartignPos(){
