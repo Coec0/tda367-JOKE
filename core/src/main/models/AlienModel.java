@@ -74,10 +74,8 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void moveAlien(Enemy enemy){
-		int position = (int)(enemy.getNodeArrayPos()+((int)enemy.getSpeed()*0.01));
+		int position = (int)(enemy.getNodeArrayPos()+((int)enemy.getSpeed()));
 		if(position >= enemy.getPath().size){
-			//TODO
-			//Lose life method
 			removeEnemy(enemy);
 		} else {	
 			enemy.setPos(enemy.getPath().get(position));

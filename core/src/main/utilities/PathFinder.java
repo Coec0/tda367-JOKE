@@ -30,7 +30,7 @@ public final class PathFinder {
 	
 	public void calculateShortest(MapNode startNode){
 		Array<Node> tmp = DSolver.solve(startNode, endNode);
-		shortestPaths.add(getFullPath(10,tmp)); //10 = speed
+		shortestPaths.add(getFullPath(0.05f,tmp)); //10 = speed
 	}
 
 	public Array<Node> getShortestPath(MapNode startNode){
