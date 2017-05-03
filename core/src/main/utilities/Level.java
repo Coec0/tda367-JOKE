@@ -9,10 +9,16 @@ public class Level {
 	private  Array<LevelHelperObject> spawnableEnemies;
 	private int wavesAmount;
 	private int currentWave = 0;
+	private boolean randomSpawn;
 	
-	public Level(int wavesAmount,Array<LevelHelperObject> spawnableEnemies){
+	public Level(int wavesAmount,Array<LevelHelperObject> spawnableEnemies,boolean randomSpawn){
+		this.randomSpawn = randomSpawn;
 		this.spawnableEnemies = spawnableEnemies;
 		this.wavesAmount = wavesAmount;
+	}
+	
+	public boolean isRandomSpawn(){
+		return randomSpawn;
 	}
 	
 	public Array<Enemy> getNextWave(boolean shuffle){

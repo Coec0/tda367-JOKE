@@ -7,7 +7,7 @@ public final class PathFinder {
 
 	private Array<Array<Node>> shortestPaths;
 	private Array<MapNode> allNodes;
-	private Array<Node> directionList = new Array<Node>(); 
+
 	private DijkstraSolver DSolver;
 	private MapNode endNode;
 	
@@ -65,7 +65,7 @@ public final class PathFinder {
 	private Array<Node> getFullPath(float speed, Array<Node> pathNodes){
 		
 		Array<Node> fullPath = new Array<Node>();
-		directionList.clear(); //because directionList has to match path
+		
 		
 		for (int i = 0; i < pathNodes.size - 1; i++) {
 			Node start = pathNodes.get(i);
@@ -103,7 +103,7 @@ public final class PathFinder {
 
 			pixelPath.add(nextStep);
 
-			directionList.add(direction);
+			
 
 			current = nextStep;
 			currentDistance = (float) start.getDistanceTo(current);
@@ -114,7 +114,5 @@ public final class PathFinder {
 		return pixelPath;
 	}
 	
-	public Array<Node> getDirectionList(){
-		return this.directionList;
-	}
+
 }

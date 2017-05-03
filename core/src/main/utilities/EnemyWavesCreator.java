@@ -21,24 +21,15 @@ public class EnemyWavesCreator{
 	public EnemyWavesCreator(){
 		Array<LevelHelperObject> tmpEnemies = new Array<LevelHelperObject>();
 		tmpEnemies.add(new LevelHelperObject(new Alien(),5));
-		levels.add(new Level(5,tmpEnemies)); //levels has to be hardcoded. Maybe in textfile in future?
-		levels.add(new Level(7,tmpEnemies));
+		levels.add(new Level(5,tmpEnemies,true)); //levels has to be hardcoded. Maybe in textfile in future?
+		levels.add(new Level(7,tmpEnemies,true));
 		nextLevel();
 		currentWaveIndex = 0;
 	}
 	
-	
-	/*private void spawnNextEnemy(){ 
-		if(enemyCounter < wave.size){
-			cont.spawnAlien(AlienFactory.createAlien()); //TODO remove hardcoded alien!
-			enemyCounter++;
-		}else{
-			waveON = false;
-		}*/
-		
-		
-		
-	
+	public boolean hasLevelRandomSpawn(){
+		return currentLevel.isRandomSpawn();
+	}
 	
 	public Array<Enemy> getNextWave(){
 		currentWaveIndex++;
@@ -55,6 +46,15 @@ public class EnemyWavesCreator{
 	private void nextLevel(){
 		currentLevel = levels.pop();
 	}
+	/*private void spawnNextEnemy(){ 
+	if(enemyCounter < wave.size){
+		cont.spawnAlien(AlienFactory.createAlien()); //TODO remove hardcoded alien!
+		enemyCounter++;
+	}else{
+		waveON = false;
+	}*/
+	
+	
 	
 	/*@Override
 	public boolean keyDown (int keycode) {

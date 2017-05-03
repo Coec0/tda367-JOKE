@@ -15,7 +15,7 @@ public class AlienModel implements UpdateObserver {
 	private PathFinder finder;
 
 	private Array<Enemy> aliens;
-	private Array<Node> path;
+	private Array<Node> defaultPath;
 	private Array<Node> direction;
 	
 	private int frames = 10; //value-time inbetween aliens
@@ -30,19 +30,27 @@ public class AlienModel implements UpdateObserver {
 		this.finder = finder;
 		EWC = new EnemyWavesCreator();
 		aliens = new Array<Enemy>(false, 10);
-		path = finder.getShortestPath(this.startingPos.get(0));
-		direction = finder.getDirectionList();
+		defaultPath = finder.getShortestPath(this.startingPos.get(0));
+		//direction = finder.getDirectionList();
 	}
 	
 	public void addAlien(Enemy enemy){
-		enemy.setPos(new Node((int)path.get(0).getX(),(int)path.get(0).getY()));
+		if(EWC.hasLevelRandomSpawn()){
+			enemy.setPath(finder.getShortestPath(startingPos.random()));
+		}else{
+			enemy.setPath(defaultPath);
+		}
+		enemy.setStartignPos();
 		aliens.add(enemy);
 		notifyObservers(aliens.peek(), false);
 	}
 	
+	
+	
 	private void moveAllAliens(){
 		//if(aliens.size>0){
 			for(Enemy alien : aliens){
+				alien.rotateEnemy();
 				moveAlien(alien);
 				if(alien.isDead()){ //check if alien is dead
 					removeEnemy(alien);
@@ -65,16 +73,16 @@ public class AlienModel implements UpdateObserver {
 		return null;
 	}
 	
-	public void moveAlien(Enemy alien){
-		int position = (int)(alien.getNodeArrayPos()+((int)alien.getSpeed()*0.01));
-		if(position >= path.size){
+	public void moveAlien(Enemy enemy){
+		int position = (int)(enemy.getNodeArrayPos()+((int)enemy.getSpeed()*0.01));
+		if(position >= enemy.getPath().size){
 			//TODO
 			//Lose life method
-			removeEnemy(alien);
+			removeEnemy(enemy);
 		} else {	
-			alien.setPos(path.get(position));
-			alien.setNodeArrayPos(position);
-			alien.setDirection(direction.get(position));
+			enemy.setPos(enemy.getPath().get(position));
+			enemy.setNodeArrayPos(position);
+			//enemy.setDirection(direction.get(position));
 		}
 	}
 	

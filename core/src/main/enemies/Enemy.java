@@ -1,5 +1,7 @@
 package enemies;
 
+import com.badlogic.gdx.utils.Array;
+
 import utilities.Node;
 import utilities.SpriteAdapter;
 
@@ -10,9 +12,11 @@ public abstract class Enemy {
 	private int nodeArrayPos = 0;
 	private Node direction = new Node(0,1); //x and y values for the start direction. Faces towards east now
 	private float radius;
+	private Array<Node> path;
 	
 	public Enemy(int x, int y, float speed, float health,float radius) {
 		this.pos = new SpriteAdapter(x, y);
+		
 		this.radius = radius;
 		this.speed = speed;
 		this.health = health;
@@ -21,12 +25,40 @@ public abstract class Enemy {
 		return health<=0;
 	}
 	
+	public void rotateEnemy() {
+		if(nodeArrayPos + 1 < path.size){
+		float oldX = pos.getX();
+		float oldY = pos.getY();
+		float newX = path.get(nodeArrayPos + 1).getX();
+		float newY = path.get(nodeArrayPos + 1).getY();
+		float angle = (float) Math.toDegrees(Math.atan2(newY - oldY, newX - oldX));
+		angle -= 90;
+		if (angle >= 0) {
+			angle += 360;
+		}
+		pos.setRotation(angle);
+		}
+		
+	}
+	
+	public void setStartignPos(){
+		setPos(path.get(0));
+	}
+	
 	public void hurt(float dmg){
 		health -= dmg;
 	}
 	
 	public void kill(){
 		health=0;
+	}
+	
+	public void setPath(Array<Node> path){
+		this.path = path;
+	}
+	
+	public Array<Node> getPath(){
+		return path;
 	}
 	
 	public void setDirection(Node newDir){
