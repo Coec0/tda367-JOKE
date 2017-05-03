@@ -1,8 +1,10 @@
 package buildings;
 
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ArrayMap;
 
 import politics.parties.Party;
+import utilities.PartyObserver;
 
 public class WhiteHouse extends Building{
 	private int health=20; //temp
@@ -25,6 +27,7 @@ public class WhiteHouse extends Building{
 				if(Party.class.isAssignableFrom(iFace)){ //Checks if Party is superclass
 					System.out.println("Party: "+ party.getClass().getInterfaces()[0].getSimpleName());
 					setPartyValue(party.getClass().getInterfaces()[0].getSimpleName(), party.getVotes());
+					notifyObservers(party.getClass().getInterfaces()[0].getSimpleName(), party.getVotes());
 				}
 			}
 			
@@ -81,5 +84,20 @@ public class WhiteHouse extends Building{
 	
 	public float getMoney(){
 		return money;
+	}
+	
+	private Array<PartyObserver> observers = new Array<PartyObserver>(false, 10);
+
+	public void addObserver(PartyObserver observer) {
+		observers.add(observer);
+	}
+
+	public void removeObserver(PartyObserver observer) {
+		observers.removeValue(observer, false);
+	}
+
+	private void notifyObservers(String party, int votes) {
+		for (PartyObserver observer : observers)
+			observer.actOnPartyVote(party, votes);
 	}
 }
