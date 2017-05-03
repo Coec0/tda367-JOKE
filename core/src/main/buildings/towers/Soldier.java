@@ -11,10 +11,16 @@ public class Soldier extends Tower implements Republican{
     private static final int COST = 50;
     private static final int COOLDOWN = 10;
 	private int votes = 3; // Just for now
+	private static String DESCRIPTION = "";
+	private static final float SIZE = 50;
 
 
     public Soldier(int x, int y){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN);
+        super(x, y, RADIUS, NAME, COST, COOLDOWN,SIZE);
+    }
+    
+    public String getDescription(){
+    	return DESCRIPTION;
     }
 
 

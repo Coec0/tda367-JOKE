@@ -11,8 +11,8 @@ public class WhiteHouse extends Building{
 	private float money;
 	private ArrayMap<Integer, String> pVotes;
 	
-	public WhiteHouse(String name, int x, int y){
-		super(name, x, y);
+	public WhiteHouse(String name, int x, int y,float size){
+		super(name, x, y,size);
 		pVotes = new ArrayMap<Integer, String>(false, 7);
 	}
 	

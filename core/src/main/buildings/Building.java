@@ -6,10 +6,20 @@ import utilities.SpriteAdapter;
 public abstract class Building {
 	private String name;
 	private SpriteAdapter pos;
+	private float size;
 	
-	protected Building(String name, int x, int y){
+	protected Building(String name, int x, int y, float size){
+		this.size = size;
 		this.name = name;
 		this.pos = new SpriteAdapter(x, y);
+	}
+	
+	public float getSize(){
+		return size;
+	}
+	
+	public void setSize(float size){
+		this.size = size;
 	}
 	
     public Node getPos() {

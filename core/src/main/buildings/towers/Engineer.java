@@ -11,9 +11,16 @@ public class Engineer extends Tower{
     private static final String NAME = "ENGINEER";
     private static final int COST = 100;
     private static final int COOLDOWN = 50;
+    private static String DESCRIPTION = "";
+    private static final float SIZE = 50;
+   
 
     public Engineer(int x, int y){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN );
+        super(x, y, RADIUS, NAME, COST, COOLDOWN ,SIZE);
+    }
+    
+    public String getDescription(){
+    	return DESCRIPTION;
     }
 
 

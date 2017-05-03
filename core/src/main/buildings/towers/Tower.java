@@ -20,8 +20,8 @@ public abstract class Tower extends Building{
     private int cooldown;
     private int cooldownTimer;
 
-	protected Tower(int x, int y, float radius, String name, int cost, int cooldown){
-		super(name, x, y);
+	protected Tower(int x, int y, float radius, String name, int cost, int cooldown,float size){
+		super(name, x, y,size);
 		this.cooldown = cooldown;
 		cooldownTimer = cooldown; 
 		this.radius = radius;
