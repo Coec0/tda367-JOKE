@@ -1,13 +1,10 @@
 package views;
 
-import buildings.towers.Marine;
-import buildings.towers.Ranger;
+import buildings.towers.*;
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.Building;
 import buildings.WhiteHouse;
-import buildings.towers.Soldier;
-import buildings.towers.Tank;
 import utilities.BuildingObserver;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
@@ -77,6 +74,14 @@ public class BuildingView implements BuildingObserver{
 		    return marine;
 		if(building instanceof Ranger)
 		    return ranger;
+		if(building instanceof Bazooka)
+		    return bazooka;
+		if(building instanceof Engineer)
+		    return engineer;
+		if(building instanceof Sniper)
+		    return sniper;
+		if(building instanceof Howitzer)
+		    return howitzer;
 		return null;
 		
 	}
