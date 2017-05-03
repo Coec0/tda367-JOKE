@@ -7,18 +7,15 @@ import utilities.SpriteAdapter;
  * Created by Emil on 2017-04-04.
  */
 public abstract class Projectile {
-
-    private float damage;
-    private float speed;
     private boolean areaOfEffect;
     private Node direction;
     private Node position;
     private SpriteAdapter sprite;
     private float radius;
-
+    private float speed;
+    private float damage;
 
     public Projectile(float damage, float speed, boolean areaOfEffect, float radius, Node direction, Node position){
-        this.damage = damage;
         this.radius = radius;
         this.speed = speed;
         this.areaOfEffect = areaOfEffect;
@@ -27,9 +24,6 @@ public abstract class Projectile {
         this.position = position;
         this.sprite = new SpriteAdapter((int)position.getX(), (int)position.getY());
         this.direction = createDirectionVector();
-    }
-
-    public void setDamage(float damage){
         this.damage = damage;
     }
 
@@ -64,10 +58,13 @@ public abstract class Projectile {
     public Node getPosition(){
         return position;
     }
+
     public float getDamage(){
         return damage;
     }
-
+    public float getSpeed(){
+        return speed;
+    }
     private Node createDirectionVector(){
         float x = position.getDeltaX(direction);
         float y = position.getDeltaY(direction);

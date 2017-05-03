@@ -11,19 +11,16 @@ public class TowerUpgrader {
 
     }
 
-    public void upgradeRadius(Tower tower){
-        tower.setRadius(0);
+    public void upgradeRadius(Tower tower, float radius){
+        tower.setRadius(radius);
     }
 
-    public void upgradeDamage(Projectile projectile){
-        projectile.setDamage(0);
+    public void upgradeDamage(Tower tower, float damage){
+        tower.setDamage(damage);
     }
 
-    public void enableAreaOfEffect(Projectile projectile){
-        projectile.setAreaOfEffect(true);
-    }
 
-    public void reduceCooldown(Tower tower){
-        tower.setCooldown(5);
+    public void reduceCooldown(Tower tower, int cooldown){
+        tower.setCooldown(cooldown);
     }
 }

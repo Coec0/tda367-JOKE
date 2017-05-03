@@ -10,17 +10,14 @@ import utilities.DrawablesCollector;
  * Created by Emil on 2017-04-25.
  */
 public class ProjectileView {
-    private Texture bullet, missile, rangerBullet, sniperBullet, artilleryRound, engineerBullet, marineBullet, bazookaMissile;
+    private Texture bullet, missile, artilleryRound, engineerBullet, bazookaMissile;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
 
     public ProjectileView(){
         bullet = new Texture("bullet.png");
         missile = new Texture("missile.png");
-        rangerBullet = new Texture("bullet.png");
-        sniperBullet = new Texture("bullet.png");
         artilleryRound = new Texture("bullet.png");
         engineerBullet = new Texture("bullet.png");
-        marineBullet = new Texture("bullet.png");
         bazookaMissile = new Texture("bullet.png");
     }
 
@@ -43,16 +40,10 @@ public class ProjectileView {
             return bullet;
         if(projectile instanceof Missile)
             return missile;
-        if(projectile instanceof SniperBullet)
-            return sniperBullet;
-        if(projectile instanceof RangerBullet)
-            return rangerBullet;
         if(projectile instanceof ArtilleryRound)
             return artilleryRound;
         if(projectile instanceof EngineerBullet)
             return engineerBullet;
-        if(projectile instanceof MarineBullet)
-            return marineBullet;
         if (projectile instanceof BazookaMissile)
             return bazookaMissile;
         return null;

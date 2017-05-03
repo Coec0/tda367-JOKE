@@ -11,7 +11,7 @@ public class EngineerBullet extends Projectile {
     private static final boolean AREAOFEFFECT = true;
     private static final float RADIUS = 20;
 
-    public EngineerBullet(Node DIRECTION, Node POSITION){
+    public EngineerBullet(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){
         super(DAMAGE, SPEED, AREAOFEFFECT, RADIUS, DIRECTION, POSITION);
     }
 }
