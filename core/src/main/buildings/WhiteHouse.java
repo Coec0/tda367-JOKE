@@ -100,4 +100,10 @@ public class WhiteHouse extends Building{
 		for (PartyObserver observer : observers)
 			observer.actOnPartyVote(party, votes);
 	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

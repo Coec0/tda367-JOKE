@@ -14,6 +14,8 @@ public abstract class Building {
 		this.pos = new SpriteAdapter(x, y);
 	}
 	
+	public abstract String getDescription();
+	
 	public float getSize(){
 		return size;
 	}

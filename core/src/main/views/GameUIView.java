@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import stages.GameUIStage;
 import stages.PoliticalMeterStage;
+import stages.SelectedBuildingStage;
 import utilities.DrawablesCollector;
 import utilities.PartyObserver;
 
@@ -12,12 +13,13 @@ public class GameUIView implements PartyObserver{
 	PoliticalMeterStage PMS;
 	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	
-	public GameUIView(PoliticalMeterStage PMS, GameUIStage HS){
+	public GameUIView(PoliticalMeterStage PMS, GameUIStage HS, SelectedBuildingStage SBS){
 		this.HS = HS;
 		this.PMS = PMS;
 
 		addToView(HS);
 		addToView(PMS);
+		//addToView(SBS);
 	}
 	
 	public void addToView(Stage stage) {

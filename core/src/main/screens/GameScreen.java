@@ -22,6 +22,7 @@ import models.BuildingModel;
 import models.ProjectileModel;
 import stages.GameUIStage;
 import stages.PoliticalMeterStage;
+import stages.SelectedBuildingStage;
 import utilities.DrawablesCollector;
 import utilities.EnemyWavesCreator;
 import utilities.Map;
@@ -92,11 +93,14 @@ public class GameScreen implements Screen{
 		imp.addProcessor(TController);
 		
 		Gdx.input.setInputProcessor(imp);
+		SelectedBuildingStage SBS = new SelectedBuildingStage(TController);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
+		
 		HS = new GameUIStage(AController, TController); 
-		HV = new GameUIView(PMS, HS);
+		HV = new GameUIView(PMS, HS, SBS);
 		
 		imp.addProcessor(HS);
+		imp.addProcessor(SBS);
 		TM.getWhiteHouses().peek().addObserver(HV);
 
 		
