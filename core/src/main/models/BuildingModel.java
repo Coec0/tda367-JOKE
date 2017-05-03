@@ -30,6 +30,17 @@ public class BuildingModel implements UpdateObserver {
 		upgrader = new TowerUpgrader();
 	}
     
+    public Array<Building> getAllBuildings(){
+    	Array<Building> allBuildings = new Array<Building>();
+    	for(Tower tower : towers){
+    		allBuildings.add(tower);
+    	}
+    	for(WhiteHouse wh : whitehouses){
+    		allBuildings.add(wh);
+    	}
+    	return allBuildings;
+    }
+    
     private void voteTower(Tower tower){
     	if(tower instanceof Party){
     		whitehouses.peek().voteParty((Party)tower);

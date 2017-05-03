@@ -6,10 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import buildings.Building;
 import buildings.towers.Tower;
 import buildings.towers.TowerFactory;
 import models.AlienModel;
 import models.BuildingModel;
+import utilities.Node;
 import views.BuildingView;
 
 public class BuildingController extends ClickListener implements InputProcessor {
@@ -18,7 +20,9 @@ public class BuildingController extends ClickListener implements InputProcessor 
     BuildingModel BModel;
     AlienModel AModeL;
     Viewport WP;
-    Tower selected;
+    Tower onMouse;
+    Building highlighted;
+    
 
     public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, Viewport WP){
         this.BView = BView;
@@ -34,54 +38,79 @@ public class BuildingController extends ClickListener implements InputProcessor 
     @Override
     public void clicked(InputEvent event, float x, float y){
 		 if(event.getListenerActor().getName().equals("soldier")){
-			selected = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
-			BView.placeTexture(selected);
+			onMouse = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
+			BView.placeTexture(onMouse);
 		 }
 		 if(event.getListenerActor().getName().equals("tank")){
-				selected = TowerFactory.createTank((int)x, (int)y); // x and y never used
-				BView.placeTexture(selected);
+				onMouse = TowerFactory.createTank((int)x, (int)y); // x and y never used
+				BView.placeTexture(onMouse);
 			 }
 		if(event.getListenerActor().getName().equals("sniper")){
-			selected = TowerFactory.createSniper((int)x, (int)y); // x and y never used
-			BView.placeTexture(selected);
+			onMouse = TowerFactory.createSniper((int)x, (int)y); // x and y never used
+			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("ranger")){
-			selected = TowerFactory.createRanger((int)x, (int)y); // x and y never used
-			BView.placeTexture(selected);
+			onMouse = TowerFactory.createRanger((int)x, (int)y); // x and y never used
+			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("marine")){
-			selected = TowerFactory.createMarine((int)x, (int)y); // x and y never used
-			BView.placeTexture(selected);
+			onMouse = TowerFactory.createMarine((int)x, (int)y); // x and y never used
+			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("howitzer")){
-			selected = TowerFactory.createHowitzer((int)x, (int)y); // x and y never used
-			BView.placeTexture(selected);
+			onMouse = TowerFactory.createHowitzer((int)x, (int)y); // x and y never used
+			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("engineer")){
-			selected = TowerFactory.createEngineer((int)x, (int)y); // x and y never used
-			BView.placeTexture(selected);
+			onMouse = TowerFactory.createEngineer((int)x, (int)y); // x and y never used
+			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("bazooka")){
-			selected = TowerFactory.createBazooka((int)x, (int)y); // x and y never used
-			BView.placeTexture(selected);
+			onMouse = TowerFactory.createBazooka((int)x, (int)y); // x and y never used
+			BView.placeTexture(onMouse);
 		}
     }
     
     @Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    	if(selected != null){
-    		Vector3 v = new Vector3 (screenX , screenY, 0);
-    		WP.unproject(v);
-    		BModel.addTower(selected, (int)v.x,(int) v.y);
-    		selected = null;
+    	Vector3 v = new Vector3 (screenX , screenY, 0);
+		WP.unproject(v);
+    	if(onMouse != null){
+    		BModel.addTower(onMouse, (int)v.x,(int) v.y);
+    		onMouse = null;
     		BView.removePlaceTexture();
+    	}else{
+    		Building clicked = getClickedBuilding((int)v.x,(int) v.y);
+    		if(clicked != null){
+    			System.out.println("BuildingCont: Tower clicked"); 
+    			highlighted = clicked;
+    		}else{
+    			highlighted = null;
+    			System.out.println("BuildingCont: Ground Clicked"); 
+    		}
     	}
 		return false;
 	}
+    
+    public Building getClickedBuilding(int x, int y){
+    
+    	for(Building building : BModel.getAllBuildings()){
+    		if(isInRadius(x,y,building)){
+    			return building;
+    		}
+    	}
+    	return null;
+    	
+    }
+    
+    public boolean isInRadius(int x, int y, Building building){
+    	Node node = new Node(x,y);
+    	return node.getDistanceTo(building.getPos()) <= building.getSize();
+    }
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		if(selected != null){
+		if(onMouse != null){
 			Vector3 v = new Vector3 (screenX , screenY, 0);
     		WP.unproject(v);
 			BView.movePlaceTexture(v.x, v.y);
