@@ -3,13 +3,8 @@ package utilities;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Enemy;
-import models.AlienModel;
 
 public class Radar {
-	
-
-
-	public Radar(){}
 
 	/**
 	 * Scans for all Enemies known by AlienModel.
@@ -41,8 +36,9 @@ public class Radar {
 	/**
 	 * Checks if Alien is within radius from Node. All Aliens it's own radius because of Texture.
 	 * @param center
-	 * @param alien
-	 * @param radius
+	 * @param other
+	 * @param centerRadius
+	 * @param otherRadius
 	 * @return true if within radius
 	 */
     public boolean isNodeWithinRadius(Node center, Node other, float centerRadius, float otherRadius ) {
