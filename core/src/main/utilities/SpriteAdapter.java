@@ -37,23 +37,30 @@ public class SpriteAdapter extends Sprite{
 	 * @param offset
 	 * Degrees
 	 */
-	public void rotateTowards(Node node, float offset){
-		float oldX = getX();
-		float oldY = getY();
-		float newX = node.getX();
-		float newY = node.getY();
-		float angle = (float) Math.toDegrees(Math.atan2(newY - oldY, newX - oldX));
+	public SpriteAdapter rotateTowards(Node node, float offset) {
+		float angle = this.getAngleTo(node);
+
 		angle -= offset;
 		if (angle >= 0) {
 			angle += 360;
 		}
 		this.setRotation(angle);
+
+		return this;
 	}
 	
-	public void rotateTowards(Node node){
-		rotateTowards(node, 0);
+	public SpriteAdapter rotateTowards(Node node) {
+		return rotateTowards(node, 0);
 	}
-	
+
+	/**
+	 * Returns the angle between SpriteAdapter and Node. Calculated with atan2.
+	 * @param node
+	 * @return angle in degrees
+	 */
+	public float getAngleTo(Node node) {
+		return (float) Math.toDegrees(Math.atan2(node.getY() - this.getY(), node.getX() - this.getX()));
+	}
 	
 	@Override
 	public void setPosition(float x, float y) {
