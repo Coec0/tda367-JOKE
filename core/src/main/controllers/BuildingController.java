@@ -1,6 +1,5 @@
 package controllers;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -107,7 +106,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     	Vector3 v = new Vector3 (screenX , screenY, 0);
 		WP.unproject(v);
-		if(v.x >= Gdx.graphics.getWidth()-200) //TODO NEEDS FIXING ASAP! CREATES SOME BUGS
+		System.out.println("screenX: "+screenX+". v.x: "+v.x+". WIDTH: "+WP.getWorldWidth());
+		if(v.x >= WP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
     	if(onMouse != null){
