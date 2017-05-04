@@ -21,13 +21,22 @@ public class Radar {
 		Array<Enemy> knownEnemies = new Array<Enemy>();
 		
 		for(Enemy enemy : enemies) {
-			if (isEnemyWithinRadius(center, enemy, radius)) {
+			if (isNodeWithinRadius(center, enemy.getPos(), radius,enemy.getRadius())) {
 				knownEnemies.add(enemy);
 			}
 		}
-
 		return knownEnemies;
     }
+	
+	public boolean inNodeArrayRadius(Array<Node> nodes, float nodesRadius , Node center ,float centerRadius){
+		for(Node node : nodes){
+			if(isNodeWithinRadius(center,node,centerRadius,nodesRadius)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 	/**
 	 * Checks if Alien is within radius from Node. All Aliens it's own radius because of Texture.
@@ -36,8 +45,8 @@ public class Radar {
 	 * @param radius
 	 * @return true if within radius
 	 */
-    public boolean isEnemyWithinRadius(Node center, Enemy alien, float radius) {
-		return center.getDistanceTo(alien.getPos()) <= radius + alien.getRadius();
+    public boolean isNodeWithinRadius(Node center, Node other, float centerRadius, float otherRadius ) {
+		return center.getDistanceTo(other) <= centerRadius + otherRadius;
 	}
 
 }
