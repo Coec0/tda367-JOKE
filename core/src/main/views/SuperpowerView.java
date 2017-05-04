@@ -2,7 +2,6 @@ package views;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Circle;
-import superpowers.Superpower;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
