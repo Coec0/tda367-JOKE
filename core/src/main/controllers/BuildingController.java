@@ -46,6 +46,14 @@ public class BuildingController extends ClickListener implements InputProcessor 
 
     @Override
     public void clicked(InputEvent event, float x, float y){
+    	if(event.getListenerActor().getName().equals("remove")){
+    		if(onMouse!=null){
+    			onMouse = null;
+    		} else {
+    			BModel.sellTower((Tower)highlighted); //TODO fix safer solution
+    		}
+    	}
+    	
     	if(event.getListenerActor().getName().equals("tFirst")){
     		Tower tower = (Tower)highlighted; //TODO fix safer solution
     		tower.setTargetState(new TargetFirst());

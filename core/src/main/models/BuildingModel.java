@@ -62,7 +62,7 @@ public class BuildingModel implements UpdateObserver {
 	public void addTower(Tower tower){
 		towers.add(tower);
 		voteTower(tower);
-		notifyObservers(towers.peek(), false, false);
+		notifyObservers(tower, false, false);
 	}
 	
 	public void addTower(Tower tower, int x, int y){
@@ -90,8 +90,9 @@ public class BuildingModel implements UpdateObserver {
 		return towers.peek();
 	}
 
-	public void sellTower(int index) {
-		towers.removeIndex(index);
+	public void sellTower(Tower tower) {
+		towers.removeValue(tower, false);
+		notifyObservers(tower, true, false);
 	}
 
 	public void upgradeTower(Tower tower) {

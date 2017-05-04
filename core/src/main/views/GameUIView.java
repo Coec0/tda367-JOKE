@@ -46,7 +46,7 @@ public class GameUIView implements PartyObserver, BuildingObserver {
 			SBS.setBuilding(building);
 			removeFromView(HS);
 			addToView(SBS);
-		} else if(remove && clickedOn){
+		} else if(remove){
 			removeFromView(SBS);
 			addToView(HS);
 		}
