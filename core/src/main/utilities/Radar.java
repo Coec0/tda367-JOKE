@@ -7,11 +7,9 @@ import models.AlienModel;
 
 public class Radar {
 	
-	private AlienModel aModel;
 
-	public Radar(AlienModel aModel){
-		this.aModel = aModel;
-	}
+
+	public Radar(){}
 
 	/**
 	 * Scans for all Enemies known by AlienModel.
@@ -19,16 +17,16 @@ public class Radar {
 	 * @param radius
 	 * @return array of known enemies
 	 */
-	public Array<Enemy> scan(Node center, float radius){
-		Array<Enemy> knownAliens = new Array<Enemy>();
+	public Array<Enemy> scan(Node center, float radius,Array<Enemy> enemies){
+		Array<Enemy> knownEnemies = new Array<Enemy>();
 		
-		for(Enemy alien : aModel.getAllAliens()) {
-			if (isEnemyWithinRadius(center, alien, radius)) {
-				knownAliens.add(alien);
+		for(Enemy enemy : enemies) {
+			if (isEnemyWithinRadius(center, enemy, radius)) {
+				knownEnemies.add(enemy);
 			}
 		}
 
-		return knownAliens;
+		return knownEnemies;
     }
 
 	/**

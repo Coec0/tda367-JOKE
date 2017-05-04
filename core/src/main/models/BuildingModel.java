@@ -16,17 +16,20 @@ import utilities.Radar;
 import utilities.UpdateObserver;
 
 public class BuildingModel implements UpdateObserver {
-	Array<Tower> towers;
-	Array<WhiteHouse> whitehouses;
-	Array<Alien> aliens;
+	private Array<Tower> towers;
+	private Array<WhiteHouse> whitehouses;
+	private Array<Alien> aliens;
 	private Radar radar;
 	private TowerUpgrader upgrader;
+	private AlienModel aModel;
+	
 
-    public BuildingModel(Radar radar) {
+    public BuildingModel(AlienModel aModel) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
+		this.aModel = aModel;
 		// aliens = AModel.getAllAliens();
-		this.radar = radar;
+		this.radar = new Radar();
 		upgrader = new TowerUpgrader();
 	}
     
@@ -117,7 +120,7 @@ public class BuildingModel implements UpdateObserver {
 		Array<Enemy> foundAliens;
 		for (Tower tower : towers) {
 
-			foundAliens = radar.scan(tower.getPos(), tower.getRadius()); // tmp
+			foundAliens = radar.scan(tower.getPos(), tower.getRadius(), aModel.getAllAliens()); // tmp
 			tower.setTarget(foundAliens);
 		}
 		
@@ -126,7 +129,7 @@ public class BuildingModel implements UpdateObserver {
 	private void checkWhitehouses(){
 		Array<Enemy> closeAliens;
 		for (WhiteHouse whitehouse : whitehouses) {
-			closeAliens = radar.scan(whitehouse.getPos(), 5); //5 radius for now
+			closeAliens = radar.scan(whitehouse.getPos(), 5,aModel.getAllAliens()); //5 radius for now
 			if (closeAliens.size > 0) {
 				for (Enemy enemy : closeAliens){
 					if(!enemy.isDead()){

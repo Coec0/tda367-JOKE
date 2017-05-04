@@ -15,12 +15,13 @@ import utilities.UpdateObserver;
  */
 public class ProjectileModel implements UpdateObserver{
     private Array<Projectile> projectiles;
-
+    private AlienModel aModel;
     private Radar radar;
 
-    public ProjectileModel(Radar radar){
+    public ProjectileModel(AlienModel aModel){
+    	this.aModel = aModel;
         projectiles = new Array<Projectile>();
-        this.radar = radar;
+        this.radar = new Radar();
         
     }
 
@@ -57,12 +58,12 @@ public class ProjectileModel implements UpdateObserver{
 
 
     public Array<Enemy> scan(Projectile projectile){
-        Array<Enemy> enemies = radar.scan(projectile.getPosition(), projectile.getRadius()); //hardcoded
+        Array<Enemy> enemies = radar.scan(projectile.getPosition(), projectile.getRadius(),aModel.getAllAliens()); //hardcoded
         return enemies;
     }
 
     public Array<Enemy> aoeScan(Projectile projectile){
-        Array<Enemy> enemies = radar.scan(projectile.getPosition(), ((IAOEProjectile) projectile).getAOERadius()); //hardcoded
+        Array<Enemy> enemies = radar.scan(projectile.getPosition(), ((IAOEProjectile) projectile).getAOERadius(),aModel.getAllAliens()); //hardcoded
         return enemies;
     }
 
