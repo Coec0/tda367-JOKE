@@ -1,5 +1,6 @@
 package models;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Enemy;
@@ -84,7 +85,7 @@ public class ProjectileModel implements UpdateObserver{
 
 
     public boolean ifOutOfBounds(Projectile p){
-        return (p.getPosition().getY() > 720 && p.getPosition().getY() < 0 && p.getPosition().getX() > 1280 && p.getPosition().getX() < 0);
+        return (p.getPosition().getY() > Gdx.graphics.getHeight() && p.getPosition().getY() < 0 && p.getPosition().getX() > Gdx.graphics.getWidth() && p.getPosition().getX() < 0);
     }
 
     public void removeProjectileAfterHit(Projectile p){
@@ -94,7 +95,7 @@ public class ProjectileModel implements UpdateObserver{
 
 
     public void checkForRemoval(Projectile p){
-            if (ifOutOfBounds(p) || checkIfHitEnemies(p) || p.getHealth() == 0){
+            if (ifOutOfBounds(p) || (checkIfHitEnemies(p) && p.getHealth() == 0)){
                 notifyObservers(p, "remove");
             }
     }
