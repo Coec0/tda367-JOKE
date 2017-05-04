@@ -84,7 +84,7 @@ public class GameScreen implements Screen{
 		camera = new OrthographicCamera();
 		WP = new StretchViewport(width, height, camera);
 		//camera.position.set(1280/2, 720/2, 0);
-		BuildingController TController = new BuildingController(BM, AM, TW, WP);
+		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder);
 		
 		IAMain.addObserver(BM);
 		IAMain.addObserver(AM);

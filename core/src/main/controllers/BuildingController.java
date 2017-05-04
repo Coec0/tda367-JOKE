@@ -18,6 +18,7 @@ import buildings.towers.targetmethods.TargetWeakest;
 import models.AlienModel;
 import models.BuildingModel;
 import utilities.Node;
+import utilities.PathFinder;
 import views.BuildingView;
 
 public class BuildingController extends ClickListener implements InputProcessor {
@@ -28,13 +29,15 @@ public class BuildingController extends ClickListener implements InputProcessor 
     Viewport WP;
     Tower onMouse;
     Building highlighted;
+    private PathFinder finder;
     
 
-    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, Viewport WP){
+    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, Viewport WP,PathFinder finder){
         this.BView = BView;
         this.BModel = BModel;
         this.AModeL = AModel;
         this.WP = WP;
+        this.finder = finder;
         
         BModel.addObserver(BView);
         
@@ -106,11 +109,10 @@ public class BuildingController extends ClickListener implements InputProcessor 
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     	Vector3 v = new Vector3 (screenX , screenY, 0);
 		WP.unproject(v);
-		System.out.println("screenX: "+screenX+". v.x: "+v.x+". WIDTH: "+WP.getWorldWidth());
 		if(v.x >= WP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
-    	if(onMouse != null){
+    	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize(), 10)){
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
     		BView.removePlaceTexture();

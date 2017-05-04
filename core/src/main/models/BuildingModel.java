@@ -33,6 +33,7 @@ public class BuildingModel implements UpdateObserver {
 		upgrader = new TowerUpgrader();
 	}
     
+    
     public Array<Building> getAllBuildings(){
     	Array<Building> allBuildings = new Array<Building>();
     	for(Tower tower : towers){
