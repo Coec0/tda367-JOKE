@@ -10,20 +10,21 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import buildings.Building;
 
-public class SelectedBuildingStage extends Stage{
+public class SelectedBuildingStage extends Stage {
 	private Skin skin;
 	private Label description, name;
 	private Building selectedBuilding;
-	
+
 	public SelectedBuildingStage(ClickListener buildingC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+		
 		Table table = new Table();
 		table.setZIndex(9001); // Put on top
-		//table.setDebug(true);
+		// table.setDebug(true);
 		table.setPosition(Gdx.graphics.getWidth() - 200, 0);
 		table.setWidth(200);
 		table.setHeight(720);
-		
+
 		description = new Label("", skin);
 		name = new Label("", skin);
 		name.setWidth(200);
@@ -34,19 +35,21 @@ public class SelectedBuildingStage extends Stage{
 		table.add(getTargetsTable(buildingC));
 		table.row();
 		table.add(description).width(180).bottom();
-		
+		table.row();
+		table.add(removeButton(buildingC));
 		this.addActor(table);
+		table.setVisible(false);
 	}
-	
-	private TextButton addTargetButton(String name, String text, ClickListener CL) {
-		int width = 200;
-		int height = 100;
-		int x = Gdx.graphics.getWidth() - width;
 
-		return addTextButton(x, 0, width, height, name, text, CL);
+	private TextButton removeButton(ClickListener CL) {
+		return addTextButton("remove", "----Garbage bin----", CL);
 	}
-	
-	private Table getTargetsTable(ClickListener buildingC){
+
+	private TextButton addTargetButton(String name, String text, ClickListener CL) {
+		return addTextButton(name, text, CL);
+	}
+
+	private Table getTargetsTable(ClickListener buildingC) {
 		Table table = new Table();
 		table.add(addTargetButton("tFirst", "Target first", buildingC)).expand().bottom();
 		table.row();
@@ -61,22 +64,18 @@ public class SelectedBuildingStage extends Stage{
 		table.add(addTargetButton("tFar", "Target furthest", buildingC)).expand().bottom();
 		return table;
 	}
-	
-	public void setBuilding(Building building){
+
+	public void setBuilding(Building building) {
 		selectedBuilding = building;
 		description.setText(building.getDescription());
 		name.setText(building.getName());
 	}
-	
-	private TextButton addTextButton(int x, int y, float width, float height, String name, String text,
-			ClickListener CL) {
+
+	private TextButton addTextButton(String name, String text, ClickListener CL) {
 		TextButton textButton = new TextButton(text, skin, "default");
 
 		textButton.setName(name);
 		textButton.setTransform(false);
-		textButton.setWidth(width);
-		textButton.setHeight(height);
-		textButton.setPosition(x, y);
 		textButton.addListener(CL);
 		return textButton;
 	}

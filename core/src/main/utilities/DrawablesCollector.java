@@ -2,6 +2,7 @@ package utilities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
@@ -67,6 +68,7 @@ public final class DrawablesCollector {
 		if(!stages.contains(stage, false)){
 			stages.add(stage);
 			refreshStagesVP();
+			showStage(stage);
 		}
 	}
 	
@@ -76,6 +78,7 @@ public final class DrawablesCollector {
 	 */
 	public void removeStage(Stage stage){
 		stages.removeValue(stage, false);
+		hideStage(stage);
 	}
 	
 	/**
@@ -115,5 +118,25 @@ public final class DrawablesCollector {
 		for(Stage stage : getStages()){
 			stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
 		}
+	}
+	
+	/**
+	 * Hides a stage. Necessary to disable clicklisteners
+	 * @param stage
+	 */
+	private void hideStage(Stage stage){
+		for(Actor actor: stage.getActors()){
+			actor.setVisible(false);
+		}	
+	}
+	
+	/**
+	 * Show a stage. Usually already in this state
+	 * @param stage
+	 */
+	private void showStage(Stage stage){
+		for(Actor actor: stage.getActors()){
+			actor.setVisible(true);
+		}	
 	}
 }
