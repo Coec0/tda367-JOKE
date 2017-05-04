@@ -88,11 +88,14 @@ public class BuildingView implements BuildingObserver{
 
 	@Override
 	public void actOnBuildingChange(Building building, boolean remove, boolean clickedOn) {
-		if(!remove && !clickedOn)
+		if(!remove && !clickedOn){
 			addToView(building);
-		else if(!clickedOn)
-			removeFromView(building.getSpriteAdapter());
-		
+			removePlaceTexture();
+		} else if(!clickedOn)
+			removeFromView(building.getSpriteAdapter());	
+		 else if(remove && clickedOn){
+			removeFromView(building.getSpriteAdapter()); //Not sure if necesary
+			removePlaceTexture();
+		}
 	}
-	
 }

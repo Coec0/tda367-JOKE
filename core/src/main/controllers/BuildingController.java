@@ -48,7 +48,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
     public void clicked(InputEvent event, float x, float y){
     	if(event.getListenerActor().getName().equals("remove")){
     		if(onMouse!=null){
-    			onMouse = null;
+    			BModel.deselect(onMouse);
+    			onMouse = null;	
     		} else {
     			BModel.sellTower((Tower)highlighted); //TODO fix safer solution
     		}
@@ -79,38 +80,35 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		tower.setTargetState(new TargetFurthest());
     	}
     	
-		 if(event.getListenerActor().getName().equals("soldier")){
+		if(event.getListenerActor().getName().equals("soldier")){
 			onMouse = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
-			BView.placeTexture(onMouse);
-		 }
-		 if(event.getListenerActor().getName().equals("tank")){
-				onMouse = TowerFactory.createTank((int)x, (int)y); // x and y never used
-				BView.placeTexture(onMouse);
-			 }
+		}
+		if(event.getListenerActor().getName().equals("tank")){
+			onMouse = TowerFactory.createTank((int)x, (int)y); // x and y never used
+		}
 		if(event.getListenerActor().getName().equals("sniper")){
 			onMouse = TowerFactory.createSniper((int)x, (int)y); // x and y never used
-			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("ranger")){
 			onMouse = TowerFactory.createRanger((int)x, (int)y); // x and y never used
-			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("marine")){
 			onMouse = TowerFactory.createMarine((int)x, (int)y); // x and y never used
-			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("howitzer")){
 			onMouse = TowerFactory.createHowitzer((int)x, (int)y); // x and y never used
-			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("engineer")){
 			onMouse = TowerFactory.createEngineer((int)x, (int)y); // x and y never used
-			BView.placeTexture(onMouse);
 		}
 		if(event.getListenerActor().getName().equals("bazooka")){
 			onMouse = TowerFactory.createBazooka((int)x, (int)y); // x and y never used
-			BView.placeTexture(onMouse);
 		}
+		if(onMouse !=null){
+			BView.placeTexture(onMouse);
+			BModel.clickedBuilding(onMouse);
+		}
+			
     }
     
     @Override
@@ -123,7 +121,6 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize(), 10)){
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
-    		BView.removePlaceTexture();
     	}else{
     		Building clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){

@@ -9,7 +9,6 @@ import stages.SelectedBuildingStage;
 import utilities.BuildingObserver;
 import utilities.DrawablesCollector;
 import utilities.PartyObserver;
-import utilities.SpriteAdapter;
 
 public class GameUIView implements PartyObserver, BuildingObserver {
 	GameUIStage HS;
@@ -47,6 +46,9 @@ public class GameUIView implements PartyObserver, BuildingObserver {
 			removeFromView(HS);
 			addToView(SBS);
 		} else if(remove){
+			removeFromView(SBS);
+			addToView(HS);
+		} else if(!remove && !clickedOn){
 			removeFromView(SBS);
 			addToView(HS);
 		}
