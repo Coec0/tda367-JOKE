@@ -105,6 +105,10 @@ public abstract class Enemy {
 		this.pos.setPosition(pos.getX(), pos.getY());
 	}
 
+	public void setPos(float x, float y) {
+		this.pos.setPosition(x, y);
+	}
+
 	public SpriteAdapter getSpriteAdapter(){
 		return pos;
 	}
