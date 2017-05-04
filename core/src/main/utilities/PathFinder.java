@@ -6,6 +6,7 @@ public final class PathFinder {
 	
 
 	private Array<Array<Node>> shortestPaths;
+	private Array<Node> startingNodes;
 	private Array<MapNode> allNodes;
 
 	private DijkstraSolver DSolver;
@@ -16,6 +17,7 @@ public final class PathFinder {
 		this.endNode = endNode;
 		this.allNodes = allNodes;
 		shortestPaths = new Array<Array<Node>>();
+		startingNodes = new Array<Node>();
 		DSolver = new DijkstraSolver(allNodes);
 		
 	}
@@ -31,24 +33,20 @@ public final class PathFinder {
 	public void calculateShortest(MapNode startNode){
 		Array<Node> tmp = DSolver.solve(startNode, endNode);
 		shortestPaths.add(getFullPath(0.05f,tmp)); //10 = speed
+		startingNodes.add(startNode.getPos()); //add at same time so shortest and starting are in match
 	}
 
 	public Array<Node> getShortestPath(MapNode startNode){
-		
-		if(shortestPaths.size == 0){ //check if empty to prevent nUllpointer
-			calculateShortest(startNode);
-			return shortestPaths.get(0); //might as well return right away to save some time
-		}
-
-		for(Array<Node> nodeArray : shortestPaths){
-			if(nodeArray.get(0).equals(startNode.getPos())){ //checks if startingNode in each calculated path is the same as startNode
-				return nodeArray;
+		for(int i = 0; i < startingNodes.size;i++){
+			Node node = startingNodes.get(i); //cant use foreach because i need index i
+			if(startNode.getPos().equals(node)){
+				return shortestPaths.get(i);
 			}
 		}
-		
 		calculateShortest(startNode); //now it only calculates if the path did not exist before
 		return shortestPaths.peek(); //returns the the path we just added
 	}
+		
 	
 	public void setAllNodes(Array<MapNode> allNodes){
 		this.allNodes = allNodes;
