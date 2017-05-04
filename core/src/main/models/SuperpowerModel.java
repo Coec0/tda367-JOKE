@@ -1,15 +1,23 @@
 package models;
 
+import com.badlogic.gdx.utils.Array;
+import enemies.Enemy;
+import superpowers.Nuke;
+import superpowers.Wall;
 import utilities.Radar;
 
 /**
  * Created by Emil on 2017-05-04.
  */
 public class SuperpowerModel {
-    private Radar radar;
+    private Nuke nuke;
 
-    public SuperpowerModel(Radar radar){
-        this.radar = radar;
+    public SuperpowerModel(){
+        nuke = new Nuke();
+    }
+
+    public void useNuke(Array<Enemy> enemies){
+        nuke.perform(enemies);
     }
 
 }

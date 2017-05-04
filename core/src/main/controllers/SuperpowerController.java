@@ -3,6 +3,8 @@ package controllers;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import models.AlienModel;
 import models.SuperpowerModel;
 import views.SuperpowerView;
 
@@ -12,18 +14,21 @@ import views.SuperpowerView;
 public class SuperpowerController extends ClickListener implements InputProcessor {
 
     SuperpowerModel SModel;
+    AlienModel AModel;
     SuperpowerView SView;
+    Viewport VP;
 
-    public SuperpowerController(SuperpowerModel SModel, SuperpowerView SView){
+    public SuperpowerController(SuperpowerModel SModel, SuperpowerView SView, Viewport VP, AlienModel AModel){
         this.SModel = SModel;
         this.SView = SView;
-
+        this.VP = VP;
+        this.AModel = AModel;
     }
 
     @Override
     public void clicked(InputEvent event, float x, float y){
         if(event.getListenerActor().getName().equals("nuke")){
-
+            SModel.useNuke(AModel.getAllAliens());
         }
         if(event.getListenerActor().getName().equals("wall")){
 

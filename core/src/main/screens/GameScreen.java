@@ -17,9 +17,11 @@ import com.example.illegalaliens.IllegalAliensMain;
 import controllers.AlienController;
 import controllers.BuildingController;
 import controllers.ProjectileController;
+import controllers.SuperpowerController;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
+import models.SuperpowerModel;
 import stages.GameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
@@ -31,10 +33,7 @@ import utilities.Node;
 import utilities.PathFinder;
 import utilities.Radar;
 import utilities.SpriteAdapter;
-import views.AlienView;
-import views.BuildingView;
-import views.GameUIView;
-import views.ProjectileView;
+import views.*;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;
@@ -73,6 +72,9 @@ public class GameScreen implements Screen{
 		BuildingView TW = new BuildingView();
 		ProjectileModel PM = new ProjectileModel(AM);
 		ProjectileView PW = new ProjectileView();
+		SuperpowerView SW = new SuperpowerView();
+		SuperpowerModel SM = new SuperpowerModel();
+		SuperpowerController SC = new SuperpowerController(SM, SW, WP, AM);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
 		AlienController AController = new AlienController(AW, AM);
