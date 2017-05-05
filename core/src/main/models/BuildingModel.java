@@ -61,6 +61,7 @@ public class BuildingModel implements UpdateObserver {
     
 	public void addTower(Tower tower){
 		towers.add(tower);
+		tower.setActive(true);
 		voteTower(tower);
 		notifyObservers(tower, false, false);
 	}
@@ -91,6 +92,7 @@ public class BuildingModel implements UpdateObserver {
 	}
 
 	public void sellBuilding(Building building) {
+		building.setActive(false);
 		if(building instanceof Tower)
 			towers.removeValue((Tower)building, false);
 		notifyObservers(building, true, false);

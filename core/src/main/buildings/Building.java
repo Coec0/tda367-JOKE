@@ -7,11 +7,13 @@ public abstract class Building {
 	private String name;
 	private SpriteAdapter pos;
 	private float size;
+	private boolean active;
 	
 	protected Building(String name, int x, int y, float size){
 		this.size = size;
 		this.name = name;
 		this.pos = new SpriteAdapter(x, y);
+		setActive(false);
 	}
 	
 	public abstract String getDescription();
@@ -43,4 +45,12 @@ public abstract class Building {
     public String getName(){
         return this.name;
     }
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 }
