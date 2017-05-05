@@ -5,10 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
+import observers.UpdateObserver;
 import screens.EndGameScreen;
 import screens.GameScreen;
 import screens.MainMenuScreen;
-import utilities.UpdateObserver;
 
 
 public class IllegalAliensMain extends Game {

@@ -6,8 +6,8 @@ import buildings.Building;
 import buildings.towers.targetmethods.ITargetState;
 import buildings.towers.targetmethods.TargetLast;
 import enemies.Enemy;
+import observers.ProjectileObserver;
 import projectiles.Projectile;
-import utilities.ProjectileObserver;
 
 public abstract class Tower extends Building{
 	private float radius;

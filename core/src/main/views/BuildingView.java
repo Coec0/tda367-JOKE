@@ -1,11 +1,12 @@
 package views;
 
 import buildings.towers.*;
+import observers.BuildingObserver;
+
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.Building;
 import buildings.WhiteHouse;
-import utilities.BuildingObserver;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 

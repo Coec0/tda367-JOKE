@@ -6,7 +6,7 @@ import enemies.Alien;
 import enemies.AlienWithHelmet;
 import enemies.Enemy;
 import enemies.SneakyAlien;
-import utilities.AlienObserver;
+import observers.AlienObserver;
 import utilities.SpriteAdapter;
 import utilities.DrawablesCollector;
 

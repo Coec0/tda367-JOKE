@@ -1,6 +1,8 @@
-package utilities;
+package map;
 
 import com.badlogic.gdx.utils.Array;
+
+import utilities.Node;
 
 public class MapNode {
 

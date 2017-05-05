@@ -1,4 +1,4 @@
-package utilities;
+package waves;
 
 import enemies.Enemy;
 

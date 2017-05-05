@@ -3,8 +3,8 @@ package buildings;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ArrayMap;
 
+import observers.PartyObserver;
 import politics.parties.Party;
-import utilities.PartyObserver;
 
 public class WhiteHouse extends Building{
 	private int health=20; //temp

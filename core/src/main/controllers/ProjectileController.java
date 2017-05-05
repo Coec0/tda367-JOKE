@@ -4,9 +4,9 @@ import buildings.Building;
 import buildings.towers.Tower;
 import models.BuildingModel;
 import models.ProjectileModel;
+import observers.BuildingObserver;
+import observers.ProjectileObserver;
 import projectiles.Projectile;
-import utilities.BuildingObserver;
-import utilities.ProjectileObserver;
 import views.ProjectileView;
 
 /**

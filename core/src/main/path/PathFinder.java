@@ -1,6 +1,10 @@
-package utilities;
+package path;
 
 import com.badlogic.gdx.utils.Array;
+
+import map.MapNode;
+import utilities.Node;
+import utilities.Radar;
 
 public final class PathFinder {
 	

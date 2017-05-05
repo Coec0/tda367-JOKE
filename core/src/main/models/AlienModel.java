@@ -4,12 +4,12 @@ import com.badlogic.gdx.utils.Array;
 
 import enemies.AlienFactory;
 import enemies.Enemy;
-import utilities.AlienObserver;
-import utilities.EnemyWavesCreator;
-import utilities.MapNode;
+import map.MapNode;
+import observers.AlienObserver;
+import observers.UpdateObserver;
+import path.PathFinder;
 import utilities.Node;
-import utilities.PathFinder;
-import utilities.UpdateObserver;
+import waves.EnemyWavesCreator;
 
 public class AlienModel implements UpdateObserver {
 	private PathFinder finder;

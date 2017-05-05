@@ -1,7 +1,9 @@
-package utilities;
+package map;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
+
+import utilities.Node;
 
 public class Map {
 	

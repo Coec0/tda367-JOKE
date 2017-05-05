@@ -3,12 +3,12 @@ package views;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import buildings.Building;
+import observers.BuildingObserver;
+import observers.PartyObserver;
 import stages.GameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
-import utilities.BuildingObserver;
 import utilities.DrawablesCollector;
-import utilities.PartyObserver;
 
 public class GameUIView implements PartyObserver, BuildingObserver {
 	GameUIStage HS;

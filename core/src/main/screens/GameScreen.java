@@ -18,22 +18,22 @@ import controllers.AlienController;
 import controllers.BuildingController;
 import controllers.ProjectileController;
 import controllers.SuperpowerController;
+import map.Map;
+import map.MapNode;
 import models.AlienModel;
 import models.BuildingModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
+import path.PathFinder;
 import stages.GameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
 import utilities.DrawablesCollector;
-import utilities.EnemyWavesCreator;
-import utilities.Map;
-import utilities.MapNode;
 import utilities.Node;
-import utilities.PathFinder;
 import utilities.Radar;
 import utilities.SpriteAdapter;
 import views.*;
+import waves.EnemyWavesCreator;
 
 public class GameScreen implements Screen{
 	SpriteBatch batch;

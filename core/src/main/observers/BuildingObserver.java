@@ -1,4 +1,4 @@
-package utilities;
+package observers;
 
 import buildings.Building;
 

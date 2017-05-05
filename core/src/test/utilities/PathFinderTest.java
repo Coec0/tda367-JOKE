@@ -1,7 +1,8 @@
 package utilities;
 
 import org.junit.Test;
-import utilities.PathFinder;
+
+import path.PathFinder;
 
 import static org.junit.Assert.*;
 

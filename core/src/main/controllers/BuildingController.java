@@ -17,8 +17,8 @@ import buildings.towers.targetmethods.TargetStrongest;
 import buildings.towers.targetmethods.TargetWeakest;
 import models.AlienModel;
 import models.BuildingModel;
+import path.PathFinder;
 import utilities.Node;
-import utilities.PathFinder;
 import views.BuildingView;
 
 public class BuildingController extends ClickListener implements InputProcessor {

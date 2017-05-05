@@ -9,11 +9,11 @@ import buildings.towers.Tower;
 import buildings.towers.TowerUpgrader;
 import enemies.Alien;
 import enemies.Enemy;
+import observers.BuildingObserver;
+import observers.UpdateObserver;
 import politics.parties.Party;
-import utilities.BuildingObserver;
 import utilities.Node;
 import utilities.Radar;
-import utilities.UpdateObserver;
 
 public class BuildingModel implements UpdateObserver {
 	private Array<Tower> towers;

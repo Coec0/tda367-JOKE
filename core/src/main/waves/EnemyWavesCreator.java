@@ -1,4 +1,4 @@
-package utilities;
+package waves;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;

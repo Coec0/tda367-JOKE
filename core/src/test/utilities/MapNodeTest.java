@@ -1,6 +1,9 @@
 package utilities;
 
 import com.badlogic.gdx.utils.Array;
+
+import map.MapNode;
+
 import org.junit.Before;
 import org.junit.Test;
 

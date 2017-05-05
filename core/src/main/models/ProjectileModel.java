@@ -4,11 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Enemy;
+import observers.ProjectileObserver;
+import observers.UpdateObserver;
 import projectiles.IAOEProjectile;
 import projectiles.Projectile;
-import utilities.ProjectileObserver;
 import utilities.Radar;
-import utilities.UpdateObserver;
 
 /**
  * Created by Emil on 2017-04-26.

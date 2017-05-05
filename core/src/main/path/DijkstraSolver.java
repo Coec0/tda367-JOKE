@@ -1,6 +1,9 @@
-package utilities;
+package path;
 
 import com.badlogic.gdx.utils.Array;
+
+import map.MapNode;
+import utilities.Node;
 
 public class DijkstraSolver {
 	private Array<MapNode> allNodes;
