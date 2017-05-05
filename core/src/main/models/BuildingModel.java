@@ -90,9 +90,10 @@ public class BuildingModel implements UpdateObserver {
 		return towers.peek();
 	}
 
-	public void sellTower(Tower tower) {
-		towers.removeValue(tower, false);
-		notifyObservers(tower, true, false);
+	public void sellBuilding(Building building) {
+		if(building instanceof Tower)
+			towers.removeValue((Tower)building, false);
+		notifyObservers(building, true, false);
 	}
 
 	public void upgradeTower(Tower tower) {

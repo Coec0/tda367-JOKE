@@ -51,34 +51,11 @@ public class BuildingController extends ClickListener implements InputProcessor 
     			BModel.deselect(onMouse);
     			onMouse = null;	
     		} else {
-    			BModel.sellTower((Tower)highlighted); //TODO fix safer solution
+    			BModel.sellBuilding(highlighted);
     		}
     	}
     	
-    	if(event.getListenerActor().getName().equals("tFirst")){
-    		Tower tower = (Tower)highlighted; //TODO fix safer solution
-    		tower.setTargetState(new TargetFirst());
-    	}
-    	if(event.getListenerActor().getName().equals("tLast")){
-    		Tower tower = (Tower)highlighted; //TODO fix safer solution
-    		tower.setTargetState(new TargetLast());
-    	}
-    	if(event.getListenerActor().getName().equals("tStrong")){
-    		Tower tower = (Tower)highlighted; //TODO fix safer solution
-    		tower.setTargetState(new TargetStrongest());
-    	}
-    	if(event.getListenerActor().getName().equals("tWeak")){
-    		Tower tower = (Tower)highlighted; //TODO fix safer solution
-    		tower.setTargetState(new TargetWeakest());
-    	}
-    	if(event.getListenerActor().getName().equals("tClose")){
-    		Tower tower = (Tower)highlighted; //TODO fix safer solution
-    		tower.setTargetState(new TargetClosest());
-    	}
-    	if(event.getListenerActor().getName().equals("tFar")){
-    		Tower tower = (Tower)highlighted; //TODO fix safer solution
-    		tower.setTargetState(new TargetFurthest());
-    	}
+    	checkIfNewTarget(event);
     	
 		if(event.getListenerActor().getName().equals("soldier")){
 			onMouse = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
@@ -111,7 +88,29 @@ public class BuildingController extends ClickListener implements InputProcessor 
 			
     }
     
-    @Override
+    private void checkIfNewTarget(InputEvent event) {
+    	if(!(highlighted instanceof Tower))
+    		return; //Abort if not tower
+    	
+    	Tower tower = (Tower)highlighted;
+    	
+    	if(event.getListenerActor().getName().equals("tFirst")){
+    		tower.setTargetState(new TargetFirst());
+    	} else if(event.getListenerActor().getName().equals("tLast")){
+    		tower.setTargetState(new TargetLast());
+    	} else if(event.getListenerActor().getName().equals("tStrong")){
+    		tower.setTargetState(new TargetStrongest());
+    	} else if(event.getListenerActor().getName().equals("tWeak")){
+    		tower.setTargetState(new TargetWeakest());
+    	} else if(event.getListenerActor().getName().equals("tClose")){
+    		tower.setTargetState(new TargetClosest());
+    	} else if(event.getListenerActor().getName().equals("tFar")){
+    		tower.setTargetState(new TargetFurthest());
+    	}
+		
+	}
+
+	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     	Vector3 v = new Vector3 (screenX , screenY, 0);
 		WP.unproject(v);

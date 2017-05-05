@@ -9,11 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import buildings.Building;
+import buildings.towers.Tower;
 
 public class SelectedBuildingStage extends Stage {
 	private Skin skin;
 	private Label description, name;
 	private Building selectedBuilding;
+	private Table target;
 
 	public SelectedBuildingStage(ClickListener buildingC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -25,6 +27,7 @@ public class SelectedBuildingStage extends Stage {
 		table.setWidth(200);
 		table.setHeight(720);
 
+		target = getTargetsTable(buildingC);
 		description = new Label("", skin);
 		name = new Label("", skin);
 		name.setWidth(200);
@@ -32,7 +35,7 @@ public class SelectedBuildingStage extends Stage {
 
 		table.add(name).expand().top();
 		table.row();
-		table.add(getTargetsTable(buildingC));
+		table.add(target);
 		table.row();
 		table.add(description).width(180).bottom();
 		table.row();
@@ -66,6 +69,11 @@ public class SelectedBuildingStage extends Stage {
 	}
 
 	public void setBuilding(Building building) {
+		if(building instanceof Tower){
+			target.setVisible(true);
+		} else {
+			target.setVisible(false);
+		}
 		selectedBuilding = building;
 		description.setText(building.getDescription());
 		name.setText(building.getName());

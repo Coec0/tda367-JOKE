@@ -118,9 +118,9 @@ public class BuildingView implements BuildingObserver{
 		if(!remove && !clickedOn){
 			addToView(building);
 			removePlaceTexture();
-		} else if(!clickedOn)
+		} else if(!clickedOn && remove){
 			removeFromView(building.getSpriteAdapter());	
-		 else if(remove && clickedOn){
+		} else if(clickedOn && remove){
 			removePlaceTexture();
 		}
 	}
