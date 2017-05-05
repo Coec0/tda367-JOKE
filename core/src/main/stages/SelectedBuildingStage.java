@@ -28,6 +28,7 @@ public class SelectedBuildingStage extends Stage {
 		table.setHeight(720);
 
 		target = getTargetsTable(buildingC);
+		target.setVisible(false);
 		description = new Label("", skin);
 		name = new Label("", skin);
 		name.setWidth(200);
@@ -69,9 +70,9 @@ public class SelectedBuildingStage extends Stage {
 	}
 
 	public void setBuilding(Building building) {
-		if(building instanceof Tower){
+		if(building instanceof Tower && building.isActive()){
 			target.setVisible(true);
-		} else {
+		} else{
 			target.setVisible(false);
 		}
 		selectedBuilding = building;
