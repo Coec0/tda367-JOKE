@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.IllegalAliensMain;
 
@@ -30,9 +30,12 @@ import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
 import utilities.DrawablesCollector;
 import utilities.Node;
-import utilities.Radar;
 import utilities.SpriteAdapter;
-import views.*;
+import views.AlienView;
+import views.BuildingView;
+import views.GameUIView;
+import views.ProjectileView;
+import views.SuperpowerView;
 import waves.EnemyWavesCreator;
 
 public class GameScreen implements Screen{
@@ -82,7 +85,7 @@ public class GameScreen implements Screen{
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
         
 		camera = new OrthographicCamera();
-		WP = new StretchViewport(width, height, camera);
+		WP = new FitViewport(width, height, camera);
 		//camera.position.set(1280/2, 720/2, 0);
 		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder);
 		

@@ -1,19 +1,27 @@
 package views;
 
-import buildings.towers.*;
-import observers.BuildingObserver;
-
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.Building;
 import buildings.WhiteHouse;
+import buildings.towers.Bazooka;
+import buildings.towers.Engineer;
+import buildings.towers.Howitzer;
+import buildings.towers.Marine;
+import buildings.towers.Ranger;
+import buildings.towers.Sniper;
+import buildings.towers.Soldier;
+import buildings.towers.Tank;
+import observers.BuildingObserver;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class BuildingView implements BuildingObserver{
     private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
-    private SpriteAdapter onMouse;
+    private SpriteAdapter onMouse, sizeCircle;
 
 
     public BuildingView(){
@@ -52,11 +60,17 @@ public class BuildingView implements BuildingObserver{
     	onMouse = new SpriteAdapter(selectTexture(building));
     	onMouse.setSize(onMouse.getWidth()/3, onMouse.getHeight()/3);
     	onMouse.setAlpha(0.5f);
+    	
+    	
+    	sizeCircle = getSizeSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize(), Color.RED);
+    	sizeCircle.setAlpha(0.5f);
+    	addToView(sizeCircle);
     	addToView(onMouse);
     }
     
     public void movePlaceTexture(float x, float y){
     	onMouse.setPosition(x, y);
+    	sizeCircle.setPosition(x, y);
     }
     
     public void removePlaceTexture(){
@@ -85,6 +99,18 @@ public class BuildingView implements BuildingObserver{
 		    return howitzer;
 		return null;
 		
+	}
+	
+	private SpriteAdapter getSizeSpriteAdapter(float x, float y, float radius, Color color){
+		float width = radius*12;
+		float height = width;
+		int radiusI = (int)radius;
+		Pixmap pixmap = new Pixmap((int)width, (int)height, Pixmap.Format.RGBA8888);
+		pixmap.setColor(color);
+		int xI = (int)((x+width)/2-x/2); //Seems to get it close enough
+		int yI = (int)((y+height)/2-y/2);
+		pixmap.fillCircle(xI, yI, radiusI);
+		return new SpriteAdapter(new Texture(pixmap));
 	}
 
 	@Override
