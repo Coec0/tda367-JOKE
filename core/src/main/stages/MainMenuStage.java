@@ -1,13 +1,14 @@
 package stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.IllegalAliensMain;
+
+import static com.badlogic.gdx.utils.Align.center;
 
 public class MainMenuStage extends Stage {
 
@@ -18,16 +19,48 @@ public class MainMenuStage extends Stage {
         this.game = game;
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
-        this.addActor(addStartButton());
+        this.addActor(addImage());
         this.addActor(addWelcomeText());
+        this.addActor(addTable());
+    }
+
+    private Image addImage() {
+        Image alienImage = new Image(new Texture("alien.png"));
+
+        alienImage.setOrigin(alienImage.getWidth() / 2, alienImage.getHeight() / 2);
+        alienImage.rotateBy(180);
+        alienImage.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2 + 100, center);
+
+        return alienImage;
+    }
+
+    private Table addTable() {
+        Table table = new Table();
+
+        table.setWidth(150f);
+        table.setHeight(200f);
+        table.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2 - 100, center);
+
+        return fillTable(table);
+    }
+
+    private Table fillTable(Table table) {
+
+        table.add(addStartButton()).width(100);
+        table.row();
+        table.add(addHiscoreButton()).width(100);
+        table.row();
+        table.add(addSettingsButton()).width(100);
+        table.row();
+        table.add(addAboutButton()).width(100);
+        table.row();
+        table.add(addExitButton()).width(100);
+
+        return table;
     }
 
     private TextButton addStartButton() {
         TextButton startButton = new TextButton("Start game", skin, "default");
-
-        startButton.setWidth(200f);
-        startButton.setHeight(20f);
-        startButton.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 
         startButton.addListener(new ClickListener(){
             @Override
@@ -39,14 +72,67 @@ public class MainMenuStage extends Stage {
         return startButton;
     }
 
+    private TextButton addAboutButton() {
+        TextButton aboutButton = new TextButton("About", skin, "default");
+
+        aboutButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //TODO
+            }
+        });
+
+        return aboutButton;
+    }
+
+    private TextButton addSettingsButton() {
+        TextButton settingsButton = new TextButton("Settings", skin, "default");
+
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //TODO
+            }
+        });
+
+        return settingsButton;
+    }
+
+    private TextButton addExitButton() {
+        TextButton exitButton = new TextButton("Exit game", skin, "default");
+
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                game.shutdown();
+            }
+        });
+
+        return exitButton;
+    }
+
+    private TextButton addHiscoreButton() {
+        TextButton hiscoreButton = new TextButton("Hiscore", skin, "default");
+
+        hiscoreButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //TODO
+            }
+        });
+
+        return hiscoreButton;
+    }
+
     private TextField addWelcomeText() {
         TextField welcomeText = new TextField("", skin, "default");
 
-        welcomeText.setText("Welcome to Illegal Aliens. Press the Start button to start the game.");
-        welcomeText.setWidth(500f);
+        welcomeText.setText("You will perish.");
+        welcomeText.setAlignment(center);
+        welcomeText.setWidth(150f);
         welcomeText.setHeight(30f);
         welcomeText.setDisabled(true);
-        welcomeText.setPosition(Gdx.graphics.getWidth()/2 - 150, Gdx.graphics.getHeight()/2 + 100);
+        welcomeText.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, center);
 
         return welcomeText;
     }
