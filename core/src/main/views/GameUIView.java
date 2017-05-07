@@ -6,11 +6,7 @@ import buildings.Building;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
 import observers.WhiteHouseObserver;
-import stages.NextWaveStage;
-import stages.PoliticalMeterStage;
-import stages.RightGameUIStage;
-import stages.SelectedBuildingStage;
-import stages.TopLeftGameUIStage;
+import stages.*;
 import utilities.DrawablesCollector;
 
 public class GameUIView implements WhiteHouseObserver, BuildingObserver {
@@ -19,19 +15,22 @@ public class GameUIView implements WhiteHouseObserver, BuildingObserver {
 	private SelectedBuildingStage SBS;
 	private TopLeftGameUIStage TL;
 	private NextWaveStage NW;
+	private SuperpowerStage SS;
 	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	
 
-	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,SelectedBuildingStage SBS, NextWaveStage NW) {
+	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,SelectedBuildingStage SBS, NextWaveStage NW, SuperpowerStage SS) {
 		this.HS = HS;
 		this.PMS = PMS;
 		this.SBS = SBS;
 		this.TL = TL;
 		this.NW = NW;
+		this.SS = SS;
 		addToView(NW);
 		addToView(TL);
 		addToView(HS);
 		addToView(PMS);
+		addToView(SS);
 	}
 
 	public void addToView(Stage stage) {

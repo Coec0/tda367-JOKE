@@ -20,9 +20,9 @@ public class SuperpowerStage extends Stage {
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         this.table = new Table();
         table.setDebug(true);
-        table.setPosition(Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/3, 0);
-        table.setHeight(400);
-        table.setWidth(1600);
+        table.setPosition(Gdx.graphics.getWidth() / 4, 35);
+        table.setHeight(50);
+        table.setWidth(400);
 
         table.add(addSuperpowerTable(superC));
         this.addActor(table);
@@ -32,15 +32,18 @@ public class SuperpowerStage extends Stage {
     private Table addSuperpowerTable(ClickListener superC){
 
         Table table = new Table();
-        table.add(addSuperpowerButton(400,"nuke", superC)).expand().top();
-        table.add(addSuperpowerButton(800,"wall", superC));
+        table.add(addSuperpowerButton(100,"nuke", superC)).expand().top();
+        table.add(addSuperpowerButton(200,"wall", superC));
+        table.add(addSuperpowerButton(300,"?", superC));
+        table.add(addSuperpowerButton(400,"?", superC));
+
         return table;
     }
 
     private TextButton addSuperpowerButton(int x, String name, ClickListener CL){
-        int width = 400;
-        int height = 400;
-        int y = 100;
+        int width = 200;
+        int height = 50;
+        int y = 35;
         return addTextButton(x, y, width, height, name, "Superpower: " + name, CL);
     }
 

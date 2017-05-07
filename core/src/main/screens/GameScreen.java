@@ -114,7 +114,7 @@ public class GameScreen implements Screen{
 		NextWaveStage NW = new NextWaveStage(AController);
 		HS = new RightGameUIStage(AController, TController);
 		SS = new SuperpowerStage(SC);
-		HV = new GameUIView(PMS, HS, TL, SBS, NW);
+		HV = new GameUIView(PMS, HS, TL, SBS, NW, SS);
 		BM.addObserver(HV);
 		imp.addProcessor(HS);
 		imp.addProcessor(SBS);

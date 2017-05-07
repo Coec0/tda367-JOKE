@@ -14,7 +14,7 @@ public class SuperpowerView {
     private DrawablesCollector DC = DrawablesCollector.getInstance();
 
     public SuperpowerView(){
-
+        wall = new Texture("TrumpWall.png");
     }
 
     public void removeFromView(SpriteAdapter sprite){
