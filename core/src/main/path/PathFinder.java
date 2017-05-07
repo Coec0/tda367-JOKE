@@ -53,13 +53,17 @@ public final class PathFinder {
 	
 	public Array<Node> getRoadNetwork(){
 		Array<Node> roadNetwork = new Array<Node>();
+		RoadSection roadSection;
 		for(int i = 0; i < allNodes.size;i++){
 			MapNode mn = allNodes.get(i);
 			for(String neighbor : mn.getNeighbors()){
 				MapNode tmp  = findNode(neighbor);
-				Array<Node> pixelPath = getPixelPath(mn.getPos(), tmp.getPos(),1); //Have to adjust speed to optimize
-				for(Node node : pixelPath){
-					roadNetwork.add(node);
+				for(RoadSection rs : roadSections){
+					if( ! (rs.isStartOrEnd(mn.getPos()) && rs.isStartOrEnd(tmp.getPos()))){
+						roadSection = new RoadSection(mn.getPos(), tmp.getPos(),1);
+						roadSections.add(roadSection);
+						roadNetwork.addAll(roadSection.getPixelWalk());
+					}
 				}
 			}
 		}
@@ -124,39 +128,5 @@ public final class PathFinder {
 	
 		return fullPath;
 	}
-
-	/**
-	 * Returns the pixels between two given Nodes
-	 * @param start
-	 * @param goal
-	 * @return
-	 */
-	private Array<Node> getPixelPath(Node start, Node goal, float speed) {
-		Array<Node> pixelPath = new Array<Node>();
-
-		Node current = start;
-		Node direction = start.getAsNormalizedNode(goal);
-
-		float currentDistance = 0;
-
-		while(currentDistance <= start.getDistanceTo(goal)) {
-			Node nextStep = new Node(
-					current.getX() + (direction.getX() * speed),
-					current.getY() + (direction.getY() * speed)
-			);
-
-			pixelPath.add(nextStep);
-
-			
-
-			current = nextStep;
-			currentDistance = (float) start.getDistanceTo(current);
-		}
-		pixelPath.pop();
-		pixelPath.add(goal);
-
-		return pixelPath;
-	}
-	
 
 }

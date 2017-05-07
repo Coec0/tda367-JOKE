@@ -10,11 +10,11 @@ public class RoadSection {
 	private Node end;
 	private float speed;
 	
+	
 	public RoadSection(Node start, Node end, float speed){
 		this.start = start;
 		this.end = end;
 		this.speed = speed;
-		pixelWalk = calcPixelWalk(start,end,speed);
 	}
 	
 	public Array<Node> calcPixelWalk(Node start, Node end, float speed){
@@ -40,6 +40,10 @@ public class RoadSection {
 
 		return pixelPath;
 	}
+	
+	public boolean isStartOrEnd(Node node){
+		return node.equals(start) || node.equals(end);
+	}
 
 	public float getSpeed() {
 		return speed;
@@ -57,6 +61,9 @@ public class RoadSection {
 	}
 	
 	public Array<Node> getPixelWalk() {
+		if(pixelWalk == null){
+			pixelWalk = calcPixelWalk(start,end,speed);
+		}
 		return pixelWalk;
 	}
 	
