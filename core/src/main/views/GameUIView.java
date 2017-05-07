@@ -6,18 +6,18 @@ import buildings.Building;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
 import observers.WhiteHouseObserver;
-import stages.GameUIStage;
+import stages.RightGameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
 import utilities.DrawablesCollector;
 
 public class GameUIView implements WhiteHouseObserver, BuildingObserver {
-	GameUIStage HS;
+	RightGameUIStage HS;
 	PoliticalMeterStage PMS;
 	SelectedBuildingStage SBS;
 	private DrawablesCollector SC = DrawablesCollector.getInstance();
 
-	public GameUIView(PoliticalMeterStage PMS, GameUIStage HS, SelectedBuildingStage SBS) {
+	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, SelectedBuildingStage SBS) {
 		this.HS = HS;
 		this.PMS = PMS;
 		this.SBS = SBS;

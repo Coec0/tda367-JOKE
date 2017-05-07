@@ -7,11 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class GameUIStage extends Stage {
+public class RightGameUIStage extends Stage {
 
 	private Skin skin;
 
-	public GameUIStage(ClickListener alienC, ClickListener buildingC) {
+	public RightGameUIStage(ClickListener alienC, ClickListener buildingC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		Table table = new Table();
 		//table.setDebug(true);

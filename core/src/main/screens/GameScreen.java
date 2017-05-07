@@ -25,7 +25,7 @@ import models.BuildingModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
 import path.PathFinder;
-import stages.GameUIStage;
+import stages.RightGameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
 import utilities.DrawablesCollector;
@@ -54,7 +54,7 @@ public class GameScreen implements Screen{
 	private Camera camera;
 	private Viewport WP;
 	GameUIView HV;
-	GameUIStage HS;
+	RightGameUIStage HS;
 	
 	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
@@ -100,7 +100,7 @@ public class GameScreen implements Screen{
 		
 		SelectedBuildingStage SBS = new SelectedBuildingStage(TController);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
-		HS = new GameUIStage(AController, TController);
+		HS = new RightGameUIStage(AController, TController);
 		
 		HV = new GameUIView(PMS, HS, SBS);
 		BM.addObserver(HV);
