@@ -8,11 +8,11 @@ import utilities.Node;
 public class TargetLast implements ITargetState {
 
 	public Enemy getEnemy(Node pos, Array<Enemy> enemies) {
-		int last=enemies.first().getNodeArrayPos();
+		int last=enemies.first().getPath().size - enemies.first().getNodeArrayPos();
 		Enemy lastE = enemies.first();
 		for(Enemy enemy: enemies){
-			if(enemy.getNodeArrayPos()<last){
-				last = enemy.getNodeArrayPos();
+			if(enemy.getPath().size - enemy.getNodeArrayPos()>last){
+				last = enemy.getPath().size - enemy.getNodeArrayPos();
 				lastE = enemy;
 			}
 		}
