@@ -1,5 +1,6 @@
 package models;
 
+import buildings.towers.AlienNerfer;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
@@ -7,6 +8,7 @@ import buildings.Wall;
 import buildings.WhiteHouse;
 import buildings.towers.Tower;
 import buildings.towers.TowerUpgrader;
+import enemies.Alien;
 import enemies.Enemy;
 import observers.BuildingObserver;
 import observers.UpdateObserver;
@@ -19,6 +21,7 @@ public class BuildingModel implements UpdateObserver {
 	private Array<WhiteHouse> whitehouses;
 	private Array<Wall> walls;
 	private Array<Enemy> enemies;
+	private Array<AlienNerfer> nerfers;
 	private Radar radar;
 	private TowerUpgrader upgrader;
 	
@@ -27,6 +30,7 @@ public class BuildingModel implements UpdateObserver {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		walls= new Array<Wall>(false,20);
+		nerfers = new Array<AlienNerfer>(false, 100);
 		this.enemies = enemies;
 		this.radar = new Radar();
 		upgrader = new TowerUpgrader();
@@ -41,6 +45,10 @@ public class BuildingModel implements UpdateObserver {
     	for(WhiteHouse wh : whitehouses){
     		allBuildings.add(wh);
     	}
+
+    	for (AlienNerfer nerfer : nerfers){
+    		allBuildings.add(nerfer);
+		}
     	return allBuildings;
     }
     
@@ -134,6 +142,12 @@ public class BuildingModel implements UpdateObserver {
 		}
 		
 	}
+
+	private void slowAllInRadius(){
+	    for (AlienNerfer nerfer : nerfers){
+	        nerfer.slow(enemies);
+        }
+    }
 	
 	private void checkWhitehouses(){
 		Array<Enemy> closeAliens;
