@@ -28,8 +28,11 @@ public final class PathFinder {
 		roadSections = new Array<RoadSection>();
 		radar = new Radar();
 		roadRadius = 10; //tmp hardcoded roadradius
-		
 	}
+	
+	//public boolean canRemoveNeighbor()
+	
+	
 
 	public boolean isOnRoad(Node center, float centerRadius){
 		

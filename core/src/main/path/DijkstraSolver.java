@@ -23,7 +23,7 @@ public class DijkstraSolver {
 		setCurrentNode(startNode);
 		weighNeighbors();
 		
-		while(isDone()){
+		while(!isDone()){
 			setNextCurrent();
 			weighNeighbors();
 		}
@@ -81,14 +81,23 @@ public class DijkstraSolver {
 	}
 	
 	private boolean isDone(){
+		System.out.println("hej");
 		int counter = 0;
+		Array<MapNode> inf = new Array<MapNode>();
+		Array<MapNode> visit = new Array<MapNode>();
 		for(MapNode node : allNodes){
-			if(!node.hasBeenVisited() && node.getPathLength() == Float.MAX_VALUE){	//return true if all nonvisited nodes have pathlenght inf
-				return true;
+			if(!node.hasBeenVisited()){
+				visit.add(node);						//return true if all nonvisited nodes have pathlenght inf
 			}else if(node.hasBeenVisited()){
 				counter++;
 			}
-		}
+			if(node.getPathLength() == Float.MAX_VALUE)
+				inf.add(node);
+			}
+			if(visit.size == inf.size){
+				return true;
+			}
+		
 		
 		if(counter == allNodes.size){ //return true if we have visited all nodes
 			return true;
