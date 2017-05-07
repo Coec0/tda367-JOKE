@@ -35,16 +35,22 @@ public class PoliticalMeterStage extends Stage {
 	public void addParty(String party, int votes){
 		updatePartyVotes(party, votes);
 	}
+	
+	public void updateParty(ArrayMap<Integer, String> pVotes){
+		for(int i=0; pVotes.size > i; i++){
+			updatePartyVotes(pVotes.getValueAt(i), pVotes.getKeyAt(i));
+		}
+		reCalcTable();
+	}
 
 	private void updatePartyVotes(String party, int votes) {
 		if(pVotes.containsValue(party, false)){
 			int index = pVotes.indexOfValue(party, false);
-			pVotes.setKey(index, pVotes.getKeyAt(index)+votes);
+			pVotes.setKey(index, votes);
 		} else {
 			pVotes.put(votes, party);
 			table.add(partyLabel(partyColor(party), party));
 		}
-		reCalcTable();
 	}
 	
 	private void reCalcTable(){

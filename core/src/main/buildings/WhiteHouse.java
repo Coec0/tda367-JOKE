@@ -3,7 +3,7 @@ package buildings;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ArrayMap;
 
-import observers.PartyObserver;
+import observers.WhiteHouseObserver;
 import politics.parties.Party;
 
 public class WhiteHouse extends Building{
@@ -27,7 +27,7 @@ public class WhiteHouse extends Building{
 				if(Party.class.isAssignableFrom(iFace)){ //Checks if Party is superclass
 					System.out.println("Party: "+ party.getClass().getInterfaces()[0].getSimpleName());
 					setPartyValue(party.getClass().getInterfaces()[0].getSimpleName(), party.getVotes());
-					notifyObservers(party.getClass().getInterfaces()[0].getSimpleName(), party.getVotes());
+					notifyObservers(this);
 				}
 			}
 			
@@ -45,6 +45,10 @@ public class WhiteHouse extends Building{
 		System.out.println("VOTES PARTY = "+ pVotes.getKey(party, false));
 	}
 
+	public ArrayMap<Integer, String> getPartyMap(){
+		return pVotes;
+	}
+	
 	public void removeHealth(int amount){
 		health -=amount;
 	}
@@ -86,19 +90,19 @@ public class WhiteHouse extends Building{
 		return money;
 	}
 	
-	private Array<PartyObserver> observers = new Array<PartyObserver>(false, 10);
+	private Array<WhiteHouseObserver> observers = new Array<WhiteHouseObserver>(false, 10);
 
-	public void addObserver(PartyObserver observer) {
+	public void addObserver(WhiteHouseObserver observer) {
 		observers.add(observer);
 	}
 
-	public void removeObserver(PartyObserver observer) {
+	public void removeObserver(WhiteHouseObserver observer) {
 		observers.removeValue(observer, false);
 	}
 
-	private void notifyObservers(String party, int votes) {
-		for (PartyObserver observer : observers)
-			observer.actOnPartyVote(party, votes);
+	private void notifyObservers(WhiteHouse whitehouse) {
+		for (WhiteHouseObserver observer : observers)
+			observer.actOnWhiteHouseChange(whitehouse);
 	}
 
 	@Override

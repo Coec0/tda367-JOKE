@@ -3,14 +3,15 @@ package views;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import buildings.Building;
+import buildings.WhiteHouse;
 import observers.BuildingObserver;
-import observers.PartyObserver;
+import observers.WhiteHouseObserver;
 import stages.GameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
 import utilities.DrawablesCollector;
 
-public class GameUIView implements PartyObserver, BuildingObserver {
+public class GameUIView implements WhiteHouseObserver, BuildingObserver {
 	GameUIStage HS;
 	PoliticalMeterStage PMS;
 	SelectedBuildingStage SBS;
@@ -34,9 +35,8 @@ public class GameUIView implements PartyObserver, BuildingObserver {
 	}
 
 	@Override
-	public void actOnPartyVote(String party, int votes) {
-		PMS.addParty(party, votes);
-
+	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
+		PMS.updateParty(whitehouse.getPartyMap());
 	}
 
 	@Override
@@ -54,5 +54,7 @@ public class GameUIView implements PartyObserver, BuildingObserver {
 		}
 
 	}
+
+
 
 }
