@@ -23,9 +23,9 @@ public class SelectedBuildingStage extends Stage {
 		Table table = new Table();
 		table.setZIndex(9001); // Put on top
 		// table.setDebug(true);
-		table.setPosition(Gdx.graphics.getWidth() - 200, 0);
+		table.setPosition(Gdx.graphics.getWidth() - 200, 50);
 		table.setWidth(200);
-		table.setHeight(720);
+		table.setHeight(670);
 
 		target = getTargetsTable(buildingC);
 		target.setVisible(false);

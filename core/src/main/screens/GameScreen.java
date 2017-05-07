@@ -101,12 +101,14 @@ public class GameScreen implements Screen{
 		SelectedBuildingStage SBS = new SelectedBuildingStage(TController);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		TopLeftGameUIStage TL = new TopLeftGameUIStage();
+		NextWaveStage NW = new NextWaveStage(AController);
 		HS = new RightGameUIStage(AController, TController);
 		SS = new SuperpowerStage(SC);
-		HV = new GameUIView(PMS, HS, TL, SBS);
+		HV = new GameUIView(PMS, HS, TL, SBS, NW);
 		BM.addObserver(HV);
 		imp.addProcessor(HS);
 		imp.addProcessor(SBS);
+		imp.addProcessor(NW);
 		BM.getWhiteHouses().peek().addObserver(HV);
 
 		

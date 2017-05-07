@@ -14,14 +14,14 @@ public class RightGameUIStage extends Stage {
 	public RightGameUIStage(ClickListener alienC, ClickListener buildingC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		Table table = new Table();
-		//table.setDebug(true);
+//		table.setDebug(true);
 		table.setPosition(Gdx.graphics.getWidth() - 200, 0);
 		table.setWidth(200);
 		table.setHeight(720);
 
-		table.add(getTowersTable(buildingC));
+		table.add(getTowersTable(buildingC)).expand().top();
 		table.row();
-		table.add(addNextWaveButton(alienC)).expand().bottom();
+		//table.add(addNextWaveButton(alienC)).expand().bottom();
 		this.addActor(table);
 	}
 	
