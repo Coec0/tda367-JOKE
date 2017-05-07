@@ -3,6 +3,7 @@ package models;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
+import buildings.Wall;
 import buildings.WhiteHouse;
 import buildings.towers.Tower;
 import buildings.towers.TowerUpgrader;
@@ -16,6 +17,7 @@ import utilities.Radar;
 public class BuildingModel implements UpdateObserver {
 	private Array<Tower> towers;
 	private Array<WhiteHouse> whitehouses;
+	private Array<Wall> walls;
 	private Array<Enemy> enemies;
 	private Radar radar;
 	private TowerUpgrader upgrader;
@@ -24,6 +26,7 @@ public class BuildingModel implements UpdateObserver {
     public BuildingModel(Array<Enemy> enemies) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
+		walls= new Array<Wall>(false,20);
 		this.enemies = enemies;
 		this.radar = new Radar();
 		upgrader = new TowerUpgrader();
@@ -65,6 +68,11 @@ public class BuildingModel implements UpdateObserver {
 	public void addTower(Tower tower, int x, int y){
 		tower.setPos(x, y);
 		this.addTower(tower);
+	}
+	
+	public void addWall(Wall wall){
+		walls.add(wall);
+		notifyObservers(walls.peek(), false, false);
 	}
 
 	public void addWhiteHouse(WhiteHouse whitehouse) {

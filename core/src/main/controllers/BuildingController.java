@@ -120,8 +120,12 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
     	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 1) && onMouse == null){
-    		 //BModel.addBuild( new Wall("Trump's wall",(int)v.x,(int) v.y, 10));
+    		;
     		RoadSection rs = finder.findRoadSection(new Node((int)v.x,(int) v.y));
+    		Wall wall = new Wall("Trump's wall",(int)v.x,(int) v.y, 10);
+    		wall.rotateTowards(rs.getStart());
+    		BModel.addWall(wall);
+    		
     		finder.removeNeighbor(rs);
     		finder.reCalculateShortest();
     	}else{
