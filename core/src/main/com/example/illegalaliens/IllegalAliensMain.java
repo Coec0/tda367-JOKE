@@ -3,6 +3,7 @@ package com.example.illegalaliens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 import observers.UpdateObserver;
@@ -18,11 +19,14 @@ public class IllegalAliensMain extends Game {
 	private EndGameScreen endGameScreen;
 	private MainMenuScreen mainMenuScreen;
 	private Array<UpdateObserver> observers;
+	private Skin skin;
 	
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
 		observers = new Array<UpdateObserver>(false, 10);
+
+		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
 		mainMenuScreen = new MainMenuScreen(this, batch);
 		gameScreen = new GameScreen(this, batch);
@@ -51,6 +55,10 @@ public class IllegalAliensMain extends Game {
 
 	public void shutdown() {
 		Gdx.app.exit();
+	}
+
+	public Skin getSkin() {
+		return skin;
 	}
 
 	public void addObserver(UpdateObserver observer) {

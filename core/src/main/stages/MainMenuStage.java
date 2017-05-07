@@ -7,25 +7,33 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.IllegalAliensMain;
+import screens.MainMenuScreen;
 
 import static com.badlogic.gdx.utils.Align.center;
 
 public class MainMenuStage extends Stage {
 
     private IllegalAliensMain game;
+    private MainMenuScreen mainMenuScreen;
     private Skin skin;
 
-    public MainMenuStage(IllegalAliensMain game) {
-        this.game = game;
-        skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+    private Table table;
+    private Image alienImage;
+    private TextField welcomeText;
 
-        this.addActor(addImage());
+    public MainMenuStage(IllegalAliensMain game, MainMenuScreen mainMenuScreen) {
+        this.game = game;
+        this.mainMenuScreen = mainMenuScreen;
+
+        skin = game.getSkin();
+
+        this.addActor(addAlienImage());
         this.addActor(addWelcomeText());
         this.addActor(addTable());
     }
 
-    private Image addImage() {
-        Image alienImage = new Image(new Texture("alien.png"));
+    private Image addAlienImage() {
+        alienImage = new Image(new Texture("alien.png"));
 
         alienImage.setOrigin(alienImage.getWidth() / 2, alienImage.getHeight() / 2);
         alienImage.rotateBy(180);
@@ -35,7 +43,7 @@ public class MainMenuStage extends Stage {
     }
 
     private Table addTable() {
-        Table table = new Table();
+        table = new Table();
 
         table.setWidth(150f);
         table.setHeight(200f);
@@ -78,7 +86,7 @@ public class MainMenuStage extends Stage {
         aboutButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y){
-                //TODO
+                mainMenuScreen.showAboutStage();
             }
         });
 
@@ -125,7 +133,7 @@ public class MainMenuStage extends Stage {
     }
 
     private TextField addWelcomeText() {
-        TextField welcomeText = new TextField("", skin, "default");
+        welcomeText = new TextField("", skin, "default");
 
         welcomeText.setText("You will perish.");
         welcomeText.setAlignment(center);
@@ -135,5 +143,11 @@ public class MainMenuStage extends Stage {
         welcomeText.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, center);
 
         return welcomeText;
+    }
+
+    public void setVisible(boolean b) {
+        alienImage.setVisible(b);
+        table.setVisible(b);
+        welcomeText.setVisible(b);
     }
 }
