@@ -13,6 +13,7 @@ public abstract class Enemy {
 	private Node direction = new Node(0,1); //x and y values for the start direction. Faces towards east now
 	private float radius;
 	private Array<Node> path;
+	private float money=20;
 	
 	public Enemy(int x, int y, float speed, float health,float radius) {
 		this.pos = new SpriteAdapter(x, y);
@@ -20,6 +21,10 @@ public abstract class Enemy {
 		this.radius = radius;
 		this.speed = speed;
 		this.health = health;
+	}
+	
+	public float getMoney(){ //Override in subclasses or make abstract for specific
+		return money;        //values in future
 	}
 	public boolean isDead(){
 		return health<=0;
