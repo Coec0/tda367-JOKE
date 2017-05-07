@@ -50,24 +50,31 @@ public class WhiteHouse extends Building{
 	}
 	
 	public void removeHealth(int amount){
-		health -=amount;
+		setHealth(health-amount);
 	}
 	
+	/**
+	 * Removes one health.
+	 */
 	public void removeHealth(){
-		health -=1;
-		System.out.println(health);
+		setHealth(health-1);
 	}
 	
 	public void setHealth(int amount){
 		health = amount;
+		System.out.println(health);
+		notifyObservers(this);
 	}
 	
 	public void addHealth(int amount){
-		health += amount;
+		setHealth(health+amount);
 	}
 	
+	/**
+	 * Adds one health.
+	 */
 	public void addHealth(){
-		health += 1;
+		setHealth(health+1);
 	}
 	
 	public int getHealth(){
@@ -75,15 +82,16 @@ public class WhiteHouse extends Building{
 	}
 
 	public void addMoney(float amount){
-		money += amount;
+		setMoney(money+amount);
 	}
 	
 	public void setMoney(float amount){
 		money = amount;
+		notifyObservers(this);
 	}
 	
 	public void removeMoney(float amount){
-		money -= amount;
+		setMoney(money-amount);
 	}
 	
 	public float getMoney(){
