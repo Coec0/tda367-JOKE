@@ -13,7 +13,7 @@ public final class PathFinder {
 	private Array<Node> startingNodes;
 	private Array<MapNode> allNodes;
 	private Array<Node> roadNetwork;
-
+	private Array<RoadSection> roadSections;
 	private DijkstraSolver DSolver;
 	private MapNode endNode;
 	private Radar radar;
@@ -25,6 +25,7 @@ public final class PathFinder {
 		shortestPaths = new Array<Array<Node>>();
 		startingNodes = new Array<Node>();
 		DSolver = new DijkstraSolver(allNodes);
+		roadSections = new Array<RoadSection>();
 		radar = new Radar();
 		
 	}
@@ -104,14 +105,18 @@ public final class PathFinder {
 	private Array<Node> getFullPath(float speed, Array<Node> pathNodes){
 		
 		Array<Node> fullPath = new Array<Node>();
+		Array<Node> pixelPath;
 		
+		Node start;
+		Node goal;
+		RoadSection roadSection;
 		
-		for (int i = 0; i < pathNodes.size - 1; i++) {
-			Node start = pathNodes.get(i);
-			Node goal = pathNodes.get(i+1);
-
-			Array<Node> pixelPath = getPixelPath(start, goal, speed);
-				
+		for (int i = 0; i < pathNodes.size - 1; i++) { 
+			start = pathNodes.get(i);
+			goal = pathNodes.get(i+1);
+			roadSection = new RoadSection(start,goal,speed);
+			pixelPath = roadSection.calcPixelWalk(start, goal, speed);
+			
 			for (Node pixel : pixelPath) {
 				fullPath.add(pixel);
 			}
