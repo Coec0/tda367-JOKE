@@ -81,7 +81,6 @@ public class DijkstraSolver {
 	}
 	
 	private boolean isDone(){
-		System.out.println("hej");
 		int counter = 0;
 		Array<MapNode> inf = new Array<MapNode>();
 		Array<MapNode> visit = new Array<MapNode>();

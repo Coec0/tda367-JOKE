@@ -39,7 +39,6 @@ public final class PathFinder {
 		if(roadNetwork == null){
 			roadNetwork = new Array<Node>();
 			roadNetwork = getRoadNetwork();
-			System.out.println("tjajtaj");
 		}
 		
 		if(radar.scanNodeArray(roadNetwork, roadRadius, center, centerRadius).size != 0){

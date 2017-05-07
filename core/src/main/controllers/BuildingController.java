@@ -118,7 +118,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize())){
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
-    	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 10) && onMouse == null){
+    	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 1) && onMouse == null){
     		RoadSection rs = finder.findRoadSection(new Node((int)v.x,(int) v.y));
     		if(rs == null){
     			System.out.println("SKype");

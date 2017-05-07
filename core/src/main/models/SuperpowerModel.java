@@ -3,7 +3,7 @@ package models;
 import com.badlogic.gdx.utils.Array;
 import enemies.Enemy;
 import superpowers.Nuke;
-import superpowers.Wall;
+import superpowers.BuildWall;
 import utilities.Radar;
 
 /**
