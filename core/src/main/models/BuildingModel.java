@@ -1,13 +1,11 @@
 package models;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
 import buildings.WhiteHouse;
 import buildings.towers.Tower;
 import buildings.towers.TowerUpgrader;
-import enemies.Alien;
 import enemies.Enemy;
 import observers.BuildingObserver;
 import observers.UpdateObserver;
@@ -18,17 +16,15 @@ import utilities.Radar;
 public class BuildingModel implements UpdateObserver {
 	private Array<Tower> towers;
 	private Array<WhiteHouse> whitehouses;
-	private Array<Alien> aliens;
+	private Array<Enemy> enemies;
 	private Radar radar;
 	private TowerUpgrader upgrader;
-	private AlienModel aModel;
 	
 
-    public BuildingModel(AlienModel aModel) {
+    public BuildingModel(Array<Enemy> enemies) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
-		this.aModel = aModel;
-		// aliens = AModel.getAllAliens();
+		this.enemies = enemies;
 		this.radar = new Radar();
 		upgrader = new TowerUpgrader();
 	}
@@ -71,9 +67,8 @@ public class BuildingModel implements UpdateObserver {
 		this.addTower(tower);
 	}
 
-	public void createWhiteHouse(int x, int y) {
-		whitehouses.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y,100)); //just tmp size for WH
-		aModel.addObserver(whitehouses.peek());
+	public void addWhiteHouse(WhiteHouse whitehouse) {
+		whitehouses.add(whitehouse); //just tmp size for WH;
 		notifyObservers(whitehouses.peek(), false, false);
 	}
 	
@@ -126,7 +121,7 @@ public class BuildingModel implements UpdateObserver {
 		Array<Enemy> foundAliens;
 		for (Tower tower : towers) {
 
-			foundAliens = radar.scan(tower.getPos(), tower.getRadius(), aModel.getAllAliens()); // tmp
+			foundAliens = radar.scan(tower.getPos(), tower.getRadius(), enemies); // tmp
 			tower.setTarget(foundAliens);
 		}
 		
@@ -135,7 +130,7 @@ public class BuildingModel implements UpdateObserver {
 	private void checkWhitehouses(){
 		Array<Enemy> closeAliens;
 		for (WhiteHouse whitehouse : whitehouses) {
-			closeAliens = radar.scan(whitehouse.getPos(), 5,aModel.getAllAliens()); //5 radius for now
+			closeAliens = radar.scan(whitehouse.getPos(), 5, enemies); //5 radius for now
 			if (closeAliens.size > 0) {
 				for (Enemy enemy : closeAliens){
 					if(!enemy.isDead()){
