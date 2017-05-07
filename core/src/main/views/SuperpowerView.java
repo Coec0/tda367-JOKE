@@ -10,7 +10,6 @@ import utilities.SpriteAdapter;
  */
 public class SuperpowerView {
     private Texture wall;
-    private Circle nukeRadius;
 
     private DrawablesCollector DC = DrawablesCollector.getInstance();
 

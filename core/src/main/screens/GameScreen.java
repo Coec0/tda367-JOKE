@@ -25,10 +25,7 @@ import models.BuildingModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
 import path.PathFinder;
-import stages.RightGameUIStage;
-import stages.PoliticalMeterStage;
-import stages.SelectedBuildingStage;
-import stages.TopLeftGameUIStage;
+import stages.*;
 import utilities.DrawablesCollector;
 import utilities.Node;
 import utilities.SpriteAdapter;
@@ -56,6 +53,7 @@ public class GameScreen implements Screen{
 	private Viewport WP;
 	GameUIView HV;
 	RightGameUIStage HS;
+	SuperpowerStage SS;
 	
 	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
@@ -96,6 +94,7 @@ public class GameScreen implements Screen{
 		InputMultiplexer imp = new InputMultiplexer();
 		imp.addProcessor(AController);
 		imp.addProcessor(TController);
+		imp.addProcessor(SC);
 		
 		Gdx.input.setInputProcessor(imp);
 		
@@ -103,7 +102,7 @@ public class GameScreen implements Screen{
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		TopLeftGameUIStage TL = new TopLeftGameUIStage();
 		HS = new RightGameUIStage(AController, TController);
-		
+		SS = new SuperpowerStage(SC);
 		HV = new GameUIView(PMS, HS, TL, SBS);
 		BM.addObserver(HV);
 		imp.addProcessor(HS);
