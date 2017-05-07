@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import buildings.Building;
+import buildings.Wall;
 import buildings.towers.Tower;
 import buildings.towers.TowerFactory;
 import buildings.towers.targetmethods.TargetClosest;
@@ -119,10 +120,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
     	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 1) && onMouse == null){
+    		 //BModel.addBuild( new Wall("Trump's wall",(int)v.x,(int) v.y, 10));
     		RoadSection rs = finder.findRoadSection(new Node((int)v.x,(int) v.y));
-    		if(rs == null){
-    			System.out.println("SKype");
-    		}
     		finder.removeNeighbor(rs);
     		finder.reCalculateShortest();
     	}else{

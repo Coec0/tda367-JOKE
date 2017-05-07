@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.Building;
+import buildings.Wall;
 import buildings.WhiteHouse;
 import buildings.towers.Bazooka;
 import buildings.towers.Engineer;
@@ -19,7 +20,7 @@ import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class BuildingView implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine;
+    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
     private SpriteAdapter onMouse, sizeCircle;
 
@@ -31,6 +32,7 @@ public class BuildingView implements BuildingObserver{
         //howitzer = new Texture("");
         ranger = new Texture("ranger.png");
         marine = new Texture("marine.png");
+        wall = new Texture("TrumpWall.png");
         //sniper = new Texture("");
     }
 
@@ -97,6 +99,8 @@ public class BuildingView implements BuildingObserver{
 		    return sniper;
 		if(building instanceof Howitzer)
 		    return howitzer;
+		if(building instanceof Wall)
+			return wall;
 		return null;
 		
 	}
