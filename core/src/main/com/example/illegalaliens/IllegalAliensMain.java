@@ -49,6 +49,10 @@ public class IllegalAliensMain extends Game {
 		setScreen(mainMenuScreen);
 	}
 
+	public void shutdown() {
+		Gdx.app.exit();
+	}
+
 	public void addObserver(UpdateObserver observer) {
 		observers.add(observer);
 	}
