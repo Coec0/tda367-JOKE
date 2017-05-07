@@ -9,19 +9,24 @@ import observers.WhiteHouseObserver;
 import stages.RightGameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
+import stages.TopLeftGameUIStage;
 import utilities.DrawablesCollector;
 
 public class GameUIView implements WhiteHouseObserver, BuildingObserver {
-	RightGameUIStage HS;
-	PoliticalMeterStage PMS;
-	SelectedBuildingStage SBS;
+	private RightGameUIStage HS;
+	private PoliticalMeterStage PMS;
+	private SelectedBuildingStage SBS;
+	private TopLeftGameUIStage TL;
 	private DrawablesCollector SC = DrawablesCollector.getInstance();
+	
 
-	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, SelectedBuildingStage SBS) {
+	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,SelectedBuildingStage SBS) {
 		this.HS = HS;
 		this.PMS = PMS;
 		this.SBS = SBS;
+		this.TL = TL;
 
+		addToView(TL);
 		addToView(HS);
 		addToView(PMS);
 	}
@@ -37,6 +42,7 @@ public class GameUIView implements WhiteHouseObserver, BuildingObserver {
 	@Override
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
 		PMS.updateParty(whitehouse.getPartyMap());
+		TL.updateUI(Float.toString(whitehouse.getMoney()), Float.toString(whitehouse.getHealth()));
 	}
 
 	@Override

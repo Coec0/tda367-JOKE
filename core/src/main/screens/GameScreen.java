@@ -28,6 +28,7 @@ import path.PathFinder;
 import stages.RightGameUIStage;
 import stages.PoliticalMeterStage;
 import stages.SelectedBuildingStage;
+import stages.TopLeftGameUIStage;
 import utilities.DrawablesCollector;
 import utilities.Node;
 import utilities.SpriteAdapter;
@@ -100,9 +101,10 @@ public class GameScreen implements Screen{
 		
 		SelectedBuildingStage SBS = new SelectedBuildingStage(TController);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
+		TopLeftGameUIStage TL = new TopLeftGameUIStage();
 		HS = new RightGameUIStage(AController, TController);
 		
-		HV = new GameUIView(PMS, HS, SBS);
+		HV = new GameUIView(PMS, HS, TL, SBS);
 		BM.addObserver(HV);
 		imp.addProcessor(HS);
 		imp.addProcessor(SBS);
