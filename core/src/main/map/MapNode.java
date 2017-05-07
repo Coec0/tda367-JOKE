@@ -58,6 +58,14 @@ public class MapNode {
 		return pos;
 	}
 	
+	public void removeNeighbor(String neighbor){
+		for(String string : neighbors){
+			if(string.equals(neighbor)){
+				neighbors.removeValue(neighbor, false);
+			}
+		}
+	}
+	
 	public void setNeighbors(Array<String> neighbors){
 		this.neighbors = neighbors;
 	}

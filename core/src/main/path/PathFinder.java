@@ -10,39 +10,70 @@ public final class PathFinder {
 	
 
 	private Array<Array<Node>> shortestPaths;
-	private Array<Node> startingNodes;
+	private Array<MapNode> startingNodes;
 	private Array<MapNode> allNodes;
 	private Array<Node> roadNetwork;
 	private Array<RoadSection> roadSections;
 	private DijkstraSolver DSolver;
 	private MapNode endNode;
 	private Radar radar;
-	
+	private float roadRadius;
 
 	public PathFinder(Array<MapNode> allNodes, MapNode endNode) {
 		this.endNode = endNode;
 		this.allNodes = allNodes;
 		shortestPaths = new Array<Array<Node>>();
-		startingNodes = new Array<Node>();
+		startingNodes = new Array<MapNode>();
 		DSolver = new DijkstraSolver(allNodes);
 		roadSections = new Array<RoadSection>();
 		radar = new Radar();
+		roadRadius = 10; //tmp hardcoded roadradius
 		
 	}
 
-	public boolean isOnRoad(Node center, float centerRadius, float roadRadius){
+	public boolean isOnRoad(Node center, float centerRadius){
 		if(roadNetwork == null){
 			roadNetwork = new Array<Node>();
 			roadNetwork = getRoadNetwork();
 		}
-		if(radar.inNodeArrayRadius(roadNetwork, roadRadius, center, centerRadius)){
+		if(radar.scanNodeArray(roadNetwork, roadRadius, center, centerRadius).size != 0){
 			return true;
 		}
 		return false;
-		
 	}
 	
-	private MapNode findNode(String ID){
+	
+	public void removeNeighbor(RoadSection rs){
+		MapNode start = findMapNode(rs.getStart());
+		MapNode end = findMapNode(rs.getEnd());
+
+		start.removeNeighbor(end.getID());
+		end.removeNeighbor(start.getID());
+	}
+	
+	
+	public RoadSection findRoadSection(Node node){
+		Node tmp = node;
+		for(RoadSection rs : roadSections){
+			tmp = radar.scanNodeArray(rs.getPixelWalk(), roadRadius , node, 1).first(); //probably need to find better way
+			if(node.equals(tmp)){
+				return rs;
+			}
+		}
+		return null;
+	}
+	
+	
+	private MapNode findMapNode(Node node){
+		for(MapNode mn : allNodes){
+			if(mn.getPos().equals(node)){
+				return mn;
+			}
+		}
+		return null;
+	}
+	
+	private MapNode findMapNode(String ID){
 		for(MapNode MN : allNodes){
 			if(MN.getID().equals(ID)){
 				return MN;
@@ -57,7 +88,7 @@ public final class PathFinder {
 		for(int i = 0; i < allNodes.size;i++){
 			MapNode mn = allNodes.get(i);
 			for(String neighbor : mn.getNeighbors()){
-				MapNode tmp  = findNode(neighbor);
+				MapNode tmp  = findMapNode(neighbor);
 				for(RoadSection rs : roadSections){
 					if( ! (rs.isStartOrEnd(mn.getPos()) && rs.isStartOrEnd(tmp.getPos()))){
 						roadSection = new RoadSection(mn.getPos(), tmp.getPos(),1);
@@ -69,22 +100,27 @@ public final class PathFinder {
 		}
 		return roadNetwork;
 	}
-
-//	public PathFinder(Array<Node> allNodes){
-//			this.allNodes = allNodes;
-//	}
 	
-	
+	public void reCalculateShortest(){
+		Array<MapNode> tmpStarting = new Array<MapNode>();
+		tmpStarting.addAll(startingNodes);
+		shortestPaths.clear();
+		startingNodes.clear();
+		for(MapNode mn : tmpStarting){
+			calculateShortest(mn);
+		}
+		
+	}
 	
 	public void calculateShortest(MapNode startNode){
 		Array<Node> tmp = DSolver.solve(startNode, endNode);
 		shortestPaths.add(getFullPath(0.05f,tmp)); //10 = speed
-		startingNodes.add(startNode.getPos()); //add at same time so shortest and starting are in match
+		startingNodes.add(startNode); //add at same time so shortest and starting are in match
 	}
 
 	public Array<Node> getShortestPath(MapNode startNode){
 		for(int i = 0; i < startingNodes.size;i++){
-			Node node = startingNodes.get(i); //cant use foreach because i need index i
+			Node node = startingNodes.get(i).getPos(); //cant use foreach because i need index i
 			if(startNode.getPos().equals(node)){
 				return shortestPaths.get(i);
 			}

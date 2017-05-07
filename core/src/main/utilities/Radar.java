@@ -23,13 +23,14 @@ public class Radar {
 		return knownEnemies;
     }
 	
-	public boolean inNodeArrayRadius(Array<Node> nodes, float nodesRadius , Node center ,float centerRadius){
+	public Array<Node> scanNodeArray(Array<Node> nodes, float nodesRadius , Node center ,float centerRadius){
+		Array<Node> foundNodes = new Array<Node>();
 		for(Node node : nodes){
 			if(isNodeWithinRadius(center,node,centerRadius,nodesRadius)){
-				return true;
+				foundNodes.add(node);
 			}
 		}
-		return false;
+		return foundNodes;
 	}
 	
 

@@ -117,7 +117,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		if(v.x >= WP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
-    	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize(), 10)){
+    	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize())){
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
     	}else{
