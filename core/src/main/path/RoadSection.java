@@ -42,6 +42,7 @@ public class RoadSection {
 	}
 	
 	public boolean isStartOrEnd(Node node){
+		
 		return node.equals(start) || node.equals(end);
 	}
 

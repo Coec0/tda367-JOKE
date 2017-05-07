@@ -32,11 +32,15 @@ public final class PathFinder {
 	}
 
 	public boolean isOnRoad(Node center, float centerRadius){
+		
 		if(roadNetwork == null){
 			roadNetwork = new Array<Node>();
 			roadNetwork = getRoadNetwork();
+			System.out.println("tjajtaj");
 		}
+		
 		if(radar.scanNodeArray(roadNetwork, roadRadius, center, centerRadius).size != 0){
+			
 			return true;
 		}
 		return false;
@@ -44,20 +48,22 @@ public final class PathFinder {
 	
 	
 	public void removeNeighbor(RoadSection rs){
-		MapNode start = findMapNode(rs.getStart());
+		Node tmp = rs.getStart();
+		MapNode start = findMapNode(tmp);
 		MapNode end = findMapNode(rs.getEnd());
-
+		
 		start.removeNeighbor(end.getID());
 		end.removeNeighbor(start.getID());
 	}
 	
 	
 	public RoadSection findRoadSection(Node node){
-		Node tmp = node;
 		for(RoadSection rs : roadSections){
-			tmp = radar.scanNodeArray(rs.getPixelWalk(), roadRadius , node, 1).first(); //probably need to find better way
-			if(node.equals(tmp)){
-				return rs;
+			Array<Node> nodes = radar.scanNodeArray(rs.getPixelWalk(), roadRadius , node, 1);
+			if(nodes.size != 0){
+					System.out.println("kaffe");
+						return rs;
+				
 			}
 		}
 		return null;
@@ -87,15 +93,27 @@ public final class PathFinder {
 		RoadSection roadSection;
 		for(int i = 0; i < allNodes.size;i++){
 			MapNode mn = allNodes.get(i);
+			
+			
 			for(String neighbor : mn.getNeighbors()){
 				MapNode tmp  = findMapNode(neighbor);
-				for(RoadSection rs : roadSections){
-					if( ! (rs.isStartOrEnd(mn.getPos()) && rs.isStartOrEnd(tmp.getPos()))){
-						roadSection = new RoadSection(mn.getPos(), tmp.getPos(),1);
-						roadSections.add(roadSection);
-						roadNetwork.addAll(roadSection.getPixelWalk());
+				
+				if(roadSections.size == 0){
+					roadSection = new RoadSection(mn.getPos(), tmp.getPos(),1);
+					roadSections.add(roadSection);
+					roadNetwork.addAll(roadSection.getPixelWalk());
+				}else{
+					for(RoadSection rs : roadSections){
+						if( !(rs.isStartOrEnd(mn.getPos()) && rs.isStartOrEnd(tmp.getPos()))){
+							
+							roadSection = new RoadSection(mn.getPos(), tmp.getPos(),1);
+							roadSections.add(roadSection);
+							roadNetwork.addAll(roadSection.getPixelWalk());
+							break;
+						}
 					}
 				}
+				
 			}
 		}
 		return roadNetwork;

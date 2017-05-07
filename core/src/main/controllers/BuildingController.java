@@ -18,6 +18,7 @@ import buildings.towers.targetmethods.TargetWeakest;
 import models.AlienModel;
 import models.BuildingModel;
 import path.PathFinder;
+import path.RoadSection;
 import utilities.Node;
 import views.BuildingView;
 
@@ -120,6 +121,13 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize())){
     		BModel.addTower(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
+    	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 10) && onMouse == null){
+    		RoadSection rs = finder.findRoadSection(new Node((int)v.x,(int) v.y));
+    		if(rs == null){
+    			System.out.println("SKype");
+    		}
+    		finder.removeNeighbor(rs);
+    		finder.reCalculateShortest();
     	}else{
     		Building clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){
