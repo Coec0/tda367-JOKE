@@ -73,6 +73,7 @@ public class BuildingModel implements UpdateObserver {
 
 	public void createWhiteHouse(int x, int y) {
 		whitehouses.add(new WhiteHouse("WhiteHouse", x, Gdx.graphics.getHeight() - y,100)); //just tmp size for WH
+		aModel.addObserver(whitehouses.peek());
 		notifyObservers(whitehouses.peek(), false, false);
 	}
 	

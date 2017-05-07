@@ -3,10 +3,12 @@ package buildings;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ArrayMap;
 
+import enemies.Enemy;
+import observers.AlienObserver;
 import observers.WhiteHouseObserver;
 import politics.parties.Party;
 
-public class WhiteHouse extends Building{
+public class WhiteHouse extends Building implements AlienObserver{
 	private int health=20; //temp
 	private float money;
 	private ArrayMap<Integer, String> pVotes;
@@ -117,5 +119,12 @@ public class WhiteHouse extends Building{
 	public String getDescription() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void actOnEnemyChange(Enemy enemy, boolean remove) {
+		if(remove)
+			addMoney(enemy.getMoney());
+		
 	}
 }
