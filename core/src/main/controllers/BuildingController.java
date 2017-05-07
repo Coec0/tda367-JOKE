@@ -39,10 +39,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
         this.AModeL = AModel;
         this.WP = WP;
         this.finder = finder;
-        
         BModel.addObserver(BView);
-        
-        BModel.createWhiteHouse(1280,360);
     }
 
     @Override

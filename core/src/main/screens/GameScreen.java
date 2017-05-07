@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.IllegalAliensMain;
 
+import buildings.WhiteHouse;
 import controllers.AlienController;
 import controllers.BuildingController;
 import controllers.ProjectileController;
@@ -25,7 +26,12 @@ import models.BuildingModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
 import path.PathFinder;
-import stages.*;
+import stages.NextWaveStage;
+import stages.PoliticalMeterStage;
+import stages.RightGameUIStage;
+import stages.SelectedBuildingStage;
+import stages.SuperpowerStage;
+import stages.TopLeftGameUIStage;
 import utilities.DrawablesCollector;
 import utilities.Node;
 import utilities.SpriteAdapter;
@@ -70,8 +76,9 @@ public class GameScreen implements Screen{
 		AlienView AW= new AlienView();
 		
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes());
-		BuildingModel BM = new BuildingModel(AM);
+		AlienController AController = new AlienController(AW, AM);
 		BuildingView TW = new BuildingView();
+		BuildingModel BM = new BuildingModel(AM.getAllAliens());
 		ProjectileModel PM = new ProjectileModel(AM);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerView SW = new SuperpowerView();
@@ -79,7 +86,7 @@ public class GameScreen implements Screen{
 		SuperpowerController SC = new SuperpowerController(SM, SW, WP, AM);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
-		AlienController AController = new AlienController(AW, AM);
+		
 
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
         
@@ -87,6 +94,9 @@ public class GameScreen implements Screen{
 		WP = new FitViewport(width, height, camera);
 		//camera.position.set(1280/2, 720/2, 0);
 		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder);
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100);
+		AM.addObserver(WH);
+		BM.addWhiteHouse(WH);
 		
 		IAMain.addObserver(BM);
 		IAMain.addObserver(AM);
