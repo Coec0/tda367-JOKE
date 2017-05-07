@@ -104,8 +104,7 @@ public class GameScreen implements Screen{
 		InputMultiplexer imp = new InputMultiplexer();
 		imp.addProcessor(AController);
 		imp.addProcessor(TController);
-		imp.addProcessor(SC);
-		
+
 		Gdx.input.setInputProcessor(imp);
 		
 		SelectedBuildingStage SBS = new SelectedBuildingStage(TController);
@@ -119,6 +118,8 @@ public class GameScreen implements Screen{
 		imp.addProcessor(HS);
 		imp.addProcessor(SBS);
 		imp.addProcessor(NW);
+		imp.addProcessor(SC);
+		imp.addProcessor(SS);
 		BM.getWhiteHouses().peek().addObserver(HV);
 
 		
