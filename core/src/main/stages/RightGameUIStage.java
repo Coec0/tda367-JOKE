@@ -40,6 +40,8 @@ public class RightGameUIStage extends Stage {
 		table.add(addTowerButton(620, "bazooka", buildingC)).expand().top();
 		table.row();
 		table.add(addTowerButton(620,"aliennerfer",buildingC)).expand().top();
+		table.add(addTowerButton(620,"towerbooster",buildingC)).expand().top();
+
 		return table;
 	}
 

@@ -61,6 +61,13 @@ public abstract class Tower extends Building{
 		return this.cost;
 	}
 
+	public float getDamage(){
+    	return this.damage;
+	}
+	public int getCooldown(){
+		return this.cooldown;
+	}
+
 	public void setRadius(float radius){
     	this.radius = radius;
 	}

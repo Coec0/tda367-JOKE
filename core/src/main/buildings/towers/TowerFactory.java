@@ -35,6 +35,7 @@ public class TowerFactory {
 
 	public static AlienNerfer createAlienNerfer(int x, int y){return new AlienNerfer(x,y);}
 
+	public static TowerBooster createTowerBooster(int x, int y){return new TowerBooster(x,y);}
 
 
 }

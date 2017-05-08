@@ -13,7 +13,7 @@ import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class BuildingView implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall, aliennerfer;
+    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall, aliennerfer, towerbooster;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
@@ -30,6 +30,7 @@ public class BuildingView implements BuildingObserver{
         bazooka = new Texture("soldier.png");
         engineer = new Texture("soldier.png");
         aliennerfer = new Texture("soldier.png");
+        towerbooster = new Texture("soldier.png");
         //all same texture for testing
     }
 
@@ -104,6 +105,8 @@ public class BuildingView implements BuildingObserver{
 			return wall;
 		if(building instanceof AlienNerfer)
 			return aliennerfer;
+		if(building instanceof TowerBooster)
+			return towerbooster;
 		return null;
 		
 	}

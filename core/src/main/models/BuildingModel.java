@@ -1,6 +1,7 @@
 package models;
 
 import buildings.towers.AlienNerfer;
+import buildings.towers.TowerBooster;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
@@ -22,6 +23,7 @@ public class BuildingModel implements UpdateObserver {
 	private Array<Wall> walls;
 	private Array<Enemy> enemies;
 	private Array<AlienNerfer> nerfers;
+	private Array<TowerBooster> boosters; //should create a new superclass for boosters and nerfers and combine to 1 array
 	private Radar radar;
 	private TowerUpgrader upgrader;
 	
@@ -31,6 +33,7 @@ public class BuildingModel implements UpdateObserver {
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		walls= new Array<Wall>(false,20);
 		nerfers = new Array<AlienNerfer>(false, 100);
+		boosters = new Array<TowerBooster>(false, 100);
 		this.enemies = enemies;
 		this.radar = new Radar();
 		upgrader = new TowerUpgrader();
@@ -89,6 +92,16 @@ public class BuildingModel implements UpdateObserver {
 		this.addAlienNerfer(nerfer);
 
 	}
+    public void addTowerBooster(TowerBooster booster){
+	    boosters.add(booster);
+        booster.setActive(true);
+        notifyObservers(booster, false, false);
+    }
+    public void addTowerBooster(TowerBooster booster, int x, int y){
+        booster.setPos(x,y);
+        this.addTowerBooster(booster);
+
+    }
     public void addAlienNerfer(AlienNerfer nerfer){
         nerfers.add(nerfer);
         nerfer.setActive(true);
@@ -160,6 +173,12 @@ public class BuildingModel implements UpdateObserver {
 	    for (AlienNerfer nerfer : nerfers){
 	        inRadius = radar.scan(nerfer.getPos(), nerfer.getSlowRadius(), enemies);
 	        nerfer.slow(inRadius);
+        }
+    }
+
+    private void boostAllInRadius(){
+	    Array<Tower> inRadius;
+	    for (TowerBooster booster: boosters){
         }
     }
 	
