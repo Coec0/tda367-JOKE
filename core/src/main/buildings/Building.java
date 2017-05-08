@@ -18,6 +18,9 @@ public abstract class Building {
 	
 	public abstract String getDescription();
 	
+	public float getRadius(){
+		return 0;
+	}
 	public float getSize(){
 		return size;
 	}

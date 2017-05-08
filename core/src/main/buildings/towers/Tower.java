@@ -52,6 +52,7 @@ public abstract class Tower extends Building{
 		return TState;
 	}
 
+	@Override
 	public float getRadius() {
 		return this.radius;
 	}
