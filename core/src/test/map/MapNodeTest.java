@@ -1,11 +1,10 @@
-package utilities;
+package map;
 
 import com.badlogic.gdx.utils.Array;
 
-import map.MapNode;
-
 import org.junit.Before;
 import org.junit.Test;
+import utilities.Node;
 
 import static org.junit.Assert.*;
 
@@ -94,9 +93,7 @@ public class MapNodeTest {
     @Test
     public void setNeighbors() throws Exception {
         Array<String> neighbors = new Array<String>();
-        neighbors.add("A");
-        neighbors.add("F");
-        neighbors.add("I");
+        neighbors.addAll("A", "F", "I");
 
         mapNodeE.setNeighbors(neighbors);
 

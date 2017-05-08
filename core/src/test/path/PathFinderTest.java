@@ -1,4 +1,4 @@
-package utilities;
+package path;
 
 import org.junit.Test;
 
