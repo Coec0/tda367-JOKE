@@ -64,7 +64,7 @@ public class BuildingView implements BuildingObserver{
     	onMouse.setAlpha(0.5f);
     	
     	
-    	sizeCircle = getSizeSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize(), Color.RED);
+    	sizeCircle = getCircleSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize(), building.getRadius(), Color.RED);
     	sizeCircle.setAlpha(0.5f);
     	addToView(sizeCircle);
     	addToView(onMouse);
@@ -105,16 +105,20 @@ public class BuildingView implements BuildingObserver{
 		
 	}
 	
-	private SpriteAdapter getSizeSpriteAdapter(float x, float y, float radius, Color color){
+	private SpriteAdapter getCircleSpriteAdapter(float x, float y, float size, float radius, Color color){
 		float width = radius*12;
 		float height = width;
 		int radiusI = (int)radius;
+		int sizeI = (int)size;
 		Pixmap pixmap = new Pixmap((int)width, (int)height, Pixmap.Format.RGBA8888);
 		pixmap.setColor(color);
 		int xI = (int)((x+width)/2-x/2); //Seems to get it close enough
 		int yI = (int)((y+height)/2-y/2);
-		pixmap.fillCircle(xI, yI, radiusI);
-		return new SpriteAdapter(new Texture(pixmap));
+		pixmap.fillCircle(xI, yI, sizeI);
+		pixmap.drawCircle(xI, yI, radiusI);
+		Texture texture = new Texture(pixmap);
+		pixmap.dispose();
+		return new SpriteAdapter(texture);
 	}
 
 	@Override
