@@ -10,10 +10,10 @@ import projectiles.Projectile;
 public class Sniper extends Tower {
 
 
-    private static final int RADIUS = 100;
+    private static final int RADIUS = 1000;
     private static final String NAME = "SNIPER";
     private static final int COST = 150;
-    private static final int COOLDOWN = 10;
+    private static final int COOLDOWN = 75;
     private static String DESCRIPTION = "Very long range";
     private static final float SIZE = 50;
     private static final float DAMAGE = 40;

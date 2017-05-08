@@ -33,6 +33,8 @@ public class TowerFactory {
 		return new Engineer(x, y);
 	}
 
+	public static AlienNerfer createAlienNerfer(int x, int y){return new AlienNerfer(x,y);}
+
 
 
 }

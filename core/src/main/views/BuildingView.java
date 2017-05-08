@@ -1,5 +1,6 @@
 package views;
 
+import buildings.towers.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,20 +8,12 @@ import com.badlogic.gdx.graphics.Texture;
 import buildings.Building;
 import buildings.Wall;
 import buildings.WhiteHouse;
-import buildings.towers.Bazooka;
-import buildings.towers.Engineer;
-import buildings.towers.Howitzer;
-import buildings.towers.Marine;
-import buildings.towers.Ranger;
-import buildings.towers.Sniper;
-import buildings.towers.Soldier;
-import buildings.towers.Tank;
 import observers.BuildingObserver;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class BuildingView implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall;
+    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall, aliennerfer;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
@@ -29,11 +22,15 @@ public class BuildingView implements BuildingObserver{
         soldier = new Texture("soldier.png");
         tank = new Texture("tank.png");
         whitehouse = new Texture("sexywhitehouse.png");
-        //howitzer = new Texture("");
+        howitzer = new Texture("soldier.png");
         ranger = new Texture("ranger.png");
         marine = new Texture("marine.png");
         wall = new Texture("TrumpWall.png");
-        //sniper = new Texture("");
+        sniper = new Texture("soldier.png");
+        bazooka = new Texture("soldier.png");
+        engineer = new Texture("soldier.png");
+        aliennerfer = new Texture("soldier.png");
+        //all same texture for testing
     }
 
     public void removeFromView(SpriteAdapter sprite){
@@ -105,6 +102,8 @@ public class BuildingView implements BuildingObserver{
 		    return howitzer;
 		if(building instanceof Wall)
 			return wall;
+		if(building instanceof AlienNerfer)
+			return aliennerfer;
 		return null;
 		
 	}

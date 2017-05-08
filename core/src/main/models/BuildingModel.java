@@ -34,6 +34,7 @@ public class BuildingModel implements UpdateObserver {
 		this.enemies = enemies;
 		this.radar = new Radar();
 		upgrader = new TowerUpgrader();
+
 	}
     
     
@@ -82,6 +83,17 @@ public class BuildingModel implements UpdateObserver {
 		walls.add(wall);
 		notifyObservers(walls.peek(), false, false);
 	}
+
+	public void addAlienNerfer(AlienNerfer nerfer, int x, int y){
+		nerfer.setPos(x,y);
+		this.addAlienNerfer(nerfer);
+
+	}
+    public void addAlienNerfer(AlienNerfer nerfer){
+        nerfers.add(nerfer);
+        nerfer.setActive(true);
+        notifyObservers(nerfer, false, false);
+    }
 
 	public void addWhiteHouse(WhiteHouse whitehouse) {
 		whitehouses.add(whitehouse); //just tmp size for WH;
@@ -144,8 +156,10 @@ public class BuildingModel implements UpdateObserver {
 	}
 
 	private void slowAllInRadius(){
+	    Array<Enemy> inRadius;
 	    for (AlienNerfer nerfer : nerfers){
-	        nerfer.slow(enemies);
+	        inRadius = radar.scan(nerfer.getPos(), nerfer.getSlowRadius(), enemies);
+	        nerfer.slow(inRadius);
         }
     }
 	
@@ -168,6 +182,7 @@ public class BuildingModel implements UpdateObserver {
 	public void update(float deltaTime) {
 		setTargets();
 		fireAllTowers();
+		slowAllInRadius();
 		checkWhitehouses();
 		
 	}

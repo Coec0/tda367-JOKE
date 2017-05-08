@@ -29,6 +29,17 @@ public class RightGameUIStage extends Stage {
 		Table table = new Table();
 		table.add(addTowerButton(620, "soldier", buildingC)).expand().top();
 		table.add(addTowerButton(620, "tank", buildingC)).expand().top();
+		table.row();
+		table.add(addTowerButton(620, "ranger", buildingC)).expand().top();
+		table.add(addTowerButton(620, "marine", buildingC)).expand().top();
+		table.row();
+		table.add(addTowerButton(620, "engineer", buildingC)).expand().top();
+		table.add(addTowerButton(620, "howitzer", buildingC)).expand().top();
+		table.row();
+		table.add(addTowerButton(620, "sniper", buildingC)).expand().top();
+		table.add(addTowerButton(620, "bazooka", buildingC)).expand().top();
+		table.row();
+		table.add(addTowerButton(620,"aliennerfer",buildingC)).expand().top();
 		return table;
 	}
 
