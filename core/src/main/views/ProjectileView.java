@@ -1,15 +1,20 @@
 package views;
 
-import buildings.towers.Bazooka;
 import com.badlogic.gdx.graphics.Texture;
-import projectiles.*;
-import utilities.SpriteAdapter;
+
+import projectiles.ArtilleryRound;
+import projectiles.BazookaMissile;
+import projectiles.Bullet;
+import projectiles.EngineerBullet;
+import projectiles.Missile;
+import projectiles.Projectile;
 import utilities.DrawablesCollector;
+import utilities.SpriteAdapter;
 
 /**
  * Created by Emil on 2017-04-25.
  */
-public class ProjectileView {
+public class ProjectileView extends View<Projectile> {
     private Texture bullet, missile, artilleryRound, engineerBullet, bazookaMissile;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
 
@@ -21,20 +26,10 @@ public class ProjectileView {
         bazookaMissile = new Texture("bullet.png");
     }
 
-    public void addToView(SpriteAdapter sprite){
-        SC.addSprite(sprite);
-    }
 
-    public void addToView(Projectile projectile){
-        SpriteAdapter sprite = projectile.getSpriteAdapter();
-        if(sprite.getTexture() == null){
-            sprite.setTexture(selectTexture(projectile));
-            sprite.setSize(sprite.getWidth()/4, sprite.getHeight()/4);
-        }
-        addToView(sprite);
-    }
 
-    private Texture selectTexture(Projectile projectile) {
+    @Override
+    protected Texture selectTexture(Projectile projectile) {
 
         if(projectile instanceof Bullet)
             return bullet;

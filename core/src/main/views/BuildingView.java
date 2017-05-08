@@ -1,20 +1,17 @@
 package views;
 
-import buildings.towers.*;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.Building;
 import buildings.Wall;
 import buildings.WhiteHouse;
+import buildings.towers.*;
 import observers.BuildingObserver;
-import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
-public class BuildingView implements BuildingObserver{
+public class BuildingView extends View<Building> implements BuildingObserver{
     private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall, aliennerfer, towerbooster;
-    private DrawablesCollector SC = DrawablesCollector.getInstance();
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
 
@@ -32,28 +29,6 @@ public class BuildingView implements BuildingObserver{
         aliennerfer = new Texture("soldier.png");
         towerbooster = new Texture("soldier.png");
         //all same texture for testing
-    }
-
-    public void removeFromView(SpriteAdapter sprite){
-        SC.removeSprite(sprite);
-    }
-
-    public void addToView(SpriteAdapter sprite, int x, int y){
-        sprite.setPosition(x, y);
-        addToView(sprite);
-    }
-
-    public void addToView(SpriteAdapter sprite){
-        SC.addSprite(sprite);
-    }
-    
-    public void addToView(Building building){
-    	SpriteAdapter sprite = building.getSpriteAdapter();
-        if(sprite.getTexture() == null){
-            sprite.setTexture(selectTexture(building));
-            sprite.setSize(sprite.getWidth()/3, sprite.getHeight()/3);
-        }
-        addToView(sprite);
     }
 
     public void placeTexture(Building building){
@@ -81,7 +56,8 @@ public class BuildingView implements BuildingObserver{
     	removeFromView(onMouse);
     }
     
-	private Texture selectTexture(Building building) {
+    @Override
+	protected Texture selectTexture(Building building) {
 		
 		if(building instanceof WhiteHouse)
 			return whitehouse;
@@ -132,7 +108,7 @@ public class BuildingView implements BuildingObserver{
 	@Override
 	public void actOnBuildingChange(Building building, boolean remove, boolean clickedOn) {
 		if(!remove && !clickedOn){
-			addToView(building);
+			addToView(building.getSpriteAdapter(), building, 0.3f);
 			removePlaceTexture();
 		} else if(!clickedOn && remove){
 			removeFromView(building.getSpriteAdapter());	

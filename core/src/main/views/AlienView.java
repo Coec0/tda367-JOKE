@@ -7,12 +7,9 @@ import enemies.AlienWithHelmet;
 import enemies.Enemy;
 import enemies.SneakyAlien;
 import observers.AlienObserver;
-import utilities.SpriteAdapter;
-import utilities.DrawablesCollector;
 
-public class AlienView implements AlienObserver {
+public class AlienView extends View<Enemy> implements AlienObserver {
 	private Texture alien, alienWithHelmet, sneakyAlien;
-	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	
 	public AlienView(){
 		alien = new Texture("alien.png");
@@ -20,30 +17,8 @@ public class AlienView implements AlienObserver {
 		sneakyAlien = new Texture("sneakyalien.png");
 	}
 	
-	public void removeFromView(SpriteAdapter sprite){
-		SC.removeSprite(sprite);	
-	}
-	
-	public void addToView(SpriteAdapter sprite, int x, int y){
-		
-		sprite.setPosition(x, y);
-		addToView(sprite);
-	}
-	
-	public void addToView(SpriteAdapter sprite){
-		SC.addSprite(sprite);
-	}
-	
-	public void addToView(Enemy enemy){
-    	SpriteAdapter sprite = enemy.getSpriteAdapter();
-        if(sprite.getTexture() == null){
-            sprite.setTexture(selectTexture(enemy));
-            sprite.setSize(sprite.getWidth()/2, sprite.getHeight()/2);
-        }
-        addToView(sprite);
-    }
-
-	private Texture selectTexture(Enemy enemy) {
+	@Override
+	protected Texture selectTexture(Enemy enemy) {
 		
 		if(enemy instanceof Alien)
 			return alien;
@@ -58,7 +33,7 @@ public class AlienView implements AlienObserver {
 	@Override
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
 		if(!remove)
-			addToView(enemy);
+			addToView(enemy.getSpriteAdapter(), enemy, 0.5f);
 		else
 			removeFromView(enemy.getSpriteAdapter());
 		

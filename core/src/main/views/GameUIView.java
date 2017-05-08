@@ -1,22 +1,23 @@
 package views;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
-
 import buildings.Building;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
 import observers.WhiteHouseObserver;
-import stages.*;
-import utilities.DrawablesCollector;
+import stages.NextWaveStage;
+import stages.PoliticalMeterStage;
+import stages.RightGameUIStage;
+import stages.SelectedBuildingStage;
+import stages.SuperpowerStage;
+import stages.TopLeftGameUIStage;
 
-public class GameUIView implements WhiteHouseObserver, BuildingObserver {
+public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
 	private SelectedBuildingStage SBS;
 	private TopLeftGameUIStage TL;
 	private NextWaveStage NW;
 	private SuperpowerStage SS;
-	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	
 
 	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,SelectedBuildingStage SBS, NextWaveStage NW, SuperpowerStage SS) {
@@ -31,14 +32,6 @@ public class GameUIView implements WhiteHouseObserver, BuildingObserver {
 		addToView(HS);
 		addToView(PMS);
 		addToView(SS);
-	}
-
-	public void addToView(Stage stage) {
-		SC.addStage(stage);
-	}
-
-	public void removeFromView(Stage stage) {
-		SC.removeStage(stage);
 	}
 
 	@Override
