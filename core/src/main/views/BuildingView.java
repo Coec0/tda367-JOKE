@@ -22,7 +22,7 @@ import utilities.SpriteAdapter;
 public class BuildingView implements BuildingObserver{
     private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
-    private SpriteAdapter onMouse, sizeCircle;
+    private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
 
     public BuildingView(){
@@ -64,15 +64,19 @@ public class BuildingView implements BuildingObserver{
     	onMouse.setAlpha(0.5f);
     	
     	
-    	sizeCircle = getCircleSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize(), building.getRadius(), Color.RED);
+    	radiusCircle = getRadiusSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius());
+    	addToView(radiusCircle);
+    	sizeCircle = getSizeSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize());
     	sizeCircle.setAlpha(0.5f);
     	addToView(sizeCircle);
+    	
     	addToView(onMouse);
     }
     
     public void movePlaceTexture(float x, float y){
     	onMouse.setPosition(x, y);
     	sizeCircle.setPosition(x, y);
+    	radiusCircle.setPosition(x, y);
     }
     
     public void removePlaceTexture(){
@@ -105,20 +109,22 @@ public class BuildingView implements BuildingObserver{
 		
 	}
 	
-	private SpriteAdapter getCircleSpriteAdapter(float x, float y, float size, float radius, Color color){
-		float width = radius*12;
-		float height = width;
-		int radiusI = (int)radius;
-		int sizeI = (int)size;
-		Pixmap pixmap = new Pixmap((int)width, (int)height, Pixmap.Format.RGBA8888);
-		pixmap.setColor(color);
-		int xI = (int)((x+width)/2-x/2); //Seems to get it close enough
-		int yI = (int)((y+height)/2-y/2);
-		pixmap.fillCircle(xI, yI, sizeI);
-		pixmap.drawCircle(xI, yI, radiusI);
-		Texture texture = new Texture(pixmap);
-		pixmap.dispose();
-		return new SpriteAdapter(texture);
+	private SpriteAdapter getRadiusSpriteAdapter(float x, float y, float radius){
+		Texture texture = new Texture("shapes/ring/ring1024.png");
+		SpriteAdapter sa = new SpriteAdapter(texture);
+		sa.setSize(radius*2, radius*2);
+		sa.setPosition(x, y);
+		sa.setColor(Color.GOLD);
+		return sa;
+	}
+	
+	private SpriteAdapter getSizeSpriteAdapter(float x, float y, float size){
+		Texture texture = new Texture("shapes/circle/circle256.png");
+		SpriteAdapter sa = new SpriteAdapter(texture);
+		sa.setSize(size*2, size*2);
+		sa.setPosition(x, y);
+		sa.setColor(Color.RED);
+		return sa;
 	}
 
 	@Override
