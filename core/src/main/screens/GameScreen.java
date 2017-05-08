@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -68,7 +69,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void show() {
-		Map map = new Map("AlphaMap");
+		Map map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
 		finder = new PathFinder(Mapnodes, Mapnodes.get(23));
 		System.out.println("GameScreen: " + Mapnodes.get(23).getID());

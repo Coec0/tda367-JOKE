@@ -13,9 +13,14 @@ public class Map {
 
 	public Map(String mapName) {
 		mapParser = new MapParser(mapName);
-		texture = new Texture(mapName + ".png");
+		mapNodes = this.addMapNodes(mapParser);
+	}
 
-		mapNodes = this.addMapNodes();
+	public Map(String mapName, Texture texture) {
+		this.texture = texture;
+
+		mapParser = new MapParser(mapName);
+		mapNodes = this.addMapNodes(mapParser);
 	}
 
 	/**
@@ -37,11 +42,11 @@ public class Map {
 	 * Adds all MapNodes
 	 * @return array of MapNodes
 	 */
-	public Array<MapNode> addMapNodes() {
+	public Array<MapNode> addMapNodes(MapParser mapParser) {
 		Array<MapNode> mapNodes = new Array<MapNode>();
 
 		while(mapParser.hasNextLine()) {
-			MapNode mapNode = this.convertLineToMapNode();
+			MapNode mapNode = this.convertLineToMapNode(mapParser.getParsedLine());
 			mapNodes.add(mapNode);
 		}
 
@@ -52,8 +57,8 @@ public class Map {
 	 * Converts a line from .txt file to a MapNode
 	 * @return
 	 */
-	public MapNode convertLineToMapNode() {
-		Array<String> segments = mapParser.getParsedLine();
+	public MapNode convertLineToMapNode(Array<String> segments) {
+//		Array<String> segments = mapParser.getParsedLine();
 
 		int x = Integer.parseInt(segments.get(1));
 		int y = Integer.parseInt(segments.get(2));
