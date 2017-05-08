@@ -95,6 +95,7 @@ public class PoliticalMeterStage extends Stage {
 		labelColor.fill();
 		label.setName(party);
 		label.getStyle().background = new Image(new Texture(labelColor)).getDrawable();
+		labelColor.dispose();
 		return label;
 	}
 
