@@ -7,7 +7,7 @@ import utilities.Node;
 /**
  * Created by Emil on 2017-04-04.
  */
-public class Bullet extends Projectile {
+public class Bullet extends SingleProjectile {
 
     private static final float RADIUS = 20;
     private static final int HEALTH = 2;
