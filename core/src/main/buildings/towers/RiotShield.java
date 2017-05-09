@@ -1,12 +1,13 @@
 package buildings.towers;
 
+import buildings.Building;
 import politics.parties.Democrat;
 import projectiles.Projectile;
 
 /**
  * Created by Emil on 2017-05-09.
  */
-public class RiotShield extends Tower implements Democrat {
+public class RiotShield extends Building implements Democrat {
 
     private static final int RADIUS = 500;
     private static final String NAME = "RIOT SHIELD";
@@ -19,7 +20,7 @@ public class RiotShield extends Tower implements Democrat {
     private static final float SPEED = 10;
 
     public RiotShield(int x, int y){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN, SIZE, DAMAGE);
+        super(NAME, x, y, SIZE, RADIUS);
     }
 
     @Override
@@ -27,10 +28,6 @@ public class RiotShield extends Tower implements Democrat {
         return null;
     }
 
-    @Override
-    public Projectile makeProjectile() {
-        return null;
-    }
 
     @Override
     public int getVotes() {
@@ -40,5 +37,10 @@ public class RiotShield extends Tower implements Democrat {
     @Override
     public void setVotes(int votes) {
         this.votes = votes;
+    }
+
+    @Override
+    public void usePower() {
+        
     }
 }
