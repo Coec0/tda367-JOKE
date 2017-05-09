@@ -1,6 +1,8 @@
 package buildings.towers;
 
 import buildings.Building;
+import com.badlogic.gdx.utils.Array;
+import enemies.Enemy;
 import politics.parties.Democrat;
 import projectiles.Projectile;
 
@@ -19,13 +21,15 @@ public class RiotShield extends Building implements Democrat {
     private static final float DAMAGE = 40;
     private static final float SPEED = 10;
 
+    private Array<Enemy> enemies;
+
     public RiotShield(int x, int y){
         super(NAME, x, y, SIZE, RADIUS);
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return DESCRIPTION;
     }
 
 
@@ -39,8 +43,12 @@ public class RiotShield extends Building implements Democrat {
         this.votes = votes;
     }
 
+    private void updateEnemies(Array<Enemy> enemies){
+        this.enemies = enemies;
+    }
+
     @Override
     public void usePower() {
-        
+
     }
 }

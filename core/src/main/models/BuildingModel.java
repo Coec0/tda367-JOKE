@@ -131,6 +131,14 @@ public class BuildingModel implements UpdateObserver {
 		return false;
 	}
 
+	private void enemiesInRadius(){
+		Array<Enemy> foundAliens;
+		for (Building b : buildings){
+			foundAliens = radar.scan(b.getPos(), b.getRadius(), enemies);
+			//TODO
+		}
+	}
+
 	private void setTargets() {
 		Array<Enemy> foundAliens;
 		for (Tower tower : towers) {
