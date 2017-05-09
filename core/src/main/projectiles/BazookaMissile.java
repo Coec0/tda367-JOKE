@@ -5,22 +5,12 @@ import utilities.Node;
 /**
  * Created by Emil on 2017-05-02.
  */
-public class BazookaMissile extends Projectile implements IAOEProjectile {
+public class BazookaMissile extends AOEProjectile {
     private static final float AREAOFEFFECTRADIUS = 30;
     private static final float RADIUS = 20;
     private static final int HEALTH = 1;
 
     public BazookaMissile(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){
-        super(HEALTH, DAMAGE, SPEED, RADIUS, DIRECTION, POSITION);
-    }
-
-    @Override
-    public float getAOERadius() {
-        return AREAOFEFFECTRADIUS;
-    }
-
-    @Override
-    public void setAOERadius() {
-
+        super(HEALTH, DAMAGE, SPEED, RADIUS, AREAOFEFFECTRADIUS, DIRECTION, POSITION);
     }
 }
