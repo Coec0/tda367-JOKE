@@ -68,4 +68,8 @@ public class RoadSection {
 		return pixelWalk;
 	}
 	
+	public boolean isEndsInRoadSection(Node nodeA , Node nodeB){
+		return isStartOrEnd(nodeA) && isStartOrEnd(nodeB);
+	}
+	
 }

@@ -71,9 +71,7 @@ public class GameScreen implements Screen{
 	public void show() {
 		Map map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
-		finder = new PathFinder(Mapnodes, Mapnodes.get(23));
-		System.out.println("GameScreen: " + Mapnodes.get(23).getID());
-		finder.getShortestPath(Mapnodes.get(0));
+		finder = new PathFinder(Mapnodes, Mapnodes.get(23), map.getStartingNodes());
 		AlienView AW= new AlienView();
 		
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes());
