@@ -2,8 +2,8 @@ package buildings.towers;
 
 
 import politics.parties.Democrat;
-import projectiles.Missile;
 import projectiles.Projectile;
+import factories.ProjectileFactory;
 
 public class Tank extends Tower implements Democrat{
 
@@ -28,7 +28,7 @@ public class Tank extends Tower implements Democrat{
    
     @Override
     public Projectile makeProjectile() {
-        Projectile p = new Missile(super.getTarget().getPos(), super.getPos(), DAMAGE, SPEED);
+        Projectile p = ProjectileFactory.createMissile(super.getTarget().getPos(), super.getPos(), DAMAGE, SPEED);
         super.notifyObservers(p, "spawn");
         return p;
     }

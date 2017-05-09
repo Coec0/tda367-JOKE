@@ -2,8 +2,8 @@ package buildings.towers;
 
 
 import politics.parties.Republican;
-import projectiles.Bullet;
 import projectiles.Projectile;
+import factories.ProjectileFactory;
 
 public class Soldier extends Tower implements Republican{
     private static final int RADIUS = 500;
@@ -27,8 +27,7 @@ public class Soldier extends Tower implements Republican{
 
     @Override
     public Projectile makeProjectile() {
-    	
-        Projectile p = new Bullet(super.getTarget().getPos(), super.getPos(), DAMAGE, SPEED);
+        Projectile p = ProjectileFactory.createBullet(super.getTarget().getPos(), super.getPos(), DAMAGE, SPEED);
         super.notifyObservers(p, "spawn");
         return p;    }
 
