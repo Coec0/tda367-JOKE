@@ -11,22 +11,38 @@ public class DijkstraSolver {
 	private MapNode endNode;
 	private MapNode currentNode;
 	
-	public DijkstraSolver(Array<MapNode> allNodes){
-		this.allNodes = allNodes;
+	public DijkstraSolver(){
 	}
 	
-	public Array<Node> solve(MapNode startNode, MapNode endNode){
-		resetMapNodes();
+	public Array<Node> solve(MapNode startNode, MapNode endNode,Array<MapNode> allNodes){
+		
+		this.allNodes = allNodes;
+		
 		this.startNode = startNode;
 		this.endNode = endNode;
+		resetMapNodes();
+		
+		if(startNode.getNeighbors().size == 0){		//return empty if start has no neighbors. 
+													//no need to waste computing power if this is the case
+			System.out.println("Dijkstra: start no neighbors");
+			return new Array<Node>();
+		}
+		
 		startNode.setPathLength(0);
 		setCurrentNode(startNode);
 		weighNeighbors();
 		
 		while(!isDone()){
-			setNextCurrent();
+			MapNode nextCurrent = findNextCurrent();
+			setCurrentNode(nextCurrent);
 			weighNeighbors();
 		}
+		
+		if(endNode.getPathLength() == Float.MAX_VALUE){ //return empty if we never found a way to the endNode
+			System.out.println("Dijkstra: end pathlenght inf");
+			return new Array<Node>();
+		}
+		
 		return findPath();
 	}
 	
@@ -67,7 +83,7 @@ public class DijkstraSolver {
 		}
 	}
 	
-	private void setNextCurrent(){
+	private MapNode findNextCurrent(){
 		float currentMinValue = Float.MAX_VALUE;
 		MapNode prospect = currentNode; //just to have a starting value
 		for(MapNode node : allNodes){
@@ -77,32 +93,31 @@ public class DijkstraSolver {
 			}
 		}
 
-		setCurrentNode(prospect);
+		return prospect;
 	}
 	
 	private boolean isDone(){
-		int counter = 0;
 		Array<MapNode> inf = new Array<MapNode>();
-		Array<MapNode> visit = new Array<MapNode>();
+		Array<MapNode> nonVisited = new Array<MapNode>();
+		
 		for(MapNode node : allNodes){
+			
 			if(!node.hasBeenVisited()){
-				visit.add(node);						//return true if all nonvisited nodes have pathlenght inf
-			}else if(node.hasBeenVisited()){
-				counter++;
+				nonVisited.add(node);						
 			}
-			if(node.getPathLength() == Float.MAX_VALUE)
+			if(node.getPathLength() == Float.MAX_VALUE){
 				inf.add(node);
 			}
-			if(visit.size == inf.size){
-				return true;
-			}
-		
-		
-		if(counter == allNodes.size){ //return true if we have visited all nodes
-			return true;
 		}
 		
-		return false;
+		//these two are our end conditions.
+		if(nonVisited.size == inf.size){	//return true if all nonvisited nodes have pathlenght inf
+			return true;
+		}
+		if(nonVisited.size == 0){ //return true if we have visited all nodes
+			return true;
+		}
+		return false; 
 	}
 	
 	private Array<Node> findPath(){
