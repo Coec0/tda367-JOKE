@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import buildings.BoardObject;
-import buildings.Building;
 import buildings.Wall;
 import buildings.towers.Tower;
 import buildings.towers.TowerFactory;
@@ -125,7 +124,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		RoadSection rs = finder.findRoadSection(new Node((int)v.x,(int) v.y));
     		Wall wall = new Wall("Trump's wall",(int)v.x,(int) v.y, 10);
     		wall.rotateTowards(rs.getStart());
-    		BModel.addWall(wall);
+    		BModel.addBoardObject(wall);
     		
     		finder.removeNeighbor(rs);
     		finder.reCalculateShortest();
@@ -157,7 +156,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     
     public BoardObject getClickedBuilding(int x, int y){
     
-    	for(BoardObject building : BModel.getAllBuildings()){
+    	for(BoardObject building : BModel.getAllBoardObjects()){
     		if(isInRadius(x,y,building)){
     			return building;
     		}
