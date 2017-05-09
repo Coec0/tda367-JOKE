@@ -120,12 +120,15 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 1) && onMouse == null){
     		;
     		RoadSection rs = finder.findRoadSection(new Node((int)v.x,(int) v.y));
-    		Wall wall = new Wall("Trump's wall",(int)v.x,(int) v.y, 10);
-    		wall.rotateTowards(rs.getStart());
-    		BModel.addBoardObject(wall);
     		
-    		finder.removeNeighbor(rs);
-    		finder.reCalculateShortest();
+    		if(finder.canRemoveNeighbors(rs)){
+    			Wall wall = new Wall("Trump's wall",(int)v.x,(int) v.y, 10);
+        		wall.rotateTowards(rs.getStart());
+        		BModel.addBoardObject(wall);
+        		finder.removeNeighbor(rs);
+        		finder.calculateAllShortest();
+    		}
+    		
     	}else{
     		BoardObject clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){
