@@ -1,0 +1,37 @@
+﻿Datum: 9 maj
+Ordförande: Kaj
+Deltagare: Alla
+
+1. Mål.
+Problem: Buggar i Dijekstra när man blockar alla vägar eller blockar några vägar
+
+2. Rapport
+Kaj har fixat en hitbox. Väggarna funkar nästan. Fixat radar. 
+Johan har gjort klart Junit tester för map. Fixat huvudmenu. Har även gjort en branch med kodstrukturs ändringar.
+Emil har gjort grunden till superkrafter och nuke funkar.
+
+
+3. Diskussion
+	-Object pooling.
+	-Johans branch, hur ska vi göra?
+	- Dela upp Tower och Building?
+	-Torn: riotshield,  2 st soldater, tornboostare, alienslower, sniper, tank	
+	- Hur gör vi med stages med samma saker I?
+	-SDD.	
+
+4. Bestämt
+-Object pooling ska finnas, med inte högsta prioritet.
+-Johans interfaces ska finnas som abstraktion, men inte matas in I metoder.
+-Vi delar upp tower och building så dem extendar Boardobject.
+-Börjar satsa på 6 torn och byggnader
+-Väntar med gemensamma stage metoder tills vi är klara med all ui.
+
+
+5. Inför nästa möte
+
+-Oscar ska dela upp Tower och Building. På SDD, Subsystem and decomposition.
+-Kaj fortsätter fixa dijekstras. På SDD, System architecture.
+-Emil gör fler/gör torn bättre. På SDD, persisent data management.
+- Johan fixar stageswitcher. På SDD, Acess control and security.
+
+
