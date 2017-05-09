@@ -1,12 +1,13 @@
 package projectiles;
 
+import interfaces.IProjectile;
 import utilities.Node;
 import utilities.SpriteAdapter;
 
 /**
  * Created by Emil on 2017-04-04.
  */
-public abstract class Projectile {
+public abstract class Projectile implements IProjectile {
     private Node direction;
     private Node position;
     private SpriteAdapter sprite;
