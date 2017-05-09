@@ -2,14 +2,14 @@ package buildings.towers;
 
 import com.badlogic.gdx.utils.Array;
 
-import buildings.Building;
+import buildings.BoardObject;
 import buildings.towers.targetmethods.ITargetState;
 import buildings.towers.targetmethods.TargetLast;
 import enemies.Enemy;
 import observers.ProjectileObserver;
 import projectiles.Projectile;
 
-public abstract class Tower extends Building{
+public abstract class Tower extends BoardObject{
 	private float radius;
 	private int cost;
 	private Enemy target;
@@ -52,7 +52,6 @@ public abstract class Tower extends Building{
 		return TState;
 	}
 
-	@Override
 	public float getRadius() {
 		return this.radius;
 	}
