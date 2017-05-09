@@ -4,14 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.BoardObject;
-import buildings.Building;
 import buildings.Wall;
 import buildings.WhiteHouse;
 import buildings.towers.AlienNerfer;
-import buildings.towers.Bazooka;
-import buildings.towers.Engineer;
-import buildings.towers.Howitzer;
-import buildings.towers.Marine;
 import buildings.towers.Ranger;
 import buildings.towers.Sniper;
 import buildings.towers.Soldier;
@@ -21,7 +16,7 @@ import observers.BuildingObserver;
 import utilities.SpriteAdapter;
 
 public class BuildingView extends View<BoardObject> implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall, aliennerfer, towerbooster;
+    private Texture soldier,tank, whitehouse, ranger, sniper,wall, aliennerfer, towerbooster;
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
 
@@ -29,13 +24,9 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
         soldier = new Texture("soldier.png");
         tank = new Texture("tank.png");
         whitehouse = new Texture("sexywhitehouse.png");
-        howitzer = new Texture("soldier.png");
         ranger = new Texture("ranger.png");
-        marine = new Texture("marine.png");
         wall = new Texture("TrumpWall.png");
         sniper = new Texture("soldier.png");
-        bazooka = new Texture("soldier.png");
-        engineer = new Texture("soldier.png");
         aliennerfer = new Texture("soldier.png");
         towerbooster = new Texture("soldier.png");
         //all same texture for testing
@@ -75,18 +66,10 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 			return soldier;
 		if(building instanceof Tank)
 			return tank;
-		if(building instanceof Marine)
-		    return marine;
 		if(building instanceof Ranger)
 		    return ranger;
-		if(building instanceof Bazooka)
-		    return bazooka;
-		if(building instanceof Engineer)
-		    return engineer;
 		if(building instanceof Sniper)
 		    return sniper;
-		if(building instanceof Howitzer)
-		    return howitzer;
 		if(building instanceof Wall)
 			return wall;
 		if(building instanceof AlienNerfer)

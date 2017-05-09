@@ -25,9 +25,6 @@ public class Soldier extends Tower implements Republican{
     	return DESCRIPTION;
     }
 
-
-   
-
     @Override
     public Projectile makeProjectile() {
     	
