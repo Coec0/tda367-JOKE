@@ -13,16 +13,12 @@ public class TowerBooster extends Building {
     private static final int SIZE = 50;
 
     public TowerBooster(int x, int y){
-        super(NAME, x ,y, SIZE);
+        super(NAME, x ,y, SIZE, BOOSTRADIUS);
 
     }
     @Override
     public String getDescription() {
         return DESCRIPTION;
-    }
-
-    public int getBoostRadius(){
-        return BOOSTRADIUS;
     }
 
     public void boost(Array<Tower> towers){

@@ -1,6 +1,6 @@
 package views;
 
-import buildings.Building;
+import buildings.BoardObject;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
 import observers.WhiteHouseObserver;
@@ -41,9 +41,9 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	}
 
 	@Override
-	public void actOnBuildingChange(Building building, boolean remove, boolean clickedOn) {
+	public void actOnBuildingChange(BoardObject BO, boolean remove, boolean clickedOn) {
 		if(!remove && clickedOn){
-			SBS.setBuilding(building);
+			SBS.setBuilding(BO);
 			removeFromView(HS);
 			addToView(SBS);
 		} else if(remove){

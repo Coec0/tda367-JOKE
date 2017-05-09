@@ -2,7 +2,7 @@ package buildings;
 
 import utilities.Node;
 
-public class Wall extends Building {
+public class Wall extends BoardObject {
 	
 	
 	public Wall(String name ,int x, int y, float size) {

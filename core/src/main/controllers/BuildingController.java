@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import buildings.BoardObject;
 import buildings.Building;
 import buildings.Wall;
 import buildings.towers.Tower;
@@ -29,8 +30,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
     BuildingModel BModel;
     AlienModel AModeL;
     Viewport WP;
-    Tower onMouse;
-    Building highlighted;
+    BoardObject onMouse;
+    BoardObject highlighted;
     private PathFinder finder;
     
 
@@ -117,7 +118,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
 			return false;
 		
     	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize())){
-    		BModel.addTower(onMouse, (int)v.x,(int) v.y);
+    		BModel.addBoardObject(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
     	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 1) && onMouse == null){
     		;
@@ -129,7 +130,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     		finder.removeNeighbor(rs);
     		finder.reCalculateShortest();
     	}else{
-    		Building clicked = getClickedBuilding((int)v.x,(int) v.y);
+    		BoardObject clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){
     			buildingClicked(clicked);
     		}else{
@@ -139,7 +140,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		return false;
 	}
     
-    private void buildingClicked(Building building){
+    private void buildingClicked(BoardObject building){
     	System.out.println("BuildingCont: Tower clicked"); 
 		highlighted = building;
 		BModel.clickedBuilding(building);
@@ -154,9 +155,9 @@ public class BuildingController extends ClickListener implements InputProcessor 
     }
     
     
-    public Building getClickedBuilding(int x, int y){
+    public BoardObject getClickedBuilding(int x, int y){
     
-    	for(Building building : BModel.getAllBuildings()){
+    	for(BoardObject building : BModel.getAllBuildings()){
     		if(isInRadius(x,y,building)){
     			return building;
     		}
@@ -165,7 +166,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	
     }
     
-    public boolean isInRadius(int x, int y, Building building){
+    public boolean isInRadius(int x, int y, BoardObject building){
     	Node node = new Node(x,y);
     	return node.getDistanceTo(building.getPos()) <= building.getSize();
     }

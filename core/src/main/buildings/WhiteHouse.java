@@ -8,7 +8,7 @@ import observers.AlienObserver;
 import observers.WhiteHouseObserver;
 import politics.parties.Party;
 
-public class WhiteHouse extends Building implements AlienObserver{
+public class WhiteHouse extends BoardObject implements AlienObserver{
 	private int health=20; //temp
 	private float money;
 	private ArrayMap<Integer, String> pVotes;

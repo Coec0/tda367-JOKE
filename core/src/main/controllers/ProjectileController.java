@@ -1,6 +1,6 @@
 package controllers;
 
-import buildings.Building;
+import buildings.BoardObject;
 import buildings.towers.Tower;
 import models.BuildingModel;
 import models.ProjectileModel;
@@ -54,7 +54,7 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
 
 
     @Override
-    public void actOnBuildingChange(Building building, boolean remove, boolean clickedOn) {
+    public void actOnBuildingChange(BoardObject building, boolean remove, boolean clickedOn) {
     if(building instanceof Tower && !clickedOn)	// Not a good fix, should prob make another observer instead
        updateTowerObservers((Tower)building, remove);
     }

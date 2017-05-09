@@ -14,17 +14,13 @@ public class AlienNerfer extends Building {
     private static final int SIZE = 50;
 
     public AlienNerfer(int x, int y){
-        super(NAME, x ,y, SIZE);
+        super(NAME, x ,y, SIZE, SLOWRADIUS);
     }
 
 
     @Override
     public String getDescription() {
         return DESCRIPTION;
-    }
-
-    public int getSlowRadius(){
-        return SLOWRADIUS;
     }
 
     public void slow(Array<Enemy> enemies) {

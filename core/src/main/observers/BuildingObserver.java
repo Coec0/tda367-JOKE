@@ -1,7 +1,7 @@
 package observers;
 
-import buildings.Building;
+import buildings.BoardObject;
 
 public interface BuildingObserver {
-	void actOnBuildingChange(Building building, boolean remove, boolean clickedOn);
+	void actOnBuildingChange(BoardObject boardObject, boolean remove, boolean clickedOn);
 }

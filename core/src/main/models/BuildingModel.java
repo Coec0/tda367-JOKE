@@ -1,15 +1,15 @@
 package models;
 
-import buildings.towers.AlienNerfer;
-import buildings.towers.TowerBooster;
 import com.badlogic.gdx.utils.Array;
 
+import buildings.BoardObject;
 import buildings.Building;
 import buildings.Wall;
 import buildings.WhiteHouse;
+import buildings.towers.AlienNerfer;
 import buildings.towers.Tower;
+import buildings.towers.TowerBooster;
 import buildings.towers.TowerUpgrader;
-import enemies.Alien;
 import enemies.Enemy;
 import observers.BuildingObserver;
 import observers.UpdateObserver;
@@ -41,8 +41,8 @@ public class BuildingModel implements UpdateObserver {
 	}
     
     
-    public Array<Building> getAllBuildings(){
-    	Array<Building> allBuildings = new Array<Building>();
+    public Array<BoardObject> getAllBuildings(){
+    	Array<BoardObject> allBuildings = new Array<BoardObject>();
     	for(Tower tower : towers){
     		allBuildings.add(tower);
     	}
@@ -56,30 +56,32 @@ public class BuildingModel implements UpdateObserver {
     	return allBuildings;
     }
     
-    private void voteTower(Tower tower){
-    	if(tower instanceof Party){
-    		whitehouses.peek().voteParty((Party)tower);
+    private void voteBoardObject(BoardObject BO){
+    	if(BO instanceof Party){
+    		whitehouses.peek().voteParty((Party)BO);
     	}
     }
 
-    public void clickedBuilding(Building building){
+    public void clickedBuilding(BoardObject building){
     	notifyObservers(building, false, true);
     }
     
-	public void deselect(Building building) {
+	public void deselect(BoardObject building) {
 		notifyObservers(building, true, true);
 	}
     
-	public void addTower(Tower tower){
-		towers.add(tower);
-		tower.setActive(true);
-		voteTower(tower);
-		notifyObservers(tower, false, false);
+	public void addBoardObject(BoardObject BO){
+		if(BO instanceof Tower){
+			towers.add((Tower)BO);
+			BO.setActive(true);
+		}
+		voteBoardObject(BO);
+		notifyObservers(BO, false, false);
 	}
 	
-	public void addTower(Tower tower, int x, int y){
-		tower.setPos(x, y);
-		this.addTower(tower);
+	public void addBoardObject(BoardObject BO, int x, int y){
+		BO.setPos(x, y);
+		this.addBoardObject(BO);
 	}
 	
 	public void addWall(Wall wall){
@@ -128,7 +130,7 @@ public class BuildingModel implements UpdateObserver {
 		return towers.peek();
 	}
 
-	public void sellBuilding(Building building) {
+	public void sellBuilding(BoardObject building) {
 		building.setActive(false);
 		if(building instanceof Tower)
 			towers.removeValue((Tower)building, false);
@@ -171,7 +173,7 @@ public class BuildingModel implements UpdateObserver {
 	private void slowAllInRadius(){
 	    Array<Enemy> inRadius;
 	    for (AlienNerfer nerfer : nerfers){
-	        inRadius = radar.scan(nerfer.getPos(), nerfer.getSlowRadius(), enemies);
+	        inRadius = radar.scan(nerfer.getPos(), nerfer.getRadius(), enemies);
 	        nerfer.slow(inRadius);
         }
     }
@@ -216,7 +218,7 @@ public class BuildingModel implements UpdateObserver {
 		observers.removeValue(observer, false);
 	}
 
-	private void notifyObservers(Building building, boolean remove, boolean clickedOn) {
+	private void notifyObservers(BoardObject building, boolean remove, boolean clickedOn) {
 		for (BuildingObserver observer : observers)
 			observer.actOnBuildingChange(building, remove, clickedOn);
 	}

@@ -8,13 +8,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import buildings.BoardObject;
 import buildings.Building;
 import buildings.towers.Tower;
 
 public class SelectedBuildingStage extends Stage {
 	private Skin skin;
 	private Label description, name;
-	private Building selectedBuilding;
+	private BoardObject selectedBuilding;
 	private Table target;
 
 	public SelectedBuildingStage(ClickListener buildingC) {
@@ -69,7 +70,7 @@ public class SelectedBuildingStage extends Stage {
 		return table;
 	}
 
-	public void setBuilding(Building building) {
+	public void setBuilding(BoardObject building) {
 		if(building instanceof Tower && building.isActive()){
 			target.setVisible(true);
 		} else{

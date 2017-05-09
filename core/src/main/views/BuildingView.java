@@ -3,14 +3,24 @@ package views;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
+import buildings.BoardObject;
 import buildings.Building;
 import buildings.Wall;
 import buildings.WhiteHouse;
-import buildings.towers.*;
+import buildings.towers.AlienNerfer;
+import buildings.towers.Bazooka;
+import buildings.towers.Engineer;
+import buildings.towers.Howitzer;
+import buildings.towers.Marine;
+import buildings.towers.Ranger;
+import buildings.towers.Sniper;
+import buildings.towers.Soldier;
+import buildings.towers.Tank;
+import buildings.towers.TowerBooster;
 import observers.BuildingObserver;
 import utilities.SpriteAdapter;
 
-public class BuildingView extends View<Building> implements BuildingObserver{
+public class BuildingView extends View<BoardObject> implements BuildingObserver{
     private Texture soldier,tank, whitehouse, howitzer, ranger, sniper, bazooka, engineer, marine,wall, aliennerfer, towerbooster;
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
@@ -31,14 +41,14 @@ public class BuildingView extends View<Building> implements BuildingObserver{
         //all same texture for testing
     }
 
-    public void placeTexture(Building building){
+    public void placeTexture(BoardObject building){
     	onMouse = new SpriteAdapter(selectTexture(building));
     	onMouse.setSize(onMouse.getWidth()/3, onMouse.getHeight()/3);
     	onMouse.setAlpha(0.5f);
     	
-    	
-    	radiusCircle = getRadiusSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius());
-    	addToView(radiusCircle);
+    	//Temp removed
+    	//radiusCircle = getRadiusSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius());
+    	//addToView(radiusCircle);
     	sizeCircle = getSizeSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize());
     	sizeCircle.setAlpha(0.5f);
     	addToView(sizeCircle);
@@ -49,7 +59,7 @@ public class BuildingView extends View<Building> implements BuildingObserver{
     public void movePlaceTexture(float x, float y){
     	onMouse.setPosition(x, y);
     	sizeCircle.setPosition(x, y);
-    	radiusCircle.setPosition(x, y);
+    	//radiusCircle.setPosition(x, y);
     }
     
     public void removePlaceTexture(){
@@ -57,7 +67,7 @@ public class BuildingView extends View<Building> implements BuildingObserver{
     }
     
     @Override
-	protected Texture selectTexture(Building building) {
+	protected Texture selectTexture(BoardObject building) {
 		
 		if(building instanceof WhiteHouse)
 			return whitehouse;
@@ -106,7 +116,7 @@ public class BuildingView extends View<Building> implements BuildingObserver{
 	}
 
 	@Override
-	public void actOnBuildingChange(Building building, boolean remove, boolean clickedOn) {
+	public void actOnBuildingChange(BoardObject building, boolean remove, boolean clickedOn) {
 		if(!remove && !clickedOn){
 			addToView(building.getSpriteAdapter(), building, 0.3f);
 			removePlaceTexture();
