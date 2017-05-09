@@ -17,4 +17,6 @@ public abstract class Building extends BoardObject {
 		this.radius = radius;
 	}
 	
+	public abstract void usePower();
+	
 }

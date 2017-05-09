@@ -141,19 +141,11 @@ public class BuildingModel implements UpdateObserver {
 		
 	}
 
-	/*private void slowAllInRadius(){
-	    Array<Enemy> inRadius;
-	    for (AlienNerfer nerfer : nerfers){
-	        inRadius = radar.scan(nerfer.getPos(), nerfer.getRadius(), enemies);
-	        nerfer.slow(inRadius);
-        }
-    }*/ //TO FIX
-
-   /* private void boostAllInRadius(){
-	    Array<Tower> inRadius;
-	    for (TowerBooster booster: boosters){
-        }
-    }*/ //TO FIX
+	private void useBuildingPowers(){
+		for (Building building: buildings){
+			building.usePower();
+		}
+	}
 	
 	private void checkWhitehouses(){
 		Array<Enemy> closeAliens;
@@ -174,7 +166,7 @@ public class BuildingModel implements UpdateObserver {
 	public void update(float deltaTime) {
 		setTargets();
 		fireAllTowers();
-		//slowAllInRadius();
+		useBuildingPowers(); // Maybe move from here
 		checkWhitehouses();
 		
 	}
