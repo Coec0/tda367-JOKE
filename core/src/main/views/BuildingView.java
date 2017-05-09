@@ -1,22 +1,17 @@
 package views;
 
+import buildings.towers.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 import buildings.BoardObject;
 import buildings.Wall;
 import buildings.WhiteHouse;
-import buildings.towers.AlienNerfer;
-import buildings.towers.Ranger;
-import buildings.towers.Sniper;
-import buildings.towers.Soldier;
-import buildings.towers.Tank;
-import buildings.towers.TowerBooster;
 import observers.BuildingObserver;
 import utilities.SpriteAdapter;
 
 public class BuildingView extends View<BoardObject> implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, ranger, sniper,wall, aliennerfer, towerbooster;
+    private Texture soldier,tank, whitehouse, ranger, sniper,wall, aliennerfer, towerbooster, riotshield;
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
 
@@ -29,6 +24,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
         sniper = new Texture("soldier.png");
         aliennerfer = new Texture("soldier.png");
         towerbooster = new Texture("soldier.png");
+        riotshield = new Texture("soldier.png");
         //all same texture for testing
     }
 
@@ -76,6 +72,8 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 			return aliennerfer;
 		if(building instanceof TowerBooster)
 			return towerbooster;
+		if(building instanceof RiotShield)
+			return riotshield;
 		return null;
 		
 	}

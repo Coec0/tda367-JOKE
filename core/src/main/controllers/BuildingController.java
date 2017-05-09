@@ -68,18 +68,16 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		if(event.getListenerActor().getName().equals("ranger")){
 			onMouse = TowerFactory.createRanger((int)x, (int)y); // x and y never used
 		}
-		if(event.getListenerActor().getName().equals("marine")){
-			onMouse = TowerFactory.createMarine((int)x, (int)y); // x and y never used
+		if(event.getListenerActor().getName().equals("aliennerfer")){
+			onMouse = TowerFactory.createAlienNerfer((int)x, (int)y); // x and y never used
 		}
-		if(event.getListenerActor().getName().equals("howitzer")){
-			onMouse = TowerFactory.createHowitzer((int)x, (int)y); // x and y never used
+		if(event.getListenerActor().getName().equals("towerbooster")){
+			onMouse = TowerFactory.createTowerBooster((int)x, (int)y); // x and y never used
 		}
-		if(event.getListenerActor().getName().equals("engineer")){
-			onMouse = TowerFactory.createEngineer((int)x, (int)y); // x and y never used
+		if(event.getListenerActor().getName().equals("riotshield")){
+			onMouse = TowerFactory.createRiotShield((int)x, (int)y); // x and y never used
 		}
-		if(event.getListenerActor().getName().equals("bazooka")){
-			onMouse = TowerFactory.createBazooka((int)x, (int)y); // x and y never used
-		}
+
 		if(onMouse !=null){
 			BView.placeTexture(onMouse);
 			BModel.clickedBuilding(onMouse);

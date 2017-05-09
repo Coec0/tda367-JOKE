@@ -21,5 +21,6 @@ public class TowerFactory {
 
 	public static TowerBooster createTowerBooster(int x, int y){return new TowerBooster(x,y);}
 
+	public static RiotShield createRiotShield(int x, int y){return new RiotShield(x,y);}
 
 }
