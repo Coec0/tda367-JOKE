@@ -12,6 +12,7 @@ public class MapNode {
 	private String prevID;
 	private float pathLength;
 	private boolean visited;
+	private String lastRemovedNeighbor;
 	
 	public MapNode(String ID, Node pos){
 		this.ID = ID;
@@ -62,8 +63,13 @@ public class MapNode {
 		for(String string : neighbors){
 			if(string.equals(neighbor)){
 				neighbors.removeValue(neighbor, false);
+				lastRemovedNeighbor = neighbor;
 			}
 		}
+	}
+	
+	public String getLastRemovedNeighbor(){
+		return lastRemovedNeighbor;
 	}
 	
 	public void setNeighbors(Array<String> neighbors){
