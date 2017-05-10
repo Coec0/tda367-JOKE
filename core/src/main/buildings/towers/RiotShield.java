@@ -43,12 +43,16 @@ public class RiotShield extends Building implements Democrat {
         this.votes = votes;
     }
 
-    private void updateEnemies(Array<Enemy> enemies){
+    public void updateEnemies(Array<Enemy> enemies){
         this.enemies = enemies;
     }
 
     @Override
     public void usePower() {
-
+        if (enemies != null){
+            for (Enemy e: enemies){
+                e.setNodeArrayPos(e.getNodeArrayPos() - 10);
+            }
+        }
     }
 }

@@ -1,12 +1,11 @@
 package models;
 
+import buildings.towers.*;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.BoardObject;
 import buildings.Building;
 import buildings.WhiteHouse;
-import buildings.towers.Tower;
-import buildings.towers.TowerUpgrader;
 import enemies.Enemy;
 import observers.BuildingObserver;
 import observers.UpdateObserver;
@@ -20,6 +19,7 @@ public class BuildingModel implements UpdateObserver {
 	private Array<BoardObject> boardObjects;
 	private Array<Enemy> enemies;
 	private Array<Building> buildings;
+
 	private Radar radar;
 	private TowerUpgrader upgrader;
 	
@@ -131,12 +131,28 @@ public class BuildingModel implements UpdateObserver {
 		return false;
 	}
 
-	private void enemiesInRadius(){
+	private void updateBuildings(){
 		Array<Enemy> foundAliens;
 		for (Building b : buildings){
-			foundAliens = radar.scan(b.getPos(), b.getRadius(), enemies);
-			//TODO
+			if (b instanceof RiotShield){
+				b = (RiotShield )b;
+				foundAliens = radar.scan(b.getPos(),b.getRadius(),enemies);
+				((RiotShield) b).updateEnemies(foundAliens);
+			}
+
+			if (b instanceof AlienNerfer){
+				b = (AlienNerfer) b;
+				foundAliens = radar.scan(b.getPos(), b.getRadius(), enemies);
+				((AlienNerfer) b).updateEnemies(foundAliens);
+			}
+
+			if (b instanceof TowerBooster){
+				//need radar for  towers
+			}
+
 		}
+
+
 	}
 
 	private void setTargets() {
@@ -151,6 +167,7 @@ public class BuildingModel implements UpdateObserver {
 
 	private void useBuildingPowers(){
 		for (Building building: buildings){
+			updateBuildings();
 			building.usePower();
 		}
 	}
