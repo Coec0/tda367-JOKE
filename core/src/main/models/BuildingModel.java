@@ -10,6 +10,7 @@ import enemies.Enemy;
 import observers.BuildingObserver;
 import observers.UpdateObserver;
 import politics.parties.Party;
+import politics.parties.Voter;
 import utilities.Node;
 import utilities.Radar;
 
@@ -41,8 +42,9 @@ public class BuildingModel implements UpdateObserver {
     }
     
     private void voteBoardObject(BoardObject BO){
-    	if(BO instanceof Party){
-    		whitehouses.peek().voteParty((Party)BO);
+    	if(BO instanceof Voter){
+    		Voter temp = (Voter)BO;
+    		whitehouses.peek().voteParty(temp.getParty());
     	}
     }
 

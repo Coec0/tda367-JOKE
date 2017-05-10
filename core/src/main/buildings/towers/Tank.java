@@ -1,17 +1,20 @@
 package buildings.towers;
 
 
-import politics.parties.Democrat;
-import projectiles.Projectile;
 import factories.ProjectileFactory;
+import politics.parties.Party;
+import politics.parties.PartyFactory;
+import politics.parties.Voter;
+import projectiles.Projectile;
 
-public class Tank extends Tower implements Democrat{
+public class Tank extends Tower implements Voter{
 
     private static final int RADIUS = 1000;
     private static final String NAME = "TANK";
     private static final int COST = 100;
     private static final int COOLDOWN = 50;
     private static String DESCRIPTION = "Great damage but shoots slow";
+    private Party party = PartyFactory.Democrat(10); // Just for now
     private static final float SIZE = 50;
     private static final float DAMAGE = 500;
     private static final float SPEED = 50;
@@ -33,17 +36,9 @@ public class Tank extends Tower implements Democrat{
         return p;
     }
 
-
 	@Override
-	public int getVotes() {
-		// TODO Auto-generated method stub
-		return 10;
-	}
-
-	@Override
-	public void setVotes(int votes) {
-		// TODO Auto-generated method stub
-		
+	public Party getParty() {
+		return party;
 	}
 
 }

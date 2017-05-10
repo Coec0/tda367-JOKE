@@ -1,16 +1,18 @@
 package buildings.towers;
 
 
-import politics.parties.Republican;
-import projectiles.Projectile;
 import factories.ProjectileFactory;
+import politics.parties.Party;
+import politics.parties.PartyFactory;
+import politics.parties.Voter;
+import projectiles.Projectile;
 
-public class Soldier extends Tower implements Republican{
+public class Soldier extends Tower implements Voter{
     private static final int RADIUS = 500;
     private static final String NAME = "SOLDIER";
     private static final int COST = 50;
     private static final int COOLDOWN = 10;
-	private int votes = 3; // Just for now
+    private Party party = PartyFactory.Republican(3); // Just for now
 	private static String DESCRIPTION = "A regular soldier";
 	private static final float SIZE = 50;
     private static final float DAMAGE = 40;
@@ -33,14 +35,7 @@ public class Soldier extends Tower implements Republican{
 
 
 	@Override
-	public int getVotes() {
-		return votes;
-	}
-
-
-	@Override
-	public void setVotes(int votes) {
-		this.votes  = votes;
-
+	public Party getParty() {
+		return party;
 	}
 }

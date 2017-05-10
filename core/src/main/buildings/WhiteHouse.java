@@ -23,17 +23,8 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 	 * @param party
 	 */
 	public <T extends Party> void voteParty(T party){
-		
-		for(Class<?> iFace : party.getClass().getInterfaces()){
-			if(iFace.getInterfaces().length > 0){ //Checks so we dont vote with "Party" interface
-				if(Party.class.isAssignableFrom(iFace)){ //Checks if Party is superclass
-					System.out.println("Party: "+ party.getClass().getInterfaces()[0].getSimpleName());
-					setPartyValue(party.getClass().getInterfaces()[0].getSimpleName(), party.getVotes());
-					notifyObservers(this);
-				}
-			}
-			
-		}
+		setPartyValue(party.getName(), party.getVotes());
+		notifyObservers(this);
 	}
 	
 	

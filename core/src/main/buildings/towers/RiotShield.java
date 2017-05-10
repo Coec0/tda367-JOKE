@@ -1,20 +1,24 @@
 package buildings.towers;
 
-import buildings.Building;
 import com.badlogic.gdx.utils.Array;
+
+import buildings.Building;
 import enemies.Enemy;
-import politics.parties.Democrat;
-import projectiles.Projectile;
+import politics.parties.Party;
+import politics.parties.PartyFactory;
+import politics.parties.Voter;
 
 /**
  * Created by Emil on 2017-05-09.
  */
-public class RiotShield extends Building implements Democrat {
+public class RiotShield extends Building implements Voter {
 
     private static final String NAME = "RIOT SHIELD";
+    private static final int COST = 50;
+    private static final int COOLDOWN = 10;
+    private Party party = PartyFactory.Democrat(6); // Just for now
     private static String DESCRIPTION = "Pushes back nearby enemies";
     private static final int RADIUS = 500;
-    private int votes = 3; // Just for now
     private static final float SIZE = 50;
     private int cooldown;
     private int cooldownTimer;
@@ -43,15 +47,6 @@ public class RiotShield extends Building implements Democrat {
     }
 
 
-    @Override
-    public int getVotes() {
-        return votes;
-    }
-
-    @Override
-    public void setVotes(int votes) {
-        this.votes = votes;
-    }
 
     public void updateEnemies(Array<Enemy> enemies){
         this.enemies = enemies;
@@ -65,4 +60,9 @@ public class RiotShield extends Building implements Democrat {
             }
         }
     }
+
+	@Override
+	public Party getParty() {
+		return party;
+	}
 }
