@@ -1,53 +1,39 @@
 package stages;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.IllegalAliensMain;
-import screens.MainMenuScreen;
+import factories.ActorFactory;
 
-import static com.badlogic.gdx.utils.Align.center;
-
-public class MainMenuStage extends Stage {
+public class MainMenuStage extends AbstractStage {
 
     private IllegalAliensMain game;
-    private MainMenuScreen mainMenuScreen;
-    private Skin skin;
+    private StageSwitcher stageSwitcher;
 
-    private Table table;
-    private Image alienImage;
-    private TextField welcomeText;
-
-    public MainMenuStage(IllegalAliensMain game, MainMenuScreen mainMenuScreen) {
+    public MainMenuStage(IllegalAliensMain game, StageSwitcher stageSwitcher) {
         this.game = game;
-        this.mainMenuScreen = mainMenuScreen;
-
-        skin = game.getSkin();
+        this.stageSwitcher = stageSwitcher;
 
         this.addActor(addAlienImage());
         this.addActor(addWelcomeText());
         this.addActor(addTable());
     }
 
-    private Image addAlienImage() {
-        alienImage = new Image(new Texture("alien.png"));
-
-        alienImage.setOrigin(alienImage.getWidth() / 2, alienImage.getHeight() / 2);
-        alienImage.rotateBy(180);
-        alienImage.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2 + 100, center);
-
-        return alienImage;
+    private Actor addAlienImage() {
+        return ActorFactory.createImage(centerWidth, centerHeight + 100, 180, center,
+                new Texture("alien.png")
+        );
     }
 
     private Table addTable() {
-        table = new Table();
+        Table table = new Table();
 
         table.setWidth(150f);
         table.setHeight(200f);
-        table.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2 - 100, center);
+        table.setPosition(centerWidth, centerHeight - 100, center);
 
         return fillTable(table);
     }
@@ -67,8 +53,8 @@ public class MainMenuStage extends Stage {
         return table;
     }
 
-    private TextButton addStartButton() {
-        TextButton startButton = new TextButton("Start game", skin, "default");
+    private Actor addStartButton() {
+        Actor startButton = ActorFactory.createTextButton("Start");
 
         startButton.addListener(new ClickListener(){
             @Override
@@ -80,21 +66,21 @@ public class MainMenuStage extends Stage {
         return startButton;
     }
 
-    private TextButton addAboutButton() {
-        TextButton aboutButton = new TextButton("About", skin, "default");
+    private Actor addAboutButton() {
+        Actor aboutButton = ActorFactory.createTextButton("About");
 
         aboutButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y){
-                mainMenuScreen.showAboutStage();
+                stageSwitcher.showStage(stageSwitcher.getAboutStage());
             }
         });
 
         return aboutButton;
     }
 
-    private TextButton addSettingsButton() {
-        TextButton settingsButton = new TextButton("Settings", skin, "default");
+    private Actor addSettingsButton() {
+        Actor settingsButton = ActorFactory.createTextButton("Settings");
 
         settingsButton.addListener(new ClickListener() {
             @Override
@@ -106,8 +92,8 @@ public class MainMenuStage extends Stage {
         return settingsButton;
     }
 
-    private TextButton addExitButton() {
-        TextButton exitButton = new TextButton("Exit game", skin, "default");
+    private Actor addExitButton() {
+        Actor exitButton = ActorFactory.createTextButton("Exit");
 
         exitButton.addListener(new ClickListener() {
             @Override
@@ -119,8 +105,8 @@ public class MainMenuStage extends Stage {
         return exitButton;
     }
 
-    private TextButton addHiscoreButton() {
-        TextButton hiscoreButton = new TextButton("Hiscore", skin, "default");
+    private Actor addHiscoreButton() {
+        Actor hiscoreButton = ActorFactory.createTextButton("Hiscore");
 
         hiscoreButton.addListener(new ClickListener() {
             @Override
@@ -132,22 +118,9 @@ public class MainMenuStage extends Stage {
         return hiscoreButton;
     }
 
-    private TextField addWelcomeText() {
-        welcomeText = new TextField("", skin, "default");
-
-        welcomeText.setText("You will perish.");
-        welcomeText.setAlignment(center);
-        welcomeText.setWidth(150f);
-        welcomeText.setHeight(30f);
-        welcomeText.setDisabled(true);
-        welcomeText.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, center);
-
-        return welcomeText;
-    }
-
-    public void setVisible(boolean b) {
-        alienImage.setVisible(b);
-        table.setVisible(b);
-        welcomeText.setVisible(b);
+    private Actor addWelcomeText() {
+        return ActorFactory.createTextField("You will perish",
+                centerWidth, centerHeight, 150f, 30f, true, center
+        );
     }
 }
