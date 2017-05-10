@@ -36,7 +36,7 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 
 	@Override
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
-		PMS.updateParty(whitehouse.getPartyMap());
+		PMS.updatePartyMeter(whitehouse.getParliament());
 		TL.updateUI(Float.toString(whitehouse.getMoney()), Float.toString(whitehouse.getHealth()));
 	}
 

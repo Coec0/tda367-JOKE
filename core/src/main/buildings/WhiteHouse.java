@@ -6,16 +6,19 @@ import com.badlogic.gdx.utils.ArrayMap;
 import enemies.Enemy;
 import observers.AlienObserver;
 import observers.WhiteHouseObserver;
+import politics.Parliament;
 import politics.parties.Party;
 
 public class WhiteHouse extends BoardObject implements AlienObserver{
 	private int health=20; //temp
 	private float money;
-	private ArrayMap<Integer, String> pVotes;
+	//private ArrayMap<Integer, String> pVotes;
+	private Parliament parliament;	
 	
 	public WhiteHouse(String name, int x, int y,float size){
 		super(name, x, y,size);
-		pVotes = new ArrayMap<Integer, String>(false, 7);
+		parliament = new Parliament();
+		//pVotes = new ArrayMap<Integer, String>(false, 7);
 	}
 	
 	/**
@@ -23,23 +26,12 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 	 * @param party
 	 */
 	public <T extends Party> void voteParty(T party){
-		setPartyValue(party.getName(), party.getVotes());
+		parliament.voteParty(party);
 		notifyObservers(this);
 	}
 	
-	
-	private void setPartyValue(String party, int votes) {
-		if(pVotes.containsValue(party, false)){
-			int index = pVotes.indexOfValue(party, false);
-			pVotes.setKey(index, pVotes.getKeyAt(index)+votes);
-		} else {
-			pVotes.put(votes, party);
-		}
-		System.out.println("VOTES PARTY = "+ pVotes.getKey(party, false));
-	}
-
-	public ArrayMap<Integer, String> getPartyMap(){
-		return pVotes;
+	public Parliament getParliament(){
+		return parliament;
 	}
 	
 	public void removeHealth(int amount){
