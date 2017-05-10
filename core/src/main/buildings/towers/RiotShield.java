@@ -11,14 +11,11 @@ import projectiles.Projectile;
  */
 public class RiotShield extends Building implements Democrat {
 
-    private static final int RADIUS = 500;
     private static final String NAME = "RIOT SHIELD";
-    private static final int COST = 50;
-    private int votes = 3; // Just for now
     private static String DESCRIPTION = "Pushes back nearby enemies";
+    private static final int RADIUS = 500;
+    private int votes = 3; // Just for now
     private static final float SIZE = 50;
-    private static final float DAMAGE = 40;
-    private static final float SPEED = 10;
     private int cooldown;
     private int cooldownTimer;
 
@@ -26,7 +23,7 @@ public class RiotShield extends Building implements Democrat {
 
     public RiotShield(int x, int y){
         super(NAME, x, y, SIZE, RADIUS);
-        this.cooldown = 2000;
+        this.cooldown = 20;
         cooldownTimer = cooldown;
     }
 

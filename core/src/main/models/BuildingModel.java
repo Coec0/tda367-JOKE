@@ -173,7 +173,10 @@ public class BuildingModel implements UpdateObserver {
 					building.usePower();
 				}
 			}
-			building.usePower();
+
+			else {
+				building.usePower();
+			}
 		}
 	}
 	
