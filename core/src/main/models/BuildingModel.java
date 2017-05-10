@@ -166,8 +166,13 @@ public class BuildingModel implements UpdateObserver {
 	}
 
 	private void useBuildingPowers(){
-		for (Building building: buildings){
-			updateBuildings();
+		for (Building building: buildings) {
+			if (building instanceof RiotShield) {
+				building = (RiotShield) building;
+				if (!((RiotShield) building).isInCooldown()) {
+					building.usePower();
+				}
+			}
 			building.usePower();
 		}
 	}
@@ -191,6 +196,7 @@ public class BuildingModel implements UpdateObserver {
 	public void update(float deltaTime) {
 		setTargets();
 		fireAllTowers();
+		updateBuildings();
 		useBuildingPowers(); // Maybe move from here
 		checkWhitehouses();
 		
