@@ -135,6 +135,7 @@ public class BuildingModel implements UpdateObserver {
 
 	private void updateBuildings(){
 		Array<Enemy> foundAliens;
+		Array<Tower> foundTowers;
 		for (Building b : buildings){
 			if (b instanceof RiotShield){
 				b = (RiotShield )b;
@@ -149,7 +150,9 @@ public class BuildingModel implements UpdateObserver {
 			}
 
 			if (b instanceof TowerBooster){
-				//need radar for  towers
+				b = (TowerBooster)b;
+				foundTowers = radar.towerScan(b.getPos(), b.getRadius(), towers);
+				((TowerBooster) b).updateTowers(foundTowers);
 			}
 
 		}

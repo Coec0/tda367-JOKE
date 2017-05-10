@@ -1,5 +1,6 @@
 package utilities;
 
+import buildings.towers.Tower;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Enemy;
@@ -22,6 +23,18 @@ public class Radar {
 		}
 		return knownEnemies;
     }
+
+    public Array<Tower> towerScan(Node center, float radius, Array<Tower> towers){
+		Array<Tower> knownTowers = new Array<Tower>();
+
+		for(Tower tower: towers){
+			if(isNodeWithinRadius(center, tower.getPos(), radius, tower.getRadius())){
+				knownTowers.add(tower);
+			}
+		}
+
+		return knownTowers;
+	}
 	
 	public Array<Node> scanNodeArray(Array<Node> nodes, float nodesRadius , Node center ,float centerRadius){
 		Array<Node> foundNodes = new Array<Node>();

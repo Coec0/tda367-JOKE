@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Array;
 public class TowerBooster extends Building {
 	private static final String NAME = "TowerBooster";
 	private static final String DESCRIPTION = "Boosts all towers in its radius";
-	private static final int BOOSTRADIUS = 50;
+	private static final int BOOSTRADIUS = 5000;
 	private static final int SIZE = 50;
 
 	private Array<Tower> towers;
@@ -33,7 +33,7 @@ public class TowerBooster extends Building {
 		if (towers != null) {
 			for (Tower tower : towers) {
 				tower.setDamage(tower.getDamage() * 1.3f);
-				tower.setRadius(tower.getRadius() * 1.3f);
+				tower.setRadius(tower.getRadius() * 20f);
 			}
 		}
 	}
