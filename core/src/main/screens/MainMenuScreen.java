@@ -5,43 +5,25 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.example.illegalaliens.IllegalAliensMain;
-import stages.AboutStage;
-import stages.MainMenuStage;
+import stages.StageSwitcher;
 
 public class MainMenuScreen implements Screen {
 
 	private IllegalAliensMain game;
 	private SpriteBatch batch;
 
-	private MainMenuStage mainMenuStage;
-	private AboutStage aboutStage;
+	private StageSwitcher stageSwitcher;
 	
 	public MainMenuScreen(IllegalAliensMain game, SpriteBatch batch){
 		this.game = game;
 		this.batch = batch;
 
-		mainMenuStage = new MainMenuStage(game, this);
-		aboutStage = new AboutStage(game, this);
-	}
-
-	public void showAboutStage() {
-		aboutStage.setVisible(true);
-		mainMenuStage.setVisible(false);
-
-		Gdx.input.setInputProcessor(aboutStage);
-	}
-
-	public void showMainMenuStage() {
-		aboutStage.setVisible(false);
-		mainMenuStage.setVisible(true);
-
-		Gdx.input.setInputProcessor(mainMenuStage);
+		stageSwitcher = new StageSwitcher(game);
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		this.showMainMenuStage();
+		stageSwitcher.showStage(stageSwitcher.getMainMenuStage());
 	}
 
 	@Override
@@ -50,8 +32,7 @@ public class MainMenuScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
-		mainMenuStage.draw();
-		aboutStage.draw();
+		stageSwitcher.drawStages();
 		batch.end();
 	}
 
@@ -81,7 +62,7 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void dispose() {
-
+		stageSwitcher.dispose();
 	}
 	
 
