@@ -1,15 +1,19 @@
 package models;
 
-import buildings.towers.*;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.BoardObject;
 import buildings.Building;
 import buildings.WhiteHouse;
+import buildings.towers.AlienNerfer;
+import buildings.towers.RiotShield;
+import buildings.towers.Tower;
+import buildings.towers.TowerBooster;
+import buildings.towers.TowerUpgrader;
+import cooldown.CooldownHandler;
 import enemies.Enemy;
 import observers.BuildingObserver;
 import observers.UpdateObserver;
-import politics.parties.Party;
 import politics.parties.Voter;
 import utilities.Node;
 import utilities.Radar;
@@ -23,9 +27,9 @@ public class BuildingModel implements UpdateObserver {
 
 	private Radar radar;
 	private TowerUpgrader upgrader;
-	
+	private CooldownHandler cdh;
 
-    public BuildingModel(Array<Enemy> enemies) {
+    public BuildingModel(Array<Enemy> enemies, CooldownHandler cdh) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		boardObjects = new Array<BoardObject>(false, 40);
@@ -33,7 +37,7 @@ public class BuildingModel implements UpdateObserver {
 		this.enemies = enemies;
 		this.radar = new Radar();
 		upgrader = new TowerUpgrader();
-
+		this.cdh = cdh;	
 	}
     
     
@@ -61,6 +65,7 @@ public class BuildingModel implements UpdateObserver {
 			towers.add((Tower)BO);
 		} else if(BO instanceof Building){
 			buildings.add((Building)BO);
+			cdh.addCooldownObject(((Building)BO).getCooldownObject());
 		}
 		boardObjects.add(BO);
 		BO.setActive(true);
@@ -74,7 +79,6 @@ public class BuildingModel implements UpdateObserver {
 	}
 	
 	public void addTower(Tower tower){
-		towers.add(tower);
 		this.addBoardObject(tower);
 	}
 	
@@ -172,16 +176,8 @@ public class BuildingModel implements UpdateObserver {
 
 	private void useBuildingPowers(){
 		for (Building building: buildings) {
-			if (building instanceof RiotShield) {
-				building = (RiotShield) building;
-				if (!((RiotShield) building).isInCooldown()) {
-					building.usePower();
-				}
-			}
-
-			else {
+			if(!building.getCooldownObject().isOnCooldown())
 				building.usePower();
-			}
 		}
 	}
 	

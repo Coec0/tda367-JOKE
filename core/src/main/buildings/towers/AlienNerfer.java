@@ -15,7 +15,7 @@ public class AlienNerfer extends Building {
     private Array<Enemy> enemies;
     
     public AlienNerfer(int x, int y){
-        super(NAME, x ,y, SIZE, SLOWRADIUS);
+        super(NAME, x ,y, SIZE, SLOWRADIUS, 0);
     }
 
 

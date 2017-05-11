@@ -15,29 +15,16 @@ public class RiotShield extends Building implements Voter {
 
     private static final String NAME = "RIOT SHIELD";
     private static final int COST = 50;
-    private static final int COOLDOWN = 10;
+    private static final int COOLDOWN = 20;
     private Party party = PartyFactory.Democrat(6); // Just for now
     private static String DESCRIPTION = "Pushes back nearby enemies";
     private static final int RADIUS = 500;
     private static final float SIZE = 50;
-    private int cooldown;
-    private int cooldownTimer;
 
     private Array<Enemy> enemies;
 
     public RiotShield(int x, int y){
-        super(NAME, x, y, SIZE, RADIUS);
-        this.cooldown = 20;
-        cooldownTimer = cooldown;
-    }
-
-    public boolean isInCooldown(){
-        cooldownTimer--;
-        if(cooldownTimer <= 0){
-            cooldownTimer = cooldown;
-            return false;
-        }
-        return true;
+        super(NAME, x, y, SIZE, RADIUS, COOLDOWN);
     }
 
 
@@ -45,7 +32,6 @@ public class RiotShield extends Building implements Voter {
     public String getDescription() {
         return DESCRIPTION;
     }
-
 
 
     public void updateEnemies(Array<Enemy> enemies){
@@ -59,6 +45,7 @@ public class RiotShield extends Building implements Voter {
                 e.setNodeArrayPos(e.getNodeArrayPos() - 1000);
             }
         }
+        super.getCooldownObject().setOnCooldown(true);
     }
 
 	@Override

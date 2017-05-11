@@ -15,7 +15,7 @@ public class TowerBooster extends Building {
 	private Array<Tower> towers;
 
 	public TowerBooster(int x, int y) {
-		super(NAME, x, y, SIZE, BOOSTRADIUS);
+		super(NAME, x, y, SIZE, BOOSTRADIUS, 0);
 
 	}
 
