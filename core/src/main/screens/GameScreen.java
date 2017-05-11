@@ -20,6 +20,7 @@ import controllers.AlienController;
 import controllers.BuildingController;
 import controllers.ProjectileController;
 import controllers.SuperpowerController;
+import cooldown.CooldownHandler;
 import map.Map;
 import map.MapNode;
 import models.AlienModel;
@@ -72,12 +73,14 @@ public class GameScreen implements Screen{
 		Map map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
 		finder = new PathFinder(Mapnodes, Mapnodes.get(23), map.getStartingNodes());
-		AlienView AW= new AlienView();
 		
+		CooldownHandler cdh = new CooldownHandler();
+		
+		AlienView AW= new AlienView();
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes());
 		AlienController AController = new AlienController(AW, AM);
 		BuildingView TW = new BuildingView();
-		BuildingModel BM = new BuildingModel(AM.getAllAliens());
+		BuildingModel BM = new BuildingModel(AM.getAllAliens(), cdh);
 		ProjectileModel PM = new ProjectileModel(AM);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerView SW = new SuperpowerView();
@@ -100,6 +103,7 @@ public class GameScreen implements Screen{
 		IAMain.addObserver(BM);
 		IAMain.addObserver(AM);
 		IAMain.addObserver(PM);
+		IAMain.addObserver(cdh);
 		InputMultiplexer imp = new InputMultiplexer();
 		imp.addProcessor(AController);
 		imp.addProcessor(TController);
