@@ -1,0 +1,56 @@
+Datum: 11 april
+Ordförande: Kevin
+Deltagare: Alla
+
+1.	Mål
+Inga stora problem som hindrar oss just nu från att gå vidare.
+
+2.	Rapport från tidigare möte
+Kevin: Fixat Djikstra ytterligare så att den fungerar med dom nya väggarna. Har snyggat upp koden och
+finns troligtvis inga buggar kvar.
+Emil: Tagit bort och gjort om vissa torn. Lagt till tre st unika torn som nästan fungerar.
+Oscar: Delat upp buildings, boardobject och tower. Gjort om koden för parties och refaktoriserat så koden blir snyggare.
+Johan: Skrivit en StageSwitcher. Används av main menu. Fixat ett ActorFactory.
+
+Alla har skrivit på SDD'n.
+
+3.	Diskussion
+  - Göra om ett av tornern till en superkraft?
+  - Fler aliens?
+  - Texturer till alla torn och aliens?
+  - Executive orders - knappar.
+  - Hur mycket mer ska vi göra innan vi har ett "spel"?
+      * End game?
+      * Fler maps?
+      * Mycket UI-relaterade saker
+      * Tower balancing
+      * Koppla knappar
+      * Presidentkrafter klara - fixa cooldowns
+      * Koppla allt till politiken
+      * Pengar, kostnad för torn
+      * Uppgradering för torn
+   - Fixa paket
+   - Radar som Singleton eller endast skapas på ett ställe?
+   - DrawablesCollector som singleton?
+   - VARIABELNAMN!!!
+   - Cooldownklass
+
+4.	Bestämt
+  - Towers ska fixas och texturer ska läggas till
+  - Resterande superkrafter ska läggas till.
+  - Cooldownklass ska läggas till.
+  - Allt ska bli mindre (grafiskt)
+  - MapSwitcher ska läggas till och fixas.
+  - Variabelnamn och metodnamn ska förbättras
+  - Implementera pengarsysstem
+  - Koppla knappar
+  - Förbättra paket
+  
+5.	Inför nästa möte
+Emil och Kevin jobbar med ungefär samma saker; göra klart towers, adda texturer, tornuppgraderingar ,koppla knappar och
+göra klart super powers.
+Kevin förminskar allt grafiskt och ändrar hur radarn skickas utöver det.
+Oscar: Gör färdigt och finputsar fiender, cooldown-klass, pengarsystem.
+Johan: Gör mapSwitcher, förbättra paket
+
+Alla förbättrar variabel- och metodnamn.
