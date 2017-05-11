@@ -45,7 +45,7 @@ public class CooldownObject {
 		if(onCooldown)
 			resetTicks();
 		else
-			setCooldownTicks(0);	
+			setCDTicks(0);	
 	}
 
 	public int getCooldownTicks() {
@@ -56,12 +56,16 @@ public class CooldownObject {
 		setCooldownTicks(this.getCooldownTime());
 	}
 
+	private void setCDTicks(int cooldownTicks){
+		this.cooldownTicks = cooldownTicks;
+	}
+	
 	/**
 	 * Sets cooldownTicks. If under or equals 0, then this object is no longer on cooldown.
 	 * @param cooldownTicks
 	 */
 	public void setCooldownTicks(int cooldownTicks) {
-		this.cooldownTicks = cooldownTicks;
+		setCDTicks(cooldownTicks);
 		if(this.cooldownTicks<=0)
 			this.setOnCooldown(false);
 	}
