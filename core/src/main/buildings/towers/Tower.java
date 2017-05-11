@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Array;
 import buildings.BoardObject;
 import buildings.towers.targetmethods.ITargetState;
 import buildings.towers.targetmethods.TargetLast;
+import cooldown.CooldownObject;
 import enemies.Enemy;
 import observers.ProjectileObserver;
 import projectiles.Projectile;
@@ -17,33 +18,21 @@ public abstract class Tower extends BoardObject{
 	private float damage;
 
 	private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
-    private int cooldown;
-    private int cooldownTimer;
+    private CooldownObject cooldown;
 
 	protected Tower(int x, int y, float radius, String name, int cost, int cooldown,float size, float damage){
 		super(name, x, y,size);
-		this.cooldown = cooldown;
-		cooldownTimer = cooldown; 
+		this.cooldown = new CooldownObject(cooldown);
 		this.radius = radius;
 		this.cost = cost;
 		this.TState = new TargetLast();
-		this.cooldown=cooldown;
 		this.damage = damage;
 	}
-
-    
-    
-    public boolean isInCooldown(){
-    	cooldownTimer--;
-    	if(cooldownTimer <= 0){
-    		cooldownTimer = cooldown;
-    		return false;
-    	}
-    	return true;
-    }
-
-   
-
+	
+	public CooldownObject getCooldownObject(){
+		return cooldown;
+	}
+	
 	public void setTargetState(ITargetState state) {
 		this.TState = state;
 	}
@@ -63,16 +52,9 @@ public abstract class Tower extends BoardObject{
 	public float getDamage(){
     	return this.damage;
 	}
-	public int getCooldown(){
-		return this.cooldown;
-	}
-
+	
 	public void setRadius(float radius){
     	this.radius = radius;
-	}
-
-	public void setCooldown(int cooldown){
-		this.cooldown = cooldown;
 	}
 
 	public void setDamage(float damage){

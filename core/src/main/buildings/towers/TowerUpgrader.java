@@ -1,7 +1,5 @@
 package buildings.towers;
 
-import projectiles.Projectile;
-
 /**
  * Created by Emil on 2017-05-03.
  */
@@ -21,6 +19,6 @@ public class TowerUpgrader {
 
 
     public void reduceCooldown(Tower tower, int cooldown){
-        tower.setCooldown(cooldown);
+        tower.getCooldownObject().decreaseCooldownTime(cooldown);
     }
 }

@@ -63,6 +63,7 @@ public class BuildingModel implements UpdateObserver {
 	public void addBoardObject(BoardObject BO){
 		if(BO instanceof Tower){
 			towers.add((Tower)BO);
+			cdh.addCooldownObject(((Tower)BO).getCooldownObject());
 		} else if(BO instanceof Building){
 			buildings.add((Building)BO);
 			cdh.addCooldownObject(((Building)BO).getCooldownObject());
@@ -120,8 +121,9 @@ public class BuildingModel implements UpdateObserver {
 	
 	public void fireAllTowers(){
 		for(Tower tower : towers){
-			if(!tower.isInCooldown() && tower.hasTarget()){
+			if(!tower.getCooldownObject().isOnCooldown() && tower.hasTarget()){
 				tower.shoot();
+				tower.getCooldownObject().setOnCooldown(true);
 			}
 		}
 	}
