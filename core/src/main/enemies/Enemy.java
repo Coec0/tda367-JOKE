@@ -57,11 +57,7 @@ public abstract class Enemy {
 	}
 	
 	public void setDirection(Node newDir){
-		if (isAngleNegative(newDir)) {
-			pos.rotate(-getAngle(newDir));
-		} else {
-			pos.rotate(getAngle(newDir));
-		}
+		pos.rotate(pos.getAngleTo(newDir));
 		direction = newDir; //update direction
 	}
 	
@@ -69,35 +65,6 @@ public abstract class Enemy {
 		return radius;
 	}
 
-	/**
-	 * Calculate angle using dot product with old direction and new direction
-	 * @param newDir
-	 * @return angle
-	 */
-	private float getAngle(Node newDir) {
-		float oldX = direction.getX();
-		float oldY = direction.getY();
-		float newX = newDir.getX();
-		float newY = newDir.getY();
-
-		return (float) (Math.acos(
-				(oldX * newX + newY * oldY)
-				/ (direction.getLength() * newDir.getLength()))
-				* (180/Math.PI)
-		);
-	}
-
-	/**
-	 * Check if angle is positive using determinant
-	 * @param newDir
-	 * @return true if angle is positive
-	 */
-	private boolean isAngleNegative(Node newDir) {
-		float determinant = direction.getX() * newDir.getY() - direction.getY() * newDir.getX();
-
-		return determinant < 0;
-	}
-	
 	public Node getDirection(){
 		return direction;
 	}
