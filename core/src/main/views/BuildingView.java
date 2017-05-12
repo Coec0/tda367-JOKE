@@ -33,13 +33,31 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
     	onMouse.setSize(onMouse.getWidth()/3, onMouse.getHeight()/3);
     	onMouse.setAlpha(0.5f);
     	
-    	radiusCircle = getRadiusSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius());
-    	addToView(radiusCircle);
-    	sizeCircle = getSizeSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize());
-    	sizeCircle.setAlpha(0.5f);
-    	addToView(sizeCircle);
+    	radiusCircle = getRoundSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius(), false, Color.GOLD);
     	
+    	sizeCircle = getRoundSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize(), true, Color.RED);
+    	sizeCircle.setAlpha(0.5f);
     	addToView(onMouse);
+    	showBoardObjectOverlay(true);
+    }
+    
+    private void showBoardObjectOverlay(boolean show){
+    	if(show){
+    		addToView(sizeCircle);
+    		addToView(radiusCircle);
+    	} else {
+    		removeFromView(sizeCircle);
+			removeFromView(radiusCircle);
+    	}
+    }
+    
+    private void updateBoardObjectOverlay(BoardObject boardObject){
+    	radiusCircle.setSize(boardObject.getRadius()*2, boardObject.getRadius()*2);
+		radiusCircle.setPosition(boardObject.getPos().getX(), boardObject.getPos().getY());
+		
+		sizeCircle.setSize(boardObject.getSize()*2, boardObject.getSize()*2);
+		sizeCircle.setPosition(boardObject.getPos().getX(), boardObject.getPos().getY());
+		
     }
     
     public void movePlaceTexture(float x, float y){
@@ -53,57 +71,57 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
     }
     
     @Override
-	protected Texture selectTexture(BoardObject building) {
+	protected Texture selectTexture(BoardObject boardobject) {
 		
-		if(building instanceof WhiteHouse)
+		if(boardobject instanceof WhiteHouse)
 			return whitehouse;
-		if(building instanceof Soldier)
+		if(boardobject instanceof Soldier)
 			return soldier;
-		if(building instanceof Tank)
+		if(boardobject instanceof Tank)
 			return tank;
-		if(building instanceof Ranger)
+		if(boardobject instanceof Ranger)
 		    return ranger;
-		if(building instanceof Sniper)
+		if(boardobject instanceof Sniper)
 		    return sniper;
-		if(building instanceof Wall)
+		if(boardobject instanceof Wall)
 			return wall;
-		if(building instanceof AlienNerfer)
+		if(boardobject instanceof AlienNerfer)
 			return aliennerfer;
-		if(building instanceof TowerBooster)
+		if(boardobject instanceof TowerBooster)
 			return towerbooster;
-		if(building instanceof RiotShield)
+		if(boardobject instanceof RiotShield)
 			return riotshield;
 		return null;
 		
 	}
 	
-	private SpriteAdapter getRadiusSpriteAdapter(float x, float y, float radius){
-		Texture texture = new Texture("shapes/ring/ring1024.png");
+	private SpriteAdapter getRoundSpriteAdapter(float x, float y, float rads, boolean filled, Color color){
+		Texture texture;
+		if(!filled)
+			texture = new Texture("shapes/ring/ring1024.png");
+		else
+			texture = new Texture("shapes/circle/circle256.png");
 		SpriteAdapter sa = new SpriteAdapter(texture);
-		sa.setSize(radius*2, radius*2);
+		sa.setSize(rads*2, rads*2);
 		sa.setPosition(x, y);
-		sa.setColor(Color.GOLD);
+		sa.setColor(color);
 		return sa;
 	}
 	
-	private SpriteAdapter getSizeSpriteAdapter(float x, float y, float size){
-		Texture texture = new Texture("shapes/circle/circle256.png");
-		SpriteAdapter sa = new SpriteAdapter(texture);
-		sa.setSize(size*2, size*2);
-		sa.setPosition(x, y);
-		sa.setColor(Color.RED);
-		return sa;
-	}
-
 	@Override
-	public void actOnBuildingChange(BoardObject building, boolean remove, boolean clickedOn) {
-		if(!remove && !clickedOn){
-			addToView(building.getSpriteAdapter(), building, 0.3f);
+	public void actOnBuildingChange(BoardObject boardObject, boolean remove, boolean clickedOn) {
+		if( !clickedOn && !remove){ //When placed on ground
+			addToView(boardObject.getSpriteAdapter(), boardObject, 0.3f);
 			removePlaceTexture();
-		} else if(!clickedOn && remove){
-			removeFromView(building.getSpriteAdapter());	
-		} else if(clickedOn && remove){
-			removePlaceTexture();
+			showBoardObjectOverlay(false);
+		} else if(!clickedOn && remove){ //When removed
+			removeFromView(boardObject.getSpriteAdapter());
+			showBoardObjectOverlay(false);
+		} else if(clickedOn && remove){ //When deselected
+			showBoardObjectOverlay(false);
+		} else if(clickedOn && !remove){ //When clicked on
+			updateBoardObjectOverlay(boardObject);
+			showBoardObjectOverlay(true);
 		}
 	}
 }
