@@ -33,9 +33,8 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
     	onMouse.setSize(onMouse.getWidth()/3, onMouse.getHeight()/3);
     	onMouse.setAlpha(0.5f);
     	
-    	//Temp removed
-    	//radiusCircle = getRadiusSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius());
-    	//addToView(radiusCircle);
+    	radiusCircle = getRadiusSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius());
+    	addToView(radiusCircle);
     	sizeCircle = getSizeSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize());
     	sizeCircle.setAlpha(0.5f);
     	addToView(sizeCircle);
@@ -46,7 +45,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
     public void movePlaceTexture(float x, float y){
     	onMouse.setPosition(x, y);
     	sizeCircle.setPosition(x, y);
-    	//radiusCircle.setPosition(x, y);
+    	radiusCircle.setPosition(x, y);
     }
     
     public void removePlaceTexture(){

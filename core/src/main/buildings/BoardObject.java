@@ -18,6 +18,10 @@ public abstract class BoardObject {
 
 	public abstract String getDescription();
 
+	public float getRadius(){
+		return 0;
+	}
+	
 	public Node getPos() {
 		return new Node(pos.getX(), pos.getY());
 	}
