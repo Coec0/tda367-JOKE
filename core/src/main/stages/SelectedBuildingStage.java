@@ -17,6 +17,7 @@ public class SelectedBuildingStage extends Stage {
 	private Label description, name;
 	private BoardObject selectedBuilding;
 	private Table target;
+	private Table upgrades;
 
 	public SelectedBuildingStage(ClickListener buildingC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -29,6 +30,8 @@ public class SelectedBuildingStage extends Stage {
 		table.setHeight(670);
 
 		target = getTargetsTable(buildingC);
+		upgrades = getUpgradesTable(buildingC);
+		upgrades.setVisible(false);
 		target.setVisible(false);
 		description = new Label("", skin);
 		name = new Label("", skin);
@@ -36,6 +39,8 @@ public class SelectedBuildingStage extends Stage {
 		description.setWrap(true);
 
 		table.add(name).expand().top();
+		table.row();
+		table.add(upgrades);
 		table.row();
 		table.add(target);
 		table.row();
@@ -70,11 +75,23 @@ public class SelectedBuildingStage extends Stage {
 		return table;
 	}
 
+	private Table getUpgradesTable(ClickListener buildingC){
+		Table table = new Table();
+		table.add(addTargetButton("uRadius", "Upgrade radius", buildingC)).expand().bottom();
+		table.row();
+		table.add(addTargetButton("uDamage", "Increase damage", buildingC)).expand().bottom();
+		table.row();
+		table.add(addTargetButton("uCooldown", "Reduce cooldown", buildingC)).expand().bottom();
+		return table;
+	}
+
 	public void setBuilding(BoardObject building) {
 		if(building instanceof Tower && building.isActive()){
 			target.setVisible(true);
+			upgrades.setVisible(true);
 		} else{
 			target.setVisible(false);
+			upgrades.setVisible(false);
 		}
 		selectedBuilding = building;
 		description.setText(building.getDescription());

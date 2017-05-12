@@ -55,7 +55,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	}
     	
     	checkIfNewTarget(event);
-    	
+    	checkIfUpgrade(event);
+
 		if(event.getListenerActor().getName().equals("soldier")){
 			onMouse = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
 		}
@@ -84,6 +85,24 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		}
 			
     }
+
+    private void checkIfUpgrade(InputEvent event){
+    	if (!(highlighted instanceof Tower)){
+    		return;
+		}
+
+		Tower tower = (Tower)highlighted;
+    	if(event.getListenerActor().getName().equals("uDamage")){
+			BModel.upgradeTowerDamage(tower);
+		}
+
+		else if (event.getListenerActor().getName().equals("uCooldown")){
+			BModel.upgradeTowerCooldown(tower);
+		}
+		else if (event.getListenerActor().getName().equals("uRadius")){
+			BModel.upgradeTowerRadius(tower);
+		}
+	}
     
     private void checkIfNewTarget(InputEvent event) {
     	if(!(highlighted instanceof Tower))

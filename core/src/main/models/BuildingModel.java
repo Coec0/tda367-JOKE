@@ -115,8 +115,16 @@ public class BuildingModel implements UpdateObserver {
 		notifyObservers(building, true, false);
 	}
 
-	public void upgradeTower(Tower tower) {
+	public void upgradeTowerDamage(Tower tower) {
+		upgrader.upgradeDamage(tower, tower.getDamage() * 1.1f);
+	}
 
+	public void upgradeTowerCooldown(Tower tower){
+		//upgrader.reduceCooldown(tower, tower.getCooldownObject());
+	}
+
+	public void upgradeTowerRadius(Tower tower){
+		upgrader.upgradeRadius(tower, tower.getRadius() * 1.1f);
 	}
 	
 	public void fireAllTowers(){
