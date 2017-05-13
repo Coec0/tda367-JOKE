@@ -1,5 +1,6 @@
 package models;
 
+import buildings.towers.Tower;
 import com.badlogic.gdx.utils.Array;
 import enemies.Enemy;
 import superpowers.Nuke;
@@ -12,6 +13,7 @@ import utilities.Radar;
 public class SuperpowerModel {
     private Nuke nuke;
 
+
     public SuperpowerModel(){
         nuke = new Nuke();
     }
@@ -20,4 +22,16 @@ public class SuperpowerModel {
         nuke.perform(enemies);
     }
 
+
+    public void useMinutemen(int x, int y){
+
+    }
+
+    public void useWall(int x, int y){
+
+    }
+
+    public void useTowerBoost(Array<Tower> towers){
+
+    }
 }

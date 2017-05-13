@@ -33,6 +33,12 @@ public class SuperpowerController extends ClickListener implements InputProcesso
         if(event.getListenerActor().getName().equals("wall")){
 
         }
+        if(event.getListenerActor().getName().equals("minutemen")){
+
+        }
+        if(event.getListenerActor().getName().equals("towerboost")){
+
+        }
     }
     @Override
     public boolean keyDown(int keycode) {

@@ -34,8 +34,8 @@ public class SuperpowerStage extends Stage {
         Table table = new Table();
         table.add(addSuperpowerButton(100,"nuke", superC)).expand().top();
         table.add(addSuperpowerButton(200,"wall", superC));
-        table.add(addSuperpowerButton(300,"?", superC));
-        table.add(addSuperpowerButton(400,"?", superC));
+        table.add(addSuperpowerButton(300,"minutemen", superC));
+        table.add(addSuperpowerButton(400,"towerboost", superC));
 
         return table;
     }
