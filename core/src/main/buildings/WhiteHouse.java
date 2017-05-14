@@ -108,8 +108,11 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 
 	@Override
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
-		if(remove)
+		if(remove && enemy.isDead()){
 			addMoney(enemy.getMoney());
+		} else if(remove && !enemy.isDead()){
+			removeHealth();
+		}
 		
 	}
 }

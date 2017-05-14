@@ -198,21 +198,6 @@ public class BuildingModel implements UpdateObserver {
 				building.usePower();
 		}
 	}
-	
-	private void checkWhitehouses(){
-		Array<Enemy> closeAliens;
-		for (WhiteHouse whitehouse : whitehouses) {
-			closeAliens = radar.scan(whitehouse.getPos(), 5, enemies); //5 radius for now
-			if (closeAliens.size > 0) {
-				for (Enemy enemy : closeAliens){
-					if(!enemy.isDead()){
-						whitehouse.removeHealth();
-						enemy.kill();
-					}
-				}
-			}
-		}
-	}
 
 	@Override
 	public void update(float deltaTime) {
@@ -220,8 +205,6 @@ public class BuildingModel implements UpdateObserver {
 		fireAllTowers();
 		updateBuildings();
 		useBuildingPowers(); // Maybe move from here
-		checkWhitehouses();
-		
 	}
 
 	private Array<BuildingObserver> observers = new Array<BuildingObserver>(false, 10);

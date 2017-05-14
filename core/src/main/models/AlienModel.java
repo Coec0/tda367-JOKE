@@ -53,6 +53,7 @@ public class AlienModel implements UpdateObserver {
 				enemy.rotateEnemy();
 				moveEnemy(enemy);
 				if(enemy.isDead()){ //check if alien is dead
+					System.out.println("dead");
 					removeEnemy(enemy);
 				}
 			}
