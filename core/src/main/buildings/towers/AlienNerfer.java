@@ -10,13 +10,16 @@ import enemies.Enemy;
 public class AlienNerfer extends Building {
     private static final String NAME = "AlienNerfer";
     private static final String DESCRIPTION = "A building slowing down aliens in its radius";
-    private static final int SLOWRADIUS = 50;
+    private static final int SLOWRADIUS = 500;
     private static final int SIZE = 50;
     private static final int COST = 400;
+    private static final int COOLDOWN = 90;
     private Array<Enemy> enemies;
+    private Array<Enemy> affectedEnemies;
     
     public AlienNerfer(int x, int y){
-        super(NAME, x ,y, SIZE, SLOWRADIUS, 0, COST);
+        super(NAME, x ,y, SIZE, SLOWRADIUS, COOLDOWN, COST);
+        affectedEnemies = new Array<Enemy>(false, 5000);
     }
 
 
@@ -37,14 +40,28 @@ public class AlienNerfer extends Building {
     }
 }*/ //TO FIX
 
+    private boolean checkIfEffected(Enemy e){
+        if(affectedEnemies != null){
+            for (Enemy aE : affectedEnemies){
+                if (aE.equals(e)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 	@Override
 	public void usePower() {
 		if (enemies != null) {
             for (Enemy enemy : enemies) {
-                enemy.setSpeed(enemy.getSpeed() * 0.5f);
+                if (!(checkIfEffected(enemy))){
+                enemy.setSpeed(enemy.getSpeed() * 0.8f);
+                affectedEnemies.add(enemy);
+            }
             }
         }
+        super.getCooldownObject().setOnCooldown(true);
 	}
 
 }
