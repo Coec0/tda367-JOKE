@@ -86,16 +86,18 @@ public class GameScreen implements Screen{
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerView SW = new SuperpowerView();
-		SuperpowerModel SM = new SuperpowerModel();
-		SuperpowerController SC = new SuperpowerController(SM, SW, WP, AM);
+		SuperpowerModel SM = new SuperpowerModel(finder,BM);
+		camera = new OrthographicCamera();
+		WP = new FitViewport(width, height, camera);
+		SuperpowerController SC = new SuperpowerController(SM, SW, WP, AM,finder);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
 		
 
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
         
-		camera = new OrthographicCamera();
-		WP = new FitViewport(width, height, camera);
+		
+		
 		//camera.position.set(1280/2, 720/2, 0);
 		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder);
 		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);

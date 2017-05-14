@@ -1,11 +1,17 @@
 package controllers;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import buildings.BoardObject;
+import buildings.Wall;
 import models.AlienModel;
 import models.SuperpowerModel;
+import path.PathFinder;
+import utilities.Node;
 import views.SuperpowerView;
 
 /**
@@ -17,8 +23,11 @@ public class SuperpowerController extends ClickListener implements InputProcesso
     AlienModel AModel;
     SuperpowerView SView;
     Viewport VP;
+    BoardObject onMouse;
+    private PathFinder finder;
 
-    public SuperpowerController(SuperpowerModel SModel, SuperpowerView SView, Viewport VP, AlienModel AModel){
+    public SuperpowerController(SuperpowerModel SModel, SuperpowerView SView, Viewport VP, AlienModel AModel,PathFinder finder){
+    	this.finder = finder;
         this.SModel = SModel;
         this.SView = SView;
         this.VP = VP;
@@ -31,7 +40,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
             SModel.useNuke(AModel.getAllAliens());
         }
         if(event.getListenerActor().getName().equals("wall")){
-
+        	onMouse = new Wall("wall", (int) x, (int)y, 5);
         }
         if(event.getListenerActor().getName().equals("minutemen")){
 
@@ -57,6 +66,16 @@ public class SuperpowerController extends ClickListener implements InputProcesso
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    	Vector3 v = new Vector3 (screenX , screenY, 0);
+		VP.unproject(v);
+		
+		if(v.x >= VP.getWorldWidth()) //Makes sure you cant click on ui
+			return false;
+		
+    	if(onMouse != null && finder.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
+    		SModel.useWall((int)v.x, (int)v.y);
+    		onMouse = null;
+    	}
         return false;
     }
 

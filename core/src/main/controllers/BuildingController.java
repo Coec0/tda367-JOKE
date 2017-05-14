@@ -136,8 +136,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize())){
     		BModel.addBoardObject(onMouse, (int)v.x,(int) v.y);
     		onMouse = null;
-    	}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 1) && onMouse == null){
-    		;
+    	//}else if(finder.isOnRoad(new Node((int)v.x,(int) v.y), 1) && onMouse == null){
+    		/*
     		RoadSection rs = finder.findRoadSection(new Node((int)v.x,(int) v.y));
     		
     		if(finder.canRemoveNeighbors(rs)){
@@ -147,7 +147,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
         		finder.removeNeighbor(rs);
         		finder.calculateAllShortest();
     		}
-    		
+    		*/
     	}else{
     		BoardObject clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){
