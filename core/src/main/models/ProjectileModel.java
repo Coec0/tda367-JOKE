@@ -29,7 +29,7 @@ public class ProjectileModel implements UpdateObserver{
         for (Projectile projectile : projectiles){
             move(projectile);
             if (checkIfHitEnemies(projectile)){
-                projectile.damage(radar, aModel.getAllAliens());
+                projectile.damage(radar, aModel.getAllEnemies());
 
 //                if(projectile instanceof IAOEProjectile){
 //                    aoeDamage(projectile);
@@ -59,7 +59,7 @@ public class ProjectileModel implements UpdateObserver{
 
 
     public Array<Enemy> scan(Projectile projectile){
-        Array<Enemy> enemies = radar.scan(projectile.getPosition(), projectile.getRadius(),aModel.getAllAliens()); //hardcoded
+        Array<Enemy> enemies = radar.scan(projectile.getPosition(), projectile.getRadius(),aModel.getAllEnemies()); //hardcoded
         return enemies;
     }
 

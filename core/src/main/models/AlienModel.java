@@ -14,7 +14,7 @@ import waves.EnemyWavesCreator;
 public class AlienModel implements UpdateObserver {
 	private PathFinder finder;
 
-	private Array<Enemy> aliens;
+	private Array<Enemy> enemies;
 	private Array<Node> defaultPath;
 	private Array<Node> direction;
 	
@@ -29,51 +29,51 @@ public class AlienModel implements UpdateObserver {
 		this.startingPos = startingPos;
 		this.finder = finder;
 		EWC = new EnemyWavesCreator();
-		aliens = new Array<Enemy>(false, 10);
+		enemies = new Array<Enemy>(false, 10);
 		defaultPath = finder.getShortestPath(this.startingPos.get(0));
 		//direction = finder.getDirectionList();
 	}
 	
-	public void addAlien(Enemy enemy){
+	public void addEnemy(Enemy enemy){
 		if(EWC.hasLevelRandomSpawn()){
 			enemy.setPath(finder.getShortestPath(startingPos.random()));
 		}else{
 			enemy.setPath(defaultPath);
 		}
 		enemy.setStartignPos();
-		aliens.add(enemy);
-		notifyObservers(aliens.peek(), false);
+		enemies.add(enemy);
+		notifyObservers(enemy, false);
 	}
 	
 	
 	
-	private void moveAllAliens(){
+	private void moveAllEnemies(){
 		//if(aliens.size>0){
-			for(Enemy alien : aliens){
-				alien.rotateEnemy();
-				moveAlien(alien);
-				if(alien.isDead()){ //check if alien is dead
-					removeEnemy(alien);
+			for(Enemy enemy : enemies){
+				enemy.rotateEnemy();
+				moveEnemy(enemy);
+				if(enemy.isDead()){ //check if alien is dead
+					removeEnemy(enemy);
 				}
 			}
 		//}
 	}
 	
-	public Enemy peekAlien(){
-		return aliens.peek();
+	public Enemy peekEnemy(){
+		return enemies.peek();
 	}
 	
-	public Array<Enemy> getAllAliens(){
-		return aliens;
+	public Array<Enemy> getAllEnemies(){
+		return enemies;
 	}
 	
-	public Enemy getAlien(int index){
-		if(aliens.size>index)
-			return aliens.get(index);
+	public Enemy getEnemy(int index){
+		if(enemies.size>index)
+			return enemies.get(index);
 		return null;
 	}
 	
-	public void moveAlien(Enemy enemy){
+	public void moveEnemy(Enemy enemy){
 		int position = (int)(enemy.getNodeArrayPos()+((int)enemy.getSpeed()));
 		if(position >= enemy.getPath().size){
 			removeEnemy(enemy);
@@ -86,16 +86,16 @@ public class AlienModel implements UpdateObserver {
 	
 	public void removeEnemy(Enemy enemy){
 		notifyObservers(enemy, true);
-		aliens.removeValue(enemy, false);
+		enemies.removeValue(enemy, false);
 		enemy=null; //Clear
 	}
 	
 	//Gonna listen from a tower that attacked it
-	public void damaged(Enemy alien, float dmg){
-		alien.hurt(dmg);
+	public void damaged(Enemy enemy, float dmg){
+		enemy.hurt(dmg);
 		
-		if(alien.isDead()){
-			removeEnemy(alien);
+		if(enemy.isDead()){
+			removeEnemy(enemy);
 		}
 	}
 	
@@ -106,7 +106,7 @@ public class AlienModel implements UpdateObserver {
 	
 	@Override
 	public void update(float deltaTime) {
-		moveAllAliens();
+		moveAllEnemies();
 		frames++;
 		if(frames > 10){
 			if(waveON){
@@ -119,7 +119,7 @@ public class AlienModel implements UpdateObserver {
 	
 	private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
-			addAlien(AlienFactory.createAlien()); //TODO remove hardcoded alien!
+			addEnemy(AlienFactory.createAlien()); //TODO remove hardcoded alien!
 			enemyCounter++;
 		}else{
 			waveON = false;

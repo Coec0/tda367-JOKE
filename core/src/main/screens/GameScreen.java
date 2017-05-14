@@ -82,7 +82,7 @@ public class GameScreen implements Screen{
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes());
 		AlienController AController = new AlienController(AW, AM);
 		BuildingView TW = new BuildingView();
-		BuildingModel BM = new BuildingModel(AM.getAllAliens(), cdh,radar, finder);
+		BuildingModel BM = new BuildingModel(AM.getAllEnemies(), cdh,radar, finder);
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerView SW = new SuperpowerView();

@@ -24,7 +24,7 @@ public class AlienController extends ClickListener implements ActionListener, In
 	}
 
 	public void spawnAlien(Enemy enemy){
-		AModel.addAlien(enemy);
+		AModel.addEnemy(enemy);
 	}
 	
 	 @Override

@@ -37,7 +37,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
     @Override
     public void clicked(InputEvent event, float x, float y){
         if(event.getListenerActor().getName().equals("nuke")){
-            SModel.useNuke(AModel.getAllAliens());
+            SModel.useNuke(AModel.getAllEnemies());
         }
         if(event.getListenerActor().getName().equals("wall")){
         	onMouse = new Wall("wall", (int) x, (int)y, 5);
