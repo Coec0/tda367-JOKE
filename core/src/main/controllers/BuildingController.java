@@ -142,6 +142,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     			buildingClicked(clicked);
     		}else{
     			groundClicked();
+    			System.out.print("X: " + screenX + " Y: " + screenY);
     		}
     	}
 		return false;

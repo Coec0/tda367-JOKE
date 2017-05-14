@@ -1,5 +1,6 @@
 package models;
 
+import buildings.towers.TowerFactory;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Wall;
@@ -31,8 +32,11 @@ public class SuperpowerModel {
     }
 
 
-    public void useMinutemen(int x, int y){
-
+    public void useMinutemen(){
+        TowerFactory.createMinutemen(585,495);
+        TowerFactory.createMinutemen(590,485);
+        TowerFactory.createMinutemen(595, 480);
+        TowerFactory.createMinutemen(600,475);
     }
 
     public void useWall(int x, int y){

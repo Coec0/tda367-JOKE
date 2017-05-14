@@ -23,4 +23,7 @@ public class TowerFactory {
 
 	public static RiotShield createRiotShield(int x, int y){return new RiotShield(x,y);}
 
+	public static Minutemen createMinutemen(int x, int y){
+		return new Minutemen(x,y);
+	}
 }

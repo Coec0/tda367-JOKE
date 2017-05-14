@@ -11,7 +11,7 @@ import observers.BuildingObserver;
 import utilities.SpriteAdapter;
 
 public class BuildingView extends View<BoardObject> implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, ranger, sniper,wall, aliennerfer, towerbooster, riotshield;
+    private Texture soldier,tank, whitehouse, ranger, sniper,wall, aliennerfer, towerbooster, riotshield, minutemen;
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
 
@@ -25,6 +25,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
         aliennerfer = new Texture("soldier.png");
         towerbooster = new Texture("soldier.png");
         riotshield = new Texture("riotshield256.png");
+        minutemen = new Texture("solider512.png");
         //all same texture for testing
     }
 
@@ -93,6 +94,9 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 			return towerbooster;
 		if(boardobject instanceof RiotShield)
 			return riotshield;
+		if (boardobject instanceof Minutemen){
+			return minutemen;
+		}
 		return null;
 		
 	}

@@ -43,7 +43,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
         	onMouse = new Wall("wall", (int) x, (int)y, 5);
         }
         if(event.getListenerActor().getName().equals("minutemen")){
-
+            SModel.useMinutemen();
         }
         if(event.getListenerActor().getName().equals("towerboost")){
 
