@@ -67,7 +67,7 @@ public abstract class Tower extends BoardObject{
 			target = null;
 		}else{
 			this.target = TState.getEnemy(super.getPos(), targets);
-			super.getSpriteAdapter().rotateTowards(target.getPos());
+			super.getSpriteAdapter().rotateTowards(target.getPos(),-90);
 		}
 		
 	}
