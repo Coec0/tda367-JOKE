@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import buildings.BoardObject;
-import buildings.Wall;
 import buildings.towers.Tower;
 import buildings.towers.TowerFactory;
 import buildings.towers.targetmethods.TargetClosest;
@@ -19,7 +18,6 @@ import buildings.towers.targetmethods.TargetWeakest;
 import models.AlienModel;
 import models.BuildingModel;
 import path.PathFinder;
-import path.RoadSection;
 import utilities.Node;
 import views.BuildingView;
 
@@ -31,7 +29,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     Viewport WP;
     BoardObject onMouse;
     BoardObject highlighted;
-    private PathFinder finder;
+   
     
 
     public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, Viewport WP,PathFinder finder){
@@ -39,7 +37,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
         this.BModel = BModel;
         this.AModeL = AModel;
         this.WP = WP;
-        this.finder = finder;
+
         BModel.addObserver(BView);
     }
 
@@ -50,7 +48,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     			BModel.deselect(onMouse);
     			onMouse = null;	
     		} else {
-    			BModel.sellBuilding(highlighted);
+    			BModel.sellBoardObject(highlighted);
     		}
     	}
     	
@@ -133,12 +131,12 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		if(v.x >= WP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
-    	if(onMouse != null && !finder.isOnRoad(new Node((int)v.x,(int) v.y), onMouse.getSize())){
+    	if(onMouse != null && BModel.isFreeSpace((int)v.x,(int) v.y, onMouse)){
     		if(onMouse.getCost()<= BModel.getWhiteHouses().first().getMoney()){
     			BModel.addBoardObject(onMouse, (int)v.x,(int) v.y);
     			onMouse = null;
     		}
-    	}else{
+    	}else if(onMouse == null){
     		BoardObject clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){
     			buildingClicked(clicked);
@@ -149,6 +147,9 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		return false;
 	}
     
+
+	
+	
     private void buildingClicked(BoardObject building){
     	System.out.println("BuildingCont: Tower clicked"); 
 		highlighted = building;

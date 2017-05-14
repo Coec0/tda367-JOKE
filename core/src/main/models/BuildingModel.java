@@ -14,6 +14,7 @@ import cooldown.CooldownHandler;
 import enemies.Enemy;
 import observers.BuildingObserver;
 import observers.UpdateObserver;
+import path.PathFinder;
 import politics.parties.Voter;
 import utilities.Node;
 import utilities.Radar;
@@ -28,18 +29,29 @@ public class BuildingModel implements UpdateObserver {
 	private Radar radar;
 	private TowerUpgrader upgrader;
 	private CooldownHandler cdh;
+	private PathFinder finder;
 
-    public BuildingModel(Array<Enemy> enemies, CooldownHandler cdh, Radar radar) {
+    public BuildingModel(Array<Enemy> enemies, CooldownHandler cdh, Radar radar, PathFinder finder) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		boardObjects = new Array<BoardObject>(false, 40);
 		buildings = new Array<Building>(false, 30);
 		this.enemies = enemies;
 		this.radar = radar;
+        this.finder = finder;
 		upgrader = new TowerUpgrader();
 		this.cdh = cdh;	
 	}
     
+	public boolean isFreeSpace(int x, int y, BoardObject sprite){
+		if(finder.isOnRoad(new Node(x, y), sprite.getSize()))
+			return false;
+		for(BoardObject BO : getAllBoardObjects()){
+			if(radar.isNodeWithinRadius(new Node(x, y), BO.getPos(), sprite.getSize(), BO.getSize()))
+				return false;
+		}
+		return true;		
+	}
     
     public Array<BoardObject> getAllBoardObjects(){
     	return boardObjects;
@@ -100,11 +112,15 @@ public class BuildingModel implements UpdateObserver {
 		return towers.peek();
 	}
 
-	public void sellBuilding(BoardObject building) {
-		building.setActive(false);
-		if(building instanceof Tower)
-			towers.removeValue((Tower)building, false);
-		notifyObservers(building, true, false);
+	public void sellBoardObject(BoardObject BO) {
+		BO.setActive(false);
+		if(BO instanceof Tower){
+			towers.removeValue((Tower)BO, false);
+		} else if(BO instanceof Building){
+			buildings.removeValue((Building)BO, false);
+		}
+		boardObjects.removeValue(BO, false);
+		notifyObservers(BO, true, false);
 	}
 
 	public void upgradeTowerDamage(Tower tower) {
