@@ -52,6 +52,8 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
     }
     
     private void updateBoardObjectOverlay(BoardObject boardObject){
+    	if(radiusCircle == null || sizeCircle == null)
+    		return;
     	radiusCircle.setSize(boardObject.getRadius()*2, boardObject.getRadius()*2);
 		radiusCircle.setPosition(boardObject.getPos().getX(), boardObject.getPos().getY());
 		

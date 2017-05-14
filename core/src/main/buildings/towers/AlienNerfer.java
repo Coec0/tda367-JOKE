@@ -12,10 +12,11 @@ public class AlienNerfer extends Building {
     private static final String DESCRIPTION = "A building slowing down aliens in its radius";
     private static final int SLOWRADIUS = 50;
     private static final int SIZE = 50;
+    private static final int COST = 400;
     private Array<Enemy> enemies;
     
     public AlienNerfer(int x, int y){
-        super(NAME, x ,y, SIZE, SLOWRADIUS, 0);
+        super(NAME, x ,y, SIZE, SLOWRADIUS, 0, COST);
     }
 
 

@@ -11,11 +11,12 @@ public class TowerBooster extends Building {
 	private static final String DESCRIPTION = "Boosts all towers in its radius";
 	private static final int BOOSTRADIUS = 5000;
 	private static final int SIZE = 50;
+	private static final int COST = 600;
 
 	private Array<Tower> towers;
 
 	public TowerBooster(int x, int y) {
-		super(NAME, x, y, SIZE, BOOSTRADIUS, 0);
+		super(NAME, x, y, SIZE, BOOSTRADIUS, 0, COST);
 
 	}
 
