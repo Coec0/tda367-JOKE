@@ -68,6 +68,7 @@ public class BuildingModel implements UpdateObserver {
 			buildings.add((Building)BO);
 			cdh.addCooldownObject(((Building)BO).getCooldownObject());
 		}
+		whitehouses.first().removeMoney(BO.getCost());
 		boardObjects.add(BO);
 		BO.setActive(true);
 		voteBoardObject(BO);
@@ -79,15 +80,6 @@ public class BuildingModel implements UpdateObserver {
 		this.addBoardObject(BO);
 	}
 	
-	public void addTower(Tower tower){
-		this.addBoardObject(tower);
-	}
-	
-	public void addTower(Tower tower, int x, int y){
-		tower.setPos(x, y);
-		this.addTower(tower);
-	}
-
 	public void addWhiteHouse(WhiteHouse whitehouse) {
 		whitehouses.add(whitehouse); //just tmp size for WH;
 		notifyObservers(whitehouses.peek(), false, false);
