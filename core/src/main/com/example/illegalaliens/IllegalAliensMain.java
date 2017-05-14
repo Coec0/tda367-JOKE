@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
+import hiscore.DatabaseResolver;
+import hiscore.HiscoreDB;
 import observers.UpdateObserver;
 import screens.EndGameScreen;
 import screens.GameScreen;
@@ -20,9 +22,19 @@ public class IllegalAliensMain extends Game {
 	private MainMenuScreen mainMenuScreen;
 	private Array<UpdateObserver> observers;
 	private Skin skin;
+
+	private DatabaseResolver databaseResolver;
+
+	public IllegalAliensMain(DatabaseResolver databaseResolver) {
+		this.databaseResolver = databaseResolver;
+	}
 	
 	@Override
 	public void create() {
+
+		HiscoreDB hiscoreDB = new HiscoreDB(databaseResolver);
+		hiscoreDB.create();
+
 		batch = new SpriteBatch();
 		observers = new Array<UpdateObserver>(false, 10);
 
