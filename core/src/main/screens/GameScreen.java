@@ -128,7 +128,7 @@ public class GameScreen implements Screen{
 		imp.addProcessor(SC);
 		imp.addProcessor(SS);
 		BM.getWhiteHouses().peek().addObserver(HV);
-
+		BM.getWhiteHouses().peek().setHealth(20); //Fixes display issue on HV
 		
 	}
 
