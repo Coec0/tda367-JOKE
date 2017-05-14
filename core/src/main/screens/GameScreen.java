@@ -36,6 +36,7 @@ import stages.SuperpowerStage;
 import stages.TopLeftGameUIStage;
 import utilities.DrawablesCollector;
 import utilities.Node;
+import utilities.Radar;
 import utilities.SpriteAdapter;
 import views.AlienView;
 import views.BuildingView;
@@ -70,9 +71,10 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void show() {
+		Radar radar = new Radar();
 		Map map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
-		finder = new PathFinder(Mapnodes, Mapnodes.get(23), map.getStartingNodes());
+		finder = new PathFinder(Mapnodes, Mapnodes.get(23), map.getStartingNodes(),radar);
 		
 		CooldownHandler cdh = new CooldownHandler();
 		
@@ -80,8 +82,8 @@ public class GameScreen implements Screen{
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes());
 		AlienController AController = new AlienController(AW, AM);
 		BuildingView TW = new BuildingView();
-		BuildingModel BM = new BuildingModel(AM.getAllAliens(), cdh);
-		ProjectileModel PM = new ProjectileModel(AM);
+		BuildingModel BM = new BuildingModel(AM.getAllAliens(), cdh,radar);
+		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerView SW = new SuperpowerView();
 		SuperpowerModel SM = new SuperpowerModel();

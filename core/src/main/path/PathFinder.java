@@ -21,14 +21,14 @@ public final class PathFinder {
 	
 	
 
-	public PathFinder(Array<MapNode> allNodes, MapNode endNode,Array<MapNode> startingNodes) {
+	public PathFinder(Array<MapNode> allNodes, MapNode endNode,Array<MapNode> startingNodes,Radar radar) {
 		this.startingNodes = startingNodes;
 		this.endNode = endNode;
 		this.allNodes = allNodes;
 		shortestPaths = new Array<Array<Node>>();
 		DSolver = new DijkstraSolver();
 		roadSections = new Array<RoadSection>();
-		radar = new Radar();
+		this.radar = radar;
 		roadRadius = 10; //tmp hardcoded roadradius
 		calculateAllShortest();
 	}

@@ -17,10 +17,10 @@ public class ProjectileModel implements UpdateObserver{
     private AlienModel aModel;
     private Radar radar;
 
-    public ProjectileModel(AlienModel aModel){
+    public ProjectileModel(AlienModel aModel,Radar radar){
     	this.aModel = aModel;
         projectiles = new Array<Projectile>();
-        this.radar = new Radar();
+        this.radar = radar;
         
     }
 

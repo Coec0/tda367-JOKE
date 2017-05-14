@@ -29,13 +29,13 @@ public class BuildingModel implements UpdateObserver {
 	private TowerUpgrader upgrader;
 	private CooldownHandler cdh;
 
-    public BuildingModel(Array<Enemy> enemies, CooldownHandler cdh) {
+    public BuildingModel(Array<Enemy> enemies, CooldownHandler cdh, Radar radar) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		boardObjects = new Array<BoardObject>(false, 40);
 		buildings = new Array<Building>(false, 30);
 		this.enemies = enemies;
-		this.radar = new Radar();
+		this.radar = radar;
 		upgrader = new TowerUpgrader();
 		this.cdh = cdh;	
 	}
