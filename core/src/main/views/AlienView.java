@@ -33,7 +33,7 @@ public class AlienView extends View<Enemy> implements AlienObserver {
 	@Override
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
 		if(!remove)
-			addToView(enemy.getSpriteAdapter(), enemy, 0.5f);
+			addToView(enemy.getSpriteAdapter(), enemy, 0.3f);
 		else
 			removeFromView(enemy.getSpriteAdapter());
 		

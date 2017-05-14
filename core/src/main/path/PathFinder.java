@@ -29,7 +29,7 @@ public final class PathFinder {
 		DSolver = new DijkstraSolver();
 		roadSections = new Array<RoadSection>();
 		this.radar = radar;
-		roadRadius = 10; //tmp hardcoded roadradius
+		roadRadius = 4; //tmp hardcoded roadradius
 		calculateAllShortest();
 	}
 	
