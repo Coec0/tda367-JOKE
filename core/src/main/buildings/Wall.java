@@ -6,7 +6,7 @@ public class Wall extends BoardObject {
 	
 	
 	public Wall(String name ,int x, int y, float size) {
-		super(name, x, y, size);
+		super(name, x, y, size, 0);
 	}
 
 	@Override

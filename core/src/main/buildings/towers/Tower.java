@@ -12,7 +12,6 @@ import projectiles.Projectile;
 
 public abstract class Tower extends BoardObject{
 	private float radius;
-	private int cost;
 	private Enemy target;
 	private ITargetState TState;
 	private float damage;
@@ -21,10 +20,9 @@ public abstract class Tower extends BoardObject{
     private CooldownObject cooldown;
 
 	protected Tower(int x, int y, float radius, String name, int cost, int cooldown,float size, float damage){
-		super(name, x, y,size);
+		super(name, x, y,size, cost);
 		this.cooldown = new CooldownObject(cooldown);
 		this.radius = radius;
-		this.cost = cost;
 		this.TState = new TargetLast();
 		this.damage = damage;
 	}
@@ -43,10 +41,6 @@ public abstract class Tower extends BoardObject{
 
 	public float getRadius() {
 		return this.radius;
-	}
-
-	public int getCost() {
-		return this.cost;
 	}
 
 	public float getDamage(){

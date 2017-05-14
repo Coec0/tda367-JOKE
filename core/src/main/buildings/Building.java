@@ -6,23 +6,14 @@ public abstract class Building extends BoardObject {
 
 	private float radius;
 	private CooldownObject cooldown;
-	int cost;
+	
 	
 
 
 	protected Building(String name, int x, int y, float size, float radius, int cooldown, int cost){
-		super(name, x, y, size);
+		super(name, x, y, size, cost);
 		this.radius = radius;
 		this.cooldown = new CooldownObject(cooldown);
-		this.cost = cost;
-	}
-	
-	public int getCost() {
-		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
 	}
 
 	public float getRadius(){

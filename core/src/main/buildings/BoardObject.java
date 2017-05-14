@@ -8,8 +8,10 @@ public abstract class BoardObject {
 	private SpriteAdapter pos;
 	private float size;
 	private boolean active;
+	int cost;
 
-	protected BoardObject(String name, int x, int y, float size) {
+	protected BoardObject(String name, int x, int y, float size, int cost) {
+		this.cost = cost;
 		this.size = size;
 		this.name = name;
 		this.pos = new SpriteAdapter(x, y);
@@ -20,6 +22,14 @@ public abstract class BoardObject {
 
 	public float getRadius(){
 		return 0;
+	}
+	
+	public int getCost(){
+		return cost;
+	}
+	
+	public void setCost(int cost){
+		this.cost = cost;
 	}
 	
 	public Node getPos() {

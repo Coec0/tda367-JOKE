@@ -14,7 +14,7 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 	private Parliament parliament;	
 	
 	public WhiteHouse(String name, int x, int y, float size, float money, Parliament parliament){
-		super(name, x, y,size);
+		super(name, x, y,size, 0);
 		this.parliament = parliament;
 		this.setMoney(money);
 	}
