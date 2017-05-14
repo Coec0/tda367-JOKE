@@ -16,15 +16,15 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 
 
     public BuildingView(){
-        soldier = new Texture("soldier.png");
-        tank = new Texture("tank.png");
+        soldier = new Texture("solider512.png");
+        tank = new Texture("tank512.png");
         whitehouse = new Texture("sexywhitehouse.png");
-        ranger = new Texture("ranger.png");
+        ranger = new Texture("ranger256.png");
         wall = new Texture("TrumpWall.png");
-        sniper = new Texture("soldier.png");
+        sniper = new Texture("sniper512.png");
         aliennerfer = new Texture("soldier.png");
         towerbooster = new Texture("soldier.png");
-        riotshield = new Texture("soldier.png");
+        riotshield = new Texture("riotshield256.png");
         //all same texture for testing
     }
 
