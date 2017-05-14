@@ -96,7 +96,7 @@ public class GameScreen implements Screen{
 		WP = new FitViewport(width, height, camera);
 		//camera.position.set(1280/2, 720/2, 0);
 		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder);
-		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100);
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
 		AM.addObserver(WH);
 		BM.addWhiteHouse(WH);
 		

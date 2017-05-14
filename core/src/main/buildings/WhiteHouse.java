@@ -1,7 +1,6 @@
 package buildings;
 
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.ArrayMap;
 
 import enemies.Enemy;
 import observers.AlienObserver;
@@ -12,17 +11,20 @@ import politics.parties.Party;
 public class WhiteHouse extends BoardObject implements AlienObserver{
 	private int health=20; //temp
 	private float money;
-	//private ArrayMap<Integer, String> pVotes;
 	private Parliament parliament;	
 	
-	public WhiteHouse(String name, int x, int y,float size){
+	public WhiteHouse(String name, int x, int y, float size, float money, Parliament parliament){
 		super(name, x, y,size);
-		parliament = new Parliament();
-		//pVotes = new ArrayMap<Integer, String>(false, 7);
+		this.parliament = parliament;
+		this.setMoney(money);
+	}
+	
+	public WhiteHouse(String name, int x, int y, float size, float money){
+		this(name, x, y,size, money, new Parliament());
 	}
 	
 	/**
-	 * Vote for party. Any class that implements a subclass to "Party" will work
+	 * Vote for party. Takes in party class
 	 * @param party
 	 */
 	public <T extends Party> void voteParty(T party){
