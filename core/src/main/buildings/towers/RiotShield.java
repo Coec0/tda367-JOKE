@@ -15,7 +15,7 @@ public class RiotShield extends Building implements Voter {
 
     private static final String NAME = "RIOT SHIELD";
     private static final int COST = 50;
-    private static final int COOLDOWN = 20;
+    private static final int COOLDOWN = 100;
     private Party party = PartyFactory.Democrat(6); // Just for now
     private static String DESCRIPTION = "Pushes back nearby enemies";
     private static final int RADIUS = 500;
@@ -42,6 +42,7 @@ public class RiotShield extends Building implements Voter {
     public void usePower() {
         if (enemies != null){
             for (Enemy e: enemies){
+                if (!(e.getNodeArrayPos() < 1))
                 e.setNodeArrayPos(e.getNodeArrayPos() - 1000);
             }
         }
