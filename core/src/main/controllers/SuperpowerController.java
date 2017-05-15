@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import buildings.BoardObject;
 import buildings.Wall;
 import models.AlienModel;
+import models.BuildingModel;
 import models.SuperpowerModel;
 import path.PathFinder;
 import utilities.Node;
@@ -22,16 +23,18 @@ public class SuperpowerController extends ClickListener implements InputProcesso
     SuperpowerModel SModel;
     AlienModel AModel;
     SuperpowerView SView;
+    BuildingModel BModel;
     Viewport VP;
     BoardObject onMouse;
     private PathFinder finder;
 
-    public SuperpowerController(SuperpowerModel SModel, SuperpowerView SView, Viewport VP, AlienModel AModel,PathFinder finder){
+    public SuperpowerController(SuperpowerModel SModel, SuperpowerView SView, Viewport VP, AlienModel AModel, PathFinder finder, BuildingModel BModel){
     	this.finder = finder;
         this.SModel = SModel;
         this.SView = SView;
         this.VP = VP;
         this.AModel = AModel;
+        this.BModel = BModel;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
             SModel.useMinutemen();
         }
         if(event.getListenerActor().getName().equals("towerboost")){
-
+            SModel.useTowerBoost(BModel.getTowers());
         }
     }
     @Override

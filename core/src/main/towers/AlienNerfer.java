@@ -13,7 +13,7 @@ public class AlienNerfer extends Building {
     private static final int SLOWRADIUS = 500;
     private static final int SIZE = 50;
     private static final int COST = 400;
-    private static final int COOLDOWN = 90;
+    private static final float COOLDOWN = 90;
     private Array<Enemy> enemies;
     private Array<Enemy> affectedEnemies;
     

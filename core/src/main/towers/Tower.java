@@ -18,7 +18,7 @@ public abstract class Tower extends BoardObject{
 	private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
     private CooldownObject cooldown;
 
-	protected Tower(int x, int y, float radius, String name, int cost, int cooldown,float size, float damage){
+	protected Tower(int x, int y, float radius, String name, int cost, float cooldown,float size, float damage){
 		super(name, x, y,size, cost);
 		this.cooldown = new CooldownObject(cooldown);
 		this.radius = radius;
@@ -53,6 +53,8 @@ public abstract class Tower extends BoardObject{
 	public void setDamage(float damage){
 		this.damage = damage;
 	}
+
+	public void setCooldown(float cooldown){this.cooldown = new CooldownObject(cooldown);}
 
 	public void shoot() {
 		this.makeProjectile();

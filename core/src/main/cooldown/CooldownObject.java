@@ -1,33 +1,33 @@
 package cooldown;
 
 public class CooldownObject {
-	private int time;
+	private float time;
 	private boolean onCooldown;
-	private int cooldownTicks;
+	private float cooldownTicks;
 	
-	public CooldownObject(int time, boolean onCooldown){
+	public CooldownObject(float time, boolean onCooldown){
 		this.setCooldownTime(time);
 		this.setOnCooldown(false);
 		this.setCooldownTicks(time);
 	}
 	
-	public CooldownObject(int cooldownTicks){
+	public CooldownObject(float cooldownTicks){
 		this(cooldownTicks, false);
 	}
 
-	public int getCooldownTime() {
+	public float getCooldownTime() {
 		return time;
 	}
 
-	public void setCooldownTime(int cooldownTime) {
+	public void setCooldownTime(float cooldownTime) {
 		this.time = cooldownTime;
 	}
 
-	public void increaseCooldownTime(int cooldownTime){
+	public void increaseCooldownTime(float cooldownTime){
 		setCooldownTime(getCooldownTime() + cooldownTime);
 	}
 	
-	public void decreaseCooldownTime(int cooldownTime){
+	public void decreaseCooldownTime(float cooldownTime){
 		setCooldownTime(getCooldownTime() - cooldownTime);
 	}
 	
@@ -48,7 +48,7 @@ public class CooldownObject {
 			setCDTicks(0);	
 	}
 
-	public int getCooldownTicks() {
+	public float getCooldownTicks() {
 		return cooldownTicks;
 	}
 	
@@ -56,7 +56,7 @@ public class CooldownObject {
 		setCooldownTicks(this.getCooldownTime());
 	}
 
-	private void setCDTicks(int cooldownTicks){
+	private void setCDTicks(float cooldownTicks){
 		this.cooldownTicks = cooldownTicks;
 	}
 	
@@ -64,7 +64,7 @@ public class CooldownObject {
 	 * Sets cooldownTicks. If under or equals 0, then this object is no longer on cooldown.
 	 * @param cooldownTicks
 	 */
-	public void setCooldownTicks(int cooldownTicks) {
+	public void setCooldownTicks(float cooldownTicks) {
 		setCDTicks(cooldownTicks);
 		if(this.cooldownTicks<=0)
 			this.setOnCooldown(false);

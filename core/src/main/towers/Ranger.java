@@ -11,7 +11,7 @@ public class Ranger extends Tower {
     private static final int RADIUS = 750;
     private static final String NAME = "RANGER";
     private static final int COST = 300;
-    private static final int COOLDOWN = 50;
+    private static final float COOLDOWN = 50;
     private static String DESCRIPTION = "Soldier with higher rate of fire";
     private static final float SIZE = 50;
     private static final float DAMAGE = 40;

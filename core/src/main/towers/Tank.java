@@ -12,7 +12,7 @@ public class Tank extends Tower implements Voter{
     private static final int RADIUS = 1000;
     private static final String NAME = "TANK";
     private static final int COST = 100;
-    private static final int COOLDOWN = 50;
+    private static final float COOLDOWN = 50;
     private static String DESCRIPTION = "Great damage but shoots slow";
     private Party party = PartyFactory.Democrat(10); // Just for now
     private static final float SIZE = 50;

@@ -18,7 +18,7 @@ public class TowerUpgrader {
     }
 
 
-    public void reduceCooldown(Tower tower, int cooldown){
+    public void reduceCooldown(Tower tower, float cooldown){
         tower.getCooldownObject().decreaseCooldownTime(cooldown);
     }
 }

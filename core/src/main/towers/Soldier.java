@@ -11,7 +11,7 @@ public class Soldier extends Tower implements Voter{
     private static final int RADIUS = 500;
     private static final String NAME = "SOLDIER";
     private static final int COST = 50;
-    private static final int COOLDOWN = 10;
+    private static final float COOLDOWN = 10;
     private Party party = PartyFactory.Republican(3); // Just for now
 	private static String DESCRIPTION = "A regular soldier";
 	private static final float SIZE = 50;

@@ -92,7 +92,7 @@ public class GameScreen implements Screen{
 		SuperpowerModel SM = new SuperpowerModel(finder,BM);
 		camera = new OrthographicCamera();
 		WP = new FitViewport(width, height, camera);
-		SuperpowerController SC = new SuperpowerController(SM, SW, WP, AM,finder);
+		SuperpowerController SC = new SuperpowerController(SM, SW, WP, AM,finder, BM);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
 		

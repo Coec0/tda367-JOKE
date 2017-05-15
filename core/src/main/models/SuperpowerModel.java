@@ -1,5 +1,6 @@
 package models;
 
+import superpowers.TowerBoost;
 import towers.TowerFactory;
 import com.badlogic.gdx.utils.Array;
 
@@ -18,13 +19,14 @@ public class SuperpowerModel {
     private Nuke nuke;
     private PathFinder finder;
     private BuildingModel BModel;
-    
+    private TowerBoost towerBoost;
 
 
     public SuperpowerModel(PathFinder finder,BuildingModel BModel){
     	this.BModel = BModel;
     	this.finder = finder;
         nuke = new Nuke();
+        towerBoost = new TowerBoost();
     }
 
     public void useNuke(Array<Enemy> enemies){
@@ -54,6 +56,6 @@ public class SuperpowerModel {
     }
 
     public void useTowerBoost(Array<Tower> towers){
-
+        towerBoost.boostTowers(towers);
     }
 }
