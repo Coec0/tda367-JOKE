@@ -41,7 +41,7 @@ public class AlienNerfer extends Building {
 }*/ //TO FIX
 
     private boolean checkIfEffected(Enemy e){
-        if(affectedEnemies != null){
+        if(affectedEnemies.size != 0){
             for (Enemy aE : affectedEnemies){
                 if (aE.equals(e)){
                     return true;
@@ -53,7 +53,7 @@ public class AlienNerfer extends Building {
 
 	@Override
 	public void usePower() {
-		if (enemies != null) {
+		if (enemies.size != 0) {
             for (Enemy enemy : enemies) {
                 if (!(checkIfEffected(enemy))){
                 enemy.setSpeed(enemy.getSpeed() * 0.8f);
