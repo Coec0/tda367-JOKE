@@ -63,16 +63,19 @@ public class GameScreen implements Screen{
 	GameUIView HV;
 	RightGameUIStage HS;
 	SuperpowerStage SS;
-	
-	public GameScreen(IllegalAliensMain illegalAliensMain, SpriteBatch batch) {
+
+	private Map map;
+
+	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch) {
 		this.IAMain = illegalAliensMain;
+		this.map = map;
 		this.batch = batch;
 	}
 
 	@Override
 	public void show() {
 		Radar radar = new Radar();
-		Map map = new Map("AlphaMap", new Texture("AlphaMap.png"));
+//		map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
 		finder = new PathFinder(Mapnodes, Mapnodes.get(23), map.getStartingNodes(),radar);
 		

@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 
 import hiscore.DatabaseResolver;
 import hiscore.HiscoreDB;
+import map.Map;
 import observers.UpdateObserver;
 import screens.EndGameScreen;
 import screens.GameScreen;
@@ -38,10 +39,8 @@ public class IllegalAliensMain extends Game {
 		batch = new SpriteBatch();
 		observers = new Array<UpdateObserver>(false, 10);
 
-		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
-
 		mainMenuScreen = new MainMenuScreen(this, batch);
-		gameScreen = new GameScreen(this, batch);
+//		gameScreen = new GameScreen(this, batch);
 		endGameScreen = new EndGameScreen(this, batch);
 
 		setScreen(mainMenuScreen);
@@ -53,24 +52,14 @@ public class IllegalAliensMain extends Game {
 		super.render();
 	}
 
-	public void setGameScreen() {
+	public void startGame(Map map) {
+		gameScreen = new GameScreen(this, map, batch);
 		setScreen(gameScreen);
 	}
 
-	public void setEndGameScreen() {
-		setScreen(endGameScreen);
-	}
-
-	public void setMainMenuScreen() {
-		setScreen(mainMenuScreen);
-	}
 
 	public void shutdown() {
 		Gdx.app.exit();
-	}
-
-	public Skin getSkin() {
-		return skin;
 	}
 
 	public void addObserver(UpdateObserver observer) {
