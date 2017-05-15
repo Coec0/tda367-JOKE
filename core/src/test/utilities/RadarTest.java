@@ -1,6 +1,6 @@
 package utilities;
 
-import buildings.towers.Soldier;
+import towers.Soldier;
 import com.badlogic.gdx.utils.Array;
 import enemies.Alien;
 import enemies.Enemy;

@@ -1,6 +1,5 @@
 package views;
 
-import buildings.towers.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -8,6 +7,7 @@ import buildings.BoardObject;
 import buildings.Wall;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
+import towers.*;
 import utilities.SpriteAdapter;
 
 public class BuildingView extends View<BoardObject> implements BuildingObserver{

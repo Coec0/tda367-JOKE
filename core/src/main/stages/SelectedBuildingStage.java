@@ -9,8 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import buildings.BoardObject;
-import buildings.Building;
-import buildings.towers.Tower;
+import towers.Tower;
 
 public class SelectedBuildingStage extends Stage {
 	private Skin skin;

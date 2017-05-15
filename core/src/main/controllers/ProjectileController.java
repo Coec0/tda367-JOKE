@@ -1,7 +1,7 @@
 package controllers;
 
 import buildings.BoardObject;
-import buildings.towers.Tower;
+import towers.Tower;
 import models.BuildingModel;
 import models.ProjectileModel;
 import observers.BuildingObserver;

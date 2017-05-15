@@ -1,10 +1,10 @@
 package models;
 
-import buildings.towers.TowerFactory;
+import towers.TowerFactory;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Wall;
-import buildings.towers.Tower;
+import towers.Tower;
 import enemies.Enemy;
 import path.PathFinder;
 import path.RoadSection;
