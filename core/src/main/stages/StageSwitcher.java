@@ -17,12 +17,14 @@ public class StageSwitcher extends AbstractStage {
 
 	private MainMenuStage mainMenuStage;
 	private AboutStage aboutStage;
+	private MapSelectStage mapSelectStage;
 
 	public StageSwitcher(IllegalAliensMain game) {
 		mainMenuStage = new MainMenuStage(game, this);
 		aboutStage = new AboutStage(game, this);
+		mapSelectStage = new MapSelectStage(game, this);
 
-		stages.addAll(mainMenuStage, aboutStage);
+		stages.addAll(mainMenuStage, aboutStage, mapSelectStage);
 	}
 
 	public void drawStages() {
@@ -62,5 +64,9 @@ public class StageSwitcher extends AbstractStage {
 
 	public IStage getAboutStage() {
 		return aboutStage;
+	}
+
+	public IStage getMapSelectStage() {
+		return mapSelectStage;
 	}
 }
