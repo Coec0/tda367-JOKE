@@ -2,8 +2,10 @@ package factories;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import static com.badlogic.gdx.utils.Align.center;
 
@@ -87,6 +89,10 @@ public class ActorFactory {
 		textField.setAlignment(center); //currently hardcoded
 
 		return textField;
+	}
+
+	public static Actor createImageButton(Texture texture) {
+		return new ImageButton(new TextureRegionDrawable(new TextureRegion(texture)));
 	}
 
 	public static Actor createImage(float x, float y, float rotateDegrees, Texture texture) {
