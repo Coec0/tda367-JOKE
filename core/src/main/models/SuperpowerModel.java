@@ -21,7 +21,6 @@ public class SuperpowerModel {
     private BuildingModel BModel;
     private TowerBoost towerBoost;
 
-
     public SuperpowerModel(PathFinder finder,BuildingModel BModel){
     	this.BModel = BModel;
     	this.finder = finder;
@@ -56,6 +55,8 @@ public class SuperpowerModel {
     }
 
     public void useTowerBoost(Array<Tower> towers){
-        towerBoost.boostTowers(towers);
+       for (Tower tower: towers){
+           towerBoost.boostTower(tower);
+       }
     }
 }
