@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.IllegalAliensMain;
 import factories.ActorFactory;
+import map.Map;
 
 public class MainMenuStage extends AbstractStage {
 
@@ -59,7 +60,8 @@ public class MainMenuStage extends AbstractStage {
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setGameScreen();
+                game.startGame(new Map("AlphaMap", new Texture("AlphaMap.png")));
+//                stageSwitcher.showStage(stageSwitcher.getMapSelectStage());
             }
         });
 
