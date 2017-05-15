@@ -1,4 +1,4 @@
-package buildings.towers.targetmethods;
+package towers.targetmethods;
 
 import com.badlogic.gdx.utils.Array;
 

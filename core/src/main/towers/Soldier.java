@@ -1,4 +1,4 @@
-package buildings.towers;
+package towers;
 
 
 import factories.ProjectileFactory;

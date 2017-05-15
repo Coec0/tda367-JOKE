@@ -1,4 +1,4 @@
-package buildings.towers;
+package towers;
 
 import buildings.Building;
 import com.badlogic.gdx.utils.Array;

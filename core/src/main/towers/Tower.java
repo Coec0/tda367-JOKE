@@ -1,10 +1,9 @@
-package buildings.towers;
+package towers;
 
 import com.badlogic.gdx.utils.Array;
 
 import buildings.BoardObject;
-import buildings.towers.targetmethods.ITargetState;
-import buildings.towers.targetmethods.TargetLast;
+import towers.targetmethods.ITargetState;
 import cooldown.CooldownObject;
 import enemies.Enemy;
 import observers.ProjectileObserver;
@@ -23,7 +22,7 @@ public abstract class Tower extends BoardObject{
 		super(name, x, y,size, cost);
 		this.cooldown = new CooldownObject(cooldown);
 		this.radius = radius;
-		this.TState = new TargetLast();
+		this.TState = new towers.targetmethods.TargetLast();
 		this.damage = damage;
 	}
 	

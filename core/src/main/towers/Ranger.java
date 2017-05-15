@@ -1,4 +1,4 @@
-package buildings.towers;
+package towers;
 
 
 import projectiles.Bullet;
@@ -7,19 +7,18 @@ import projectiles.Projectile;
 /**
  * Created by Emil on 2017-04-17.
  */
-public class Sniper extends Tower {
-
-
-    private static final int RADIUS = 1000;
-    private static final String NAME = "SNIPER";
-    private static final int COST = 150;
-    private static final int COOLDOWN = 75;
-    private static String DESCRIPTION = "Very long range";
+public class Ranger extends Tower {
+    private static final int RADIUS = 750;
+    private static final String NAME = "RANGER";
+    private static final int COST = 300;
+    private static final int COOLDOWN = 50;
+    private static String DESCRIPTION = "Soldier with higher rate of fire";
     private static final float SIZE = 50;
     private static final float DAMAGE = 40;
     private static final float SPEED = 100;
 
-    public Sniper(int x, int y){
+
+    public Ranger(int x, int y){
         super(x, y, RADIUS, NAME, COST, COOLDOWN,SIZE, DAMAGE);
     }
     
@@ -27,7 +26,7 @@ public class Sniper extends Tower {
     	return DESCRIPTION;
     }
 
-   
+    
 
     @Override
     public Projectile makeProjectile() {

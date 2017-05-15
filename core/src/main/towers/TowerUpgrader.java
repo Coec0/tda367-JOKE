@@ -1,4 +1,4 @@
-package buildings.towers;
+package towers;
 
 /**
  * Created by Emil on 2017-05-03.
