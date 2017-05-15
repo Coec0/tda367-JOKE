@@ -1,6 +1,7 @@
 package models;
 
 import superpowers.TowerBoost;
+import towers.Minutemen;
 import towers.TowerFactory;
 import com.badlogic.gdx.utils.Array;
 
@@ -20,12 +21,14 @@ public class SuperpowerModel {
     private PathFinder finder;
     private BuildingModel BModel;
     private TowerBoost towerBoost;
+    private Array<Minutemen> minutemenArray;
 
     public SuperpowerModel(PathFinder finder,BuildingModel BModel){
     	this.BModel = BModel;
     	this.finder = finder;
         nuke = new Nuke();
         towerBoost = new TowerBoost();
+        minutemenArray = new Array<Minutemen>(false, 4);
     }
 
     public void useNuke(Array<Enemy> enemies){
@@ -34,10 +37,10 @@ public class SuperpowerModel {
 
 
     public void useMinutemen(){
-        TowerFactory.createMinutemen(585,495);
-        TowerFactory.createMinutemen(590,485);
-        TowerFactory.createMinutemen(595, 480);
-        TowerFactory.createMinutemen(600,475);
+        minutemenArray.add(TowerFactory.createMinutemen(585,495));
+        minutemenArray.add(TowerFactory.createMinutemen(590,485));
+        minutemenArray.add(TowerFactory.createMinutemen(595, 480));
+        minutemenArray.add(TowerFactory.createMinutemen(600,475));
     }
 
     public void useWall(int x, int y){

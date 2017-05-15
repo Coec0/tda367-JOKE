@@ -29,7 +29,7 @@ public class TowerBoost implements Superpower {
         //need to add duration and revert changes when time is out
     }
 
-    
+
 
     @Override
     public void usePower() {

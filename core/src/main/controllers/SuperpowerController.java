@@ -12,6 +12,7 @@ import models.AlienModel;
 import models.BuildingModel;
 import models.SuperpowerModel;
 import path.PathFinder;
+import towers.Minutemen;
 import utilities.Node;
 import views.SuperpowerView;
 
