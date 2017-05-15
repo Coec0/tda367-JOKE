@@ -1,0 +1,42 @@
+Datum: 15 maj
+Ordförande: Kevin
+Deltagare: Alla
+
+1. Mål
+Inget som hindrar oss från att jobba vidare.
+
+2. Rapport från tidigare möte
+Kevin har ändrat hur radarn skickas och ändrat storlek på alla boardobjects.
+Oscar har gjort cooldown-klasser, börjat på pengarssystem. Refaktoriserat kod, soldater kan inte sättas på varandra längre.
+Johan har implementerat en MapSwitcher och ändrat om i paketen.
+Emil har kopplat knappar, lagt in tornuppgraderingar, finputsat torn och börjat på ny superkraft.
+
+3. Diskussion
+Bilder på presidenter ska inte handmålas, porträtt istället.
+Executive orders:
+ * Minst 4 st (jämnt antal)
+ * idéer: rensa torn som ger politiska poäng som används för superkrafter (civil war, en för varje politisk sida),
+ deklarera krig (får mkt pengar, men priset höjs i några rundor på allt), 
+ tax cuts (nya torn som köps under tidsperioden blir billigare fast svagare), obama care
+ (torn blir starkare fast dyrare under en viss tidsperiod), open borders (fler aliens -> mer möjlig inkomst)
+ * exectuive orders ger röster beroende på vilket parti de tillhör.
+
+TowerBooster boostar alla torn under mapen under en viss tid istället för alla torn inom en viss radie för alltid?
+
+Superkrafter: Specifik kan användas när man har över 50% på den sidan, en global cooldown ges.
+
+Politiska poäng: Dela upp både röster och poäng på respektive sida. Mer röster -> mer poäng. Poäng ger dock inte röster. Förlorar
+man poäng förlorar man inte röster, och vice versa.
+
+Minutemen: En linje med enskilda soldater. 
+
+4. Bestämt
+Allt från diskussion är bestämt.
+
+5. Inför nästa möte
+Oscar: Börjar på executive orders och förändrar den politiska mätaren i spelet
+Johan: Jobbar mer gränssnittet
+Kaj: Fortsätter att fixa grafiken/texturer
+Emil: Fortsätter att fixa superkrafter och torn
+
+Alla kan måla på map design och refaktorisera till bättre kod/fortsätta förbättra variabel/metodnamn.
