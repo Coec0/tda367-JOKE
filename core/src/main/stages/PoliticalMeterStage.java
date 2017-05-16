@@ -23,9 +23,13 @@ public class PoliticalMeterStage extends Stage {
 	private final int WIDTH = 500;
 	private Table table;
 	private Array<Party> parties;
+	private Array<Label> partyLabels;
+	 
 	public PoliticalMeterStage() {
+		
+		partyLabels = new Array<Label>(false, 5);
 		table = new Table();
-		// table.setDebug(true);
+		//table.setDebug(true);
 		table.setPosition((Gdx.graphics.getWidth() - 200 - WIDTH) / 2, 0);
 		table.setWidth(WIDTH);
 		table.setHeight(HEIGHT);
@@ -47,8 +51,9 @@ public class PoliticalMeterStage extends Stage {
 	}
 
 	private void addParty(Party party) {
-			table.add(partyLabel(partyColor(party.getName()), party));
-			parties.add(party);
+		Table partyT = partyRow(partyColor(party.getName()), party);
+		table.add(partyT);
+		parties.add(party);
 	}
 	
 	private void voteParty(Party party){
@@ -59,10 +64,15 @@ public class PoliticalMeterStage extends Stage {
 	private void reCalcTable(){
 		for(Cell<?> cell : table.getCells()){
 			Object object = cell.getActor().getUserObject();
-			if(object instanceof Party)
+			if(object instanceof Party){
 				cell.width(calcWidth((Party)object));
+			}
+		}
+		for(Label label : partyLabels){
+			label.setText(String.valueOf(((Party)label.getParent().getUserObject()).getPoints()));
 		}
 		table.invalidate();
+		
 	}
 
 	private float calcWidth(Party party){
@@ -90,6 +100,20 @@ public class PoliticalMeterStage extends Stage {
 			return Color.BLUE;
 		Random random = new Random();
 		return new Color(random.nextFloat(),random.nextFloat(),random.nextFloat(), 0);
+	}
+	
+	private Table partyRow(Color color, Party party){
+		Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+		Table table = new Table();
+		table.setUserObject(party);
+		Label label = new Label(String.valueOf(party.getPoints()), skin);
+		label.setName(party.getName());
+		partyLabels.add(label);
+		table.add(label);
+		table.row();
+		table.add(partyLabel(color, party)).expand().fill();
+		
+		return table;
 	}
 	
 	private Label partyLabel(Color color, Party party) {
