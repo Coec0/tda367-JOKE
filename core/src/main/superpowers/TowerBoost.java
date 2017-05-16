@@ -29,6 +29,9 @@ public class TowerBoost implements Superpower {
         //need to add duration and revert changes when time is out
     }
 
+    public boolean isFinished(){
+        return duration.isOnCooldown();
+    }
 
 
     @Override
