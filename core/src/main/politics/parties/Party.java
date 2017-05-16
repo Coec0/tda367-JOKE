@@ -3,10 +3,14 @@ package politics.parties;
 public class Party {
 	private int votes;
 	private String name;
+	private int points;
 	
-	public Party(String name, int votes){
+
+
+	public Party(String name, int votes, int points){
 		this.setVotes(votes);
 		this.setName(name);
+		this.setPoints(points);
 	}
 
 	public int getVotes() {
@@ -19,6 +23,22 @@ public class Party {
 	
 	public void addVotes(int votes){
 		setVotes(this.votes+votes);
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	
+	public void addPoints(int points){
+		setPoints(this.points + points);
+	}
+	
+	public void removePoints(int points){
+		setPoints(this.points - points);
 	}
 
 	@Override

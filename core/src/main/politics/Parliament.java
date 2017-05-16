@@ -17,6 +17,7 @@ public class Parliament {
 			addParty(party);
 		} else {
 			parties.get(parties.indexOf(party, false)).addVotes(party.getVotes());
+			parties.get(parties.indexOf(party, false)).addPoints(party.getPoints());
 		}
 	}
 	
