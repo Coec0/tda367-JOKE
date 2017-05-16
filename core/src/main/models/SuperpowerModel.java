@@ -37,10 +37,10 @@ public class SuperpowerModel {
 
 
     public void useMinutemen(){
-        minutemenArray.add(TowerFactory.createMinutemen(585,495));
-        minutemenArray.add(TowerFactory.createMinutemen(590,485));
-        minutemenArray.add(TowerFactory.createMinutemen(595, 480));
-        minutemenArray.add(TowerFactory.createMinutemen(600,475));
+        BModel.addBoardObject(TowerFactory.createMinutemen(585,495));
+        BModel.addBoardObject(TowerFactory.createMinutemen(590,485));
+        BModel.addBoardObject(TowerFactory.createMinutemen(595,480));
+        BModel.addBoardObject(TowerFactory.createMinutemen(5600,475));
     }
 
     public void useWall(int x, int y){
