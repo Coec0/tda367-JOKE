@@ -1,5 +1,6 @@
 package models;
 
+import observers.UpdateObserver;
 import superpowers.TowerBoost;
 import towers.Minutemen;
 import towers.TowerFactory;
@@ -16,19 +17,19 @@ import utilities.Node;
 /**
  * Created by Emil on 2017-05-04.
  */
-public class SuperpowerModel {
+public class SuperpowerModel implements UpdateObserver {
     private Nuke nuke;
     private PathFinder finder;
     private BuildingModel BModel;
+    private AlienModel AModel; //buildingmodel and alienmodel should be moved
     private TowerBoost towerBoost;
-    private Array<Minutemen> minutemenArray;
 
-    public SuperpowerModel(PathFinder finder,BuildingModel BModel){
+    public SuperpowerModel(PathFinder finder,BuildingModel BModel, AlienModel AModel){
     	this.BModel = BModel;
     	this.finder = finder;
+    	this.AModel = AModel;
         nuke = new Nuke();
         towerBoost = new TowerBoost();
-        minutemenArray = new Array<Minutemen>(false, 4);
     }
 
     public void useNuke(Array<Enemy> enemies){
@@ -40,7 +41,7 @@ public class SuperpowerModel {
         BModel.addBoardObject(TowerFactory.createMinutemen(585,495));
         BModel.addBoardObject(TowerFactory.createMinutemen(590,485));
         BModel.addBoardObject(TowerFactory.createMinutemen(595,480));
-        BModel.addBoardObject(TowerFactory.createMinutemen(5600,475));
+        BModel.addBoardObject(TowerFactory.createMinutemen(560,475));
     }
 
     public void useWall(int x, int y){
@@ -54,12 +55,23 @@ public class SuperpowerModel {
     		finder.removeNeighbor(rs);
     		finder.calculateAllShortest();
     	}
-    	
+
     }
 
     public void useTowerBoost(Array<Tower> towers){
        for (Tower tower: towers){
            towerBoost.boostTower(tower);
        }
+    }
+
+    private void checkWave(){
+        if (!(AModel.getWaveOn())){
+            BModel.deleteMinutemen();
+        }
+    }
+
+    @Override
+    public void update(float deltaTime) {
+      checkWave();
     }
 }

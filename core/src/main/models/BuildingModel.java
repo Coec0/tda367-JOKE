@@ -5,11 +5,7 @@ import com.badlogic.gdx.utils.Array;
 import buildings.BoardObject;
 import buildings.Building;
 import buildings.WhiteHouse;
-import towers.AlienNerfer;
-import towers.RiotShield;
-import towers.Tower;
-import towers.TowerBooster;
-import towers.TowerUpgrader;
+import towers.*;
 import cooldown.CooldownHandler;
 import enemies.Enemy;
 import observers.BuildingObserver;
@@ -110,6 +106,13 @@ public class BuildingModel implements UpdateObserver {
 
 	public Tower peekTower() {
 		return towers.peek();
+	}
+
+	public void deleteMinutemen(){
+		for (Tower t : towers){
+			if (t instanceof Minutemen)
+				towers.removeValue(t,false);
+		}
 	}
 
 	public void sellBoardObject(BoardObject BO) {

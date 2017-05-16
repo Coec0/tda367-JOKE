@@ -45,7 +45,9 @@ public class AlienModel implements UpdateObserver {
 		notifyObservers(enemy, false);
 	}
 	
-	
+	public boolean getWaveOn(){
+		return waveON;
+	}
 	
 	private void moveAllEnemies(){
 		//if(aliens.size>0){
