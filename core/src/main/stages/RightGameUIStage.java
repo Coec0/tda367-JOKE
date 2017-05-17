@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 
 public class RightGameUIStage extends Stage {
 
@@ -66,12 +67,17 @@ public class RightGameUIStage extends Stage {
 	
 	private ImageTextButton addImageButton(String name, String text, Texture texture,ClickListener CL){
 		Skin skin = new Skin(Gdx.files.internal("ui/skin/plain-james-ui.json"));
-		ImageTextButton imageButton = new ImageTextButton("", skin); //TODO add text for cost
-		imageButton.getLabel().setFontScale(0.2f);
+		ImageTextButton imageButton = new ImageTextButton("$$$", skin);
+		imageButton.stack().row();
+		imageButton.getImageCell().colspan(2);
+		imageButton.stack(imageButton.getLabel()).align(Align.center).expand().fill();
+		imageButton.getLabel().setFontScale(0.5f);
 		imageButton.setName(name);
 		imageButton.addListener(CL);
 		imageButton.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(texture));
 		imageButton.getStyle().imageDown = new TextureRegionDrawable(new TextureRegion(texture));
+		imageButton.pack();
+		imageButton.invalidateHierarchy();
 		return imageButton;
 	}
 
