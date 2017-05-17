@@ -1,7 +1,8 @@
 package towers;
 
-import buildings.Building;
 import com.badlogic.gdx.utils.Array;
+
+import buildings.Building;
 
 /**
  * Created by Emil on 2017-05-08.
@@ -15,8 +16,12 @@ public class TowerBooster extends Building {
 
 	private Array<Tower> towers;
 
+	  public TowerBooster(int x, int y, int radius, float cooldown, int cost){
+	    	super(NAME, x, y, SIZE, radius, cooldown, cost);
+	    }
+	
 	public TowerBooster(int x, int y) {
-		super(NAME, x, y, SIZE, BOOSTRADIUS, 0, COST);
+		this(x, y, BOOSTRADIUS, 0, COST);
 
 	}
 

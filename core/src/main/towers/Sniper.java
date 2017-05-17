@@ -19,8 +19,12 @@ public class Sniper extends Tower {
     private static final float DAMAGE = 40;
     private static final float SPEED = 100;
 
+    public Sniper(int x, int y, int radius, float cooldown, int cost, float damage){
+    	super(x, y, radius, NAME, cost, cooldown, SIZE, damage);
+    }
+    
     public Sniper(int x, int y){
-        super(x, y, RADIUS, NAME, COST, COOLDOWN,SIZE, DAMAGE);
+        this(x, y, RADIUS, COOLDOWN, COST, DAMAGE);
     }
     
     public String getDescription(){

@@ -23,8 +23,12 @@ public class RiotShield extends Building implements Voter {
 
     private Array<Enemy> enemies;
 
+    public RiotShield(int x, int y, int radius, float cooldown, int cost){
+    	super(NAME, x, y, SIZE, radius, cooldown, cost);
+    }
+    
     public RiotShield(int x, int y){
-        super(NAME, x, y, SIZE, RADIUS, COOLDOWN, COST);
+        this(x, y, RADIUS, COOLDOWN, COST);
     }
 
 

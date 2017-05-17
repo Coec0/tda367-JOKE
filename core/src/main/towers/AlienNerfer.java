@@ -10,16 +10,20 @@ import enemies.Enemy;
 public class AlienNerfer extends Building {
     private static final String NAME = "AlienNerfer";
     private static final String DESCRIPTION = "A building slowing down aliens in its radius";
-    private static final int SLOWRADIUS = 500;
     private static final int SIZE = 50;
+    private static final int SLOWRADIUS = 500;
     private static final int COST = 400;
     private static final float COOLDOWN = 90;
     private Array<Enemy> enemies;
     private Array<Enemy> affectedEnemies;
     
+    public AlienNerfer(int x, int y, int radius, float cooldown, int cost){
+    	super(NAME, x, y, SIZE, radius, cooldown, cost);
+    	affectedEnemies = new Array<Enemy>(false, 5000);
+    }
+    
     public AlienNerfer(int x, int y){
-        super(NAME, x ,y, SIZE, SLOWRADIUS, COOLDOWN, COST);
-        affectedEnemies = new Array<Enemy>(false, 5000);
+        this(x , y, SLOWRADIUS, COOLDOWN, COST);
     }
 
 
