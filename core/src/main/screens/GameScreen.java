@@ -34,6 +34,7 @@ import stages.RightGameUIStage;
 import stages.SelectedBuildingStage;
 import stages.SuperpowerStage;
 import stages.TopLeftGameUIStage;
+import towers.BOPrototypes;
 import utilities.DrawablesCollector;
 import utilities.Node;
 import utilities.Radar;
@@ -102,7 +103,9 @@ public class GameScreen implements Screen{
 		
 		
 		//camera.position.set(1280/2, 720/2, 0);
-		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder);
+		BOPrototypes prot = new BOPrototypes();
+		
+		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder, prot);
 		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
 		AM.addObserver(WH);
 		BM.addWhiteHouse(WH);

@@ -1,25 +1,29 @@
 package towers;
 
 public class TowerFactory {
-	public static Soldier createSoldier(int x, int y) {
-		return new Soldier(x, y);
+	public static Soldier createSoldier(BOPrototypes prot, int x, int y) {
+		return prot.getSoldier(x, y);
 	}
 
-	public static Tank createTank(int x, int y) {
-		return new Tank(x, y);
+	public static Tank createTank(BOPrototypes prot, int x, int y) {
+		return prot.getTank(x, y);
 	}
 
-	public static Sniper createSniper(int x, int y) {
-		return new Sniper(x, y);
+	public static Sniper createSniper(BOPrototypes prot, int x, int y) {
+		return prot.getSniper(x, y);
 	}
 
-	public static Ranger createRanger(int x, int y) {
-		return new Ranger(x, y);
+	public static Ranger createRanger(BOPrototypes prot, int x, int y) {
+		return prot.getRanger(x, y);
 	}
 
-	public static AlienNerfer createAlienNerfer(int x, int y){return new AlienNerfer(x,y);}
+	public static AlienNerfer createAlienNerfer(BOPrototypes prot, int x, int y){
+		return prot.getAlienNerfer(x,y);
+	}
 
-	public static RiotShield createRiotShield(int x, int y){return new RiotShield(x,y);}
+	public static RiotShield createRiotShield(BOPrototypes prot, int x, int y){
+		return prot.getRiotShield(x,y);
+	}
 
 	public static Minutemen createMinutemen(int x, int y){
 		return new Minutemen(x,y);

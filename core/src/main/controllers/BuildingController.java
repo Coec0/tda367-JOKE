@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import buildings.BoardObject;
+import towers.BOPrototypes;
 import towers.Tower;
 import towers.TowerFactory;
 import towers.targetmethods.TargetClosest;
@@ -29,15 +30,16 @@ public class BuildingController extends ClickListener implements InputProcessor 
     Viewport WP;
     BoardObject onMouse;
     BoardObject highlighted;
+    BOPrototypes prototypes;
    
     
 
-    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, Viewport WP,PathFinder finder){
+    public BuildingController(BuildingModel BModel, AlienModel AModel, BuildingView BView, Viewport WP,PathFinder finder, BOPrototypes prototypes){
         this.BView = BView;
         this.BModel = BModel;
         this.AModeL = AModel;
         this.WP = WP;
-
+        this.prototypes = prototypes;
         BModel.addObserver(BView);
     }
 
@@ -56,23 +58,23 @@ public class BuildingController extends ClickListener implements InputProcessor 
     	checkIfUpgrade(event);
 
 		if(event.getListenerActor().getName().equals("soldier")){
-			onMouse = TowerFactory.createSoldier((int)x, (int)y); // x and y never used
+			onMouse = TowerFactory.createSoldier(prototypes, (int)x, (int)y); // x and y never used
 		}
 		if(event.getListenerActor().getName().equals("tank")){
-			onMouse = TowerFactory.createTank((int)x, (int)y); // x and y never used
+			onMouse = TowerFactory.createTank(prototypes, (int)x, (int)y); // x and y never used
 		}
 		if(event.getListenerActor().getName().equals("sniper")){
-			onMouse = TowerFactory.createSniper((int)x, (int)y); // x and y never used
+			onMouse = TowerFactory.createSniper(prototypes, (int)x, (int)y); // x and y never used
 		}
 		if(event.getListenerActor().getName().equals("ranger")){
-			onMouse = TowerFactory.createRanger((int)x, (int)y); // x and y never used
+			onMouse = TowerFactory.createRanger(prototypes, (int)x, (int)y); // x and y never used
 		}
 		if(event.getListenerActor().getName().equals("aliennerfer")){
-			onMouse = TowerFactory.createAlienNerfer((int)x, (int)y); // x and y never used
+			onMouse = TowerFactory.createAlienNerfer(prototypes, (int)x, (int)y); // x and y never used
 		}
 
 		if(event.getListenerActor().getName().equals("riotshield")){
-			onMouse = TowerFactory.createRiotShield((int)x, (int)y); // x and y never used
+			onMouse = TowerFactory.createRiotShield(prototypes, (int)x, (int)y); // x and y never used
 		}
 
 		if(onMouse !=null){
