@@ -115,4 +115,9 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 		}
 		
 	}
+
+	@Override
+	public BoardObject clone(int x, int y) {
+		return new WhiteHouse(getName(), x, y, getSize(), getMoney(), getParliament());
+	}
 }

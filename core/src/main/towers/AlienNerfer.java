@@ -1,5 +1,6 @@
 package towers;
 
+import buildings.BoardObject;
 import buildings.Building;
 import com.badlogic.gdx.utils.Array;
 import enemies.Enemy;
@@ -17,7 +18,7 @@ public class AlienNerfer extends Building {
     private Array<Enemy> enemies;
     private Array<Enemy> affectedEnemies;
     
-    public AlienNerfer(int x, int y, int radius, float cooldown, int cost){
+    public AlienNerfer(int x, int y, float radius, float cooldown, int cost){
     	super(NAME, x, y, SIZE, radius, cooldown, cost);
     	affectedEnemies = new Array<Enemy>(false, 5000);
     }
@@ -66,6 +67,11 @@ public class AlienNerfer extends Building {
             }
         }
         super.getCooldownObject().setOnCooldown(true);
+	}
+	
+	@Override
+	public BoardObject clone(int x, int y) {
+		return new AlienNerfer(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost());
 	}
 
 }

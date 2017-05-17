@@ -17,4 +17,9 @@ public class Wall extends BoardObject {
 	public void  rotateTowards(Node node){
 		super.getSpriteAdapter(). rotateTowards(node,90);
 	}
+
+	@Override
+	public BoardObject clone(int x, int y) {
+		return new Wall(getName(), x, y, getSize());
+	}
 }

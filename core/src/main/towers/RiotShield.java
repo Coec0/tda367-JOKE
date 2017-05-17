@@ -2,6 +2,7 @@ package towers;
 
 import com.badlogic.gdx.utils.Array;
 
+import buildings.BoardObject;
 import buildings.Building;
 import enemies.Enemy;
 import politics.parties.Party;
@@ -23,7 +24,7 @@ public class RiotShield extends Building implements Voter {
 
     private Array<Enemy> enemies;
 
-    public RiotShield(int x, int y, int radius, float cooldown, int cost){
+    public RiotShield(int x, int y, float radius, float cooldown, int cost){
     	super(NAME, x, y, SIZE, radius, cooldown, cost);
     }
     
@@ -56,5 +57,10 @@ public class RiotShield extends Building implements Voter {
 	@Override
 	public Party getParty() {
 		return party;
+	}
+	
+	@Override
+	public BoardObject clone(int x, int y) {
+		return new RiotShield(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost());
 	}
 }

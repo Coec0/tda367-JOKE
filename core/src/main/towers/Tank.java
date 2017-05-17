@@ -1,6 +1,7 @@
 package towers;
 
 
+import buildings.BoardObject;
 import factories.ProjectileFactory;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
@@ -19,7 +20,7 @@ public class Tank extends Tower implements Voter{
     private static final float DAMAGE = 500;
     private static final float SPEED = 50;
 
-    public Tank(int x, int y, int radius, float cooldown, int cost, float damage){
+    public Tank(int x, int y, float radius, float cooldown, int cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage);
     }
 
@@ -42,6 +43,11 @@ public class Tank extends Tower implements Voter{
 	@Override
 	public Party getParty() {
 		return party;
+	}
+	
+	@Override
+	public BoardObject clone(int x, int y) {
+		return new Tank(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost(), getDamage());
 	}
 
 }

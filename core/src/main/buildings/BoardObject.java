@@ -67,4 +67,6 @@ public abstract class BoardObject {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	public abstract BoardObject clone(int x, int y);
 }

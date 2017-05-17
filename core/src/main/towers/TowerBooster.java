@@ -2,6 +2,7 @@ package towers;
 
 import com.badlogic.gdx.utils.Array;
 
+import buildings.BoardObject;
 import buildings.Building;
 
 /**
@@ -16,7 +17,7 @@ public class TowerBooster extends Building {
 
 	private Array<Tower> towers;
 
-	  public TowerBooster(int x, int y, int radius, float cooldown, int cost){
+	  public TowerBooster(int x, int y, float radius, float cooldown, int cost){
 	    	super(NAME, x, y, SIZE, radius, cooldown, cost);
 	    }
 	
@@ -42,6 +43,11 @@ public class TowerBooster extends Building {
 				tower.setRadius(tower.getRadius() * 20f);
 			}
 		}
+	}
+
+	@Override
+	public BoardObject clone(int x, int y) {
+		return new TowerBooster(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost());
 	}
 
 }
