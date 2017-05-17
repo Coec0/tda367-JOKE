@@ -21,7 +21,7 @@ public class CoolDownObjectTest {
 	@Test
 	public void setCooldownTime() throws Exception {
 		CDO.setCooldownTime(200);
-		assertEquals(CDO.getCooldownTime(), 200);
+		assertEquals(CDO.getCooldownTime(), 200, 0);
 	}
 
 	@Test
@@ -29,7 +29,7 @@ public class CoolDownObjectTest {
 		CDO.setCooldownTime(200);
 		CDO.increaseCooldownTime(400);
 		//200 + 400 = 600
-		assertEquals(CDO.getCooldownTime(), 600);
+		assertEquals(CDO.getCooldownTime(), 600, 0);
 	}
 	
 	@Test
@@ -37,37 +37,37 @@ public class CoolDownObjectTest {
 		CDO.setCooldownTime(400);
 		CDO.decreaseCooldownTime(200);
 		//400 - 200 = 200
-		assertEquals(CDO.getCooldownTime(), 200);
+		assertEquals(CDO.getCooldownTime(), 200, 0);
 		CDO.decreaseCooldownTime(400);
 		//200 - 400 = -200
-		assertEquals(CDO.getCooldownTime(), -200);
+		assertEquals(CDO.getCooldownTime(), -200, 0);
 	}
 
 	@Test
 	public void setOnCooldown() throws Exception{
 	
 		CDO.setOnCooldown(true);
-		assertEquals(CDO.getCooldownTicks(), CDO.getCooldownTime());
+		assertEquals(CDO.getCooldownTicks(), CDO.getCooldownTime(), 0);
 		CDO.setOnCooldown(false);
-		assertEquals(CDO.getCooldownTicks(), 0);
+		assertEquals(CDO.getCooldownTicks(), 0, 0);
 	}
 
 	@Test
 	public void resetTicks() throws Exception{
 		CDO.resetTicks();
-		assertEquals(CDO.getCooldownTicks(), CDO.getCooldownTime());
+		assertEquals(CDO.getCooldownTicks(), CDO.getCooldownTime(), 0);
 	}
 
 	@Test
 	public void setCooldownTicks() throws Exception{
 		CDO.setCooldownTicks(200);
-		assertEquals(CDO.getCooldownTicks(), 200);
+		assertEquals(CDO.getCooldownTicks(), 200, 0);
 	}
 	
 	@Test
 	public void tick() throws Exception{
 		CDO.setCooldownTicks(200);
 		CDO.tick();
-		assertEquals(CDO.getCooldownTicks(), 199);
+		assertEquals(CDO.getCooldownTicks(), 199, 0);
 	}
 }
