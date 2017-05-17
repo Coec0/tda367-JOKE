@@ -6,20 +6,13 @@ import map.MapNode;
 import utilities.Node;
 
 public class DijkstraSolver {
+
 	private Array<MapNode> allNodes;
-	private MapNode startNode;
-	private MapNode endNode;
 	private MapNode currentNode;
 	
-	public DijkstraSolver(){
-	}
-	
-	public Array<Node> solve(MapNode startNode, MapNode endNode,Array<MapNode> allNodes){
-		
+	public Array<Node> solve(MapNode startNode, MapNode endNode, Array<MapNode> allNodes){
 		this.allNodes = allNodes;
-		
-		this.startNode = startNode;
-		this.endNode = endNode;
+
 		resetMapNodes();
 		
 		if(startNode.getNeighbors().size == 0){		//return empty if start has no neighbors. 
@@ -43,24 +36,15 @@ public class DijkstraSolver {
 			return new Array<Node>();
 		}
 		
-		return findPath();
+		return findPath(startNode, endNode);
 	}
 	
 	private void weighNeighbors(){
 		MapNode neighbor;
 		for(String ID : currentNode.getNeighbors()){
 			neighbor = findNode(ID);
-			weighNeighbor(neighbor);	
+			currentNode.weighNeighbor(neighbor);
 		}
-	}
-	
-	
-	private void weighNeighbor(MapNode node){
-		if(currentNode.getPathLength() + currentNode.getDistanceTo(node) < node.getPathLength()){
-			node.setPathLength(currentNode.getPathLength() + currentNode.getDistanceTo(node));
-			node.setPrevID(currentNode.getID());
-		}
-		
 	}
 
 	private MapNode findNode(String ID){
@@ -71,7 +55,7 @@ public class DijkstraSolver {
 		}
 		return null;
 	}
-	
+
 	private void setCurrentNode(MapNode node){
 		currentNode = node;
 		node.visit();
@@ -120,7 +104,7 @@ public class DijkstraSolver {
 		return false; 
 	}
 	
-	private Array<Node> findPath(){
+	private Array<Node> findPath(MapNode startNode, MapNode endNode){
 		MapNode tmpNode = endNode;
 		Array<Node> path = new Array<Node>();
 		String prevID;

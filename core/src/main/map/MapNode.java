@@ -87,6 +87,13 @@ public class MapNode {
 	public float getDistanceTo(MapNode other) {
 		return (float) pos.getDistanceTo(other.getPos());
 	}
+
+	public void weighNeighbor(MapNode other) {
+		if(this.getPathLength() + this.getDistanceTo(other) < other.getPathLength()){
+			other.setPathLength(this.getPathLength() + this.getDistanceTo(other));
+			other.setPrevID(this.getID());
+		}
+	}
 	
 	
 }
