@@ -36,6 +36,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
         this.VP = VP;
         this.AModel = AModel;
         this.BModel = BModel;
+        BModel.addObserver(SView);
     }
 
     @Override

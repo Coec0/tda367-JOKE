@@ -111,6 +111,7 @@ public class BuildingModel implements UpdateObserver {
 	public void deleteMinutemen(){
 		for (Tower t : towers){
 			if (t instanceof Minutemen)
+			    notifyObservers(t,true,false);
 				towers.removeValue(t,false);
 				t = null;
 		}

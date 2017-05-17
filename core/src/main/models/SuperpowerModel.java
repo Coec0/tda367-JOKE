@@ -27,7 +27,8 @@ public class SuperpowerModel implements UpdateObserver {
     private Array<Tower> towers;
     private CooldownHandler cdh;
 
-    private boolean active = false;
+    private boolean boostActive = false;
+    private boolean minutemenActive = false;
 
     public SuperpowerModel(PathFinder finder,BuildingModel BModel, AlienModel AModel, CooldownHandler cdh){
     	this.BModel = BModel;
@@ -44,7 +45,7 @@ public class SuperpowerModel implements UpdateObserver {
 
 
     public void useMinutemen(){
-        //active = true; //causing crash atm
+        minutemenActive = true;
         BModel.addBoardObject(TowerFactory.createMinutemen(585,495));
         BModel.addBoardObject(TowerFactory.createMinutemen(590,485));
         BModel.addBoardObject(TowerFactory.createMinutemen(595,480));
@@ -66,7 +67,7 @@ public class SuperpowerModel implements UpdateObserver {
     }
 
     public void useTowerBoost(Array<Tower> towers){
-        active = true;
+        boostActive = true;
         this.towers = towers;
         if(this.towers.size > 0) {
             for (Tower tower : towers) {
@@ -87,21 +88,26 @@ public class SuperpowerModel implements UpdateObserver {
     private void checkBoost(){
         if (towerBoost.isFinished()){
             revertTowers();
-            active = false;
+            boostActive = false;
         }
     }
 
     private void checkWave(){
-        if (!(AModel.getWaveOn())){
+        if (AModel.getAllEnemies().size < 1){
             BModel.deleteMinutemen();
+            minutemenActive = false;
         }
     }
 
 
     @Override
     public void update(float deltaTime) {
-        if(active){
+        if(minutemenActive){
             checkWave();
+
+        }
+
+        if(boostActive){
             checkBoost();
         }
 
