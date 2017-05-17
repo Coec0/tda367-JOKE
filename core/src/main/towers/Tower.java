@@ -84,7 +84,7 @@ public abstract class Tower extends BoardObject{
 		this.damage = damage;
 	}
 
-	public void setCooldown(float cooldown){this.cooldown = new CooldownObject(cooldown);}
+	public void setCooldown(float cooldown){this.cooldown.setCooldownTicks(cooldown);}
 
 	public void shoot() {
 		this.makeProjectile();
