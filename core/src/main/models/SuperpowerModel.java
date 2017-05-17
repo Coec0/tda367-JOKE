@@ -34,8 +34,8 @@ public class SuperpowerModel implements UpdateObserver {
     	this.finder = finder;
     	this.AModel = AModel;
         nuke = new Nuke();
-        towerBoost = new TowerBoost(cdh);
         this.cdh = cdh;
+        towerBoost = new TowerBoost(cdh);
     }
 
     public void useNuke(Array<Enemy> enemies){
@@ -44,6 +44,7 @@ public class SuperpowerModel implements UpdateObserver {
 
 
     public void useMinutemen(){
+        //active = true; //causing crash atm
         BModel.addBoardObject(TowerFactory.createMinutemen(585,495));
         BModel.addBoardObject(TowerFactory.createMinutemen(590,485));
         BModel.addBoardObject(TowerFactory.createMinutemen(595,480));
@@ -67,16 +68,19 @@ public class SuperpowerModel implements UpdateObserver {
     public void useTowerBoost(Array<Tower> towers){
         active = true;
         this.towers = towers;
-       for (Tower tower: towers){
-           towerBoost.boostTower(tower);
-       }
+        if(this.towers.size > 0) {
+            for (Tower tower : towers) {
+                towerBoost.boostTower(tower);
+            }
+        }
     }
 
     private void revertTowers(){
-        for (Tower t: towers){
-            towerBoost.unBoost(t);
-            System.out.println("UNBOOSTING TOWERS");
-            //reset variables to original value
+        if(this.towers.size > 0) {
+            for (Tower t : towers) {
+                towerBoost.unBoost(t);
+                //reset variables to original value
+            }
         }
     }
 
@@ -84,7 +88,6 @@ public class SuperpowerModel implements UpdateObserver {
         if (towerBoost.isFinished()){
             revertTowers();
             active = false;
-            System.out.println("Reverting");
         }
     }
 

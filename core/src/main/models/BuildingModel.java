@@ -112,7 +112,9 @@ public class BuildingModel implements UpdateObserver {
 		for (Tower t : towers){
 			if (t instanceof Minutemen)
 				towers.removeValue(t,false);
+				t = null;
 		}
+		System.out.println("Deleting minutemen");
 	}
 
 	public void sellBoardObject(BoardObject BO) {
@@ -172,12 +174,6 @@ public class BuildingModel implements UpdateObserver {
 				b = (AlienNerfer) b;
 				foundAliens = radar.scan(b.getPos(), b.getRadius(), enemies);
 				((AlienNerfer) b).updateEnemies(foundAliens);
-			}
-
-			if (b instanceof TowerBooster){
-				b = (TowerBooster)b;
-				foundTowers = radar.towerScan(b.getPos(), b.getRadius(), towers);
-				((TowerBooster) b).updateTowers(foundTowers);
 			}
 
 		}
