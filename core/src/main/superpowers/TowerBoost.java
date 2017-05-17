@@ -1,6 +1,7 @@
 package superpowers;
 
 import com.badlogic.gdx.utils.Array;
+import cooldown.CooldownHandler;
 import cooldown.CooldownObject;
 import towers.Tower;
 
@@ -15,9 +16,12 @@ public class TowerBoost implements Superpower {
 
     private final float durationFrames = 50;
     private CooldownObject duration;
+    private CooldownHandler cdh;
 
-    public TowerBoost(){
-        duration = new CooldownObject(durationFrames);
+    public TowerBoost(CooldownHandler cdh){
+        duration = new CooldownObject(durationFrames, false);
+        this. cdh = cdh;
+        cdh.addCooldownObject(duration);
     }
 
     public void boostTower(Tower tower){

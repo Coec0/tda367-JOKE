@@ -1,5 +1,6 @@
 package models;
 
+import cooldown.CooldownHandler;
 import observers.UpdateObserver;
 import superpowers.TowerBoost;
 import towers.Minutemen;
@@ -24,15 +25,17 @@ public class SuperpowerModel implements UpdateObserver {
     private AlienModel AModel; //buildingmodel and alienmodel should be moved
     private TowerBoost towerBoost;
     private Array<Tower> towers;
+    private CooldownHandler cdh;
 
     private boolean active = false;
 
-    public SuperpowerModel(PathFinder finder,BuildingModel BModel, AlienModel AModel){
+    public SuperpowerModel(PathFinder finder,BuildingModel BModel, AlienModel AModel, CooldownHandler cdh){
     	this.BModel = BModel;
     	this.finder = finder;
     	this.AModel = AModel;
         nuke = new Nuke();
-        towerBoost = new TowerBoost();
+        towerBoost = new TowerBoost(cdh);
+        this.cdh = cdh;
     }
 
     public void useNuke(Array<Enemy> enemies){
