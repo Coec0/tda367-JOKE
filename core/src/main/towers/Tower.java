@@ -15,8 +15,13 @@ public abstract class Tower extends BoardObject{
 	private ITargetState TState;
 	private float damage;
 
+
 	private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
     private CooldownObject cooldown;
+
+    private float modifiedDamage;
+    private float modifiedRadius;
+    private float modifiedCooldown;
 
 	protected Tower(int x, int y, float radius, String name, int cost, float cooldown,float size, float damage){
 		super(name, x, y,size, cost);
@@ -25,7 +30,32 @@ public abstract class Tower extends BoardObject{
 		this.TState = new towers.targetmethods.TargetLast();
 		this.damage = damage;
 	}
-	
+
+
+	public float getModifiedDamage() {
+		return modifiedDamage;
+	}
+
+	public void setModifiedDamage(float modifiedDamage) {
+		this.modifiedDamage = modifiedDamage;
+	}
+
+	public float getModifiedRadius() {
+		return modifiedRadius;
+	}
+
+	public void setModifiedRadius(float modifiedRadius) {
+		this.modifiedRadius = modifiedRadius;
+	}
+
+	public float getModifiedCooldown() {
+		return modifiedCooldown;
+	}
+
+	public void setModifiedCooldown(float modifiedCooldown) {
+		this.modifiedCooldown = modifiedCooldown;
+	}
+
 	public CooldownObject getCooldownObject(){
 		return cooldown;
 	}

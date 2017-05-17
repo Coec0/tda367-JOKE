@@ -23,7 +23,9 @@ public class SuperpowerModel implements UpdateObserver {
     private BuildingModel BModel;
     private AlienModel AModel; //buildingmodel and alienmodel should be moved
     private TowerBoost towerBoost;
-    private Array<Tower> boostedTowers;
+    private Array<Tower> towers;
+
+    private boolean active = false;
 
     public SuperpowerModel(PathFinder finder,BuildingModel BModel, AlienModel AModel){
     	this.BModel = BModel;
@@ -31,7 +33,6 @@ public class SuperpowerModel implements UpdateObserver {
     	this.AModel = AModel;
         nuke = new Nuke();
         towerBoost = new TowerBoost();
-        boostedTowers = new Array<Tower>(false, 100);
     }
 
     public void useNuke(Array<Enemy> enemies){
@@ -61,14 +62,17 @@ public class SuperpowerModel implements UpdateObserver {
     }
 
     public void useTowerBoost(Array<Tower> towers){
-        boostedTowers = towers;
+        active = true;
+        this.towers = towers;
        for (Tower tower: towers){
            towerBoost.boostTower(tower);
        }
     }
 
     private void revertTowers(){
-        for (Tower bt: boostedTowers){
+        for (Tower t: towers){
+            towerBoost.unBoost(t);
+            System.out.println("UNBOOSTING TOWERS");
             //reset variables to original value
         }
     }
@@ -76,6 +80,8 @@ public class SuperpowerModel implements UpdateObserver {
     private void checkBoost(){
         if (towerBoost.isFinished()){
             revertTowers();
+            active = false;
+            System.out.println("Reverting");
         }
     }
 
@@ -85,9 +91,13 @@ public class SuperpowerModel implements UpdateObserver {
         }
     }
 
+
     @Override
     public void update(float deltaTime) {
-      checkWave();
-      checkBoost();
+        if(active){
+            checkWave();
+            checkBoost();
+        }
+
     }
 }

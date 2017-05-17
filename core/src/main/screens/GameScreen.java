@@ -110,6 +110,7 @@ public class GameScreen implements Screen{
 		IAMain.addObserver(BM);
 		IAMain.addObserver(AM);
 		IAMain.addObserver(PM);
+		IAMain.addObserver(SM);
 		IAMain.addObserver(cdh);
 		InputMultiplexer imp = new InputMultiplexer();
 		imp.addProcessor(AController);
