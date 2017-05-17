@@ -32,7 +32,7 @@ public abstract class Enemy {
 	
 	public void rotateEnemy() {
 		if(nodeArrayPos + 1 < path.size){
-			this.getSpriteAdapter().rotateTowards(path.get(nodeArrayPos + 1), 90);
+			this.getSpriteAdapter().rotateTowards(path.get(nodeArrayPos + 1), -90);
 		}
 	}
 	
