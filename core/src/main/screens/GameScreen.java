@@ -129,6 +129,7 @@ public class GameScreen implements Screen{
 		SS = new SuperpowerStage(SC);
 		HV = new GameUIView(PMS, HS, TL, SBS, NW, SS);
 		BM.addObserver(HV);
+		prot.addObserver(HV);
 		imp.addProcessor(HS);
 		imp.addProcessor(SBS);
 		imp.addProcessor(NW);

@@ -3,6 +3,7 @@ package views;
 import buildings.BoardObject;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
+import observers.PrototypeObserver;
 import observers.WhiteHouseObserver;
 import stages.NextWaveStage;
 import stages.PoliticalMeterStage;
@@ -10,8 +11,9 @@ import stages.RightGameUIStage;
 import stages.SelectedBuildingStage;
 import stages.SuperpowerStage;
 import stages.TopLeftGameUIStage;
+import towers.BOPrototypes;
 
-public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver {
+public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver, PrototypeObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
 	private SelectedBuildingStage SBS;
@@ -54,6 +56,12 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 			addToView(HS);
 		}
 
+	}
+
+	@Override
+	public void actOnPrototypeChange(BOPrototypes prototypes) {
+		HS.updatePurchables(prototypes);
+		
 	}
 
 
