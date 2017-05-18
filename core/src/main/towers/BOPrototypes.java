@@ -3,6 +3,9 @@ package towers;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
+import enemies.Enemy;
+import observers.AlienObserver;
+import observers.PrototypeObserver;
 
 public class BOPrototypes {
 	Tower ranger, soldier, sniper, tank;
@@ -47,6 +50,7 @@ public class BOPrototypes {
 		for(Tower tower: towers){
 			tower.setDamage(tower.getDamage()*percent);
 		}
+		notifyObservers();
 	}
 	
 	/**
@@ -61,6 +65,7 @@ public class BOPrototypes {
 		for(Building building: buildings){
 			building.setCost((int)(((float)building.getCost())*percent));
 		}
+		notifyObservers();
 	}
 	
 	public void reset(){
@@ -79,6 +84,23 @@ public class BOPrototypes {
 		alienNerfer = new AlienNerfer(0,0);
 		buildings.add(riotShield);
 		buildings.add(alienNerfer);
+		notifyObservers();
+	}
+	
+	
+	private Array<PrototypeObserver> observers = new Array<PrototypeObserver>(false, 10);
+
+	public void addObserver(PrototypeObserver observer) {
+		observers.add(observer);
+	}
+
+	public void removeObserver(PrototypeObserver observer) {
+		observers.removeValue(observer, false);
+	}
+
+	private void notifyObservers() {
+		for (PrototypeObserver observer : observers)
+			observer.actOnPrototypeChange(this);
 	}
 	
 }
