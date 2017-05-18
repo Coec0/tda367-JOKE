@@ -1,22 +1,23 @@
 package executive_orders;
 
-import com.badlogic.gdx.utils.Array;
-
 import buildings.BoardObject;
+import models.BuildingModel;
 
 public class CivilWar implements ExecutiveOrder{
-	Array<BoardObject> boardobjects;
+	BuildingModel BM;
 	String killParty;
 	
-	public CivilWar(Array<BoardObject> boardobjects, String killParty){
-		this.boardobjects = boardobjects;
+	public CivilWar(BuildingModel BM, String killParty){
+		this.BM  = BM;
 		this.killParty = killParty;
 	}
 	
 	@Override
 	public void execute() {
-		for(BoardObject BO : boardobjects){
-			//if(BO.get)
+		for(BoardObject BO : BM.getAllBoardObjects()){
+			if(BO.getParty() != null && BO.getParty().getName().equals(killParty)){
+				BM.sellBoardObject(BO);
+			}
 		}
 		
 	}
