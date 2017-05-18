@@ -24,7 +24,7 @@ public class RightGameUIStage extends Stage {
 	private ImageTextButton soldierB,tankB, rangerB, sniperB, aliennerferB, riotshieldB;
 	
 	//  *Executive orders*
-	private ImageButton civilWar;
+	private TextButton civilWarRep, civilWarDem;
 	
 	private static final int WIDTH = 200;
 	
@@ -38,6 +38,8 @@ public class RightGameUIStage extends Stage {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		createPurchablesButtons(buildingC);
+		createExecutiveOrdersButtons(buildingC);
+		
 		updatePurchables(protos);
 		Table table = new Table();
 //		table.setDebug(true);
@@ -47,22 +49,22 @@ public class RightGameUIStage extends Stage {
 
 		table.add(getTowersTable()).expand().top();
 		table.row();
-		//table.add(addNextWaveButton(alienC)).expand().bottom();
+		table.add(getExecutivesTable()).expand();
 		this.addActor(table);
 	}
 	
 	private Table getExecutivesTable(){
 		Table table = new Table();
 		table.setWidth(WIDTH);
-		table.add(soldierB).width(WIDTH/2).height(WIDTH/2);
-		table.add(tankB).width(WIDTH/2).height(WIDTH/2);
+		table.add(civilWarDem).width(WIDTH/2);
+		table.add(civilWarRep).width(WIDTH/2);
 		table.row();
-		
 		return table;
 	}
 	
 	private void createExecutiveOrdersButtons(ClickListener buildingC){
-		
+		civilWarRep = addTextButton("CWR", "CivilWar Repub", buildingC);
+		civilWarDem = addTextButton("CWD", "CivilWar Demo", buildingC);
 	}
 	
 	public void updatePurchables(BOPrototypes protos){
@@ -98,20 +100,16 @@ public class RightGameUIStage extends Stage {
 		return table;
 	}
 
-	private TextButton addTextButton(int x, int y, float width, float height, String name, String text,
-			ClickListener CL) {
+	private TextButton addTextButton(String name, String text, ClickListener CL) {
 		TextButton textButton = new TextButton(text, skin, "default");
 		textButton.setName(name);
 		textButton.setTransform(false);
-		textButton.setWidth(width);
-		textButton.setHeight(height);
-		textButton.setPosition(x, y);
 		textButton.addListener(CL);
-
+		textButton.getLabel().setFontScale(0.8f);
 		return textButton;
 	}
 	
-	private ImageTextButton addImageButton(String name, String text, Texture texture,ClickListener CL){
+	private ImageTextButton addImageTextButton(String name, String text, Texture texture,ClickListener CL){
 		Skin skin = new Skin(Gdx.files.internal("ui/skin/plain-james-ui.json"));
 		ImageTextButton imageButton = new ImageTextButton("$$$", skin);
 		imageButton.stack().row();
@@ -132,6 +130,6 @@ public class RightGameUIStage extends Stage {
 		//int height = 100;
 		//int x = Gdx.graphics.getWidth() - width;
 
-		return addImageButton(name, "Tower", texture, CL);
+		return addImageTextButton(name, "Tower", texture, CL);
 	}
 }
