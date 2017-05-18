@@ -2,6 +2,8 @@ package towers;
 
 
 import buildings.BoardObject;
+import politics.parties.Party;
+import politics.parties.PartyFactory;
 import projectiles.Bullet;
 import projectiles.Projectile;
 
@@ -14,12 +16,13 @@ public class Ranger extends Tower {
     private static final int COST = 300;
     private static final float COOLDOWN = 50;
     private static String DESCRIPTION = "Soldier with higher rate of fire";
+    private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final float SIZE = 50;
     private static final float DAMAGE = 40;
     private static final float SPEED = 100;
 
     public Ranger(int x, int y, float radius, float cooldown, int cost, float damage){
-    	super(x, y, radius, NAME, cost, cooldown, SIZE, damage);
+    	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
     }
 
     public Ranger(int x, int y){
