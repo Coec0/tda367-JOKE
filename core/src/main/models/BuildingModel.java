@@ -171,10 +171,10 @@ public class BuildingModel implements UpdateObserver {
 				((RiotShield) b).updateEnemies(foundAliens);
 			}
 
-			if (b instanceof AlienNerfer){
-				b = (AlienNerfer) b;
+			if (b instanceof NetGunner){
+				b = (NetGunner) b;
 				foundAliens = radar.scan(b.getPos(), b.getRadius(), enemies);
-				((AlienNerfer) b).updateEnemies(foundAliens);
+				((NetGunner) b).updateEnemies(foundAliens);
 			}
 
 		}

@@ -88,7 +88,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 		    return sniper;
 		if(boardobject instanceof Wall)
 			return wall;
-		if(boardobject instanceof AlienNerfer)
+		if(boardobject instanceof NetGunner)
 			return aliennerfer;
 		if(boardobject instanceof TowerBooster)
 			return towerbooster;

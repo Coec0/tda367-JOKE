@@ -10,7 +10,7 @@ import politics.parties.PartyFactory;
 /**
  * Created by Emil on 2017-05-07.
  */
-public class AlienNerfer extends Building {
+public class NetGunner extends Building {
     private static final String NAME = "AlienNerfer";
     private static final String DESCRIPTION = "A building slowing down aliens in its radius";
     private static final int SIZE = 50;
@@ -21,12 +21,12 @@ public class AlienNerfer extends Building {
     private Array<Enemy> enemies;
     private Array<Enemy> affectedEnemies;
     
-    public AlienNerfer(int x, int y, float radius, float cooldown, int cost){
+    public NetGunner(int x, int y, float radius, float cooldown, int cost){
     	super(NAME, x, y, SIZE, radius, cooldown, cost, PARTY);
     	affectedEnemies = new Array<Enemy>(false, 5000);
     }
     
-    public AlienNerfer(int x, int y){
+    public NetGunner(int x, int y){
         this(x , y, SLOWRADIUS, COOLDOWN, COST);
     }
 
@@ -74,7 +74,7 @@ public class AlienNerfer extends Building {
 	
 	@Override
 	public BoardObject clone(int x, int y) {
-		return new AlienNerfer(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost());
+		return new NetGunner(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost());
 	}
 
 }

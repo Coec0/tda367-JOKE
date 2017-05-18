@@ -36,8 +36,8 @@ public class BOPrototypes {
 		return (RiotShield)riotShield.clone(x, y);
 	}
 	
-	public AlienNerfer getAlienNerfer(int x, int y){
-		return (AlienNerfer)alienNerfer.clone(x, y);
+	public NetGunner getAlienNerfer(int x, int y){
+		return (NetGunner)alienNerfer.clone(x, y);
 	}
 	
 	
@@ -81,7 +81,7 @@ public class BOPrototypes {
 		towers.add(tank);
 		
 		riotShield = new RiotShield(0,0);
-		alienNerfer = new AlienNerfer(0,0);
+		alienNerfer = new NetGunner(0,0);
 		buildings.add(riotShield);
 		buildings.add(alienNerfer);
 		notifyObservers();

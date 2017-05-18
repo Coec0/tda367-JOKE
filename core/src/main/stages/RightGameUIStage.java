@@ -18,9 +18,11 @@ import towers.BOPrototypes;
 public class RightGameUIStage extends Stage {
 
 	private Skin skin;
-	private Texture soldier,tank, ranger, sniper, aliennerfer, riotshield;
+
+	private Texture soldier,tank, ranger, sniper, netgunner, riotshield;
 	
 	//  *Buildings/Towers*
+
 	private ImageTextButton soldierB,tankB, rangerB, sniperB, aliennerferB, riotshieldB;
 	
 	//  *Executive orders*
@@ -33,7 +35,7 @@ public class RightGameUIStage extends Stage {
         tank = new Texture("towers/tank/tank256.png");
         ranger = new Texture("towers/ranger/ranger256.png");
         sniper = new Texture("towers/sniper/sniper512.png");
-        aliennerfer = new Texture("towers/soldier/soldier.png");
+        netgunner = new Texture("towers/netgunner/netgunner512.png");
         riotshield = new Texture("towers/riotshield/riotshield256.png");
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
@@ -82,7 +84,7 @@ public class RightGameUIStage extends Stage {
 		rangerB = addTowerButton(620, "ranger", ranger, buildingC);
 		riotshieldB = addTowerButton(620, "riotshield", riotshield, buildingC);
 		sniperB = addTowerButton(620, "sniper", sniper, buildingC);
-		aliennerferB = addTowerButton(620,"aliennerfer", aliennerfer,buildingC);
+		aliennerferB = addTowerButton(620,"aliennerfer", netgunner,buildingC);
 	}
 	
 	private Table getTowersTable(){
