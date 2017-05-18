@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -13,17 +12,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
+import textures.TowerTextureHandler;
 import towers.BOPrototypes;
 
 public class RightGameUIStage extends Stage {
 
 	private Skin skin;
 
-	private Texture soldier,tank, ranger, sniper, netgunner, riotshield;
-	
 	//  *Buildings/Towers*
 
-	private ImageTextButton soldierB,tankB, rangerB, sniperB, aliennerferB, riotshieldB;
+	private ImageTextButton soldierB,tankB, rangerB, sniperB, netGunnerB, riotshieldB;
 	
 	//  *Executive orders*
 	private TextButton civilWarRep, civilWarDem;
@@ -31,12 +29,6 @@ public class RightGameUIStage extends Stage {
 	private static final int WIDTH = 200;
 	
 	public RightGameUIStage(ClickListener alienC, ClickListener buildingC, BOPrototypes protos) {
-		soldier = new Texture("towers/soldier/soldier512.png");
-        tank = new Texture("towers/tank/tank256.png");
-        ranger = new Texture("towers/ranger/ranger256.png");
-        sniper = new Texture("towers/sniper/sniper512.png");
-        netgunner = new Texture("towers/netgunner/netgunner512.png");
-        riotshield = new Texture("towers/riotshield/riotshield256.png");
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		createPurchablesButtons(buildingC);
@@ -75,16 +67,16 @@ public class RightGameUIStage extends Stage {
 		rangerB.setText(String.valueOf((protos.getRanger(0, 0).getCost())));
 		riotshieldB.setText(String.valueOf((protos.getRiotShield(0, 0).getCost())));
 		sniperB.setText(String.valueOf((protos.getSniper(0, 0).getCost())));
-		aliennerferB.setText(String.valueOf((protos.getAlienNerfer(0, 0).getCost())));
+		netGunnerB.setText(String.valueOf((protos.getNetGunner(0, 0).getCost())));
 	}
 	
 	private void createPurchablesButtons(ClickListener buildingC){
-		soldierB = addTowerButton(620, "soldier", soldier, buildingC);
-		tankB = addTowerButton(620, "tank", tank ,buildingC);
-		rangerB = addTowerButton(620, "ranger", ranger, buildingC);
-		riotshieldB = addTowerButton(620, "riotshield", riotshield, buildingC);
-		sniperB = addTowerButton(620, "sniper", sniper, buildingC);
-		aliennerferB = addTowerButton(620,"aliennerfer", netgunner,buildingC);
+		soldierB = addTowerButton(620, "soldier", TowerTextureHandler.getSoldierTexture(), buildingC);
+		tankB = addTowerButton(620, "tank", TowerTextureHandler.getTankTexture(),buildingC);
+		rangerB = addTowerButton(620, "ranger", TowerTextureHandler.getRangerTexture(), buildingC);
+		riotshieldB = addTowerButton(620, "riotshield", TowerTextureHandler.getRiotshieldTexture(), buildingC);
+		sniperB = addTowerButton(620, "sniper", TowerTextureHandler.getSniperTexture(), buildingC);
+		netGunnerB = addTowerButton(620,"netgunner", TowerTextureHandler.getNetGunnerTexture(),buildingC);
 	}
 	
 	private Table getTowersTable(){
@@ -97,7 +89,7 @@ public class RightGameUIStage extends Stage {
 		table.add(riotshieldB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
 		table.row();
 		table.add(sniperB).width(WIDTH/2).height(WIDTH/2);//.expand().top();table.row();
-		table.add(aliennerferB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
+		table.add(netGunnerB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
 
 		return table;
 	}
