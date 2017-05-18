@@ -69,7 +69,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		if(event.getListenerActor().getName().equals("ranger")){
 			onMouse = TowerFactory.createRanger(prototypes, (int)x, (int)y); // x and y never used
 		}
-		if(event.getListenerActor().getName().equals("aliennerfer")){
+		if(event.getListenerActor().getName().equals("netgunner")){
 			onMouse = TowerFactory.createNetGunner(prototypes, (int)x, (int)y); // x and y never used
 		}
 
