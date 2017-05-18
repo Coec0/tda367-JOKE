@@ -7,25 +7,16 @@ import buildings.BoardObject;
 import buildings.Wall;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
+import textures.BuildingTextureHandler;
+import textures.TowerTextureHandler;
 import towers.*;
 import utilities.SpriteAdapter;
 
 public class BuildingView extends View<BoardObject> implements BuildingObserver{
-    private Texture soldier,tank, whitehouse, ranger, sniper,wall, aliennerfer, towerbooster, riotshield, minutemen;
     private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
 
     public BuildingView(){
-        soldier = new Texture("towers/soldier/soldier512.png");
-        tank = new Texture("towers/tank/tank512.png");
-        whitehouse = new Texture("buildings/sexywhitehouse.png");
-        ranger = new Texture("towers/ranger/ranger256.png");
-        wall = new Texture("buildings/TrumpWall.png");
-        sniper = new Texture("towers/sniper/sniper512.png");
-        aliennerfer = new Texture("towers/netgunner/netgunner512.png");
-        towerbooster = new Texture("towers/soldier/soldier.png");
-        riotshield = new Texture("towers/riotshield/riotshield256.png");
-        minutemen = new Texture("towers/minuteman/minuteman512.png");
         //all same texture for testing
     }
 
@@ -77,25 +68,25 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 	protected Texture selectTexture(BoardObject boardobject) {
 		
 		if(boardobject instanceof WhiteHouse)
-			return whitehouse;
+			return BuildingTextureHandler.getWhitehouseTexture();
 		if(boardobject instanceof Soldier)
-			return soldier;
+			return TowerTextureHandler.getSoldierTexture();
 		if(boardobject instanceof Tank)
-			return tank;
+			return TowerTextureHandler.getTankTexture();
 		if(boardobject instanceof Ranger)
-		    return ranger;
+		    return TowerTextureHandler.getRangerTexture();
 		if(boardobject instanceof Sniper)
-		    return sniper;
+		    return TowerTextureHandler.getSniperTexture();
 		if(boardobject instanceof Wall)
-			return wall;
+			return BuildingTextureHandler.getWallTexture();
 		if(boardobject instanceof NetGunner)
-			return aliennerfer;
+			return TowerTextureHandler.getNetGunnerTexture();
 		if(boardobject instanceof TowerBooster)
-			return towerbooster;
+			return TowerTextureHandler.getTowerboosterTexture();
 		if(boardobject instanceof RiotShield)
-			return riotshield;
+			return TowerTextureHandler.getRiotshieldTexture();
 		if (boardobject instanceof Minutemen){
-			return minutemen;
+			return TowerTextureHandler.getMinutemenTexture();
 		}
 		return null;
 		

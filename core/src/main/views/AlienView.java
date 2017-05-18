@@ -9,31 +9,23 @@ import enemies.HighAlien;
 import enemies.SneakyAlien;
 import enemies.ToughAlien;
 import observers.AlienObserver;
+import textures.AlienTextureHandler;
 
 public class AlienView extends View<Enemy> implements AlienObserver {
-	private Texture alien, alienWithHelmet, sneakyAlien,toughalien,highalien;
-	
-	public AlienView(){
-		alien = new Texture("aliens/alien/alien512.png");
-		alienWithHelmet = new Texture("aliens/alienwithhelmet/alienwithhelmet512.png");
-		sneakyAlien = new Texture("aliens/sneakyalien/sneakyalien512.png");
-		toughalien = new Texture("aliens/toughalien/toughalien512.png");
-		highalien = new Texture("aliens/highalien/highalien512.png");
-	}
 	
 	@Override
 	protected Texture selectTexture(Enemy enemy) {
 		
 		if(enemy instanceof Alien)
-			return alien;
+			return AlienTextureHandler.getAlienTexture();
 		if(enemy instanceof SneakyAlien)
-			return sneakyAlien;
+			return AlienTextureHandler.getSneakyAlienTexture();
 		if(enemy instanceof AlienWithHelmet)
-			return alienWithHelmet;
+			return AlienTextureHandler.getAlienWithHelmetTexture();
 		if(enemy instanceof HighAlien)
-			return highalien;
+			return AlienTextureHandler.getHighAlienTexture();
 		if(enemy instanceof ToughAlien)
-			return toughalien;
+			return AlienTextureHandler.getToughAlienTexture();
 		
 		return null;
 		

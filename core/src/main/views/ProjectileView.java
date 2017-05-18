@@ -8,6 +8,7 @@ import projectiles.Bullet;
 import projectiles.EngineerBullet;
 import projectiles.Missile;
 import projectiles.Projectile;
+import textures.ProjectileTextureHandler;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
@@ -15,32 +16,21 @@ import utilities.SpriteAdapter;
  * Created by Emil on 2017-04-25.
  */
 public class ProjectileView extends View<Projectile> {
-    private Texture bullet, missile, artilleryRound, engineerBullet, bazookaMissile;
     private DrawablesCollector SC = DrawablesCollector.getInstance();
-
-    public ProjectileView(){
-        bullet = new Texture("projectiles/bullet.png");
-        missile = new Texture("projectiles/missile.png");
-        artilleryRound = new Texture("projectiles/bullet.png");
-        engineerBullet = new Texture("projectiles/bullet.png");
-        bazookaMissile = new Texture("projectiles/bullet.png");
-    }
-
-
 
     @Override
     protected Texture selectTexture(Projectile projectile) {
 
         if(projectile instanceof Bullet)
-            return bullet;
+            return ProjectileTextureHandler.getBulletTexture();
         if(projectile instanceof Missile)
-            return missile;
+            return ProjectileTextureHandler.getMissileTexture();
         if(projectile instanceof ArtilleryRound)
-            return artilleryRound;
+            return ProjectileTextureHandler.getArtilleryRoundTexture();
         if(projectile instanceof EngineerBullet)
-            return engineerBullet;
+            return ProjectileTextureHandler.getEngineerBulletTexture();
         if (projectile instanceof BazookaMissile)
-            return bazookaMissile;
+            return ProjectileTextureHandler.getBazookaMissileTexture();
         return null;
     }
 
