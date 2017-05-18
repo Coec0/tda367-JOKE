@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -18,7 +19,14 @@ public class RightGameUIStage extends Stage {
 
 	private Skin skin;
 	private Texture soldier,tank, ranger, sniper, aliennerfer, riotshield;
+	
+	//  *Buildings/Towers*
 	private ImageTextButton soldierB,tankB, rangerB, sniperB, aliennerferB, riotshieldB;
+	
+	//  *Executive orders*
+	private ImageButton civilWar;
+	
+	private static final int WIDTH = 200;
 	
 	public RightGameUIStage(ClickListener alienC, ClickListener buildingC, BOPrototypes protos) {
 		soldier = new Texture("solider512.png");
@@ -29,18 +37,32 @@ public class RightGameUIStage extends Stage {
         riotshield = new Texture("riotshield256.png");
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
-		createButtons(buildingC);
+		createPurchablesButtons(buildingC);
 		updatePurchables(protos);
 		Table table = new Table();
 //		table.setDebug(true);
-		table.setPosition(Gdx.graphics.getWidth() - 200, 0);
-		table.setWidth(200);
+		table.setPosition(Gdx.graphics.getWidth() - WIDTH, 0);
+		table.setWidth(WIDTH);
 		table.setHeight(720);
 
 		table.add(getTowersTable()).expand().top();
 		table.row();
 		//table.add(addNextWaveButton(alienC)).expand().bottom();
 		this.addActor(table);
+	}
+	
+	private Table getExecutivesTable(){
+		Table table = new Table();
+		table.setWidth(WIDTH);
+		table.add(soldierB).width(WIDTH/2).height(WIDTH/2);
+		table.add(tankB).width(WIDTH/2).height(WIDTH/2);
+		table.row();
+		
+		return table;
+	}
+	
+	private void createExecutiveOrdersButtons(ClickListener buildingC){
+		
 	}
 	
 	public void updatePurchables(BOPrototypes protos){
@@ -52,7 +74,7 @@ public class RightGameUIStage extends Stage {
 		aliennerferB.setText(String.valueOf((protos.getAlienNerfer(0, 0).getCost())));
 	}
 	
-	private void createButtons(ClickListener buildingC){
+	private void createPurchablesButtons(ClickListener buildingC){
 		soldierB = addTowerButton(620, "soldier", soldier, buildingC);
 		tankB = addTowerButton(620, "tank", tank ,buildingC);
 		rangerB = addTowerButton(620, "ranger", ranger, buildingC);
@@ -63,15 +85,15 @@ public class RightGameUIStage extends Stage {
 	
 	private Table getTowersTable(){
 		Table table = new Table();
-		table.setWidth(200);
-		table.add(soldierB).width(100).height(100);
-		table.add(tankB).width(100).height(100);
+		table.setWidth(WIDTH);
+		table.add(soldierB).width(WIDTH/2).height(WIDTH/2);
+		table.add(tankB).width(WIDTH/2).height(WIDTH/2);
 		table.row();
-		table.add(rangerB).width(100).height(100);
-		table.add(riotshieldB).width(100).height(100);//.expand().top();
+		table.add(rangerB).width(WIDTH/2).height(WIDTH/2);
+		table.add(riotshieldB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
 		table.row();
-		table.add(sniperB).width(100).height(100);//.expand().top();table.row();
-		table.add(aliennerferB).width(100).height(100);//.expand().top();
+		table.add(sniperB).width(WIDTH/2).height(WIDTH/2);//.expand().top();table.row();
+		table.add(aliennerferB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
 
 		return table;
 	}
