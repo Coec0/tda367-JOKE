@@ -3,15 +3,14 @@ package towers;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.BoardObject;
-import towers.targetmethods.ITargetState;
 import cooldown.CooldownObject;
 import enemies.Enemy;
 import observers.ProjectileObserver;
 import politics.parties.Party;
-import politics.parties.Voter;
 import projectiles.Projectile;
+import towers.targetmethods.ITargetState;
 
-public abstract class Tower extends BoardObject implements Voter{
+public abstract class Tower extends BoardObject{
 	private float radius;
 	private Enemy target;
 	private ITargetState TState;

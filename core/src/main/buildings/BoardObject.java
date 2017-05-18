@@ -1,9 +1,11 @@
 package buildings;
 
+import politics.parties.Party;
+import politics.parties.Voter;
 import utilities.Node;
 import utilities.SpriteAdapter;
 
-public abstract class BoardObject {
+public abstract class BoardObject implements Voter {
 	private String name;
 	private SpriteAdapter pos;
 	private float size;
@@ -22,6 +24,11 @@ public abstract class BoardObject {
 
 	public float getRadius(){
 		return 0;
+	}
+	
+	@Override
+	public Party getParty(){
+		return null;
 	}
 	
 	public int getCost(){

@@ -2,9 +2,8 @@ package buildings;
 
 import cooldown.CooldownObject;
 import politics.parties.Party;
-import politics.parties.Voter;
 
-public abstract class Building extends BoardObject implements Voter {
+public abstract class Building extends BoardObject {
 
 	private float radius;
 	private CooldownObject cooldown;
