@@ -12,4 +12,12 @@ public class AlienFactory {
 	public static Enemy createSneakyAlien() {
 		return new SneakyAlien();
 	}
+	
+	public static Enemy createToughAlien() {
+		return new ToughAlien();
+	}
+	
+	public static Enemy createHighAlien() {
+		return new HighAlien();
+	}
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.Array;
 
 import enemies.AlienFactory;
 import enemies.Enemy;
+import enemies.HighAlien;
 import map.MapNode;
 import observers.AlienObserver;
 import observers.UpdateObserver;
@@ -35,7 +36,9 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void addEnemy(Enemy enemy){
-		if(EWC.hasLevelRandomSpawn()){
+		if(enemy instanceof HighAlien){
+			enemy.setPath(defaultPath);
+		}else if(EWC.hasLevelRandomSpawn()){
 			enemy.setPath(finder.getShortestPath(startingPos.random()));
 		}else{
 			enemy.setPath(defaultPath);
@@ -122,7 +125,7 @@ public class AlienModel implements UpdateObserver {
 	
 	private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
-			addEnemy(AlienFactory.createAlien()); //TODO remove hardcoded alien!
+			addEnemy(AlienFactory.createToughAlien()); //TODO remove hardcoded alien!
 			enemyCounter++;
 		}else{
 			waveON = false;

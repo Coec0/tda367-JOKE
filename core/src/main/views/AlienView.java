@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import enemies.Alien;
 import enemies.AlienWithHelmet;
 import enemies.Enemy;
+import enemies.HighAlien;
 import enemies.SneakyAlien;
+import enemies.ToughAlien;
 import observers.AlienObserver;
 
 public class AlienView extends View<Enemy> implements AlienObserver {
@@ -28,6 +30,11 @@ public class AlienView extends View<Enemy> implements AlienObserver {
 			return sneakyAlien;
 		if(enemy instanceof AlienWithHelmet)
 			return alienWithHelmet;
+		if(enemy instanceof HighAlien)
+			return highalien;
+		if(enemy instanceof ToughAlien)
+			return toughalien;
+		
 		return null;
 		
 	}
