@@ -125,7 +125,7 @@ public class GameScreen implements Screen{
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		TopLeftGameUIStage TL = new TopLeftGameUIStage();
 		NextWaveStage NW = new NextWaveStage(AController);
-		HS = new RightGameUIStage(AController, TController);
+		HS = new RightGameUIStage(AController, TController, prot);
 		SS = new SuperpowerStage(SC);
 		HV = new GameUIView(PMS, HS, TL, SBS, NW, SS);
 		BM.addObserver(HV);
