@@ -28,8 +28,10 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 	 * @param party
 	 */
 	public <T extends Party> void voteParty(T party){
-		parliament.voteParty(party);
-		notifyObservers(this);
+		if(party != null){
+			parliament.voteParty(party);
+			notifyObservers(this);
+		}
 	}
 	
 	public Parliament getParliament(){
