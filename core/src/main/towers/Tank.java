@@ -5,23 +5,22 @@ import buildings.BoardObject;
 import factories.ProjectileFactory;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
-import politics.parties.Voter;
 import projectiles.Projectile;
 
-public class Tank extends Tower implements Voter{
+public class Tank extends Tower {
 
     private static final int RADIUS = 1000;
     private static final String NAME = "TANK";
     private static final int COST = 100;
     private static final float COOLDOWN = 50;
     private static String DESCRIPTION = "Great damage but shoots slow";
-    private Party party = PartyFactory.Democrat(10); // Just for now
+    private static final Party PARTY = PartyFactory.Democrat(10); // Just for now
     private static final float SIZE = 50;
     private static final float DAMAGE = 500;
     private static final float SPEED = 50;
 
     public Tank(int x, int y, float radius, float cooldown, int cost, float damage){
-    	super(x, y, radius, NAME, cost, cooldown, SIZE, damage);
+    	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
     }
 
     public Tank(int x, int y){
@@ -40,11 +39,6 @@ public class Tank extends Tower implements Voter{
         return p;
     }
 
-	@Override
-	public Party getParty() {
-		return party;
-	}
-	
 	@Override
 	public BoardObject clone(int x, int y) {
 		return new Tank(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost(), getDamage());

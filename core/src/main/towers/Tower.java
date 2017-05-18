@@ -7,14 +7,16 @@ import towers.targetmethods.ITargetState;
 import cooldown.CooldownObject;
 import enemies.Enemy;
 import observers.ProjectileObserver;
+import politics.parties.Party;
+import politics.parties.Voter;
 import projectiles.Projectile;
 
-public abstract class Tower extends BoardObject{
+public abstract class Tower extends BoardObject implements Voter{
 	private float radius;
 	private Enemy target;
 	private ITargetState TState;
 	private float damage;
-
+	private Party party;
 
 	private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
     private CooldownObject cooldown;
@@ -23,14 +25,20 @@ public abstract class Tower extends BoardObject{
     private float modifiedRadius;
     private float modifiedCooldown;
 
-	protected Tower(int x, int y, float radius, String name, int cost, float cooldown,float size, float damage){
+	protected Tower(int x, int y, float radius, String name, int cost, float cooldown,float size, float damage, Party party){
 		super(name, x, y,size, cost);
 		this.cooldown = new CooldownObject(cooldown);
 		this.radius = radius;
 		this.TState = new towers.targetmethods.TargetLast();
 		this.damage = damage;
+		this.party = party;
 	}
 
+	
+	@Override
+	public Party getParty() {
+		return party;
+	}
 
 	public float getModifiedDamage() {
 		return modifiedDamage;
@@ -127,5 +135,6 @@ public abstract class Tower extends BoardObject{
         observers.add(observer);
     }
 
+    
 
 }

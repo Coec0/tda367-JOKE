@@ -4,6 +4,8 @@ import buildings.BoardObject;
 import buildings.Building;
 import com.badlogic.gdx.utils.Array;
 import enemies.Enemy;
+import politics.parties.Party;
+import politics.parties.PartyFactory;
 
 /**
  * Created by Emil on 2017-05-07.
@@ -13,13 +15,14 @@ public class AlienNerfer extends Building {
     private static final String DESCRIPTION = "A building slowing down aliens in its radius";
     private static final int SIZE = 50;
     private static final int SLOWRADIUS = 500;
+    private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final int COST = 400;
     private static final float COOLDOWN = 90;
     private Array<Enemy> enemies;
     private Array<Enemy> affectedEnemies;
     
     public AlienNerfer(int x, int y, float radius, float cooldown, int cost){
-    	super(NAME, x, y, SIZE, radius, cooldown, cost);
+    	super(NAME, x, y, SIZE, radius, cooldown, cost, PARTY);
     	affectedEnemies = new Array<Enemy>(false, 5000);
     }
     
