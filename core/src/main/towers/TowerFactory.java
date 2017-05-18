@@ -17,8 +17,8 @@ public class TowerFactory {
 		return prot.getRanger(x, y);
 	}
 
-	public static NetGunner createAlienNerfer(BOPrototypes prot, int x, int y){
-		return prot.getAlienNerfer(x,y);
+	public static NetGunner createNetGunner(BOPrototypes prot, int x, int y){
+		return prot.getNetGunner(x,y);
 	}
 
 	public static RiotShield createRiotShield(BOPrototypes prot, int x, int y){

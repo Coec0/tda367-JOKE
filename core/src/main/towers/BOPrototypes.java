@@ -9,7 +9,7 @@ import observers.PrototypeObserver;
 
 public class BOPrototypes {
 	Tower ranger, soldier, sniper, tank;
-	Building riotShield, alienNerfer; 
+	Building riotShield, netGunner;
 	Array<Tower> towers;
 	Array<Building> buildings;
 	public BOPrototypes(){
@@ -36,8 +36,8 @@ public class BOPrototypes {
 		return (RiotShield)riotShield.clone(x, y);
 	}
 	
-	public NetGunner getAlienNerfer(int x, int y){
-		return (NetGunner)alienNerfer.clone(x, y);
+	public NetGunner getNetGunner(int x, int y){
+		return (NetGunner)netGunner.clone(x, y);
 	}
 	
 	
@@ -81,9 +81,9 @@ public class BOPrototypes {
 		towers.add(tank);
 		
 		riotShield = new RiotShield(0,0);
-		alienNerfer = new NetGunner(0,0);
+		netGunner = new NetGunner(0,0);
 		buildings.add(riotShield);
-		buildings.add(alienNerfer);
+		buildings.add(netGunner);
 		notifyObservers();
 	}
 	
