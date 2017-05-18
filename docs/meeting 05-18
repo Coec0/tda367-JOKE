@@ -1,0 +1,36 @@
+Datum: 18 maj
+Ordförande: Kevin
+Deltagare: Alla
+
+1. Mål
+En bugg i minutemen som gör att alla inte tas bort från vyn och klickar man på dom så kraschar programmet hindrar oss just nu.
+Ska kollas på idag (18 maj).
+
+2. Rapport från tidigare möte
+Kevin: Har ritat alla sprites för objekt som behöver textur. Uppdaterat alla bilder.
+Emil: Gjort färdigt superkraften towerboost och är nästan klar med minutemen. Då är all logik klar för alla superkrafter.
+Oscar: Ändrat om hur man lägger ut objekt, en prototyp som man lägger ut istället. Gjort om i UI't så att det ser snyggare ut. 
+Johan: Jobbat på UI, gjort tester.
+
+3. Diskussion
+Mappstruktur i assets för att det inte ska bli rörigt?
+Refaktorisera super powers i efterhand?
+Ny map
+Nya aliens, hur ska de fungera?
+Fixa ui, mer info om saker o ting.
+
+4. Bestämt
+Bestämda saker som helst ska vara klara till nästa möte:
+- assets ska få en mappstruktur
+- super powers ska vara helt klara
+- torn ska finetunas
+- nya aliens
+- fler waves
+- ny map
+- allmänt arbete på UI
+
+5. Inför nästa möte
+Emil: gör färdigt super powers (fixar bug), finetunar torn och jobbar på alien waves
+Oscar: göra RightGameUIStage snyggare och mer informativ, koppla superkrafter med politiken och göra klart executive orders
+Johan: TextureFactory, selected building stage ska bli snyggare
+Kevin: mappstruktur i assets, texturer till kvarstående objekt som behöver, ny map, göra nya aliens
