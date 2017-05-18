@@ -45,12 +45,12 @@ public class MapSelectStage extends AbstractStage {
 	}
 
 	private Actor addAlphaMapButton() {
-		Actor alphaMap = ActorFactory.createImageButton(new Texture("AlphaMap.png"));
+		Actor alphaMap = ActorFactory.createImageButton(new Texture("maps/AlphaMap.png"));
 
 		alphaMap.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				map = new Map("AlphaMap", new Texture("AlphaMap.png"));
+				map = new Map("AlphaMap", new Texture("maps/AlphaMap.png"));
 				startGameButton.fire(new ChangeListener.ChangeEvent()); //button should be enabled
 			}
 		});

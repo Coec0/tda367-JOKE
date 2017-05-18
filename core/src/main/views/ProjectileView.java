@@ -19,11 +19,11 @@ public class ProjectileView extends View<Projectile> {
     private DrawablesCollector SC = DrawablesCollector.getInstance();
 
     public ProjectileView(){
-        bullet = new Texture("bullet.png");
-        missile = new Texture("missile.png");
-        artilleryRound = new Texture("bullet.png");
-        engineerBullet = new Texture("bullet.png");
-        bazookaMissile = new Texture("bullet.png");
+        bullet = new Texture("projectiles/bullet.png");
+        missile = new Texture("projectiles/missile.png");
+        artilleryRound = new Texture("projectiles/bullet.png");
+        engineerBullet = new Texture("projectiles/bullet.png");
+        bazookaMissile = new Texture("projectiles/bullet.png");
     }
 
 

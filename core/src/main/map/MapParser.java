@@ -12,7 +12,7 @@ public class MapParser {
 
     public MapParser(String mapName) {
         try {
-            scanner = new Scanner(new File(mapName + "Nodes.txt"));
+            scanner = new Scanner(new File("maps/" + mapName + "Nodes.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File not Found");
             e.printStackTrace();

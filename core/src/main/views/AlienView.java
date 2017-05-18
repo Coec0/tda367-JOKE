@@ -14,11 +14,11 @@ public class AlienView extends View<Enemy> implements AlienObserver {
 	private Texture alien, alienWithHelmet, sneakyAlien,toughalien,highalien;
 	
 	public AlienView(){
-		alien = new Texture("alien512.png");
-		alienWithHelmet = new Texture("alienwithhelmet512.png");
-		sneakyAlien = new Texture("sneakyalien512.png");
-		toughalien = new Texture("toughalien512.png");
-		highalien = new Texture("highalien512.png");
+		alien = new Texture("aliens/alien/alien512.png");
+		alienWithHelmet = new Texture("aliens/alienwithhelmet/alienwithhelmet512.png");
+		sneakyAlien = new Texture("aliens/sneakyalien/sneakyalien512.png");
+		toughalien = new Texture("aliens/toughalien/toughalien512.png");
+		highalien = new Texture("aliens/highalien/highalien512.png");
 	}
 	
 	@Override

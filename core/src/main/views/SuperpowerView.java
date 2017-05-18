@@ -13,8 +13,8 @@ public class SuperpowerView extends View implements BuildingObserver{
     private Texture wall, minutemen;
 
     public SuperpowerView(){
-        wall = new Texture("TrumpWall.png");
-        minutemen = new Texture("ranger256.png");
+        wall = new Texture("buildings/TrumpWall.png");
+        minutemen = new Texture("towers/ranger/ranger256.png");
     }
 
 

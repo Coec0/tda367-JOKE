@@ -25,7 +25,7 @@ public class MainMenuStage extends AbstractStage {
 
     private Actor addAlienImage() {
         return ActorFactory.createImage(centerWidth, centerHeight + 100, 180, center,
-                new Texture("alien.png")
+                new Texture("aliens/alien/alien.png")
         );
     }
 
@@ -60,7 +60,7 @@ public class MainMenuStage extends AbstractStage {
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.startGame(new Map("AlphaMap", new Texture("AlphaMap.png")));
+                game.startGame(new Map("AlphaMap", new Texture("maps/AlphaMap.png")));
 //                stageSwitcher.showStage(stageSwitcher.getMapSelectStage());
             }
         });

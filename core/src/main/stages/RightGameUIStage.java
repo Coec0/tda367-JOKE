@@ -29,12 +29,12 @@ public class RightGameUIStage extends Stage {
 	private static final int WIDTH = 200;
 	
 	public RightGameUIStage(ClickListener alienC, ClickListener buildingC, BOPrototypes protos) {
-		soldier = new Texture("solider512.png");
-        tank = new Texture("tank256.png");
-        ranger = new Texture("ranger256.png");
-        sniper = new Texture("sniper512.png");
-        aliennerfer = new Texture("soldier.png");
-        riotshield = new Texture("riotshield256.png");
+		soldier = new Texture("towers/soldier/soldier512.png");
+        tank = new Texture("towers/tank/tank256.png");
+        ranger = new Texture("towers/ranger/ranger256.png");
+        sniper = new Texture("towers/sniper/sniper512.png");
+        aliennerfer = new Texture("towers/soldier/soldier.png");
+        riotshield = new Texture("towers/riotshield/riotshield256.png");
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		createPurchablesButtons(buildingC);
