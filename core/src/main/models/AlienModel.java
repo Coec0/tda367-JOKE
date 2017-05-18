@@ -21,6 +21,7 @@ public class AlienModel implements UpdateObserver {
 	
 	private int frames = 10; //value-time inbetween aliens
 	private boolean waveON;
+	private boolean waveAlive;
 	private EnemyWavesCreator EWC;
 	private Array<Enemy> wave;
 	private int enemyCounter = 0;
@@ -50,6 +51,10 @@ public class AlienModel implements UpdateObserver {
 	
 	public boolean getWaveOn(){
 		return waveON;
+	}
+
+	public boolean getWaveAlive(){
+		return waveAlive;
 	}
 	
 	private void moveAllEnemies(){
@@ -108,6 +113,7 @@ public class AlienModel implements UpdateObserver {
 	public void startNextWave(){
 		wave = EWC.getNextWave();
 		waveON = true;
+		waveAlive = true;
 	}
 	
 	@Override
@@ -121,6 +127,8 @@ public class AlienModel implements UpdateObserver {
 			frames = 0;
 			
 		}
+		if (!(waveON) && enemies.size == 0)
+			waveAlive=false;
 	}
 	
 	private void spawnNextEnemy(){ 
