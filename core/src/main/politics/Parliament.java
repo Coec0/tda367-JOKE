@@ -14,10 +14,16 @@ public class Parliament {
 	
 	public void voteParty(Party party){
 		if(!parties.contains(party, false)){
-			addParty(party);
+			addParty(new Party(party.getName(), party.getVotes(), party.getPoints()));
 		} else {
 			parties.get(parties.indexOf(party, false)).addVotes(party.getVotes());
 			parties.get(parties.indexOf(party, false)).addPoints(party.getPoints());
+		}
+	}
+	
+	public void removeVotes(Party party){
+		if(parties.contains(party, false)){
+			parties.get(parties.indexOf(party, false)).removeVotes(party.getVotes());
 		}
 	}
 	

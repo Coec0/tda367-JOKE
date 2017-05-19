@@ -25,6 +25,10 @@ public class Party {
 		setVotes(this.votes+votes);
 	}
 	
+	public void removeVotes(int votes){
+		setVotes(this.votes-votes);
+	}
+	
 	public int getPoints() {
 		return points;
 	}

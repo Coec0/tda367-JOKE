@@ -136,7 +136,10 @@ public class BuildingModel implements UpdateObserver {
 			buildings.removeValue((Building)BO, false);
 		}
 		boardObjects.removeValue(BO, false);
-		whitehouses.peek().addMoney(BO.getValue());
+		if(getMoney)
+			whitehouses.peek().addMoney(BO.getValue());
+		if(BO.getParty() != null && BO.getParty().getVotes() > 0)
+			whitehouses.peek().removeVoteParty(BO.getParty());
 		notifyObservers(BO, true, false);
 	}
 
