@@ -84,6 +84,8 @@ public class GameScreen implements Screen{
 		
 		CooldownHandler cdh = new CooldownHandler();
 		WavesCDHandler wcd = new WavesCDHandler();
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
+		
 		
 		AlienView AW= new AlienView();
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes(), wcd);
@@ -93,6 +95,7 @@ public class GameScreen implements Screen{
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
+		
 		
 		
 		
@@ -124,7 +127,6 @@ public class GameScreen implements Screen{
 
 		Gdx.input.setInputProcessor(imp);
 		
-		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
 		AM.addObserver(WH);
 		BM.addWhiteHouse(WH);
 		
@@ -146,6 +148,7 @@ public class GameScreen implements Screen{
 		imp.addProcessor(SC);
 		imp.addProcessor(SS);
 		imp.addProcessor(EOC);
+		
 		BM.getWhiteHouses().peek().addObserver(HV);
 		BM.getWhiteHouses().peek().setHealth(20); //Fixes display issue on HV
 		
