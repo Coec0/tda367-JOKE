@@ -17,6 +17,7 @@ import com.example.illegalaliens.IllegalAliensMain;
 import buildings.WhiteHouse;
 import controllers.AlienController;
 import controllers.BuildingController;
+import controllers.ExecutiveOrdersController;
 import controllers.ProjectileController;
 import controllers.SuperpowerController;
 import cooldown.CooldownHandler;
@@ -24,6 +25,7 @@ import map.Map;
 import map.MapNode;
 import models.AlienModel;
 import models.BuildingModel;
+import models.ExecutiveOrdersModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
 import path.PathFinder;
@@ -88,6 +90,8 @@ public class GameScreen implements Screen{
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
+		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM);
+		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);
 		camera = new OrthographicCamera();
 		WP = new FitViewport(width, height, camera);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
@@ -122,7 +126,7 @@ public class GameScreen implements Screen{
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		TopLeftGameUIStage TL = new TopLeftGameUIStage();
 		NextWaveStage NW = new NextWaveStage(AController);
-		HS = new RightGameUIStage(AController, TController, prot);
+		HS = new RightGameUIStage(AController, TController,EOC, prot);
 		SS = new SuperpowerStage(SC);
 		HV = new GameUIView(PMS, HS, TL, SBS, NW, SS);
 		BM.addObserver(HV);
@@ -132,6 +136,7 @@ public class GameScreen implements Screen{
 		imp.addProcessor(NW);
 		imp.addProcessor(SC);
 		imp.addProcessor(SS);
+		imp.addProcessor(EOC);
 		BM.getWhiteHouses().peek().addObserver(HV);
 		BM.getWhiteHouses().peek().setHealth(20); //Fixes display issue on HV
 		

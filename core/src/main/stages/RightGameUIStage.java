@@ -28,11 +28,11 @@ public class RightGameUIStage extends Stage {
 	
 	private static final int WIDTH = 200;
 	
-	public RightGameUIStage(ClickListener alienC, ClickListener buildingC, BOPrototypes protos) {
+	public RightGameUIStage(ClickListener alienC, ClickListener buildingC, ClickListener executiveOrdersC, BOPrototypes protos) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		createPurchablesButtons(buildingC);
-		createExecutiveOrdersButtons(buildingC);
+		createExecutiveOrdersButtons(executiveOrdersC);
 		
 		updatePurchables(protos);
 		Table table = new Table();
@@ -56,9 +56,9 @@ public class RightGameUIStage extends Stage {
 		return table;
 	}
 	
-	private void createExecutiveOrdersButtons(ClickListener buildingC){
-		civilWarRep = addTextButton("CWR", "CivilWar Repub", buildingC);
-		civilWarDem = addTextButton("CWD", "CivilWar Demo", buildingC);
+	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){
+		civilWarRep = addTextButton("CWR", "CivilWar Repub", executiveOrdersC);
+		civilWarDem = addTextButton("CWD", "CivilWar Demo", executiveOrdersC);
 	}
 	
 	public void updatePurchables(BOPrototypes protos){
