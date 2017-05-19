@@ -2,6 +2,7 @@ package models;
 
 import com.badlogic.gdx.utils.Array;
 
+import cooldown.WavesCDHandler;
 import enemies.AlienFactory;
 import enemies.Enemy;
 import enemies.HighAlien;
@@ -26,13 +27,15 @@ public class AlienModel implements UpdateObserver {
 	private Array<Enemy> wave;
 	private int enemyCounter = 0;
 	private Array<MapNode> startingPos;
+	private WavesCDHandler wavescdhandler;
 
-	public AlienModel(PathFinder finder, Array<MapNode> startingPos) {
+	public AlienModel(PathFinder finder, Array<MapNode> startingPos, WavesCDHandler wavescdhandler) {
 		this.startingPos = startingPos;
 		this.finder = finder;
 		EWC = new EnemyWavesCreator();
 		enemies = new Array<Enemy>(false, 10);
 		defaultPath = finder.getShortestPath(this.startingPos.get(0));
+		this.wavescdhandler = wavescdhandler;
 		//direction = finder.getDirectionList();
 	}
 	
@@ -111,6 +114,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void startNextWave(){
+		wavescdhandler.registerNewWave();
 		wave = EWC.getNextWave();
 		waveON = true;
 		waveAlive = true;

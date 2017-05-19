@@ -3,8 +3,6 @@ package towers;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Building;
-import enemies.Enemy;
-import observers.AlienObserver;
 import observers.PrototypeObserver;
 
 public class BOPrototypes {
@@ -56,6 +54,18 @@ public class BOPrototypes {
 	}
 	
 	/**
+	 * Revert damage change. "changeDamage(float percent) should be run first."
+	 * @param percent
+	 * Divides current damage with this. 1.5 will revert a 50% increase to 0%.
+	 */
+	public void revertDamage(float percent){
+		for(Tower tower: towers){
+			tower.setDamage(tower.getDamage()/percent);
+		}
+		notifyObservers();
+	}
+	
+	/**
 	 * Changes cost.
 	 * @param percent
 	 * Multiplies current cost with this. 1.5 will increase cost with 50%.
@@ -66,6 +76,21 @@ public class BOPrototypes {
 		}
 		for(Building building: buildings){
 			building.setCost((int)(((float)building.getCost())*percent));
+		}
+		notifyObservers();
+	}
+	
+	/**
+	 * Reverts cost.
+	 * @param percent
+	 * Divides current cost with this. 1.5 will revert a 50% increase to 0%.
+	 */
+	public void revertCost(float percent){
+		for(Tower tower: towers){
+			tower.setCost((int)(((float)tower.getCost())/percent));
+		}
+		for(Building building: buildings){
+			building.setCost((int)(((float)building.getCost())/percent));
 		}
 		notifyObservers();
 	}

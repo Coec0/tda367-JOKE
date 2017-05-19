@@ -21,6 +21,7 @@ import controllers.ExecutiveOrdersController;
 import controllers.ProjectileController;
 import controllers.SuperpowerController;
 import cooldown.CooldownHandler;
+import cooldown.WavesCDHandler;
 import map.Map;
 import map.MapNode;
 import models.AlienModel;
@@ -76,40 +77,46 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		Radar radar = new Radar();
+		BOPrototypes prot = new BOPrototypes();
 //		map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
 		finder = new PathFinder(Mapnodes, Mapnodes.get(23), map.getStartingNodes(),radar);
 		
 		CooldownHandler cdh = new CooldownHandler();
+		WavesCDHandler wcd = new WavesCDHandler();
 		
 		AlienView AW= new AlienView();
-		AlienModel AM = new AlienModel(finder, map.getStartingNodes());
+		AlienModel AM = new AlienModel(finder, map.getStartingNodes(), wcd);
 		AlienController AController = new AlienController(AW, AM);
 		BuildingView TW = new BuildingView();
 		BuildingModel BM = new BuildingModel(AM.getAllEnemies(), cdh,radar, finder);
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
 		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
-		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM);
+		
+		
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
+		AM.addObserver(WH);
+		BM.addWhiteHouse(WH);
+		
+		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM, wcd,prot);
 		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);
 		camera = new OrthographicCamera();
 		WP = new FitViewport(width, height, camera);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
 		
-
+		
 		//InputAdapter EWC = new EnemyWavesCreator(AController);
         
 		
 		
 		//camera.position.set(1280/2, 720/2, 0);
-		BOPrototypes prot = new BOPrototypes();
+		
 
 		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM, prot);
 		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder, prot);
-		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
-		AM.addObserver(WH);
-		BM.addWhiteHouse(WH);
+		
 		
 		IAMain.addObserver(BM);
 		IAMain.addObserver(AM);
