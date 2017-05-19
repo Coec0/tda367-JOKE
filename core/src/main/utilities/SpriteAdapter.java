@@ -4,33 +4,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class SpriteAdapter extends Sprite{
-	private int ID;
-	
-	private static int uniqueID = 0;
-	
+
 	public SpriteAdapter(){
 		super();
 		super.setOriginCenter();
-		ID = uniqueID++;
 	}
 	
 	public SpriteAdapter(int x, int y){
 		super();
 		super.setPosition(x, y);
 		super.setOriginCenter();
-		ID = uniqueID++;
 	}
 	
 	public SpriteAdapter(Texture texture){
 		super(texture);
 		super.setOriginCenter();
-		ID = uniqueID++;
 	}
 
-	public int getId(){
-		return ID;
-	}
-	
 	/**
 	 * Rotates this sprite towards input node. Offset the starting angle
 	 * @param node
@@ -92,27 +82,5 @@ public class SpriteAdapter extends Sprite{
 		//super.setOrigin(texture.getWidth() / 2, texture.getHeight() / 2);
 		super.setOriginCenter();
 		super.translate(-texture.getWidth()/2, -texture.getHeight()/2);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SpriteAdapter other = (SpriteAdapter) obj;
-		if (ID != other.ID)
-			return false;
-		return true;
 	}
 }
