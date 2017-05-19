@@ -46,8 +46,9 @@ public class RiotShield extends Building {
     public void usePower() {
         if (enemies != null){
             for (Enemy e: enemies){
-                if (!(e.getNodeArrayPos() < 1))
                 e.setNodeArrayPos(e.getNodeArrayPos() - 500);
+                if (e.getNodeArrayPos() <= 0)
+                	e.setNodeArrayPos(0);
             }
         }
         super.getCooldownObject().setOnCooldown(true);
