@@ -24,7 +24,7 @@ public class RightGameUIStage extends Stage {
 	private ImageTextButton soldierB,tankB, rangerB, sniperB, netGunnerB, riotshieldB;
 	
 	//  *Executive orders*
-	private TextButton civilWarRep, civilWarDem;
+	private TextButton civilWarRep, civilWarDem, declareWar;
 	
 	private static final int WIDTH = 200;
 	
@@ -53,12 +53,14 @@ public class RightGameUIStage extends Stage {
 		table.add(civilWarDem).width(WIDTH/2);
 		table.add(civilWarRep).width(WIDTH/2);
 		table.row();
+		table.add(declareWar).width(WIDTH/2);
 		return table;
 	}
 	
 	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){
 		civilWarRep = addTextButton("CWR", "CivilWar Repub", executiveOrdersC);
 		civilWarDem = addTextButton("CWD", "CivilWar Demo", executiveOrdersC);
+		declareWar = addTextButton("DW", "Declare War", executiveOrdersC);
 	}
 	
 	public void updatePurchables(BOPrototypes protos){

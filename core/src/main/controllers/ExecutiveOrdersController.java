@@ -19,6 +19,8 @@ public class ExecutiveOrdersController extends ClickListener implements InputPro
     		EOM.civilWarAgainstRepublicans();
     	} else if(event.getListenerActor().getName().equals("CWD")){
     		EOM.civilWarAgainstDemocrats();
+    	} else if(event.getListenerActor().getName().equals("DW")){
+    		EOM.declareWar();
     	}
     	
 	}
