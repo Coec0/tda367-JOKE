@@ -111,10 +111,8 @@ public class BuildingModel implements UpdateObserver {
 	public void deleteMinutemen(){
 		for (Tower t : towers){
 			if (t instanceof Minutemen)
-				t.setActive(false);
-				towers.removeValue(t,false);
-				notifyObservers(t,true,false);
-				t = null;
+				sellBoardObject(t);
+
 		}
 		System.out.println("Deleting minutemen");
 	}
@@ -123,6 +121,7 @@ public class BuildingModel implements UpdateObserver {
 		BO.setActive(false);
 		if(BO instanceof Tower){
 			towers.removeValue((Tower)BO, false);
+			System.out.println("deleting");
 		} else if(BO instanceof Building){
 			buildings.removeValue((Building)BO, false);
 		}
@@ -135,7 +134,7 @@ public class BuildingModel implements UpdateObserver {
 	}
 
 	public void upgradeTowerCooldown(Tower tower){
-		//upgrader.reduceCooldown(tower, tower.getCooldownObject());
+		upgrader.reduceCooldown(tower, tower.getCooldownObject().getCooldownTime() * 0.8f);
 	}
 
 	public void upgradeTowerRadius(Tower tower){
@@ -164,7 +163,6 @@ public class BuildingModel implements UpdateObserver {
 
 	private void updateBuildings(){
 		Array<Enemy> foundAliens;
-		Array<Tower> foundTowers;
 		for (Building b : buildings){
 			if (b instanceof RiotShield){
 				b = (RiotShield )b;

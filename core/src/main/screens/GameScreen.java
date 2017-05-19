@@ -90,7 +90,6 @@ public class GameScreen implements Screen{
 		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
 		camera = new OrthographicCamera();
 		WP = new FitViewport(width, height, camera);
-		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
 		
@@ -101,7 +100,8 @@ public class GameScreen implements Screen{
 		
 		//camera.position.set(1280/2, 720/2, 0);
 		BOPrototypes prot = new BOPrototypes();
-		
+
+		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM, prot);
 		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder, prot);
 		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
 		AM.addObserver(WH);

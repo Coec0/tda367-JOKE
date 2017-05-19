@@ -8,10 +8,10 @@ import observers.AlienObserver;
 import observers.PrototypeObserver;
 
 public class BOPrototypes {
-	Tower ranger, soldier, sniper, tank;
-	Building riotShield, netGunner;
-	Array<Tower> towers;
-	Array<Building> buildings;
+	private Tower ranger, soldier, sniper, tank, minutemen;
+	private Building riotShield, netGunner;
+	private Array<Tower> towers;
+	private Array<Building> buildings;
 	public BOPrototypes(){
 		reset();
 	}
@@ -39,6 +39,8 @@ public class BOPrototypes {
 	public NetGunner getNetGunner(int x, int y){
 		return (NetGunner)netGunner.clone(x, y);
 	}
+
+	public Minutemen getMinutemen(int x, int y){return (Minutemen)minutemen.clone(x,y);}
 	
 	
 	/**
@@ -75,10 +77,12 @@ public class BOPrototypes {
 		soldier = new Soldier(0, 0);
 		sniper = new Sniper(0, 0);
 		tank = new Tank(0, 0);
+		minutemen = new Minutemen(0,0);
 		towers.add(ranger);
 		towers.add(soldier);
 		towers.add(sniper);
 		towers.add(tank);
+		towers.add(minutemen);
 		
 		riotShield = new RiotShield(0,0);
 		netGunner = new NetGunner(0,0);

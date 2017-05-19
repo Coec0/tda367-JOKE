@@ -3,6 +3,7 @@ package models;
 import cooldown.CooldownHandler;
 import observers.UpdateObserver;
 import superpowers.TowerBoost;
+import towers.BOPrototypes;
 import towers.Minutemen;
 import towers.TowerFactory;
 import com.badlogic.gdx.utils.Array;
@@ -44,12 +45,12 @@ public class SuperpowerModel implements UpdateObserver {
     }
 
 
-    public void useMinutemen(){
+    public void useMinutemen(BOPrototypes prototypes){
         minutemenActive = true;
-        BModel.addBoardObject(TowerFactory.createMinutemen(585,495));
-        BModel.addBoardObject(TowerFactory.createMinutemen(590,485));
-        BModel.addBoardObject(TowerFactory.createMinutemen(595,480));
-        BModel.addBoardObject(TowerFactory.createMinutemen(560,475));
+        BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,600,495));
+        BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,550,485));
+        //BModel.addBoardObject(TowerFactory.createMinutemen(500,480));
+        //BModel.addBoardObject(TowerFactory.createMinutemen(450,475));
     }
 
     public void useWall(int x, int y){
@@ -93,7 +94,7 @@ public class SuperpowerModel implements UpdateObserver {
     }
 
     private void checkWave(){
-        if (AModel.getAllEnemies().size < 1){
+        if (AModel.getAllEnemies().size < 1 && (!AModel.getWaveAlive())){
             BModel.deleteMinutemen();
             minutemenActive = false;
         }

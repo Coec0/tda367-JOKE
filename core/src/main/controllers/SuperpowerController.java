@@ -12,6 +12,7 @@ import models.AlienModel;
 import models.BuildingModel;
 import models.SuperpowerModel;
 import path.PathFinder;
+import towers.BOPrototypes;
 import utilities.Node;
 
 /**
@@ -19,19 +20,22 @@ import utilities.Node;
  */
 public class SuperpowerController extends ClickListener implements InputProcessor {
 
-    SuperpowerModel SModel;
-    AlienModel AModel;
-    BuildingModel BModel;
-    Viewport VP;
-    BoardObject onMouse;
+    private SuperpowerModel SModel;
+    private AlienModel AModel;
+    private BuildingModel BModel;
+    private Viewport VP;
+    private BoardObject onMouse;
+    private BOPrototypes prototypes;
+
     private PathFinder finder;
 
-    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BuildingModel BModel){
+    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BuildingModel BModel, BOPrototypes prototypes){
     	this.finder = finder;
         this.SModel = SModel;
         this.VP = VP;
         this.AModel = AModel;
         this.BModel = BModel;
+        this.prototypes = prototypes;
     }
 
     @Override
@@ -43,7 +47,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
         	onMouse = new Wall("wall", (int) x, (int)y, 5);
         }
         if(event.getListenerActor().getName().equals("minutemen")){
-            SModel.useMinutemen();
+            SModel.useMinutemen(prototypes);
         }
         if(event.getListenerActor().getName().equals("towerboost")){
             SModel.useTowerBoost(BModel.getTowers());

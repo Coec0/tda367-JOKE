@@ -25,7 +25,7 @@ public class TowerFactory {
 		return prot.getRiotShield(x,y);
 	}
 
-	public static Minutemen createMinutemen(int x, int y){
-		return new Minutemen(x,y);
+	public static Minutemen createMinutemen(BOPrototypes prot, int x, int y){
+		return prot.getMinutemen(x,y);
 	}
 }
