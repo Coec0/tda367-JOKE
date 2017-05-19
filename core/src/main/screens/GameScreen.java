@@ -95,12 +95,7 @@ public class GameScreen implements Screen{
 		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
 		
 		
-		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
-		AM.addObserver(WH);
-		BM.addWhiteHouse(WH);
 		
-		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM, wcd,prot);
-		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);
 		camera = new OrthographicCamera();
 		WP = new FitViewport(width, height, camera);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
@@ -128,6 +123,13 @@ public class GameScreen implements Screen{
 		imp.addProcessor(TController);
 
 		Gdx.input.setInputProcessor(imp);
+		
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
+		AM.addObserver(WH);
+		BM.addWhiteHouse(WH);
+		
+		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM, wcd,prot);
+		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);
 		
 		SelectedBuildingStage SBS = new SelectedBuildingStage(TController);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();

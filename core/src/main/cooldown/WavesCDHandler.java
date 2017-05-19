@@ -10,25 +10,37 @@ private Array<TimeHelper> THs;
 		THs = new Array<TimeHelper>(false, 10);
 	}
 
-	public void addCooldownObject(WavesCooldown cooldown, int rounds){
-		THs.add(new TimeHelper(cooldown, rounds));
+	public void startCooldown(WavesCooldown cooldown, int rounds){
+		if(!resetCooldown(cooldown))
+			THs.add(new TimeHelper(cooldown, rounds));
 	}
-	public void addCooldownObject(WavesCooldown cooldown){
-		THs.add(new TimeHelper(cooldown, cooldown.cdTurns()));
+	public void startCooldown(WavesCooldown cooldown){
+		startCooldown(cooldown, cooldown.cdTurns());
 	}
 	
-	private void removeCooldown(TimeHelper TH){
-		THs.removeValue(TH, false);
+	private boolean resetCooldown(WavesCooldown cooldown){
+		for(TimeHelper TH: THs){
+			if(TH.getWavesCooldown().equals(cooldown)){
+				TH.setRounds(cooldown.cdTurns());
+				return true;
+			}
+		}
+		return false;
 	}
+	
+	/*private void removeCooldown(TimeHelper TH){
+		THs.removeValue(TH, false);
+	}*/
 	
 	public void registerNewWave() {
 		for(TimeHelper TH : THs){
 			if(TH.removeRound()){
 				TH.getWavesCooldown().afterCD();
-				removeCooldown(TH);
 			}
 		}	
 	}
+	
+	
 	
 	private class TimeHelper {
 		int rounds;
@@ -40,11 +52,15 @@ private Array<TimeHelper> THs;
 		
 		public boolean removeRound(){
 			rounds--;
-			return rounds <=0;
+			return rounds ==0;
 		}
 		
 		public WavesCooldown getWavesCooldown(){
 			return cooldown;
+		}
+		
+		public void setRounds(int rounds){
+			this.rounds = rounds;
 		}
 	}
 	

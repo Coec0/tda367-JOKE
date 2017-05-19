@@ -1,10 +1,9 @@
 package models;
 
 import cooldown.WavesCDHandler;
-import cooldown.WavesCooldown;
 import executive_orders.CivilWar;
-import executive_orders.ExecutiveOrder;
 import executive_orders.DeclareWar;
+import executive_orders.ExecutiveOrder;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
 import towers.BOPrototypes;
@@ -23,9 +22,12 @@ public class ExecutiveOrdersModel {
 		CWD = new CivilWar(BM, republican, democrat);
 		CWR = new CivilWar(BM, democrat, republican);
 		DW = new DeclareWar(BM.getWhiteHouses().peek(), 30000, republican, prots);
-		wcd.addCooldownObject(DW);
 	}
 	
+	public void declareWar(){
+		DW.execute();
+		wcd.startCooldown(DW);
+	}
 	
 	public void civilWarAgainstRepublicans(){
 		CWR.execute();
