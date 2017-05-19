@@ -1,19 +1,18 @@
 package models;
 
-import cooldown.CooldownHandler;
-import observers.UpdateObserver;
-import superpowers.TowerBoost;
-import towers.BOPrototypes;
-import towers.Minutemen;
-import towers.TowerFactory;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.Wall;
-import towers.Tower;
+import cooldown.CooldownHandler;
 import enemies.Enemy;
+import observers.UpdateObserver;
 import path.PathFinder;
 import path.RoadSection;
 import superpowers.Nuke;
+import superpowers.TowerBoost;
+import towers.BOPrototypes;
+import towers.Tower;
+import towers.TowerFactory;
 import utilities.Node;
 
 /**
@@ -95,10 +94,7 @@ public class SuperpowerModel implements UpdateObserver {
 
     private void checkWave(){
         if (AModel.getAllEnemies().size < 1 && (!AModel.getWaveAlive())){
-            while (BModel.getMinutemen().size > 0){
-                BModel.deleteMinutemen();
-
-            }
+            BModel.deleteMinutemen();
             minutemenActive = false;
         }
     }

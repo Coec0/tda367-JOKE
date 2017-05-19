@@ -109,11 +109,13 @@ public class BuildingModel implements UpdateObserver {
 	}
 
 	public void deleteMinutemen(){
+		Array<BoardObject> gonnaSell = new Array<BoardObject>(false, 4);
 		for (Tower t : towers){
 			if (t instanceof Minutemen)
-				sellBoardObject(t, false);
-            System.out.println("Deleting minutemen");
-
+				gonnaSell.add(t);
+		}
+		for(BoardObject BO : gonnaSell){
+			sellBoardObject(BO, false);
 		}
 	}
 
