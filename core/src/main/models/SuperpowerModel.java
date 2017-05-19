@@ -49,8 +49,8 @@ public class SuperpowerModel implements UpdateObserver {
         minutemenActive = true;
         BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,600,495));
         BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,550,485));
-        //BModel.addBoardObject(TowerFactory.createMinutemen(500,480));
-        //BModel.addBoardObject(TowerFactory.createMinutemen(450,475));
+        BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,650,485));
+        BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,500,485));
     }
 
     public void useWall(int x, int y){
@@ -95,7 +95,10 @@ public class SuperpowerModel implements UpdateObserver {
 
     private void checkWave(){
         if (AModel.getAllEnemies().size < 1 && (!AModel.getWaveAlive())){
-            BModel.deleteMinutemen();
+            while (BModel.getMinutemen().size > 0){
+                BModel.deleteMinutemen();
+
+            }
             minutemenActive = false;
         }
     }
