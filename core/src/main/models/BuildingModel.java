@@ -111,7 +111,7 @@ public class BuildingModel implements UpdateObserver {
 	public void deleteMinutemen(){
 		for (Tower t : towers){
 			if (t instanceof Minutemen)
-				sellBoardObject(t);
+				sellBoardObject(t, false);
             System.out.println("Deleting minutemen");
 
 		}
@@ -127,7 +127,7 @@ public class BuildingModel implements UpdateObserver {
         return mm;
     }
 
-	public void sellBoardObject(BoardObject BO) {
+	public void sellBoardObject(BoardObject BO, boolean getMoney) {
 		BO.setActive(false);
 		if(BO instanceof Tower){
 			towers.removeValue((Tower)BO, false);
@@ -136,6 +136,7 @@ public class BuildingModel implements UpdateObserver {
 			buildings.removeValue((Building)BO, false);
 		}
 		boardObjects.removeValue(BO, false);
+		whitehouses.peek().addMoney(BO.getValue());
 		notifyObservers(BO, true, false);
 	}
 

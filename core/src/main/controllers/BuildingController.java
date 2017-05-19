@@ -50,7 +50,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
     			BModel.deselect(onMouse);
     			onMouse = null;	
     		} else {
-    			BModel.sellBoardObject(highlighted);
+    			BModel.sellBoardObject(highlighted, true);
     		}
     	}
     	

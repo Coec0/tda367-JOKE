@@ -18,7 +18,7 @@ public class CivilWar implements ExecutiveOrder{
 	public void execute() {
 		for(BoardObject BO : BM.getAllBoardObjects()){
 			if(BO.getParty() != null && BO.getParty().equals(party)){
-				BM.sellBoardObject(BO);
+				BM.sellBoardObject(BO, false);
 			}
 		}
 		
