@@ -8,7 +8,7 @@ import models.ExecutiveOrdersModel;
 
 public class ExecutiveOrdersController extends ClickListener implements InputProcessor {
 	
-	ExecutiveOrdersModel EOM;
+	private ExecutiveOrdersModel EOM;
 	public ExecutiveOrdersController(ExecutiveOrdersModel EOM) {
 		this.EOM = EOM;
 	}

@@ -11,15 +11,15 @@ import projectiles.Projectile;
  * Created by Emil on 2017-04-17.
  */
 public class Ranger extends Tower {
-    private static final int RADIUS = 750;
+    private static final int RADIUS = 350;
     private static final String NAME = "RANGER";
     private static final int COST = 300;
-    private static final float COOLDOWN = 50;
+    private static final float COOLDOWN = 20;
     private static String DESCRIPTION = "Soldier with higher rate of fire";
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final float SIZE = 50;
-    private static final float DAMAGE = 40;
-    private static final float SPEED = 100;
+    private static final float DAMAGE = 50;
+    private static final float SPEED = 25;
 
     public Ranger(int x, int y, float radius, float cooldown, int cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);

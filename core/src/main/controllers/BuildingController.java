@@ -24,13 +24,13 @@ import views.BuildingView;
 
 public class BuildingController extends ClickListener implements InputProcessor {
 
-	BuildingView BView;
-    BuildingModel BModel;
-    AlienModel AModeL;
-    Viewport WP;
-    BoardObject onMouse;
-    BoardObject highlighted;
-    BOPrototypes prototypes;
+	private BuildingView BView;
+    private BuildingModel BModel;
+    private AlienModel AModeL;
+    private Viewport WP;
+    private BoardObject onMouse;
+    private BoardObject highlighted;
+    private BOPrototypes prototypes;
    
     
 

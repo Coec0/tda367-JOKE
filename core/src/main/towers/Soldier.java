@@ -8,14 +8,14 @@ import politics.parties.PartyFactory;
 import projectiles.Projectile;
 
 public class Soldier extends Tower {
-    private static final int RADIUS = 500;
     private static final String NAME = "SOLDIER";
+    private static String DESCRIPTION = "A regular soldier";
+    private static final int RADIUS = 300;
     private static final int COST = 50;
-    private static final float COOLDOWN = 10;
+    private static final float COOLDOWN = 15;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
-	private static String DESCRIPTION = "A regular soldier";
 	private static final float SIZE = 50;
-    private static final float DAMAGE = 40;
+    private static final float DAMAGE = 30;
     private static final float SPEED = 10;
 
     public Soldier(int x, int y, float radius, float cooldown, int cost, float damage){

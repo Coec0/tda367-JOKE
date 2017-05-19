@@ -14,8 +14,8 @@ import views.AlienView;
 
 public class AlienController extends ClickListener implements ActionListener, InputProcessor{
 
-	AlienView AView;
-	AlienModel AModel;
+	private AlienView AView;
+	private AlienModel AModel;
 
 	public AlienController(AlienView AView, AlienModel AModel) {
 		this.AView = AView;

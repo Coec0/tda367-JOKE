@@ -14,11 +14,11 @@ import politics.parties.PartyFactory;
 public class RiotShield extends Building {
 
     private static final String NAME = "RIOT SHIELD";
-    private static final int COST = 50;
-    private static final float COOLDOWN = 100;
-    private static final Party PARTY = PartyFactory.Democrat(6); // Just for now
     private static String DESCRIPTION = "Pushes back nearby enemies";
-    private static final int RADIUS = 500;
+    private static final int COST = 50;
+    private static final float COOLDOWN = 120;
+    private static final Party PARTY = PartyFactory.Democrat(6); // Just for now
+    private static final int RADIUS = 100;
     private static final float SIZE = 50;
 
     private Array<Enemy> enemies;
@@ -47,7 +47,7 @@ public class RiotShield extends Building {
         if (enemies != null){
             for (Enemy e: enemies){
                 if (!(e.getNodeArrayPos() < 1))
-                e.setNodeArrayPos(e.getNodeArrayPos() - 1000);
+                e.setNodeArrayPos(e.getNodeArrayPos() - 500);
             }
         }
         super.getCooldownObject().setOnCooldown(true);
