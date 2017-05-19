@@ -23,12 +23,17 @@ private Array<TimeHelper> THs;
 	}
 	
 	public void registerNewWave() {
+		Array<TimeHelper> gonnaRemove = new Array<TimeHelper>(false, THs.size);
+	
 		for(TimeHelper TH : THs){
 			if(TH.removeRound()){
 				TH.getWavesCooldown().afterCD();
-				removeCooldown(TH);
+				gonnaRemove.add(TH);
 			}
 		}	
+		for(TimeHelper TH : gonnaRemove){
+			removeCooldown(TH);
+		}
 	}
 	
 	
