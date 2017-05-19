@@ -1,11 +1,16 @@
 package stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 
 /**
  * Created by Emil on 2017-05-07.
@@ -15,6 +20,7 @@ public class SuperpowerStage extends Stage {
 
     private Skin skin;
     private Table table;
+    private ImageTextButton nukeB, minutemenB, wallB, boostB;
 
     public SuperpowerStage(ClickListener superC){
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -45,6 +51,26 @@ public class SuperpowerStage extends Stage {
         int height = 50;
         int y = 35;
         return addTextButton(x, y, width, height, name, "Superpower: " + name, CL);
+    }
+
+    private ImageTextButton addImageTextButton(String name, String text, Texture texture, ClickListener CL){
+        Skin skin = new Skin(Gdx.files.internal("ui/skin/plain-james-ui.json"));
+        ImageTextButton imageButton = new ImageTextButton("$$$", skin);
+        imageButton.stack().row();
+        imageButton.getImageCell().colspan(2);
+        imageButton.stack(imageButton.getLabel()).align(Align.center).expand().fill();
+        imageButton.getLabel().setFontScale(0.5f);
+        imageButton.setName(name);
+        imageButton.addListener(CL);
+        imageButton.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(texture));
+        imageButton.getStyle().imageDown = new TextureRegionDrawable(new TextureRegion(texture));
+        imageButton.pack();
+        imageButton.invalidateHierarchy();
+        return imageButton;
+    }
+
+    private ImageTextButton addTowerButton(int y, String name, Texture texture, ClickListener CL) {
+        return addImageTextButton(name, "Superpower", texture, CL);
     }
 
     private TextButton addTextButton(int x, int y, float width, float height, String name, String text ,ClickListener CL){
