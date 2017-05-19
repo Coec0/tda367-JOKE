@@ -7,6 +7,7 @@ import observers.AlienObserver;
 import observers.WhiteHouseObserver;
 import politics.Parliament;
 import politics.parties.Party;
+import politics.parties.PartyFactory;
 
 public class WhiteHouse extends BoardObject implements AlienObserver{
 	private int health=20; //temp
@@ -17,6 +18,8 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 		super(name, x, y,size, 0);
 		this.parliament = parliament;
 		this.setMoney(money);
+		voteParty(PartyFactory.Democrat(5));
+		voteParty(PartyFactory.Republican(5));
 	}
 	
 	public WhiteHouse(String name, int x, int y, float size, float money){
