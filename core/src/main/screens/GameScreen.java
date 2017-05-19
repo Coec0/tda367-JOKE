@@ -47,7 +47,7 @@ import views.ProjectileView;
 import waves.EnemyWavesCreator;
 
 public class GameScreen implements Screen{
-	SpriteBatch batch;
+	private SpriteBatch batch;
 	private Sprite backgroundSprite;
 	private DrawablesCollector SC = DrawablesCollector.getInstance();
 	private PathFinder finder;
@@ -55,15 +55,15 @@ public class GameScreen implements Screen{
 	private final int height = 720;
 	
 	private Array<Node> nodes = new Array<Node>();
-	Array<MapNode> Mapnodes;
-	IllegalAliensMain IAMain;
-	EnemyWavesCreator ewc;
+	private Array<MapNode> Mapnodes;
+	private IllegalAliensMain IAMain;
+	private EnemyWavesCreator ewc;
 	
 	private Camera camera;
 	private Viewport WP;
-	GameUIView HV;
-	RightGameUIStage HS;
-	SuperpowerStage SS;
+	private GameUIView HV;
+	private RightGameUIStage HS;
+	private SuperpowerStage SS;
 
 	private Map map;
 

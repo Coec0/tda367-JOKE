@@ -7,8 +7,8 @@ import politics.parties.PartyFactory;
 
 public class ExecutiveOrdersModel {
 
-	ExecutiveOrder CWR, CWD;
-	Party republican, democrat;
+	private ExecutiveOrder CWR, CWD;
+	private Party republican, democrat;
 	
 	public ExecutiveOrdersModel(BuildingModel BM){
 		republican = PartyFactory.Republican(0);
