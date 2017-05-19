@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -43,7 +42,6 @@ import views.AlienView;
 import views.BuildingView;
 import views.GameUIView;
 import views.ProjectileView;
-import views.SuperpowerView;
 import waves.EnemyWavesCreator;
 
 public class GameScreen implements Screen{
@@ -89,11 +87,10 @@ public class GameScreen implements Screen{
 		BuildingModel BM = new BuildingModel(AM.getAllEnemies(), cdh,radar, finder);
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
-		SuperpowerView SW = new SuperpowerView();
 		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
 		camera = new OrthographicCamera();
 		WP = new FitViewport(width, height, camera);
-		SuperpowerController SC = new SuperpowerController(SM, SW, WP, AM,finder, BM);
+		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM);
 		ProjectileController PC = new ProjectileController(PM, PW, BM);
 		//Maybe move these later
 		

@@ -12,9 +12,7 @@ import models.AlienModel;
 import models.BuildingModel;
 import models.SuperpowerModel;
 import path.PathFinder;
-import towers.Minutemen;
 import utilities.Node;
-import views.SuperpowerView;
 
 /**
  * Created by Emil on 2017-05-04.
@@ -23,20 +21,17 @@ public class SuperpowerController extends ClickListener implements InputProcesso
 
     SuperpowerModel SModel;
     AlienModel AModel;
-    SuperpowerView SView;
     BuildingModel BModel;
     Viewport VP;
     BoardObject onMouse;
     private PathFinder finder;
 
-    public SuperpowerController(SuperpowerModel SModel, SuperpowerView SView, Viewport VP, AlienModel AModel, PathFinder finder, BuildingModel BModel){
+    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BuildingModel BModel){
     	this.finder = finder;
         this.SModel = SModel;
-        this.SView = SView;
         this.VP = VP;
         this.AModel = AModel;
         this.BModel = BModel;
-        BModel.addObserver(SView);
     }
 
     @Override
