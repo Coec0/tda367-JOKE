@@ -11,6 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import textures.PortraitTextureHandler;
+
+import javax.sound.sampled.Port;
 
 /**
  * Created by Emil on 2017-05-07.
@@ -22,13 +25,16 @@ public class SuperpowerStage extends Stage {
     private Table table;
     private ImageTextButton nukeB, minutemenB, wallB, boostB;
 
+    private final int WIDTH = 400;
+    private final int HEIGHT = 50;
     public SuperpowerStage(ClickListener superC){
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         this.table = new Table();
-        table.setDebug(true);
-        table.setPosition(Gdx.graphics.getWidth() / 4, 35);
-        table.setHeight(50);
-        table.setWidth(400);
+        createSuperPowerButtons(superC);
+
+        table.setPosition(Gdx.graphics.getWidth() / 4, 0);
+        table.setHeight(HEIGHT);
+        table.setWidth(WIDTH);
 
         table.add(addSuperpowerTable(superC));
         this.addActor(table);
@@ -38,24 +44,32 @@ public class SuperpowerStage extends Stage {
     private Table addSuperpowerTable(ClickListener superC){
 
         Table table = new Table();
+        table.setWidth(WIDTH);
+
+        table.add(nukeB).width(WIDTH/4).height(HEIGHT);
+        table.add(minutemenB).width(WIDTH/4).height(HEIGHT);
+        table.add(wallB).width(WIDTH/4).height(HEIGHT);
+        table.add(boostB).width(WIDTH/4).height(HEIGHT);
+
+        /*
         table.add(addSuperpowerButton(100,"nuke", superC)).expand().top();
         table.add(addSuperpowerButton(200,"wall", superC));
         table.add(addSuperpowerButton(300,"minutemen", superC));
         table.add(addSuperpowerButton(400,"towerboost", superC));
-
+*/
         return table;
     }
-
+/*
     private TextButton addSuperpowerButton(int x, String name, ClickListener CL){
         int width = 200;
         int height = 50;
         int y = 35;
         return addTextButton(x, y, width, height, name, "Superpower: " + name, CL);
     }
-
+*/
     private ImageTextButton addImageTextButton(String name, String text, Texture texture, ClickListener CL){
         Skin skin = new Skin(Gdx.files.internal("ui/skin/plain-james-ui.json"));
-        ImageTextButton imageButton = new ImageTextButton("$$$", skin);
+        ImageTextButton imageButton = new ImageTextButton(text, skin);
         imageButton.stack().row();
         imageButton.getImageCell().colspan(2);
         imageButton.stack(imageButton.getLabel()).align(Align.center).expand().fill();
@@ -69,7 +83,15 @@ public class SuperpowerStage extends Stage {
         return imageButton;
     }
 
-    private ImageTextButton addTowerButton(int y, String name, Texture texture, ClickListener CL) {
+    private void createSuperPowerButtons(ClickListener superC){
+        nukeB = addSuperPowerButton("nuke", PortraitTextureHandler.getNukePortrait(),superC);
+        minutemenB = addSuperPowerButton("minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
+        boostB = addSuperPowerButton("boost", PortraitTextureHandler.getBoostPortrait(), superC);
+        wallB = addSuperPowerButton("wall", PortraitTextureHandler.getWallPortrait(), superC);
+
+    }
+
+    private ImageTextButton addSuperPowerButton(String name, Texture texture, ClickListener CL) {
         return addImageTextButton(name, "Superpower", texture, CL);
     }
 
