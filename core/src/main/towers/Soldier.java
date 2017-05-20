@@ -18,7 +18,7 @@ public class Soldier extends Tower {
     private static final float DAMAGE = 30;
     private static final float SPEED = 10;
 
-    public Soldier(int x, int y, float radius, float cooldown, int cost, float damage){
+    public Soldier(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
     }
     

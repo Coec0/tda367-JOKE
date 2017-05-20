@@ -10,10 +10,10 @@ public abstract class BoardObject implements Voter {
 	private SpriteAdapter pos;
 	private float size;
 	private boolean active;
-	private int cost;
-	private int value;
+	private float cost;
+	private float value;
 
-	protected BoardObject(String name, int x, int y, float size, int cost) {
+	protected BoardObject(String name, int x, int y, float size, float cost) {
 		this.cost = cost;
 		this.size = size;
 		this.name = name;
@@ -24,12 +24,12 @@ public abstract class BoardObject implements Voter {
 
 	public abstract String getDescription();
 
-	public int getValue() {
+	public float getValue() {
 		return value;
 	}
 
-	private void setValue(int value) {
-		this.value = (int)((float)value*0.7f);
+	private void setValue(float value) {
+		this.value = value*0.7f;
 	}
 	
 	public float getRadius(){
@@ -41,11 +41,11 @@ public abstract class BoardObject implements Voter {
 		return null;
 	}
 	
-	public int getCost(){
+	public float getCost(){
 		return cost;
 	}
 	
-	public void setCost(int cost){
+	public void setCost(float cost){
 		this.cost = cost;
 	}
 	

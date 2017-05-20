@@ -21,7 +21,7 @@ public class NetGunner extends Building {
     private Array<Enemy> enemies;
     private Array<Enemy> affectedEnemies;
     
-    public NetGunner(int x, int y, float radius, float cooldown, int cost){
+    public NetGunner(int x, int y, float radius, float cooldown, float cost){
     	super(NAME, x, y, SIZE, radius, cooldown, cost, PARTY);
     	affectedEnemies = new Array<Enemy>(false, 5000);
     }

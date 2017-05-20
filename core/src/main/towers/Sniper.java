@@ -22,7 +22,7 @@ public class Sniper extends Tower {
     private static final float DAMAGE = 50;
     private static final float SPEED = 105;
 
-    public Sniper(int x, int y, float radius, float cooldown, int cost, float damage){
+    public Sniper(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
     }
     

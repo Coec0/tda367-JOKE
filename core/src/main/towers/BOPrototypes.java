@@ -72,10 +72,10 @@ public class BOPrototypes {
 	 */
 	public void changeCost(float percent){
 		for(Tower tower: towers){
-			tower.setCost((int)(((float)tower.getCost())*percent));
+			tower.setCost(tower.getCost()*percent);
 		}
 		for(Building building: buildings){
-			building.setCost((int)(((float)building.getCost())*percent));
+			building.setCost(building.getCost()*percent);
 		}
 		notifyObservers();
 	}
@@ -87,10 +87,10 @@ public class BOPrototypes {
 	 */
 	public void revertCost(float percent){
 		for(Tower tower: towers){
-			tower.setCost((int)(((float)tower.getCost())/percent));
+			tower.setCost(tower.getCost()/percent);
 		}
 		for(Building building: buildings){
-			building.setCost((int)(((float)building.getCost())/percent));
+			building.setCost(building.getCost()/percent);
 		}
 		notifyObservers();
 	}

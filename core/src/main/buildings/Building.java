@@ -11,7 +11,7 @@ public abstract class Building extends BoardObject {
 	
 
 
-	protected Building(String name, int x, int y, float size, float radius, float cooldown, int cost, Party party){
+	protected Building(String name, int x, int y, float size, float radius, float cooldown, float cost, Party party){
 		super(name, x, y, size, cost);
 		this.radius = radius;
 		this.cooldown = new CooldownObject(cooldown);

@@ -23,7 +23,7 @@ public class RiotShield extends Building {
 
     private Array<Enemy> enemies;
 
-    public RiotShield(int x, int y, float radius, float cooldown, int cost){
+    public RiotShield(int x, int y, float radius, float cooldown, float cost){
     	super(NAME, x, y, SIZE, radius, cooldown, cost, PARTY);
     }
     

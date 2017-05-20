@@ -20,7 +20,7 @@ public class TowerBooster extends Building {
 
 	private Array<Tower> towers;
 
-	  public TowerBooster(int x, int y, float radius, float cooldown, int cost){
+	  public TowerBooster(int x, int y, float radius, float cooldown, float cost){
 	    	super(NAME, x, y, SIZE, radius, cooldown, cost, PARTY);
 	    }
 	

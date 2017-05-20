@@ -24,7 +24,7 @@ public abstract class Tower extends BoardObject{
     private float modifiedRadius;
     private float modifiedCooldown;
 
-	protected Tower(int x, int y, float radius, String name, int cost, float cooldown,float size, float damage, Party party){
+	protected Tower(int x, int y, float radius, String name, float cost, float cooldown,float size, float damage, Party party){
 		super(name, x, y,size, cost);
 		this.cooldown = new CooldownObject(cooldown);
 		this.radius = radius;
