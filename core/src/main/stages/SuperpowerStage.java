@@ -26,7 +26,7 @@ public class SuperpowerStage extends Stage {
     private ImageTextButton nukeB, minutemenB, wallB, boostB;
 
     private final int WIDTH = 400;
-    private final int HEIGHT = 50;
+    private final int HEIGHT = 100;
     public SuperpowerStage(ClickListener superC){
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         this.table = new Table();
