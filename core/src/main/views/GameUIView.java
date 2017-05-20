@@ -5,27 +5,23 @@ import buildings.WhiteHouse;
 import observers.BuildingObserver;
 import observers.PrototypeObserver;
 import observers.WhiteHouseObserver;
-import stages.NextWaveStage;
-import stages.PoliticalMeterStage;
-import stages.RightGameUIStage;
-import stages.SelectedBuildingStage;
-import stages.SuperpowerStage;
-import stages.TopLeftGameUIStage;
+import stages.*;
 import towers.BOPrototypes;
 
 public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver, PrototypeObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
-	private SelectedBuildingStage SBS;
+	private SelectedBoardObjectStage SBOS;
 	private TopLeftGameUIStage TL;
 	private NextWaveStage NW;
 	private SuperpowerStage SS;
 	
 
-	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,SelectedBuildingStage SBS, NextWaveStage NW, SuperpowerStage SS) {
+	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,
+					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS) {
 		this.HS = HS;
 		this.PMS = PMS;
-		this.SBS = SBS;
+		this.SBOS = SBOS;
 		this.TL = TL;
 		this.NW = NW;
 		this.SS = SS;
@@ -45,14 +41,14 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	@Override
 	public void actOnBuildingChange(BoardObject BO, boolean remove, boolean clickedOn) {
 		if(!remove && clickedOn){
-			SBS.setBuilding(BO);
+			SBOS.setBoardObjectStage(BO);
 			removeFromView(HS);
-			addToView(SBS);
+			addToView(SBOS);
 		} else if(remove){
-			removeFromView(SBS);
+			removeFromView(SBOS);
 			addToView(HS);
 		} else if(!remove && !clickedOn){
-			removeFromView(SBS);
+			removeFromView(SBOS);
 			addToView(HS);
 		}
 
