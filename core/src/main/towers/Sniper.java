@@ -38,7 +38,7 @@ public class Sniper extends Tower {
 
     @Override
     public Projectile makeProjectile() {
-        Projectile p = new Bullet(super.getTarget().getPos(), super.getPos(), DAMAGE, SPEED);
+        Projectile p = new Bullet(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED);
         super.notifyObservers(p, "spawn");
         return p;    
        }

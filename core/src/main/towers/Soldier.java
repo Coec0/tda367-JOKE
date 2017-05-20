@@ -32,9 +32,10 @@ public class Soldier extends Tower {
 
     @Override
     public Projectile makeProjectile() {
-        Projectile p = ProjectileFactory.createBullet(super.getTarget().getPos(), super.getPos(), DAMAGE, SPEED);
+        Projectile p = ProjectileFactory.createBullet(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED);
         super.notifyObservers(p, "spawn");
-        return p;    }
+        return p;
+       }
 
 
 	@Override

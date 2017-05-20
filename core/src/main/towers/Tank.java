@@ -34,7 +34,7 @@ public class Tank extends Tower {
    
     @Override
     public Projectile makeProjectile() {
-        Projectile p = ProjectileFactory.createMissile(super.getTarget().getPos(), super.getPos(), DAMAGE, SPEED);
+        Projectile p = ProjectileFactory.createMissile(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED);
         super.notifyObservers(p, "spawn");
         return p;
     }
