@@ -46,4 +46,12 @@ public class SelectedBoardObjectStage extends AbstractStage {
 			DC.removeStage(selectedBuildingStage);
 		}
 	}
+
+	public SelectedTowerStage getSelectedTowerStage() {
+		return selectedTowerStage;
+	}
+
+	public SelectedBuildingStage getSelectedBuildingStage() {
+		return selectedBuildingStage;
+	}
 }

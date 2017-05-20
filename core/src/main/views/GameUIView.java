@@ -46,6 +46,8 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 			addToView(SBOS);
 		} else if(remove){
 			removeFromView(SBOS);
+			removeFromView(SBOS.getSelectedBuildingStage());
+			removeFromView(SBOS.getSelectedTowerStage());
 			addToView(HS);
 		} else if(!remove && !clickedOn){
 			removeFromView(SBOS);
