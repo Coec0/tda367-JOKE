@@ -84,15 +84,15 @@ public class SuperpowerStage extends Stage {
     }
 
     private void createSuperPowerButtons(ClickListener superC){
-        nukeB = addSuperPowerButton("nuke", PortraitTextureHandler.getNukePortrait(),superC);
-        minutemenB = addSuperPowerButton("minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
-        boostB = addSuperPowerButton("boost", PortraitTextureHandler.getBoostPortrait(), superC);
-        wallB = addSuperPowerButton("wall", PortraitTextureHandler.getWallPortrait(), superC);
+        nukeB = addSuperPowerButton("nuke", "nuke", PortraitTextureHandler.getNukePortrait(),superC);
+        minutemenB = addSuperPowerButton("minutemen", "minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
+        boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
+        wallB = addSuperPowerButton("wall","wall", PortraitTextureHandler.getWallPortrait(), superC);
 
     }
 
-    private ImageTextButton addSuperPowerButton(String name, Texture texture, ClickListener CL) {
-        return addImageTextButton(name, "Superpower", texture, CL);
+    private ImageTextButton addSuperPowerButton(String name, String text ,Texture texture, ClickListener CL) {
+        return addImageTextButton(name, text, texture, CL);
     }
 
     private TextButton addTextButton(int x, int y, float width, float height, String name, String text ,ClickListener CL){
