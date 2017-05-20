@@ -1,5 +1,7 @@
 package controllers;
 
+import javax.swing.plaf.BorderUIResource;
+
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -28,8 +30,8 @@ public class BuildingController extends ClickListener implements InputProcessor 
     private BuildingModel BModel;
     private AlienModel AModeL;
     private Viewport WP;
-    private BoardObject onMouse;
-    private BoardObject highlighted;
+//    private BoardObject onMouse;
+//    private BoardObject highlighted;
     private BOPrototypes prototypes;
    
     
@@ -46,17 +48,13 @@ public class BuildingController extends ClickListener implements InputProcessor 
     @Override
     public void clicked(InputEvent event, float x, float y){
     	if(event.getListenerActor().getName().equals("remove")){
-    		if(onMouse!=null){
-    			BModel.deselect(onMouse);
-    			onMouse = null;	
-    		} else {
-    			BModel.sellBoardObject(highlighted, true);
-    		}
+    		BModel.trash();
     	}
     	
     	checkIfNewTarget(event);
     	checkIfUpgrade(event);
 
+    	BoardObject onMouse = null;
 		if(event.getListenerActor().getName().equals("soldier")){
 			onMouse = TowerFactory.createSoldier(prototypes, (int)x, (int)y); // x and y never used
 		}
@@ -72,24 +70,23 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		if(event.getListenerActor().getName().equals("netgunner")){
 			onMouse = TowerFactory.createNetGunner(prototypes, (int)x, (int)y); // x and y never used
 		}
-
 		if(event.getListenerActor().getName().equals("riotshield")){
 			onMouse = TowerFactory.createRiotShield(prototypes, (int)x, (int)y); // x and y never used
 		}
 
 		if(onMouse !=null){
-			BView.placeTexture(onMouse);
+			//BView.placeTexture(onMouse);
 			BModel.clickedBuilding(onMouse);
 		}
 			
     }
 
     private void checkIfUpgrade(InputEvent event){
-    	if (!(highlighted instanceof Tower)){
+    	if (!(BModel.getHighlighted() instanceof Tower)){
     		return;
 		}
 
-		Tower tower = (Tower)highlighted;
+		Tower tower = (Tower)BModel.getHighlighted();
     	if(event.getListenerActor().getName().equals("uDamage")){
 			BModel.upgradeTowerDamage(tower);
 		}
@@ -103,10 +100,10 @@ public class BuildingController extends ClickListener implements InputProcessor 
 	}
     
     private void checkIfNewTarget(InputEvent event) {
-    	if(!(highlighted instanceof Tower))
+    	if(!(BModel.getHighlighted() instanceof Tower))
     		return; //Abort if not tower
     	
-    	Tower tower = (Tower)highlighted;
+    	Tower tower = (Tower)BModel.getHighlighted();
     	
     	if(event.getListenerActor().getName().equals("tFirst")){
     		tower.setTargetState(new TargetFirst());
@@ -131,40 +128,19 @@ public class BuildingController extends ClickListener implements InputProcessor 
 		if(v.x >= WP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
-    	if(onMouse != null && BModel.isFreeSpace((int)v.x,(int) v.y, onMouse)){
-    		if(onMouse.getCost()<= BModel.getWhiteHouses().first().getMoney()){
-    			BModel.addBoardObject(onMouse, (int)v.x,(int) v.y);
-    			onMouse = null;
-    		}
-    	}else if(onMouse == null){
+    	if(BModel.getHighlighted() != null && !BModel.getHighlighted().isActive() && BModel.isFreeSpace((int)v.x,(int) v.y, BModel.getHighlighted())){
+    		BModel.purchaseBoardObject((int)v.x,(int) v.y);
+    	}else {
     		BoardObject clicked = getClickedBuilding((int)v.x,(int) v.y);
     		if(clicked != null){
-    			buildingClicked(clicked);
+    			BModel.clickedBuilding(clicked);
     		}else{
-    			groundClicked();
-    			System.out.print("X: " + screenX + " Y: " + screenY);
+    			BModel.deselectHighlighted();
+    			//System.out.print("X: " + screenX + " Y: " + screenY);
     		}
     	}
 		return false;
 	}
-    
-
-	
-	
-    private void buildingClicked(BoardObject building){
-    	System.out.println("BuildingCont: Tower clicked"); 
-		highlighted = building;
-		BModel.clickedBuilding(building);
-		
-    }
-    
-    private void groundClicked(){
-    	if(highlighted != null)
-    		BModel.deselect(highlighted);
-    	highlighted = null;
-		System.out.println("BuildingCont: Ground Clicked");
-    }
-    
     
     public BoardObject getClickedBuilding(int x, int y){
     
@@ -184,7 +160,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		if(onMouse != null){
+		if(BModel.getHighlighted() != null && !BModel.getHighlighted().isActive()){
 			Vector3 v = new Vector3 (screenX , screenY, 0);
     		WP.unproject(v);
 			BView.movePlaceTexture(v.x, v.y);

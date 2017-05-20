@@ -117,6 +117,9 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 		} else if(clickedOn && remove){ //When deselected
 			showBoardObjectOverlay(false);
 		} else if(clickedOn && !remove){ //When clicked on
+			if(!boardObject.isActive()){
+				placeTexture(boardObject);
+			}
 			updateBoardObjectOverlay(boardObject);
 			showBoardObjectOverlay(true);
 		}

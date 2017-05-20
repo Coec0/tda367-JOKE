@@ -21,7 +21,7 @@ public class BuildingModel implements UpdateObserver {
 	private Array<BoardObject> boardObjects;
 	private Array<Enemy> enemies;
 	private Array<Building> buildings;
-
+	private BoardObject highLighted;
 	private Radar radar;
 	private TowerUpgrader upgrader;
 	private CooldownHandler cdh;
@@ -60,12 +60,43 @@ public class BuildingModel implements UpdateObserver {
     	}
     }
 
+    /*public void clickedBuyBuilding(BoardObject building){
+    	onMouse = building;
+    	clickedBuilding(building);
+    }*/
+    
+    /**
+     * Sells object if placed. Removes from mouse if not placed
+     */
+    public void trash(){
+    	if(highLighted!=null && !highLighted.isActive()){
+			deselectHighlighted();
+			highLighted = null;	
+		} else {
+			sellBoardObject(highLighted, true);
+		}
+    }
+    
+    public void purchaseBoardObject(int x, int y){
+    	if(highLighted.getCost()<= getWhiteHouses().first().getMoney()){
+			addBoardObject(highLighted, x, y);
+			highLighted = null;
+		}
+    }
+    
+    public BoardObject getHighlighted(){
+    	return highLighted;
+    }
+    
     public void clickedBuilding(BoardObject building){
+    	highLighted = building;
     	notifyObservers(building, false, true);
     }
     
-	public void deselect(BoardObject building) {
-		notifyObservers(building, true, true);
+	public void deselectHighlighted() {
+		if(highLighted != null)
+			notifyObservers(highLighted, true, true);
+    	highLighted = null;	
 	}
     
 	public void addBoardObject(BoardObject BO){
