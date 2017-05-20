@@ -18,7 +18,8 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	private WavesCDHandler wcd;
 	private final String civilwarHASH="789ga789g27a8gd67";
 	private final String towerchangerHASH="7h82189g27a8gd67";
-	private boolean civilOnCooldown=false, TowerChangerOnCooldown=false;
+	private final String declareHASH="926hts9g27a8gd67";
+	private boolean civilOnCooldown=false, TowerChangerOnCooldown=false, declareWarOnCooldown=false;
 
 	public ExecutiveOrdersModel(BuildingModel BM, WavesCDHandler wcd, BOPrototypes prots){
 		this.wcd = wcd;
@@ -48,8 +49,12 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	}
 	
 	public void declareWar(){
-		DW.execute();
-		wcd.startCooldown(DW);
+		if(!declareWarOnCooldown){
+			DW.execute();
+			wcd.startCooldown(DW);
+			activateCD(7, declareHASH);
+			declareWarOnCooldown =true;
+		}
 	}
 	
 	
@@ -98,7 +103,10 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 			civilOnCooldown = false;
 		} else if(hash.equals(towerchangerHASH)){
 			TowerChangerOnCooldown = false;
+		} else if(hash.equals(declareHASH)){
+			declareWarOnCooldown = false;
 		}
+			
 		
 	}
 }
