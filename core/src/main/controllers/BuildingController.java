@@ -130,10 +130,10 @@ public class BuildingController extends ClickListener implements InputProcessor 
 			return false;
 		
     	if(BModel.getHighlighted() != null && !BModel.getHighlighted().isActive() && BModel.isFreeSpace((int)v.x,(int) v.y, BModel.getHighlighted())){
-    		BModel.purchaseBoardObject((int)v.x,(int) v.y);
+    		BModel.purchaseHighlightedObject((int)v.x,(int) v.y);
     	}else {
     		BoardObject clicked = getClickedBuilding((int)v.x,(int) v.y);
-    		if(clicked != null){
+    		if(clicked != null && !(clicked instanceof Wall)){
     			BModel.clickedBuilding(clicked);
     		}else{
     			BModel.deselectHighlighted();

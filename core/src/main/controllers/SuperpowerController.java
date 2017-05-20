@@ -76,7 +76,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
 		if(v.x >= VP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
-    	if(BModel.getHighlighted() != null && BModel.getHighlighted() instanceof Wall && finder.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
+    	if(BModel.getHighlighted() != null && BModel.getHighlighted() instanceof Wall && !BModel.getHighlighted().isActive() && finder.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
     		SModel.useWall((int)v.x, (int)v.y);
 //    		onMouse = null;
     	}

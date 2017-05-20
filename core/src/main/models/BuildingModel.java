@@ -71,13 +71,13 @@ public class BuildingModel implements UpdateObserver {
     public void trash(){
     	if(highLighted!=null && !highLighted.isActive()){
 			deselectHighlighted();
-			highLighted = null;	
 		} else {
 			sellBoardObject(highLighted, true);
 		}
+    	highLighted = null;	
     }
     
-    public void purchaseBoardObject(int x, int y){
+    public void purchaseHighlightedObject(int x, int y){
     	if(highLighted.getCost()<= getWhiteHouses().first().getMoney()){
 			addBoardObject(highLighted, x, y);
 			highLighted = null;

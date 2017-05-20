@@ -57,9 +57,9 @@ public class SuperpowerModel implements UpdateObserver {
     	RoadSection rs = finder.findRoadSection(node);
     	
     	if(finder.canRemoveNeighbors(rs)){
-    		Wall wall = new Wall("Trump's wall",x,y, 10);
+    		Wall wall = ((Wall)BModel.getHighlighted());
     		wall.rotateTowards(rs.getStart());
-    		BModel.addBoardObject(wall);
+    		BModel.purchaseHighlightedObject(x, y);
     		finder.removeNeighbor(rs);
     		finder.calculateAllShortest();
     	}
