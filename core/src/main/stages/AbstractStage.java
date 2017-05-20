@@ -9,6 +9,7 @@ import interfaces.IStage;
 
 public abstract class AbstractStage extends Stage implements IStage {
 
+	static final float width = Gdx.graphics.getWidth();
 	static final float centerWidth = Gdx.graphics.getWidth() / 2;
 	static final float centerHeight = Gdx.graphics.getHeight() / 2;
 	static final int center = Align.center;
