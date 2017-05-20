@@ -31,9 +31,10 @@ public class Map {
 		Array<MapNode> startingNodes = new Array<MapNode>();
 
 		startingNodes.add(mapNodes.get(0));
-		/*startingNodes.add(mapNodes.get(1));
+		startingNodes.add(mapNodes.get(1));
 		startingNodes.add(mapNodes.get(2));
-		startingNodes.add(mapNodes.get(3));*/
+		startingNodes.add(mapNodes.get(3));
+		startingNodes.add(mapNodes.get(4));
 
 		return startingNodes;
 	}
@@ -64,7 +65,7 @@ public class Map {
 		int y = Integer.parseInt(segments.get(2));
 
 		MapNode mapNode = new MapNode(segments.get(0) , new Node(x, y));
-
+			
 		for(int i = 3; i < segments.size; i++){
 			mapNode.addNeighbor(segments.get(i));
 		}

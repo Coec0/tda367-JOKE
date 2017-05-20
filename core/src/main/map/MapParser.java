@@ -31,7 +31,7 @@ public class MapParser {
     public Array<String> getParsedLine() {
         Array<String> arraySegments = new Array<String>();
         String[] segments = scanner.nextLine().split(";");
-        System.out.println(i++);
+        System.out.println(i++ + "  :hej : " + segments[0]);
         for (String segment : segments) {
         	
             arraySegments.add(segment);
