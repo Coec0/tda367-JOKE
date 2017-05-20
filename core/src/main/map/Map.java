@@ -31,9 +31,9 @@ public class Map {
 		Array<MapNode> startingNodes = new Array<MapNode>();
 
 		startingNodes.add(mapNodes.get(0));
-		startingNodes.add(mapNodes.get(1));
+		/*startingNodes.add(mapNodes.get(1));
 		startingNodes.add(mapNodes.get(2));
-		startingNodes.add(mapNodes.get(3));
+		startingNodes.add(mapNodes.get(3));*/
 
 		return startingNodes;
 	}

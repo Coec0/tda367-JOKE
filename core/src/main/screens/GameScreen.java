@@ -80,7 +80,7 @@ public class GameScreen implements Screen{
 		BOPrototypes prot = new BOPrototypes();
 //		map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
-		finder = new PathFinder(Mapnodes, Mapnodes.get(23), map.getStartingNodes(),radar);
+		finder = new PathFinder(Mapnodes, Mapnodes.peek(), map.getStartingNodes(),radar);
 		
 		CooldownHandler cdh = new CooldownHandler();
 		WavesCDHandler wcd = new WavesCDHandler();

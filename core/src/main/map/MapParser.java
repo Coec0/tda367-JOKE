@@ -9,10 +9,11 @@ import java.util.Scanner;
 public class MapParser {
 
     private Scanner scanner;
-
+    int i = 0;
     public MapParser(String mapName) {
         try {
             scanner = new Scanner(new File("maps/" + mapName + "Nodes.txt"));
+            
         } catch (FileNotFoundException e) {
             System.out.println("File not Found");
             e.printStackTrace();
@@ -30,8 +31,9 @@ public class MapParser {
     public Array<String> getParsedLine() {
         Array<String> arraySegments = new Array<String>();
         String[] segments = scanner.nextLine().split(";");
-
+        System.out.println(i++);
         for (String segment : segments) {
+        	
             arraySegments.add(segment);
         }
 

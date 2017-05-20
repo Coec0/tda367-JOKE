@@ -40,11 +40,13 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void addEnemy(Enemy enemy){
+		
 		if(enemy instanceof HighAlien){
 			enemy.setPath(defaultPath);
 		}else if(EWC.hasLevelRandomSpawn()){
 			enemy.setPath(finder.getShortestPath(startingPos.random()));
 		}else{
+			System.out.println("hejehj");
 			enemy.setPath(defaultPath);
 		}
 		enemy.setStartignPos();
@@ -137,7 +139,7 @@ public class AlienModel implements UpdateObserver {
 	
 	private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
-			addEnemy(AlienFactory.createToughAlien()); //TODO remove hardcoded alien!
+			addEnemy(AlienFactory.createAlien()); //TODO remove hardcoded alien!
 			enemyCounter++;
 		}else{
 			waveON = false;

@@ -60,7 +60,7 @@ public class MainMenuStage extends AbstractStage {
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.startGame(new Map("AlphaMap", new Texture("maps/AlphaMap.png")));
+                game.startGame(new Map("map1", new Texture("maps/map1.png")));
 //                stageSwitcher.showStage(stageSwitcher.getMapSelectStage());
             }
         });
