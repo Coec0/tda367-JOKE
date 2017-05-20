@@ -1,6 +1,7 @@
 package models;
 
 import cooldown.WavesCDHandler;
+import cooldown.WavesCooldown;
 import executive_orders.CivilWar;
 import executive_orders.DeclareWar;
 import executive_orders.TowerChanger;
@@ -8,13 +9,16 @@ import politics.parties.Party;
 import politics.parties.PartyFactory;
 import towers.BOPrototypes;
 
-public class ExecutiveOrdersModel {
+public class ExecutiveOrdersModel implements WavesCooldown {
 
 	private CivilWar CWR, CWD;
 	private DeclareWar DW;
 	private TowerChanger TC, OC;
 	private Party republican, democrat;
 	private WavesCDHandler wcd;
+	private final String civilwarHASH="789ga789g27a8gd67";
+	private final String towerchangerHASH="7h82189g27a8gd67";
+	private boolean civilOnCooldown=false, TowerChangerOnCooldown=false;
 
 	public ExecutiveOrdersModel(BuildingModel BM, WavesCDHandler wcd, BOPrototypes prots){
 		this.wcd = wcd;
@@ -29,27 +33,72 @@ public class ExecutiveOrdersModel {
 	}
 	
 	
+	private void activateCD(int rounds, String hash){
+		wcd.startCooldown(this, rounds, hash);
+	}
+	
+	private void civilWarCD(){
+		activateCD(5,civilwarHASH);
+		civilOnCooldown = true;
+	}
+	
+	private void towerchangerCD(){
+		activateCD(5,towerchangerHASH);
+		TowerChangerOnCooldown = true;
+	}
 	
 	public void declareWar(){
 		DW.execute();
 		wcd.startCooldown(DW);
 	}
 	
+	
 	public void civilWarAgainstRepublicans(){
-		CWR.execute();
+		if(!civilOnCooldown){
+			CWR.execute();
+			civilWarCD();
+		}
 	}
 	
 	public void civilWarAgainstDemocrats(){
-		CWD.execute();
+		if(!civilOnCooldown){
+			CWD.execute();
+			civilWarCD();
+		}
 	}
 	
 	public void taxCut(){
-		TC.execute();
-		wcd.startCooldown(TC);
+		if(!TowerChangerOnCooldown){
+			TC.execute();
+			wcd.startCooldown(TC);
+			towerchangerCD();
+		}
 	}
 	
 	public void obamaCare(){
-		OC.execute();
-		wcd.startCooldown(OC);
+		if(!TowerChangerOnCooldown){
+			OC.execute();
+			wcd.startCooldown(OC);
+			towerchangerCD();
+		}
+	}
+
+
+
+	@Override
+	public int cdTurns() {
+		return 0;
+	}
+
+
+
+	@Override
+	public void afterCD(String hash) {
+		if(hash.equals(civilwarHASH)){
+			civilOnCooldown = false;
+		} else if(hash.equals(towerchangerHASH)){
+			TowerChangerOnCooldown = false;
+		}
+		
 	}
 }

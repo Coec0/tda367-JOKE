@@ -10,11 +10,11 @@ private Array<TimeHelper> THs;
 		THs = new Array<TimeHelper>(false, 10);
 	}
 
-	public void startCooldown(WavesCooldown cooldown, int rounds){
-			THs.add(new TimeHelper(cooldown, rounds));
+	public void startCooldown(WavesCooldown cooldown, int rounds, String hash){
+			THs.add(new TimeHelper(cooldown, rounds, hash));
 	}
 	public void startCooldown(WavesCooldown cooldown){
-		startCooldown(cooldown, cooldown.cdTurns());
+		startCooldown(cooldown, cooldown.cdTurns(), "");
 	}
 	
 	
@@ -27,7 +27,7 @@ private Array<TimeHelper> THs;
 	
 		for(TimeHelper TH : THs){
 			if(TH.removeRound()){
-				TH.getWavesCooldown().afterCD();
+				TH.getWavesCooldown().afterCD(TH.getHash());
 				gonnaRemove.add(TH);
 			}
 		}	
@@ -39,11 +39,17 @@ private Array<TimeHelper> THs;
 	
 	
 	private class TimeHelper {
-		int rounds;
-		WavesCooldown cooldown;
-		public TimeHelper(WavesCooldown cooldown, int rounds){
+		private int rounds;
+		private WavesCooldown cooldown;
+		private String hash;
+		public TimeHelper(WavesCooldown cooldown, int rounds, String hash){
 			this.rounds = rounds;
 			this.cooldown = cooldown;
+			this.hash = hash;
+		}
+		
+		public String getHash(){
+			return hash;
 		}
 		
 		public boolean removeRound(){

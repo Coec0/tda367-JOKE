@@ -45,7 +45,7 @@ public class DeclareWar implements ExecutiveOrder, WavesCooldown {
 	}
 
 	@Override
-	public void afterCD() {
+	public void afterCD(String hash) {
 		prots.revertCost(1.5f);
 	}
 }

@@ -44,7 +44,7 @@ public class TowerChanger implements ExecutiveOrder, WavesCooldown {
 	}
 
 	@Override
-	public void afterCD() {
+	public void afterCD(String hash) {
 		prots.revertCost(costChange);
 		prots.revertDamage(damageChange);
 	}
