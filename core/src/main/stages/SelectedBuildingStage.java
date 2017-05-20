@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import buildings.BoardObject;
 import towers.Tower;
 
-public class SelectedBuildingStage extends Stage {
+public class SelectedBuildingStage extends SelectedBoardObjectStage {
 	private Skin skin;
 	private Label description, name;
 	private BoardObject selectedBuilding;
