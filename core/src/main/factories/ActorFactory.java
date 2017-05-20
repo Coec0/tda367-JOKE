@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import static com.badlogic.gdx.utils.Align.center;
@@ -29,7 +30,26 @@ public class ActorFactory {
 		return textButton;
 	}
 
-	public static Actor createLabel(String text, float x, float y) {
+	public static Actor createTextButton(String name, String text, ClickListener clickListener) {
+		TextButton textButton = new TextButton(text, skin, "default");
+		textButton.setName(name);
+		textButton.addListener(clickListener);
+		return textButton;
+	}
+
+	public static Actor createTextButton(String name, String text, float x, float y, ClickListener clickListener) {
+		TextButton textButton = new TextButton(text, skin, "default");
+		textButton.setName(name);
+		textButton.setPosition(x, y);
+		textButton.addListener(clickListener);
+		return textButton;
+	}
+
+	public static Actor createLabel(String text) {
+		return new Label(text, skin, "default");
+	}
+
+	public static Label createLabel(String text, float x, float y) {
 		Label label = new Label(text, skin, "default");
 		label.setPosition(x, y);
 		return label;
@@ -39,6 +59,10 @@ public class ActorFactory {
 		Label label = new Label(text, skin, "default");
 		label.setPosition(x, y, posAlignment);
 		return label;
+	}
+
+	public static TextArea createTextArea(String text) {
+		return new TextArea(text, skin, "default");
 	}
 
 	public static Actor createTextArea(String text, float x, float y, float width, float height) {
