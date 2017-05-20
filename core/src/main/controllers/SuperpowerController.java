@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import buildings.BoardObject;
 import buildings.Wall;
 import models.AlienModel;
 import models.BuildingModel;
@@ -24,7 +23,6 @@ public class SuperpowerController extends ClickListener implements InputProcesso
     private AlienModel AModel;
     private BuildingModel BModel;
     private Viewport VP;
-//    private BoardObject onMouse;
     private BOPrototypes prototypes;
 
     private PathFinder finder;
@@ -78,7 +76,6 @@ public class SuperpowerController extends ClickListener implements InputProcesso
 		
     	if(BModel.getHighlighted() != null && BModel.getHighlighted() instanceof Wall && !BModel.getHighlighted().isActive() && finder.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
     		SModel.useWall((int)v.x, (int)v.y);
-//    		onMouse = null;
     	}
         return false;
     }

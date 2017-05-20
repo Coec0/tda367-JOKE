@@ -58,6 +58,7 @@ public class SuperpowerModel implements UpdateObserver {
     	
     	if(finder.canRemoveNeighbors(rs)){
     		Wall wall = ((Wall)BModel.getHighlighted());
+    		wall.setPos(node);
     		wall.rotateTowards(rs.getStart());
     		BModel.purchaseHighlightedObject(x, y);
     		finder.removeNeighbor(rs);
