@@ -1,5 +1,6 @@
 package executive_orders;
 
+import buildings.WhiteHouse;
 import cooldown.WavesCooldown;
 import politics.parties.Party;
 import towers.BOPrototypes;
@@ -9,18 +10,21 @@ public class TowerChanger implements ExecutiveOrder, WavesCooldown {
 	private float costChange;
 	private float damageChange;
 	private Party party;
+	private WhiteHouse whitehouse;
 	
-	public TowerChanger(BOPrototypes prots, float costChange, float damageChange, Party party){
+	public TowerChanger(WhiteHouse whitehouse, BOPrototypes prots, float costChange, float damageChange, Party party){
 		this.prots = prots;
 		this.costChange = costChange;
 		this.damageChange = damageChange;
 		this.party = party;
+		this.whitehouse = whitehouse;
 	}
 	
 	@Override
 	public void execute() {
 		prots.changeCost(costChange);
 		prots.changeDamage(damageChange);
+		whitehouse.voteParty(party);
 	}
 
 	@Override

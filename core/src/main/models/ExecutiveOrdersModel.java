@@ -23,9 +23,9 @@ public class ExecutiveOrdersModel {
 		CWD = new CivilWar(BM, republican, democrat);
 		CWR = new CivilWar(BM, democrat, republican);
 		
-		TC = new TowerChanger(prots, 0.5f, 0.5f , PartyFactory.Republican(100));
-		OC = new TowerChanger(prots, 1.5f, 1.5f, PartyFactory.Democrat(100));
-		DW = new DeclareWar(BM.getWhiteHouses().peek(), 30000, republican, prots);
+		TC = new TowerChanger(BM.getWhiteHouses().peek(), prots, 0.5f, 0.5f , PartyFactory.Republican(100));
+		OC = new TowerChanger(BM.getWhiteHouses().peek(), prots, 1.5f, 1.5f, PartyFactory.Democrat(100));
+		DW = new DeclareWar(BM.getWhiteHouses().peek(), 30000, PartyFactory.Republican(30), prots);
 	}
 	
 	

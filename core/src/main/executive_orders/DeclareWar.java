@@ -21,6 +21,7 @@ public class DeclareWar implements ExecutiveOrder, WavesCooldown {
 	@Override
 	public void execute() {
 		giveMoney(amount);
+		whitehouse.voteParty(party);
 	}
 	
 	private void giveMoney(int amount){
