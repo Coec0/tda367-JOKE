@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import buildings.BoardObject;
+import buildings.Wall;
 import towers.BOPrototypes;
 import towers.Tower;
 import towers.TowerFactory;
@@ -125,7 +126,7 @@ public class BuildingController extends ClickListener implements InputProcessor 
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     	Vector3 v = new Vector3 (screenX , screenY, 0);
 		WP.unproject(v);
-		if(v.x >= WP.getWorldWidth()) //Makes sure you cant click on ui
+		if(BModel.getHighlighted() != null && (BModel.getHighlighted() instanceof Wall) || v.x >= WP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
     	if(BModel.getHighlighted() != null && !BModel.getHighlighted().isActive() && BModel.isFreeSpace((int)v.x,(int) v.y, BModel.getHighlighted())){
