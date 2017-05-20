@@ -8,9 +8,10 @@ import com.badlogic.gdx.graphics.Texture;
 public class PortraitTextureHandler {
 
     private static final Texture nuke = new Texture("portraits/truman.jpg");
-    private static final Texture minutemen = new Texture("portraits/truman.jpg");
-    private static final Texture wall = new Texture("portraits/truman.jpg");
-    private static final Texture boost = new Texture("portraits/truman.jpg");
+    private static final Texture minutemen = new Texture("portraits/washington.jpeg");
+    private static final Texture wall = new Texture("portraits/trump.jpg");
+    private static final Texture boost = new Texture("portraits/roosevelt.jpg");
+    //might have to be changed due to copyright
 
     public static Texture getNukePortrait(){
         return nuke;
