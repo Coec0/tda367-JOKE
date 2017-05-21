@@ -7,7 +7,10 @@ import enemies.*;
  * Created by Emil on 2017-05-21.
  */
 public class LevelCreator {
+
+    //Array containing all the levels created in constructor
     Array<Level> levels = new Array<Level>();
+
 
     Array<LevelHelperObject> L1 = new Array<LevelHelperObject>();
     Array<LevelHelperObject> L2 = new Array<LevelHelperObject>();
@@ -17,6 +20,7 @@ public class LevelCreator {
     Array<LevelHelperObject> L6 = new Array<LevelHelperObject>();
 
 
+    //Aliens available to use
     Alien alien = new Alien();
     HighAlien highAlien = new HighAlien();
     SneakyAlien sneakyAlien = new SneakyAlien();
