@@ -45,7 +45,7 @@ public class ActorFactory {
 		return textButton;
 	}
 
-	public static Actor createLabel(String text) {
+	public static Label createLabel(String text) {
 		return new Label(text, skin, "default");
 	}
 
