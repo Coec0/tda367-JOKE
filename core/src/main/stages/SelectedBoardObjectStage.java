@@ -40,7 +40,7 @@ public class SelectedBoardObjectStage extends AbstractStage {
 			DC.removeStage(selectedTowerStage);
 		}
 
-		if (boardObject instanceof Building) {
+		if (!(boardObject instanceof Tower)) {
 			DC.addStage(selectedBuildingStage);
 			selectedBuildingStage.setBuilding(boardObject);
 		} else {
