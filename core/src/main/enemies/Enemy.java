@@ -42,6 +42,7 @@ public abstract class Enemy {
 	}
 	
 	public void placeInNet(){
+		speed = 1;
 		inNet = true;
 	}
 	public void setStartignPos(){

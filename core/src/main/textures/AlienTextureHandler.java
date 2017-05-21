@@ -21,23 +21,23 @@ public class AlienTextureHandler {
 	private static final Texture highAlienNet = new Texture("aliens/highalien/highaliennet512.png");
 
 	public static Texture getAlienNetTexture() {
-		return alien;
+		return alienNet;
 	}
 
 	public static Texture getAlienWithHelmetNetTexture() {
-		return alienWithHelmet;
+		return alienWithHelmetNet;
 	}
 
 	public static Texture getSneakyAlienNetTexture() {
-		return sneakyAlien;
+		return sneakyAlienNet;
 	}
 
 	public static Texture getToughAlienNetTexture() {
-		return toughAlien;
+		return toughAlienNet;
 	}
 
 	public static Texture getHighAlienNetTexture() {
-		return highAlien;
+		return highAlienNet;
 	}
 	
 	public static Texture getAlienTexture() {

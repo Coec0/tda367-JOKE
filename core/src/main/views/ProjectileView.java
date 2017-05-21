@@ -7,6 +7,7 @@ import projectiles.BazookaMissile;
 import projectiles.Bullet;
 import projectiles.EngineerBullet;
 import projectiles.Missile;
+import projectiles.Net;
 import projectiles.Projectile;
 import textures.ProjectileTextureHandler;
 import utilities.DrawablesCollector;
@@ -31,6 +32,9 @@ public class ProjectileView extends View<Projectile> {
             return ProjectileTextureHandler.getEngineerBulletTexture();
         if (projectile instanceof BazookaMissile)
             return ProjectileTextureHandler.getBazookaMissileTexture();
+        if(projectile instanceof Net){
+        	return ProjectileTextureHandler.getNetTexture();
+        }
         return null;
     }
 

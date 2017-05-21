@@ -13,9 +13,14 @@ public class ProjectileTextureHandler {
 	private static final Texture artilleryRound = new Texture("projectiles/bullet.png");
 	private static final Texture engineerBullet = new Texture("projectiles/bullet.png");
 	private static final Texture bazookaMissile = new Texture("projectiles/bullet.png");
+	private static final Texture net = new Texture("projectiles/blacknet.png");
 
 	public static Texture getBulletTexture() {
 		return bullet;
+	}
+	
+	public static Texture getNetTexture() {
+		return net;
 	}
 
 	public static Texture getMissileTexture() {

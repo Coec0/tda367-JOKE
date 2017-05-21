@@ -3,7 +3,9 @@ package models;
 import com.badlogic.gdx.utils.Array;
 
 import cooldown.WavesCDHandler;
-import enemies.*;
+import enemies.AlienFactory;
+import enemies.Enemy;
+import enemies.HighAlien;
 import map.MapNode;
 import observers.AlienObserver;
 import observers.UpdateObserver;
@@ -26,12 +28,14 @@ public class AlienModel implements UpdateObserver {
 	private int enemyCounter = 0;
 	private Array<MapNode> startingPos;
 	private WavesCDHandler wavescdhandler;
+	private Array<Enemy> nettedEnemies;
 
 	public AlienModel(PathFinder finder, Array<MapNode> startingPos, WavesCDHandler wavescdhandler) {
 		this.startingPos = startingPos;
 		this.finder = finder;
 		EWC = new EnemyWavesCreator();
 		enemies = new Array<Enemy>(false, 10);
+		nettedEnemies = new Array<Enemy>(false,10);
 		defaultPath = finder.getShortestPath(this.startingPos.get(0));
 		this.wavescdhandler = wavescdhandler;
 		//direction = finder.getDirectionList();
@@ -55,6 +59,7 @@ public class AlienModel implements UpdateObserver {
 	public boolean getWaveOn(){
 		return waveON;
 	}
+	
 
 	public boolean getWaveAlive(){
 		return waveAlive;
@@ -68,6 +73,11 @@ public class AlienModel implements UpdateObserver {
 				if(enemy.isDead()){ //check if alien is dead
 					System.out.println("dead");
 					removeEnemy(enemy);
+				}if(enemy.isInNet()){
+					if(!nettedEnemies.contains(enemy, false)){
+						nettedEnemies.add(enemy);
+						notifyObservers(enemy, false);
+					}
 				}
 			}
 		//}
@@ -78,6 +88,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public Array<Enemy> getAllEnemies(){
+		
 		return enemies;
 	}
 	
@@ -137,19 +148,9 @@ public class AlienModel implements UpdateObserver {
 	
 	private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
-			if (wave.get(enemyCounter) instanceof Alien)
-				addEnemy(AlienFactory.createAlien());
-			if (wave.get(enemyCounter) instanceof AlienWithHelmet)
-				addEnemy(AlienFactory.createAlienWithHelmet());
-			if (wave.get(enemyCounter) instanceof SneakyAlien)
-				addEnemy(AlienFactory.createSneakyAlien());
-			if (wave.get(enemyCounter) instanceof HighAlien)
-				addEnemy(AlienFactory.createHighAlien());
-			if (wave.get(enemyCounter) instanceof ToughAlien)
-				addEnemy(AlienFactory.createToughAlien());
+			addEnemy(AlienFactory.createAlien()); //TODO remove hardcoded alien!
 			enemyCounter++;
 		}else{
-			enemyCounter = 0;
 			waveON = false;
 		}
 	}

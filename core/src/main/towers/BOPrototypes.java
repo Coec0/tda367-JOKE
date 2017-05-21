@@ -6,8 +6,8 @@ import buildings.Building;
 import observers.PrototypeObserver;
 
 public class BOPrototypes {
-	private Tower ranger, soldier, sniper, tank, minutemen;
-	private Building riotShield, netGunner;
+	private Tower ranger, soldier, sniper, tank, minutemen, netGunner;
+	private Building riotShield;
 	private Array<Tower> towers;
 	private Array<Building> buildings;
 	public BOPrototypes(){
@@ -108,11 +108,12 @@ public class BOPrototypes {
 		towers.add(sniper);
 		towers.add(tank);
 		towers.add(minutemen);
+		towers.add(netGunner);
 		
 		riotShield = new RiotShield(0,0);
 		netGunner = new NetGunner(0,0);
 		buildings.add(riotShield);
-		buildings.add(netGunner);
+		
 		notifyObservers();
 	}
 	
