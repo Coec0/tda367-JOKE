@@ -9,6 +9,7 @@ import observers.ProjectileObserver;
 import politics.parties.Party;
 import projectiles.Projectile;
 import towers.targetmethods.ITargetState;
+import towers.targetmethods.TargetFirst;
 
 public abstract class Tower extends BoardObject{
 	private float radius;
@@ -28,7 +29,7 @@ public abstract class Tower extends BoardObject{
 		super(name, x, y,size, cost);
 		this.cooldown = new CooldownObject(cooldown);
 		this.radius = radius;
-		this.TState = new towers.targetmethods.TargetLast();
+		this.TState = new TargetFirst();
 		this.damage = damage;
 		this.party = party;
 	}
