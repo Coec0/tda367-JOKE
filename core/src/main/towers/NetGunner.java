@@ -11,8 +11,8 @@ import politics.parties.PartyFactory;
  * Created by Emil on 2017-05-07.
  */
 public class NetGunner extends Building {
-    private static final String NAME = "AlienNerfer";
-    private static final String DESCRIPTION = "A building slowing down aliens in its radius";
+    private static final String NAME = "NetGunner";
+    private static final String DESCRIPTION = "A building theat slows down aliens with his net";
     private static final int SIZE = 50;
     private static final int SLOWRADIUS = 500;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now

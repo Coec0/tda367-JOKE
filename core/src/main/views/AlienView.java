@@ -15,7 +15,18 @@ public class AlienView extends View<Enemy> implements AlienObserver {
 	
 	@Override
 	protected Texture selectTexture(Enemy enemy) {
-		
+		if(enemy.isInNet()){
+			if(enemy instanceof Alien)
+				return AlienTextureHandler.getAlienNetTexture();
+			if(enemy instanceof SneakyAlien)
+				return AlienTextureHandler.getSneakyAlienNetTexture();
+			if(enemy instanceof AlienWithHelmet)
+				return AlienTextureHandler.getAlienWithHelmetNetTexture();
+			if(enemy instanceof HighAlien)
+				return AlienTextureHandler.getHighAlienNetTexture();
+			if(enemy instanceof ToughAlien)
+				return AlienTextureHandler.getToughAlienNetTexture();
+		}
 		if(enemy instanceof Alien)
 			return AlienTextureHandler.getAlienTexture();
 		if(enemy instanceof SneakyAlien)
@@ -33,9 +44,12 @@ public class AlienView extends View<Enemy> implements AlienObserver {
 
 	@Override
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
-		if(!remove)
+		if(!remove){
+			if(enemy.isInNet()){
+				enemy.getSpriteAdapter().setTexture(selectTexture(enemy));
+			}
 			addToView(enemy.getSpriteAdapter(), enemy, 0.3f);
-		else
+		}else
 			removeFromView(enemy.getSpriteAdapter());
 		
 	}

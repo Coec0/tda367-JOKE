@@ -14,6 +14,7 @@ public abstract class Enemy {
 	private float radius;
 	private Array<Node> path;
 	private float money=20;
+	private boolean inNet = false;
 	
 	public Enemy(int x, int y, float speed, float health,float radius) {
 		this.pos = new SpriteAdapter(x, y);
@@ -36,6 +37,13 @@ public abstract class Enemy {
 		}
 	}
 	
+	public boolean isInNet(){
+		return inNet;
+	}
+	
+	public void placeInNet(){
+		inNet = true;
+	}
 	public void setStartignPos(){
 		setPos(path.get(0));
 	}

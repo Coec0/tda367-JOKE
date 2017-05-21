@@ -13,7 +13,33 @@ public class AlienTextureHandler {
 	private static final Texture sneakyAlien = new Texture("aliens/sneakyalien/sneakyalien512.png");
 	private static final Texture toughAlien = new Texture("aliens/toughalien/toughalien512.png");
 	private static final Texture highAlien = new Texture("aliens/highalien/highalien512.png");
+	
+	private static final Texture alienNet = new Texture("aliens/alien/aliennet512.png");
+	private static final Texture alienWithHelmetNet = new Texture("aliens/alienwithhelmet/alienwithhelmetnet512.png");
+	private static final Texture sneakyAlienNet = new Texture("aliens/sneakyalien/sneakyaliennet512.png");
+	private static final Texture toughAlienNet = new Texture("aliens/toughalien/toughaliennet512.png");
+	private static final Texture highAlienNet = new Texture("aliens/highalien/highaliennet512.png");
 
+	public static Texture getAlienNetTexture() {
+		return alien;
+	}
+
+	public static Texture getAlienWithHelmetNetTexture() {
+		return alienWithHelmet;
+	}
+
+	public static Texture getSneakyAlienNetTexture() {
+		return sneakyAlien;
+	}
+
+	public static Texture getToughAlienNetTexture() {
+		return toughAlien;
+	}
+
+	public static Texture getHighAlienNetTexture() {
+		return highAlien;
+	}
+	
 	public static Texture getAlienTexture() {
 		return alien;
 	}
