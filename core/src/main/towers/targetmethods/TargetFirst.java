@@ -20,4 +20,9 @@ public class TargetFirst implements ITargetState{
 		return firstE;
 	}
 
+	@Override
+	public String toString() {
+		return "First";
+	}
+
 }

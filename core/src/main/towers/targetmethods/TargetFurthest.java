@@ -33,4 +33,9 @@ public class TargetFurthest implements ITargetState {
     	
     	return (float)Math.sqrt((deltaX*deltaX) + (deltaY*deltaY));
 	}
+
+	@Override
+	public String toString() {
+		return "Furthest";
+	}
 }

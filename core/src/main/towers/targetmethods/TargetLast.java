@@ -18,4 +18,9 @@ public class TargetLast implements ITargetState {
 		}
 		return lastE;
 	}
+
+	@Override
+	public String toString() {
+		return "Last";
+	}
 }

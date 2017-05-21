@@ -34,4 +34,9 @@ public class TargetClosest implements ITargetState {
     	return (float)Math.sqrt((deltaX*deltaX) + (deltaY*deltaY));
 	}
 
+	@Override
+	public String toString() {
+		return "Closest";
+	}
+
 }

@@ -23,4 +23,9 @@ public class TargetStrongest implements ITargetState  {
 		return strongestE;
 	}
 
+	@Override
+	public String toString() {
+		return "Strongest";
+	}
+
 }

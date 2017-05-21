@@ -23,5 +23,8 @@ public class TargetWeakest implements ITargetState  {
 		return weakestE;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Weakest";
+	}
 }
