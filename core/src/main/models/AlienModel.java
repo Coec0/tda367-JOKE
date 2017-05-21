@@ -3,9 +3,7 @@ package models;
 import com.badlogic.gdx.utils.Array;
 
 import cooldown.WavesCDHandler;
-import enemies.AlienFactory;
-import enemies.Enemy;
-import enemies.HighAlien;
+import enemies.*;
 import map.MapNode;
 import observers.AlienObserver;
 import observers.UpdateObserver;
@@ -139,9 +137,19 @@ public class AlienModel implements UpdateObserver {
 	
 	private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
-			addEnemy(AlienFactory.createAlien()); //TODO remove hardcoded alien!
+			if (wave.get(enemyCounter) instanceof Alien)
+				addEnemy(AlienFactory.createAlien());
+			if (wave.get(enemyCounter) instanceof AlienWithHelmet)
+				addEnemy(AlienFactory.createAlienWithHelmet());
+			if (wave.get(enemyCounter) instanceof SneakyAlien)
+				addEnemy(AlienFactory.createSneakyAlien());
+			if (wave.get(enemyCounter) instanceof HighAlien)
+				addEnemy(AlienFactory.createHighAlien());
+			if (wave.get(enemyCounter) instanceof ToughAlien)
+				addEnemy(AlienFactory.createToughAlien());
 			enemyCounter++;
 		}else{
+			enemyCounter = 0;
 			waveON = false;
 		}
 	}
