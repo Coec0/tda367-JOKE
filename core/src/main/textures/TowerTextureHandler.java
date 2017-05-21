@@ -13,7 +13,6 @@ public class TowerTextureHandler {
 	private static final Texture ranger = new Texture("towers/ranger/ranger256.png");
 	private static final Texture sniper = new Texture("towers/sniper/sniper512.png");
 	private static final Texture netGunner = new Texture("towers/netgunner/netgunner512.png");
-	private static final Texture towerBooster = new Texture("towers/soldier/soldier.png");
 	private static final Texture riotShield = new Texture("towers/riotshield/riotshield256.png");
 	private static final Texture minutemen = new Texture("towers/minuteman/minuteman512.png");
 
@@ -35,10 +34,6 @@ public class TowerTextureHandler {
 
 	public static Texture getNetGunnerTexture() {
 		return netGunner;
-	}
-
-	public static Texture getTowerboosterTexture() {
-		return towerBooster;
 	}
 
 	public static Texture getRiotshieldTexture() {

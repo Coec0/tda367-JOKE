@@ -81,8 +81,6 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 			return BuildingTextureHandler.getWallTexture();
 		if(boardobject instanceof NetGunner)
 			return TowerTextureHandler.getNetGunnerTexture();
-		if(boardobject instanceof TowerBooster)
-			return TowerTextureHandler.getTowerboosterTexture();
 		if(boardobject instanceof RiotShield)
 			return TowerTextureHandler.getRiotshieldTexture();
 		if (boardobject instanceof Minutemen){
