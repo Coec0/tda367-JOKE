@@ -103,6 +103,8 @@ public class BOPrototypes {
 		sniper = new Sniper(0, 0);
 		tank = new Tank(0, 0);
 		minutemen = new Minutemen(0,0);
+		netGunner = new NetGunner(0,0);
+		
 		towers.add(ranger);
 		towers.add(soldier);
 		towers.add(sniper);
@@ -111,7 +113,6 @@ public class BOPrototypes {
 		towers.add(netGunner);
 		
 		riotShield = new RiotShield(0,0);
-		netGunner = new NetGunner(0,0);
 		buildings.add(riotShield);
 		
 		notifyObservers();
