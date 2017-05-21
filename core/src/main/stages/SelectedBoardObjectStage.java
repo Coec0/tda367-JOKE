@@ -25,8 +25,9 @@ public class SelectedBoardObjectStage extends AbstractStage {
 
 	public SelectedBoardObjectStage(InputMultiplexer inputMultiplexer, ClickListener clickListener) {
 		selectedBuildingStage = new SelectedBuildingStage(clickListener);
+		selectedBuildingStage.setVisible(false);
 		selectedTowerStage = new SelectedTowerStage(clickListener);
-
+		selectedTowerStage.setVisible(false);
 		inputMultiplexer.addProcessor(selectedBuildingStage);
 		inputMultiplexer.addProcessor(selectedTowerStage);
 	}
