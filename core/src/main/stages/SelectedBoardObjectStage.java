@@ -32,7 +32,7 @@ public class SelectedBoardObjectStage extends AbstractStage {
 	}
 
 	public void setBoardObjectStage(BoardObject boardObject) {
-		if (boardObject instanceof Tower && boardObject.isActive()) {
+		if (boardObject instanceof Tower) {
 			DC.addStage(selectedTowerStage);
 			selectedTowerStage.setTower((Tower) boardObject);
 		} else {
