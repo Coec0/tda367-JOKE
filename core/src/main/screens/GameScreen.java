@@ -89,7 +89,7 @@ public class GameScreen implements Screen{
 		BuildingModel BM = new BuildingModel(AM.getAllEnemies(), cdh,radar, finder);
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView();
-		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
+		
 		
 		
 		
@@ -106,15 +106,14 @@ public class GameScreen implements Screen{
 		
 		//camera.position.set(1280/2, 720/2, 0);
 		
-
-		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM, prot);
+		
 		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder, prot);
 		
 		
 		IAMain.addObserver(BM);
 		IAMain.addObserver(AM);
 		IAMain.addObserver(PM);
-		IAMain.addObserver(SM);
+		
 		IAMain.addObserver(cdh);
 		InputMultiplexer imp = new InputMultiplexer();
 		imp.addProcessor(AController);
@@ -124,6 +123,10 @@ public class GameScreen implements Screen{
 		
 		AM.addObserver(WH);
 		BM.addWhiteHouse(WH);
+		
+		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
+		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM, prot);
+		IAMain.addObserver(SM);
 		
 		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM, wcd,prot);
 		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);

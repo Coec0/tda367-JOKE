@@ -27,6 +27,21 @@ public class Parliament {
 		}
 	}
 	
+	public void removePoints(Party party){
+		if(parties.contains(party, false)){
+			parties.get(parties.indexOf(party, false)).removePoints(party.getPoints());
+		}
+	}
+	
+	public Party getParty(Party party){
+		if(party != null){
+			if(parties.contains(party, false)){
+				return parties.get(parties.indexOf(party, false));
+			}
+		}
+		return null;
+	}
+	
 	public Array<Party> getParties(){
 		return parties;
 	}

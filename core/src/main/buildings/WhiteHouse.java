@@ -44,6 +44,20 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 		}
 	}
 	
+	public void removePointsParty(Party party){
+		if(party != null){
+			parliament.removePoints(party);
+			notifyObservers(this);
+		}
+	}
+	
+	public Party getParty(Party party){
+		if(party!= null){
+			return parliament.getParty(party);
+		}
+		return null;
+	}
+	
 	public Parliament getParliament(){
 		return parliament;
 	}
