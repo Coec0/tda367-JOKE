@@ -106,7 +106,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 	@Override
 	public void actOnBuildingChange(BoardObject boardObject, boolean remove, boolean clickedOn) {
 		if( !clickedOn && !remove){ //When placed on ground
-			addToView(boardObject.getSpriteAdapter(), boardObject, boardObject.getScale());
+			addToView(boardObject.getSpriteAdapter(), boardObject, boardObject.getSize());
 			removePlaceTexture();
 			showBoardObjectOverlay(false);
 		} else if(!clickedOn && remove){ //When removed

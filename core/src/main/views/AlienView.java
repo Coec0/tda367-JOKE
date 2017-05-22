@@ -10,6 +10,7 @@ import enemies.SneakyAlien;
 import enemies.ToughAlien;
 import observers.AlienObserver;
 import textures.AlienTextureHandler;
+import utilities.SpriteAdapter;
 
 public class AlienView extends View<Enemy> implements AlienObserver {
 	
@@ -41,15 +42,19 @@ public class AlienView extends View<Enemy> implements AlienObserver {
 		return null;
 		
 	}
+	
+	
 
 	@Override
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
+		SpriteAdapter sprite = enemy.getSpriteAdapter();
+		//System.out.println(scale);
 		if(!remove){
 			if(enemy.isInNet()){
-				enemy.getSpriteAdapter().setTexture(selectTexture(enemy));
-				enemy.getSpriteAdapter().setSize(enemy.getSpriteAdapter().getWidth() * enemy.getScale(), enemy.getSpriteAdapter().getHeight() * enemy.getScale());
+				sprite.setTexture(selectTexture(enemy));
+				sprite.setSize(sprite.getWidth() * super.getScale(sprite, enemy.getRadius()), sprite.getHeight()*super.getScale(sprite, enemy.getRadius()));
 			}else{
-				addToView(enemy.getSpriteAdapter(), enemy, enemy.getScale());
+				addToView(enemy.getSpriteAdapter(), enemy, enemy.getRadius());
 			}
 			
 		}else

@@ -25,7 +25,7 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
 
     public void spawnProjectile(Projectile projectile) {
         PM.addProjectile(projectile);
-        PW.addToView(projectile.getSpriteAdapter(), projectile, 0.25f);
+        PW.addToView(projectile.getSpriteAdapter(), projectile, projectile.getRadius());
     }
 
     public void removeProjectile(Projectile projectile) {

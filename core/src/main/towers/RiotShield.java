@@ -58,7 +58,7 @@ public class RiotShield extends Building {
         }
         super.getCooldownObject().setOnCooldown(true);
     }
-
+    
 	
 	@Override
 	public BoardObject clone(int x, int y) {

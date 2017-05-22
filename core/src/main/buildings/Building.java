@@ -35,6 +35,7 @@ public abstract class Building extends BoardObject {
 		return cooldown;
 	}
 	
+	
 	public abstract void usePower();
 	
 }
