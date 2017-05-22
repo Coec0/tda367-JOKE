@@ -9,6 +9,7 @@ import projectiles.Projectile;
  * Created by Emil on 2017-05-14.
  */
 public class Minutemen extends Tower {
+    //Tower specific stats, name and description
 
     private static final int RADIUS = 1000;
     private static final String NAME = "MINUTEMEN";

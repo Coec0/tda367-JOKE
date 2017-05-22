@@ -8,6 +8,10 @@ import utilities.Node;
 /**
  * Created by Emil on 2017-03-31.
  */
+
+/**
+ * Targets the closest enemy available
+ */
 public class TargetClosest implements ITargetState {
 
 	@Override

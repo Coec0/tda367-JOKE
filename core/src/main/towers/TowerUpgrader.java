@@ -4,6 +4,9 @@ package towers;
  * Created by Emil on 2017-05-03.
  */
 public class TowerUpgrader {
+    /**
+     * This class handles all permament tower upgrades
+     */
 
     public TowerUpgrader(){
 

@@ -8,6 +8,7 @@ import politics.parties.PartyFactory;
 import projectiles.Projectile;
 
 public class Soldier extends Tower {
+    //Tower specific stats, name and description
     private static final String NAME = "SOLDIER";
     private static String DESCRIPTION = "A regular soldier";
     private static final int RADIUS = 300;

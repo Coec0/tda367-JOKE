@@ -1,6 +1,13 @@
 package towers;
 
 public class TowerFactory {
+	/**
+	 * Factory class for all available tower types to create
+	 * @param prot prototypes to copy from
+	 * @param x position
+	 * @param y position
+	 * @return corresponding tower for each method
+	 */
 	public static Soldier createSoldier(BOPrototypes prot, int x, int y) {
 		return prot.getSoldier(x, y);
 	}

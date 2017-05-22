@@ -5,8 +5,11 @@ import com.badlogic.gdx.utils.Array;
 import enemies.Enemy;
 import utilities.Node;
 
-public class TargetLast implements ITargetState {
+/**
+ * Targets the last enemy in their node array
+ */
 
+public class TargetLast implements ITargetState {
 	public Enemy getEnemy(Node pos, Array<Enemy> enemies) {
 		int last=enemies.first().getPath().size - enemies.first().getNodeArrayPos();
 		Enemy lastE = enemies.first();

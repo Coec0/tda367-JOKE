@@ -12,6 +12,7 @@ import politics.parties.PartyFactory;
  * Created by Emil on 2017-05-09.
  */
 public class RiotShield extends Building {
+    //Tower specific stats, name and description
 
     private static final String NAME = "RIOT SHIELD";
     private static String DESCRIPTION = "Pushes back nearby enemies";

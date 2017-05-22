@@ -8,7 +8,7 @@ import politics.parties.PartyFactory;
 import projectiles.Projectile;
 
 public class Tank extends Tower {
-
+    //Tower specific stats, name and description
     private static final String NAME = "TANK";
     private static String DESCRIPTION = "Great damage but shoots slow";
     private static final int RADIUS = 400;

@@ -5,6 +5,10 @@ import com.badlogic.gdx.utils.Array;
 import enemies.Enemy;
 import utilities.Node;
 
+/**
+ * Targets the first enemy (in their node array)
+ */
+
 public class TargetFirst implements ITargetState{
 
 	@Override

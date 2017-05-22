@@ -11,7 +11,7 @@ import projectiles.Projectile;
  * Created by Emil on 2017-04-17.
  */
 public class Sniper extends Tower {
-
+    //Tower specific stats, name and description
     private static final String NAME = "SNIPER";
     private static String DESCRIPTION = "Very long range";
     private static final int RADIUS = 1500;

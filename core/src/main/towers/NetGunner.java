@@ -14,7 +14,9 @@ import projectiles.Projectile;
  * Created by Emil on 2017-05-07.
  */
 public class NetGunner extends Tower {
-    private static final String NAME = "NetGunner";
+	//Tower specific stats, name and description
+
+	private static final String NAME = "NetGunner";
     private static final String DESCRIPTION = "A tower that slows down aliens with his net";
     private static final int SIZE = 50;
     private static final int SLOWRADIUS = 500;

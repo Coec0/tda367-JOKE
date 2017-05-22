@@ -8,6 +8,10 @@ import utilities.Node;
 /**
  * Created by Emil on 2017-03-31.
  */
+
+/**
+ * Targets the weakest enemy available
+ */
 public class TargetWeakest implements ITargetState  {
 
 	@Override

@@ -11,6 +11,8 @@ import projectiles.Projectile;
  * Created by Emil on 2017-04-17.
  */
 public class Ranger extends Tower {
+    //Tower specific stats, name and description
+
     private static final int RADIUS = 350;
     private static final String NAME = "RANGER";
     private static final int COST = 300;

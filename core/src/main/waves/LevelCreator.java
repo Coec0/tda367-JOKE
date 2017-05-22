@@ -6,6 +6,10 @@ import enemies.*;
 /**
  * Created by Emil on 2017-05-21.
  */
+
+/**
+ * This class is used for hardcoding enemy levels and waves
+ */
 public class LevelCreator {
 
     //Array containing all the levels created in constructor

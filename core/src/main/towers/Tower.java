@@ -21,6 +21,8 @@ public abstract class Tower extends BoardObject{
 	private Array<ProjectileObserver> observers = new Array<ProjectileObserver>();
     private CooldownObject cooldown;
 
+
+    //Used in temporary tower boosts
     private float modifiedDamage;
     private float modifiedRadius;
     private float modifiedCooldown;
@@ -33,8 +35,8 @@ public abstract class Tower extends BoardObject{
 		this.damage = damage;
 		this.party = party;
 	}
-	
-	
+
+	//getters and setters
 	@Override
 	public Party getParty() {
 		return party;
@@ -101,6 +103,11 @@ public abstract class Tower extends BoardObject{
 
     public abstract Projectile makeProjectile();
 
+
+	/**
+	 * Sets the target for the tower accordingly to the target state
+	 * @param targets all enemies in the tower radius
+	 */
 	public void setTarget(Array<Enemy> targets) {
 		if(targets.size == 0){
 			target = null;
