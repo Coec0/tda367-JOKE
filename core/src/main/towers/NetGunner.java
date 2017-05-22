@@ -25,7 +25,6 @@ public class NetGunner extends Tower {
     private static final float COOLDOWN = 90;
     private static final float DAMAGE = 0;
     private static final float SPEED = 25;
-    private static final float SCALE = 0.25f;
     
     public NetGunner(int x, int y, float radius, float cooldown, float cost){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, DAMAGE, PARTY);
@@ -64,11 +63,6 @@ public class NetGunner extends Tower {
 		Projectile p = new Net(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED);
         super.notifyObservers(p, "spawn");
         return p;
-	}
-
-	@Override
-	public float getScale() {
-		return SCALE;
 	}
 
 }

@@ -22,7 +22,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 
     public void placeTexture(BoardObject building){
     	onMouse = new SpriteAdapter(selectTexture(building));
-    	onMouse.setSize(onMouse.getWidth()*building.getScale(), onMouse.getHeight()*building.getScale());
+    	onMouse.setSize(onMouse.getWidth() * super.getScale(onMouse, building.getSize()), onMouse.getHeight()*super.getScale(onMouse, building.getSize()));
     	onMouse.setAlpha(0.5f);
     	
     	radiusCircle = getRoundSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius(), false, Color.GOLD);

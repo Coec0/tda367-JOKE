@@ -4,7 +4,6 @@ import utilities.Node;
 
 public class Wall extends BoardObject {
 	
-	private static final float SCALE = 0.3f;
 	
 	public Wall(String name ,int x, int y, float size) {
 		super(name, x, y, size, 0);
@@ -25,9 +24,4 @@ public class Wall extends BoardObject {
 		return new Wall(getName(), x, y, getSize());
 	}
 
-
-	@Override
-	public float getScale() {
-		return SCALE;
-	}
 }

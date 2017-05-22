@@ -6,7 +6,6 @@ public class Alien extends Enemy{
 	private final static int X = 0;
 	private final static int Y = 0;
 	private final static float RADIUS = 10;
-	private final static float SCALE = 0.2f;
 	
 	public Alien(){
 		super(X, Y, SPEED, HEALTH,RADIUS);
@@ -25,9 +24,5 @@ public class Alien extends Enemy{
 		super(x, y, speed, health,RADIUS);
 	}
 
-	@Override
-	public float getScale() {
-		return SCALE;
-	}
 
 }

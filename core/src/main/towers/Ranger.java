@@ -22,7 +22,6 @@ public class Ranger extends Tower {
     private static final float SIZE = 50;
     private static final float DAMAGE = 50;
     private static final float SPEED = 25;
-    private static final float SCALE = 0.3f;
 
     public Ranger(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
@@ -50,8 +49,4 @@ public class Ranger extends Tower {
 		return new Ranger(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost(), getDamage());
 	}
 
-	@Override
-	public float getScale() {
-		return SCALE;
-	}
 }

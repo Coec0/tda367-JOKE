@@ -21,7 +21,6 @@ public class RiotShield extends Building {
     private static final Party PARTY = PartyFactory.Democrat(6); // Just for now
     private static final int RADIUS = 100;
     private static final float SIZE = 50;
-    private static final float SCALE = 0.35f;
 
     private Array<Enemy> enemies;
 
@@ -63,10 +62,5 @@ public class RiotShield extends Building {
 	@Override
 	public BoardObject clone(int x, int y) {
 		return new RiotShield(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost());
-	}
-
-	@Override
-	public float getScale() {
-		return SCALE;
 	}
 }
