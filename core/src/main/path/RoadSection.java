@@ -17,6 +17,13 @@ public class RoadSection {
 		this.speed = speed;
 	}
 	
+	/**
+	 * Calculates and saves all points inbetween start and end with the distance speed
+	 * @param start Starting node
+	 * @param end End node
+	 * @param speed	Distance inbetween "jumps" in the pixelwalk. 
+	 * @return	The pixelwalk in form of node array
+	 */
 	public Array<Node> calcPixelWalk(Node start, Node end, float speed){
 		Array<Node> pixelPath = new Array<Node>();
 

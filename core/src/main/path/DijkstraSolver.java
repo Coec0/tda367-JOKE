@@ -10,6 +10,13 @@ public class DijkstraSolver {
 	private Array<MapNode> allNodes;
 	private MapNode currentNode;
 	
+	/**
+	 * 
+	 * @param startNode The node that dijkstra will start from.
+	 * @param endNode	The node that dijkstra will stop at.
+	 * @param allNodes	The network in which dijkstra will look for path
+	 * @return	I a path is found the path will be returned else empty array.
+	 */
 	public Array<Node> solve(MapNode startNode, MapNode endNode, Array<MapNode> allNodes){
 		this.allNodes = allNodes;
 

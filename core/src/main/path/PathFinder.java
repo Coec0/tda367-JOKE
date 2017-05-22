@@ -29,14 +29,16 @@ public final class PathFinder {
 		DSolver = new DijkstraSolver();
 		roadSections = new Array<RoadSection>();
 		this.radar = radar;
-		roadRadius = 4; //tmp hardcoded roadradius
+		roadRadius = 4;
 		calculateAllShortest();
 	}
 	
-	//public boolean canRemoveNeighbor()
-	
-	
-
+	/**
+	 * Checks if a node is on any roadsection
+	 * @param center The node to see if its on a roadsection
+	 * @param centerRadius	Radius/hitbox of centerNode. 
+	 * @return true if on road.
+	 */
 	public boolean isOnRoad(Node center, float centerRadius){
 		
 		if(roadNetwork == null){
@@ -69,14 +71,16 @@ public final class PathFinder {
 		end.removeNeighbor(start.getID());
 	}
 	
-	
+	/**
+	 * 
+	 * @param node to be found in a roadsection
+	 * @return	The first roadsection that contains node. 
+	 */
 	public RoadSection findRoadSection(Node node){
 		for(RoadSection rs : roadSections){
 			Array<Node> nodes = radar.scanNodeArray(rs.getPixelWalk(), roadRadius , node, 1);
 			if(nodes.size != 0){
-					
-						return rs;
-				
+				return rs;
 			}
 		}
 		return null;
@@ -109,6 +113,12 @@ public final class PathFinder {
 		return nodes;
 	}
 	
+	/**
+	 * 
+	 * @param allNodes. All the MapNodes that forms a network
+	 * @param roadSections. All roadSections between all nodes. 
+	 * @return Returns all the nodes between all the MapNodes.
+	 */
 	public Array<Node> calcRoadNetwork(Array<MapNode> allNodes, Array<RoadSection> roadSections){
 		Array<Node> roadNetwork = new Array<Node>();
 		RoadSection roadSection;
@@ -136,6 +146,11 @@ public final class PathFinder {
 		return roadNetwork;
 	}
 	
+	/**
+	 * Checks if it is possible to remove neighbors from a roadsection
+	 * @param rs. Roadsection to see if neighbors can be removed
+	 * @return true if neighbors can be removed
+	 */
 	public boolean canRemoveNeighbors(RoadSection rs){
 		
 		removeNeighbor(rs,allNodes);
@@ -143,7 +158,6 @@ public final class PathFinder {
 		for(MapNode startNode : startingNodes){
 			
 			Array<Node> tmp = calculateShortest(startNode,allNodes);
-			System.out.println("hello: " + tmp.size);
 			if(tmp.size == 0){
 				System.out.println("Cant remove");
 				MapNode start = findMapNode(rs.getStart(),allNodes);
@@ -163,6 +177,9 @@ public final class PathFinder {
 		startingNodes.add(startNode); //add at same time so shortest and starting are in match
 	}
 	
+	/**
+	 * Calculates the shortestpaths for all starting nodes
+	 */
 	public void calculateAllShortest(){
 		Array<MapNode> tmpStarting = new Array<MapNode>();
 		tmpStarting.addAll(startingNodes);
@@ -176,21 +193,32 @@ public final class PathFinder {
 		
 	}
 	
+	/**
+	 * 
+	 * @param startNode Node for dijkstraSolver to start on
+	 * @param allNodes	The net of MapNode that dijkstra will find path in.
+	 * @return	Returns only the nodes that that forms the path. In correct order. 
+	 */
 	public Array<Node> calculateShortest(MapNode startNode,Array<MapNode> allNodes){
 		Array<Node> tmp = DSolver.solve(startNode, endNode,allNodes);
 		return tmp;
 	}
 
+	/**
+	 * Returns the shortest path with startNode.
+	 * @param startNode Node to find correct shortestPath
+	 * @return	The shortestpath. If it cant be found returns null.
+	 */
 	public Array<Node> getShortestPath(MapNode startNode){
 		Array<Node> shortestPath = new Array<Node>();
 		for(int i = 0; i < startingNodes.size; i++){
-			Node node = startingNodes.get(i).getPos(); //cant use foreach because i need index i
+			Node node = startingNodes.get(i).getPos(); 
 			if(startNode.getPos().equals(node)){
 				shortestPath.addAll(shortestPaths.get(i));
 				return shortestPath;
 			}
 		}
-		 //now it only calculates if the path did not exist before
+
 		return null;
 	}
 		
@@ -199,7 +227,7 @@ public final class PathFinder {
 		this.allNodes = allNodes;
 	}
 	
-	//calculates the specific coordinates between nodes with a certain jump
+
 
 	/**
 	 * Returns the full path of pixels between multiple Nodes
