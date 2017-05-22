@@ -6,6 +6,10 @@ import enemies.Enemy;
 /**
  * Created by Emil on 2017-05-04.
  */
+
+/**
+ * This class does only kill all enemies alive on the map
+ */
 public class Nuke implements Superpower {
 
     public Nuke(){

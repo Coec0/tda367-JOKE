@@ -10,10 +10,12 @@ import towers.Tower;
  */
 public class TowerBoost implements Superpower {
 
+    //Modifier stats to be used
     private final float radiusModifier = 20f;
     private final float damageModifier = 1.3f;
     private final float cooldownModifier = 0.1f;
 
+    //Duration for the boost
     private final float durationFrames = 50;
     private CooldownObject duration;
     private CooldownHandler cdh;
@@ -24,6 +26,10 @@ public class TowerBoost implements Superpower {
         cdh.addCooldownObject(duration);
     }
 
+    /**
+     * Boosts the tower stats using the modifiers
+     * @param tower to be boosted
+     */
     public void boostTower(Tower tower){
 
         float damage  = tower.getDamage() * damageModifier;
@@ -38,9 +44,13 @@ public class TowerBoost implements Superpower {
         tower.setRadius(tower.getRadius() + radius);
         tower.getCooldownObject().setCooldownTime(tower.getCooldownObject().getCooldownTime() + cooldown);
         duration.setOnCooldown(true);
-        System.out.println("BOOST");
-        //need to add duration and revert changes when time is out
+        //All above is just logic for easily reverting the boost later on
     }
+
+    /**
+     * Unboosts the towers previously boosted
+     * @param tower to be unboosted
+     */
 
     public void unBoost(Tower tower){
         float damage = tower.getDamage() - tower.getModifiedDamage();
@@ -61,7 +71,6 @@ public class TowerBoost implements Superpower {
         else
             tower.setCooldown(0);
 
-        System.out.println("UNBOOST");
     }
 
     public boolean isFinished(){

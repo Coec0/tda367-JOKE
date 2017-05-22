@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 /**
  * Created by Emil on 2017-05-20.
  */
+
+/**
+ * Handles all portrait textures used for buttons
+ */
 public class PortraitTextureHandler {
 
     private static final Texture nuke = new Texture("portraits/truman.jpg");
