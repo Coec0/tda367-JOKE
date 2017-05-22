@@ -18,8 +18,8 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 		super(name, x, y,size, 0);
 		this.parliament = parliament;
 		this.setMoney(money);
-		voteParty(PartyFactory.Democrat(5));
 		voteParty(PartyFactory.Republican(5));
+		voteParty(PartyFactory.Democrat(5));
 	}
 	
 	public WhiteHouse(String name, int x, int y, float size, float money){
