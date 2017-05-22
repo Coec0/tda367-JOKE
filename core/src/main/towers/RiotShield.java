@@ -42,11 +42,14 @@ public class RiotShield extends Building {
 
     public void updateEnemies(Array<Enemy> enemies){
         this.enemies = enemies;
+        if (enemies.size != 0){
+        	super.getSpriteAdapter().rotateTowards(enemies.first().getPos(),-90); 
+        }
     }
 
     @Override
     public void usePower() {
-        if (enemies != null){
+        if (enemies.size != 0){
             for (Enemy e: enemies){
                 e.setNodeArrayPos(e.getNodeArrayPos() - 500);
                 if (e.getNodeArrayPos() <= 0)
