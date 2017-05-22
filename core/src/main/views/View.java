@@ -2,10 +2,14 @@ package views;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import enemies.Enemy;
+import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public abstract class View<T> extends SimpleView {
+
+	protected View(DrawablesCollector DC) {
+		super(DC);
+	}
 
 	protected abstract Texture selectTexture(T object);
 

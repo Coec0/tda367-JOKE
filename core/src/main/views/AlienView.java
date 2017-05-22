@@ -10,9 +10,14 @@ import enemies.SneakyAlien;
 import enemies.ToughAlien;
 import observers.AlienObserver;
 import textures.AlienTextureHandler;
+import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class AlienView extends View<Enemy> implements AlienObserver {
+	
+	public AlienView(DrawablesCollector DC) {
+		super(DC);
+	}
 	
 	@Override
 	protected Texture selectTexture(Enemy enemy) {

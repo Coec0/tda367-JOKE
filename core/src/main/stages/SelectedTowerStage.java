@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import factories.ActorFactory;
 import towers.Tower;
+import utilities.DrawablesCollector;
 
 /**
  * The Stage that is shown when selecting a Tower.
@@ -33,7 +34,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 
 	private Tower tower;
 
-	public SelectedTowerStage(ClickListener clickListener) {
+	public SelectedTowerStage(ClickListener clickListener, DrawablesCollector DC) {
 		this.clickListener = clickListener;
 
 		this.addActor(addNameLabel());

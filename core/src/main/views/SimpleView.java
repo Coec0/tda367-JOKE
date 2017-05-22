@@ -6,7 +6,11 @@ import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public abstract class SimpleView {
-	private DrawablesCollector DC = DrawablesCollector.getInstance();
+	private DrawablesCollector DC;
+	
+	protected SimpleView(DrawablesCollector DC){
+		this.DC = DC;
+	}
 	
 	public void addToView(SpriteAdapter sprite){
 		DC.addSprite(sprite);
@@ -22,5 +26,9 @@ public abstract class SimpleView {
 
 	public void removeFromView(Stage stage) {
 		DC.removeStage(stage);
+	}
+	
+	public DrawablesCollector getDrawablesCollector(){
+		return DC;
 	}
 }

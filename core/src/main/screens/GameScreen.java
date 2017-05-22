@@ -30,7 +30,12 @@ import models.ExecutiveOrdersModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
 import path.PathFinder;
-import stages.*;
+import stages.NextWaveStage;
+import stages.PoliticalMeterStage;
+import stages.RightGameUIStage;
+import stages.SelectedBoardObjectStage;
+import stages.SuperpowerStage;
+import stages.TopLeftGameUIStage;
 import towers.BOPrototypes;
 import utilities.DrawablesCollector;
 import utilities.Node;
@@ -45,7 +50,7 @@ import waves.EnemyWavesCreator;
 public class GameScreen implements Screen{
 	private SpriteBatch batch;
 	private Sprite backgroundSprite;
-	private DrawablesCollector SC = DrawablesCollector.getInstance();
+	private DrawablesCollector DC;
 	private PathFinder finder;
 	private final int width = 1280;
 	private final int height = 720;
@@ -71,6 +76,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void show() {
+		DC = new DrawablesCollector();
 		Radar radar = new Radar();
 		BOPrototypes prot = new BOPrototypes();
 //		map = new Map("AlphaMap", new Texture("AlphaMap.png"));
@@ -82,13 +88,13 @@ public class GameScreen implements Screen{
 		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
 		
 		
-		AlienView AW= new AlienView();
+		AlienView AW= new AlienView(DC);
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes(), wcd);
 		AlienController AController = new AlienController(AW, AM);
-		BuildingView TW = new BuildingView();
+		BuildingView TW = new BuildingView(DC);
 		BuildingModel BM = new BuildingModel(AM.getAllEnemies(), cdh,radar, finder);
 		ProjectileModel PM = new ProjectileModel(AM,radar);
-		ProjectileView PW = new ProjectileView();
+		ProjectileView PW = new ProjectileView(DC);
 		
 		
 		
@@ -131,13 +137,13 @@ public class GameScreen implements Screen{
 		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM,AM, wcd,prot);
 		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);
 		
-		SelectedBoardObjectStage SBOS = new SelectedBoardObjectStage(imp, TController);
+		SelectedBoardObjectStage SBOS = new SelectedBoardObjectStage(imp, TController, DC);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		TopLeftGameUIStage TL = new TopLeftGameUIStage();
 		NextWaveStage NW = new NextWaveStage(AController);
 		HS = new RightGameUIStage(AController, TController,EOC, prot);
 		SS = new SuperpowerStage(SC);
-		HV = new GameUIView(PMS, HS, TL, SBOS, NW, SS);
+		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS);
 		BM.addObserver(HV);
 		prot.addObserver(HV);
 		imp.addProcessor(HS);
@@ -172,9 +178,9 @@ public class GameScreen implements Screen{
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		backgroundSprite.draw(batch);
-		SC.drawAll(batch);
+		DC.drawAll(batch);
 		batch.end();
-		SC.drawStages();
+		DC.drawStages();
 	}
 
 	
@@ -183,7 +189,7 @@ public class GameScreen implements Screen{
 	public void resize(int width, int height) {
 		WP.update(width-200*width/this.width, height, true);
 		
-		SC.refreshStagesVP();
+		DC.refreshStagesVP();
 	}
 
 	@Override
@@ -207,13 +213,13 @@ public class GameScreen implements Screen{
 	@Override
 	public void dispose() {
 		batch.dispose();
-		if(SC.getSprites() != null){
-			for(SpriteAdapter sprite : SC.getSprites()){
+		if(DC.getSprites() != null){
+			for(SpriteAdapter sprite : DC.getSprites()){
 				sprite.getTexture().dispose();
 			}
 		}
-		if(SC.getStages() != null){
-			for(Stage stage : SC.getStages()){
+		if(DC.getStages() != null){
+			for(Stage stage : DC.getStages()){
 				stage.dispose();
 			}
 		}

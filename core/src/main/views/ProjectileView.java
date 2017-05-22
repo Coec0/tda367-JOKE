@@ -17,9 +17,12 @@ import utilities.SpriteAdapter;
  * Created by Emil on 2017-04-25.
  */
 public class ProjectileView extends View<Projectile> {
-    private DrawablesCollector SC = DrawablesCollector.getInstance();
 
-    @Override
+    public ProjectileView(DrawablesCollector DC) {
+		super(DC);
+	}
+
+	@Override
     protected Texture selectTexture(Projectile projectile) {
 
         if(projectile instanceof Bullet)
@@ -39,6 +42,6 @@ public class ProjectileView extends View<Projectile> {
     }
 
     public void removeFromView(SpriteAdapter sprite){
-        SC.removeSprite(sprite);
+        super.getDrawablesCollector().removeSprite(sprite);
     }
 }

@@ -7,6 +7,7 @@ import observers.PrototypeObserver;
 import observers.WhiteHouseObserver;
 import stages.*;
 import towers.BOPrototypes;
+import utilities.DrawablesCollector;
 
 public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver, PrototypeObserver {
 	private RightGameUIStage HS;
@@ -17,8 +18,9 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	private SuperpowerStage SS;
 	
 
-	public GameUIView(PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,
+	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,
 					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS) {
+		super(DC);
 		this.HS = HS;
 		this.PMS = PMS;
 		this.SBOS = SBOS;

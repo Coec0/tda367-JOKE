@@ -1,10 +1,10 @@
 package stages;
 
 
-import buildings.BoardObject;
-import buildings.Building;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import buildings.BoardObject;
 import towers.Tower;
 import utilities.DrawablesCollector;
 
@@ -14,19 +14,20 @@ import utilities.DrawablesCollector;
  */
 public class SelectedBoardObjectStage extends AbstractStage {
 
-	private DrawablesCollector DC = DrawablesCollector.getInstance();
+	private DrawablesCollector DC;
 
 	private SelectedBuildingStage selectedBuildingStage;
 	private SelectedTowerStage selectedTowerStage;
 
 	static final float stageWidth = 200;
 
-	protected SelectedBoardObjectStage() {}
-
-	public SelectedBoardObjectStage(InputMultiplexer inputMultiplexer, ClickListener clickListener) {
-		selectedBuildingStage = new SelectedBuildingStage(clickListener);
+	protected SelectedBoardObjectStage(){}
+	
+	public SelectedBoardObjectStage(InputMultiplexer inputMultiplexer, ClickListener clickListener, DrawablesCollector DC) {
+		this.DC = DC;
+		selectedBuildingStage = new SelectedBuildingStage(clickListener, DC);
 		selectedBuildingStage.setVisible(false);
-		selectedTowerStage = new SelectedTowerStage(clickListener);
+		selectedTowerStage = new SelectedTowerStage(clickListener, DC);
 		selectedTowerStage.setVisible(false);
 		inputMultiplexer.addProcessor(selectedBuildingStage);
 		inputMultiplexer.addProcessor(selectedTowerStage);

@@ -15,7 +15,7 @@ public class DrawablesCollectorTest {
 
     @Before
     public void setUp() throws Exception {
-        drawablesCollector = DrawablesCollector.getInstance();
+        drawablesCollector = new DrawablesCollector();
         spriteAdapter = new SpriteAdapter();
 //        stage = new Stage();
     }

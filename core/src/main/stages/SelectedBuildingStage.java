@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import buildings.BoardObject;
 import towers.Tower;
+import utilities.DrawablesCollector;
 
 public class SelectedBuildingStage extends SelectedBoardObjectStage {
 	private Skin skin;
@@ -18,7 +19,7 @@ public class SelectedBuildingStage extends SelectedBoardObjectStage {
 	private Table target;
 	private Table upgrades;
 
-	public SelectedBuildingStage(ClickListener buildingC) {
+	public SelectedBuildingStage(ClickListener buildingC, DrawablesCollector DC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		Table table = new Table();

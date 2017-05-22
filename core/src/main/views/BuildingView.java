@@ -10,15 +10,17 @@ import observers.BuildingObserver;
 import textures.BuildingTextureHandler;
 import textures.TowerTextureHandler;
 import towers.*;
+import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
 public class BuildingView extends View<BoardObject> implements BuildingObserver{
-    private SpriteAdapter onMouse, sizeCircle, radiusCircle;
+    public BuildingView(DrawablesCollector DC) {
+		super(DC);
+	}
+
+	private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
 
-    public BuildingView(){
-        //all same texture for testing
-    }
 
     public void placeTexture(BoardObject building){
     	onMouse = new SpriteAdapter(selectTexture(building));
