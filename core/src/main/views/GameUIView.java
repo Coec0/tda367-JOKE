@@ -1,11 +1,19 @@
 package views;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+
 import buildings.BoardObject;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
 import observers.PrototypeObserver;
 import observers.WhiteHouseObserver;
-import stages.*;
+import politics.parties.PartyFactory;
+import stages.NextWaveStage;
+import stages.PoliticalMeterStage;
+import stages.RightGameUIStage;
+import stages.SelectedBoardObjectStage;
+import stages.SuperpowerStage;
+import stages.TopLeftGameUIStage;
 import towers.BOPrototypes;
 import utilities.DrawablesCollector;
 
@@ -38,6 +46,25 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
 		PMS.updatePartyMeter(whitehouse.getParliament());
 		TL.updateUI(Float.toString(whitehouse.getMoney()), Float.toString(whitehouse.getHealth()));
+		
+		updateSuperPowerButtons(whitehouse);
+	}
+
+	private void updateSuperPowerButtons(WhiteHouse whitehouse) {
+		if(SS.getPowerCost()> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()){
+			SS.disableDemocrat(Touchable.disabled);
+			System.out.println("DISBALED");
+		} else {
+			SS.disableDemocrat(Touchable.enabled);
+		}
+		if(SS.getPowerCost()> whitehouse.getParty(PartyFactory.Republican(0)).getPoints()){
+			SS.disableRepublican(Touchable.disabled);
+		} else {
+			SS.disableRepublican(Touchable.enabled);
+		}
+		
+//		SS.updateSuperPowerButton(power, cost, disable);
+		
 	}
 
 	@Override
@@ -65,7 +92,5 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 		HS.updatePurchables(prototypes);
 		
 	}
-
-
 
 }

@@ -1,9 +1,11 @@
 package stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -89,6 +91,41 @@ public class SuperpowerStage extends Stage {
         boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
         wallB = addSuperPowerButton("wall","wall", PortraitTextureHandler.getWallPortrait(), superC);
 
+    }
+    
+    //ONLY TEMPORARY
+    public int getPowerCost(){
+    	return 200;
+    }
+    
+    public void disableRepublican(Touchable disable){
+    	nukeB.setTouchable(disable);
+    	if(disable == Touchable.disabled){
+    		nukeB.setColor(Color.RED);
+    		minutemenB.setColor(Color.RED);
+    	}else{
+    		nukeB.setColor(Color.WHITE);
+    		minutemenB.setColor(Color.WHITE);
+    	}
+    	minutemenB.setTouchable(disable);
+    }
+    
+    public void disableDemocrat(Touchable disable){
+    	if(disable == Touchable.disabled){
+    		boostB.setColor(Color.RED);
+    		wallB.setColor(Color.RED);
+    	}else{
+    		boostB.setColor(Color.WHITE);
+    		wallB.setColor(Color.WHITE);
+    	}
+    	boostB.setTouchable(disable);
+    	wallB.setTouchable(disable);
+    }
+    
+    
+    //Remove in future but not now :)
+    public void updateSuperPowerButton(String power, int cost, boolean disable){
+    	System.out.println("UpdateSuper");
     }
 
     private ImageTextButton addSuperPowerButton(String name, String text ,Texture texture, ClickListener CL) {

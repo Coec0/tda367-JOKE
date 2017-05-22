@@ -9,6 +9,7 @@ import enemies.Enemy;
 import observers.UpdateObserver;
 import path.PathFinder;
 import path.RoadSection;
+import politics.parties.Party;
 import politics.parties.PartyFactory;
 import superpowers.Nuke;
 import superpowers.TowerBoost;
@@ -51,7 +52,7 @@ public class SuperpowerModel implements UpdateObserver {
     public void useNuke(Array<Enemy> enemies){
     	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>200){
     		nuke.perform(enemies);
-    		whitehouse.removePointsParty(PartyFactory.Republican(0, 200));
+    		removePoints(PartyFactory.Republican(0, 200));
     	}
     }
 
@@ -67,7 +68,7 @@ public class SuperpowerModel implements UpdateObserver {
     		BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,550,485));
     		BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,650,485));
     		BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,500,485));
-    		whitehouse.removePointsParty(PartyFactory.Republican(0, 200));
+    		removePoints(PartyFactory.Republican(0, 200));
     	}
     }
 
@@ -92,7 +93,7 @@ public class SuperpowerModel implements UpdateObserver {
     			BModel.purchaseHighlightedObject(x, y);
     			finder.removeNeighbor(rs);
     			finder.calculateAllShortest();
-    			whitehouse.removePointsParty(PartyFactory.Democrat(0, 200));
+    			removePoints(PartyFactory.Democrat(0, 200));
     		}
     	}
     }
@@ -111,11 +112,13 @@ public class SuperpowerModel implements UpdateObserver {
     				towerBoost.boostTower(tower);
     			}
     		}
-    		whitehouse.removePointsParty(PartyFactory.Democrat(0, 200));
+    		removePoints(PartyFactory.Democrat(0, 200));
         }
     }
 
-
+    private void removePoints(Party party){
+    	whitehouse.removePointsParty(party);
+    }
     /**
      * Reverts all towers that was previously boosted by resetting variables to previous value
      */
@@ -154,12 +157,10 @@ public class SuperpowerModel implements UpdateObserver {
     public void update(float deltaTime) {
         if(minutemenActive){
             checkWave();
-
         }
-
         if(boostActive){
             checkBoost();
         }
-
     }
+
 }
