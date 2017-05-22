@@ -13,6 +13,7 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 	private int health=20; //temp
 	private float money;
 	private Parliament parliament;	
+	private boolean gameOver = false;
 	
 	public WhiteHouse(String name, int x, int y, float size, float money, Parliament parliament){
 		super(name, x, y,size, 0);
@@ -35,6 +36,10 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 			parliament.voteParty(party);
 			notifyObservers(this);
 		}
+	}
+	
+	public boolean isGameOver(){
+		return gameOver;
 	}
 	
 	public void removeVoteParty(Party party){
@@ -77,6 +82,9 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 		health = amount;
 		System.out.println(health);
 		notifyObservers(this);
+		if(amount <= 0){
+			gameOver = true;
+		}
 	}
 	
 	public void addHealth(int amount){

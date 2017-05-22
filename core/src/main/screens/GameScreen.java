@@ -30,6 +30,7 @@ import models.ExecutiveOrdersModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
 import path.PathFinder;
+import stages.EndGamePopupStage;
 import stages.NextWaveStage;
 import stages.PoliticalMeterStage;
 import stages.RightGameUIStage;
@@ -143,7 +144,12 @@ public class GameScreen implements Screen{
 		NextWaveStage NW = new NextWaveStage(AController);
 		HS = new RightGameUIStage(AController, TController,EOC, prot);
 		SS = new SuperpowerStage(SC);
-		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS);
+		
+		
+		EndGamePopupStage EGP = new EndGamePopupStage();
+		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
+		
+		
 		BM.addObserver(HV);
 		prot.addObserver(HV);
 		imp.addProcessor(HS);

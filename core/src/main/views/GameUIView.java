@@ -24,26 +24,33 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	private TopLeftGameUIStage TL;
 	private NextWaveStage NW;
 	private SuperpowerStage SS;
+	private EndGamePopupStage EGP;
 	
 
 	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,
-					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS) {
+					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP) {
 		super(DC);
+		this.EGP = EGP;
 		this.HS = HS;
 		this.PMS = PMS;
 		this.SBOS = SBOS;
 		this.TL = TL;
 		this.NW = NW;
 		this.SS = SS;
+		
 		addToView(NW);
 		addToView(TL);
 		addToView(HS);
 		addToView(PMS);
 		addToView(SS);
+		//addToView(EGP);
 	}
 
 	@Override
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
+		if(whitehouse.isGameOver()){
+			addToView(EGP);
+		}
 		PMS.updatePartyMeter(whitehouse.getParliament());
 		TL.updateUI(Float.toString(whitehouse.getMoney()), Float.toString(whitehouse.getHealth()));
 		
