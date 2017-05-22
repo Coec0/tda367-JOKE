@@ -43,6 +43,11 @@ public class SuperpowerModel implements UpdateObserver {
         this.whitehouse = BModel.getWhiteHouses().peek();
     }
 
+
+    /**
+     * Kills all enemies on the map if the user has enough republican points
+     * @param enemies all enemies in the map
+     */
     public void useNuke(Array<Enemy> enemies){
     	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>200){
     		nuke.perform(enemies);
@@ -50,7 +55,11 @@ public class SuperpowerModel implements UpdateObserver {
     	}
     }
 
-
+    /**
+     * Creates and adds 4 minutemen via BuildingModel with help from prototypes for them
+     * if republican points are above 200
+     * @param prototypes to help create the minutemen
+     */
     public void useMinutemen(BOPrototypes prototypes){
     	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>200){
     		minutemenActive = true;
@@ -61,6 +70,13 @@ public class SuperpowerModel implements UpdateObserver {
     		whitehouse.removePointsParty(PartyFactory.Republican(0, 200));
     	}
     }
+
+    /**
+     * Creates a wall the user is able to place on roads on the map
+     * if democrat points are above 200
+     * @param x position
+     * @param y position
+     */
 
     public void useWall(int x, int y){
     	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>200){
@@ -81,6 +97,11 @@ public class SuperpowerModel implements UpdateObserver {
     	}
     }
 
+    /**
+     * Boosts all towers on the map for a short duration, if democrat points are above 200.
+     * @param towers the towers to boost
+     */
+
     public void useTowerBoost(Array<Tower> towers){
     	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>200){
     		boostActive = true;
@@ -94,6 +115,10 @@ public class SuperpowerModel implements UpdateObserver {
         }
     }
 
+
+    /**
+     * Reverts all towers that was previously boosted by resetting variables to previous value
+     */
     private void revertTowers(){
         if(this.towers.size > 0) {
             for (Tower t : towers) {
@@ -103,12 +128,19 @@ public class SuperpowerModel implements UpdateObserver {
         }
     }
 
+    /**
+     * Method runs every frame in the update method to see if the towers should be reverted or not
+     */
     private void checkBoost(){
         if (towerBoost.isFinished()){
             revertTowers();
             boostActive = false;
         }
     }
+
+    /**
+     * Method runs every frame in the update method to see if the minutemen should be removed or not
+     */
 
     private void checkWave(){
         if (AModel.getAllEnemies().size < 1 && (!AModel.getWaveAlive())){
