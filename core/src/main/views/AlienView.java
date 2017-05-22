@@ -47,9 +47,9 @@ public class AlienView extends View<Enemy> implements AlienObserver {
 		if(!remove){
 			if(enemy.isInNet()){
 				enemy.getSpriteAdapter().setTexture(selectTexture(enemy));
-				enemy.getSpriteAdapter().setSize(enemy.getSpriteAdapter().getWidth() * 0.3f, enemy.getSpriteAdapter().getHeight() * 0.3f);
+				enemy.getSpriteAdapter().setSize(enemy.getSpriteAdapter().getWidth() * enemy.getScale(), enemy.getSpriteAdapter().getHeight() * enemy.getScale());
 			}else{
-				addToView(enemy.getSpriteAdapter(), enemy, 0.3f);
+				addToView(enemy.getSpriteAdapter(), enemy, enemy.getScale());
 			}
 			
 		}else

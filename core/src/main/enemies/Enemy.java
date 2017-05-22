@@ -24,6 +24,8 @@ public abstract class Enemy {
 		this.health = health;
 	}
 	
+	public abstract float getScale();
+	
 	public float getMoney(){ //Override in subclasses or make abstract for specific
 		return money;        //values in future
 	}
