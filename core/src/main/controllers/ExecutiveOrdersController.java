@@ -25,6 +25,8 @@ public class ExecutiveOrdersController extends ClickListener implements InputPro
     		EOM.taxCut();
     	} else if(event.getListenerActor().getName().equals("DW")){
     		EOM.declareWar();
+    	} else if(event.getListenerActor().getName().equals("DW")){
+    		EOM.openBorders();
     	}
     	
 	}

@@ -45,6 +45,10 @@ public class AlienModel implements UpdateObserver {
 		//direction = finder.getDirectionList();
 	}
 	
+	public void openBorders(){
+		//TODO create this
+	}
+	
 	public void addEnemy(Enemy enemy){
 		
 		if(enemy instanceof HighAlien){

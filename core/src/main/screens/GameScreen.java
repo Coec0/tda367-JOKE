@@ -128,7 +128,7 @@ public class GameScreen implements Screen{
 		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM, prot);
 		IAMain.addObserver(SM);
 		
-		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM, wcd,prot);
+		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM,AM, wcd,prot);
 		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);
 		
 		SelectedBoardObjectStage SBOS = new SelectedBoardObjectStage(imp, TController);

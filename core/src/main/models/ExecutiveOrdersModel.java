@@ -4,6 +4,7 @@ import cooldown.WavesCDHandler;
 import cooldown.WavesCooldown;
 import executive_orders.CivilWar;
 import executive_orders.DeclareWar;
+import executive_orders.OpenBorders;
 import executive_orders.TowerChanger;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
@@ -14,14 +15,16 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	private CivilWar CWR, CWD;
 	private DeclareWar DW;
 	private TowerChanger TC, OC;
+	private OpenBorders OB;
 	private Party republican, democrat;
 	private WavesCDHandler wcd;
 	private final String civilwarHASH="789ga789g27a8gd67";
 	private final String towerchangerHASH="7h82189g27a8gd67";
 	private final String declareHASH="926hts9g27a8gd67";
-	private boolean civilOnCooldown=false, TowerChangerOnCooldown=false, declareWarOnCooldown=false;
+	private final String openbordersHASH="kih7ytrg27a8gd67";
+	private boolean openBordersOnCooldown=false, civilOnCooldown=false, towerChangerOnCooldown=false, declareWarOnCooldown=false;
 
-	public ExecutiveOrdersModel(BuildingModel BM, WavesCDHandler wcd, BOPrototypes prots){
+	public ExecutiveOrdersModel(BuildingModel BM, AlienModel AM, WavesCDHandler wcd, BOPrototypes prots){
 		this.wcd = wcd;
 		republican = PartyFactory.Republican(0);
 		democrat = PartyFactory.Democrat(0);
@@ -30,7 +33,9 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 		
 		TC = new TowerChanger(BM.getWhiteHouses().peek(), prots, 0.5f, 0.5f , PartyFactory.Republican(100));
 		OC = new TowerChanger(BM.getWhiteHouses().peek(), prots, 1.5f, 1.5f, PartyFactory.Democrat(100));
+		
 		DW = new DeclareWar(BM.getWhiteHouses().peek(), 30000, PartyFactory.Republican(30), prots);
+		OB = new OpenBorders(AM, PartyFactory.Democrat(30));
 	}
 	
 	
@@ -45,7 +50,15 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	
 	private void towerchangerCD(){
 		activateCD(5,towerchangerHASH);
-		TowerChangerOnCooldown = true;
+		towerChangerOnCooldown = true;
+	}
+	
+	public void openBorders(){
+		if(!openBordersOnCooldown){
+			OB.execute();
+			activateCD(1, openbordersHASH);
+			openBordersOnCooldown = true;
+		}
 	}
 	
 	public void declareWar(){
@@ -73,7 +86,7 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	}
 	
 	public void taxCut(){
-		if(!TowerChangerOnCooldown){
+		if(!towerChangerOnCooldown){
 			TC.execute();
 			wcd.startCooldown(TC);
 			towerchangerCD();
@@ -81,7 +94,7 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	}
 	
 	public void obamaCare(){
-		if(!TowerChangerOnCooldown){
+		if(!towerChangerOnCooldown){
 			OC.execute();
 			wcd.startCooldown(OC);
 			towerchangerCD();
@@ -102,9 +115,11 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 		if(hash.equals(civilwarHASH)){
 			civilOnCooldown = false;
 		} else if(hash.equals(towerchangerHASH)){
-			TowerChangerOnCooldown = false;
+			towerChangerOnCooldown = false;
 		} else if(hash.equals(declareHASH)){
 			declareWarOnCooldown = false;
+		} else if(hash.equals(openbordersHASH)){
+			openBordersOnCooldown = false;
 		}
 			
 		
