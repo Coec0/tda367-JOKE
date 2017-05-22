@@ -15,7 +15,7 @@ public class Soldier extends Tower {
     private static final int COST = 50;
     private static final float COOLDOWN = 15;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
-	private static final float SIZE = 50;
+	private static final float SIZE = 25;
     private static final float DAMAGE = 30;
     private static final float SPEED = 10;
 

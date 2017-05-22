@@ -42,7 +42,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
             SModel.useNuke(AModel.getAllEnemies());
         }
         if(event.getListenerActor().getName().equals("wall")){
-        	BModel.clickedBuilding(new Wall("wall", (int) x, (int)y, 5)); 
+        	BModel.clickedBuilding(new Wall("wall", (int) x, (int)y, 15)); 
         }
         if(event.getListenerActor().getName().equals("minutemen")){
             SModel.useMinutemen(prototypes);

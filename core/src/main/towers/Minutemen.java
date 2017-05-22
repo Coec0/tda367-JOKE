@@ -17,7 +17,7 @@ public class Minutemen extends Tower {
     private static final float COOLDOWN = 50;
     private static String DESCRIPTION = "Temporary soldiers with high range but low rate of fire";
     private static final Party PARTY = null;
-    private static final float SIZE = 50;
+    private static final float SIZE = 25;
     private static final float DAMAGE = 50;
     private static final float SPEED = 50;
 

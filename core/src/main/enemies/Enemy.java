@@ -41,8 +41,8 @@ public abstract class Enemy {
 		return inNet;
 	}
 	
-	public void placeInNet(){
-		speed = 1;
+	public void placeInNet(float speed){
+		this.speed = speed;
 		inNet = true;
 	}
 	public void setStartignPos(){

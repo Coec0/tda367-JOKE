@@ -19,7 +19,7 @@ public class Ranger extends Tower {
     private static final float COOLDOWN = 20;
     private static String DESCRIPTION = "Soldier with higher rate of fire";
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
-    private static final float SIZE = 50;
+    private static final float SIZE = 35;
     private static final float DAMAGE = 50;
     private static final float SPEED = 25;
 

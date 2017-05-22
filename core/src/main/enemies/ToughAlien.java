@@ -5,7 +5,7 @@ public class ToughAlien extends Enemy {
 	private final static float HEALTH=500;
 	private final static int X = 0;
 	private final static int Y = 0;
-	private final static float RADIUS = 10;
+	private final static float RADIUS = 55;
 
 	
 	public ToughAlien(){

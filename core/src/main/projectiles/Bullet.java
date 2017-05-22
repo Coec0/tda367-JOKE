@@ -9,7 +9,7 @@ import utilities.Node;
  */
 public class Bullet extends SingleProjectile {
 
-    private static final float RADIUS = 20;
+    private static final float RADIUS = 2;
     private static final int HEALTH = 2;
 
     public Bullet(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){

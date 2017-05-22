@@ -18,7 +18,7 @@ public class Sniper extends Tower {
     private static final int COST = 150;
     private static final float COOLDOWN = 75;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
-    private static final float SIZE = 50;
+    private static final float SIZE = 25;
     private static final float DAMAGE = 50;
     private static final float SPEED = 105;
 

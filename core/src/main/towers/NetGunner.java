@@ -18,13 +18,13 @@ public class NetGunner extends Tower {
 
 	private static final String NAME = "NetGunner";
     private static final String DESCRIPTION = "A tower that slows down aliens with his net";
-    private static final int SIZE = 50;
-    private static final int SLOWRADIUS = 500;
+    private static final int SIZE = 25;
+    private static final int SLOWRADIUS = 250;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final int COST = 400;
     private static final float COOLDOWN = 90;
     private static final float DAMAGE = 0;
-    private static final float SPEED = 25;
+    private static final float SPEED = 10;
     
     public NetGunner(int x, int y, float radius, float cooldown, float cost){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, DAMAGE, PARTY);
