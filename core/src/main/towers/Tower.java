@@ -33,7 +33,7 @@ public abstract class Tower extends BoardObject{
 		this.damage = damage;
 		this.party = party;
 	}
-
+	
 	
 	@Override
 	public Party getParty() {

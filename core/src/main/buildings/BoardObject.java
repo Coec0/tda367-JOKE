@@ -21,6 +21,8 @@ public abstract class BoardObject implements Voter {
 		this.pos = new SpriteAdapter(x, y);
 		setActive(false);
 	}
+	
+	public abstract float getScale();
 
 	public abstract String getDescription();
 

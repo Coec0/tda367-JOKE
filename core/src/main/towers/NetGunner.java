@@ -23,6 +23,7 @@ public class NetGunner extends Tower {
     private static final float COOLDOWN = 90;
     private static final float DAMAGE = 0;
     private static final float SPEED = 25;
+    private static final float SCALE = 0.25f;
     
     public NetGunner(int x, int y, float radius, float cooldown, float cost){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, DAMAGE, PARTY);
@@ -39,41 +40,6 @@ public class NetGunner extends Tower {
         return DESCRIPTION;
     }
 
-   /* public void updateEnemies(Array<Enemy> enemies){
-        this.enemies = enemies;
-     }*/
-
-	/*private void slowAllInRadius(){
-    Array<Enemy> inRadius;
-    for (AlienNerfer nerfer : nerfers){
-        inRadius = radar.scan(nerfer.getPos(), nerfer.getRadius(), enemies);
-        nerfer.slow(inRadius);
-    }
-}*/ //TO FIX
-
-    /*private boolean checkIfEffected(Enemy e){
-        if(affectedEnemies.size != 0){
-            for (Enemy aE : affectedEnemies){
-                if (aE.equals(e)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }*/
-
-	/*@Override
-	public void usePower() {
-		if (enemies.size != 0) {
-            for (Enemy enemy : enemies) {
-                if (!(checkIfEffected(enemy))){
-                enemy.setSpeed(enemy.getSpeed() * 0.8f);
-                affectedEnemies.add(enemy);
-            }
-            }
-        }
-        super.getCooldownObject().setOnCooldown(true);
-	}*/
 	
 	@Override
 	public BoardObject clone(int x, int y) {
@@ -96,6 +62,11 @@ public class NetGunner extends Tower {
 		Projectile p = new Net(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED);
         super.notifyObservers(p, "spawn");
         return p;
+	}
+
+	@Override
+	public float getScale() {
+		return SCALE;
 	}
 
 }

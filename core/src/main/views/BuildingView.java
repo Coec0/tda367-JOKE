@@ -22,7 +22,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 
     public void placeTexture(BoardObject building){
     	onMouse = new SpriteAdapter(selectTexture(building));
-    	onMouse.setSize(onMouse.getWidth()/3, onMouse.getHeight()/3);
+    	onMouse.setSize(onMouse.getWidth()*building.getScale(), onMouse.getHeight()*building.getScale());
     	onMouse.setAlpha(0.5f);
     	
     	radiusCircle = getRoundSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius(), false, Color.GOLD);
@@ -106,7 +106,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 	@Override
 	public void actOnBuildingChange(BoardObject boardObject, boolean remove, boolean clickedOn) {
 		if( !clickedOn && !remove){ //When placed on ground
-			addToView(boardObject.getSpriteAdapter(), boardObject, 0.3f);
+			addToView(boardObject.getSpriteAdapter(), boardObject, boardObject.getScale());
 			removePlaceTexture();
 			showBoardObjectOverlay(false);
 		} else if(!clickedOn && remove){ //When removed

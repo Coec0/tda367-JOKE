@@ -13,6 +13,7 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 	private int health=20; //temp
 	private float money;
 	private Parliament parliament;	
+	private static final float SCALE = 0.3f;
 	
 	public WhiteHouse(String name, int x, int y, float size, float money, Parliament parliament){
 		super(name, x, y,size, 0);
@@ -145,5 +146,10 @@ public class WhiteHouse extends BoardObject implements AlienObserver{
 	@Override
 	public BoardObject clone(int x, int y) {
 		return new WhiteHouse(getName(), x, y, getSize(), getMoney(), getParliament());
+	}
+
+	@Override
+	public float getScale() {
+		return SCALE;
 	}
 }

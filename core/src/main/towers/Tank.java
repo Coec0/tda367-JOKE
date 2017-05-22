@@ -18,6 +18,7 @@ public class Tank extends Tower {
     private static final float SIZE = 50;
     private static final float DAMAGE = 100;
     private static final float SPEED = 35;
+    private static final float SCALE = 0.2f;
 
     public Tank(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
@@ -30,7 +31,7 @@ public class Tank extends Tower {
     public String getDescription(){
     	return DESCRIPTION;
     }
-
+   
    
     @Override
     public Projectile makeProjectile() {
@@ -42,6 +43,11 @@ public class Tank extends Tower {
 	@Override
 	public BoardObject clone(int x, int y) {
 		return new Tank(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost(), getDamage());
+	}
+
+	@Override
+	public float getScale() {
+		return SCALE;
 	}
 
 }
