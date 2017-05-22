@@ -33,6 +33,7 @@ public class AlienModel implements UpdateObserver {
 	private Array<MapNode> startingPos;
 	private WavesCDHandler wavescdhandler;
 	private Array<Enemy> nettedEnemies;
+	private boolean openBorders = false;
 
 	public AlienModel(PathFinder finder, Array<MapNode> startingPos, WavesCDHandler wavescdhandler) {
 		this.startingPos = startingPos;
@@ -46,7 +47,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void openBorders(){
-		//TODO create this
+		openBorders = true;
 	}
 	
 	public void addEnemy(Enemy enemy){
@@ -133,10 +134,21 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void startNextWave(){
+		if(openBorders){
+			wave = new Array<Enemy>();
+			Array<Enemy> tmpWave = EWC.getNextWave();
+			for(Enemy enemy : tmpWave){
+				wave.add(enemy);
+				wave.add(enemy);
+			}
+		openBorders = false;
+		}else{
+			wave = EWC.getNextWave();
+		}
 		wavescdhandler.registerNewWave();
-		wave = EWC.getNextWave();
 		waveON = true;
 		waveAlive = true;
+		
 	}
 	
 	@Override
