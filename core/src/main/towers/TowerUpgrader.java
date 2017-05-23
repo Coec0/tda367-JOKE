@@ -22,6 +22,7 @@ public class TowerUpgrader {
 
     Array<Tower> upgradedTowers;
 
+    // work In progress
     public TowerUpgrader(){
         radiusMultiplier = 1.3f;
         damageMultiplier = 1.3f;
