@@ -177,15 +177,20 @@ public class BuildingModel implements UpdateObserver {
 	}
 
 	public void upgradeTowerDamage(Tower tower) {
-		upgrader.upgradeDamage(tower, tower.getDamage() * 1.1f);
+		if(whitehouses.first().getMoney() >= upgrader.getDamageUpgradeCost()){
+			upgrader.upgradeDamage(tower);
+		}
 	}
 
-	public void upgradeTowerCooldown(Tower tower){
-		upgrader.reduceCooldown(tower, tower.getCooldownObject().getCooldownTime() * 0.8f);
+	public void upgradeTowerCooldown(Tower tower) {
+		if (whitehouses.first().getMoney() >= upgrader.getCooldownUpgradeCost()) {
+			upgrader.reduceCooldown(tower);
+		}
 	}
-
 	public void upgradeTowerRadius(Tower tower){
-		upgrader.upgradeRadius(tower, tower.getRadius() * 1.1f);
+		if (whitehouses.first().getMoney() >= upgrader.getRadiusUpgradeCost()){
+			upgrader.upgradeRadius(tower);
+		}
 	}
 	
 	public void fireAllTowers(){
