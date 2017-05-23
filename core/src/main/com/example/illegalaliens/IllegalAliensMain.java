@@ -56,6 +56,12 @@ public class IllegalAliensMain extends Game {
 		gameScreen = new GameScreen(this, map, batch);
 		setScreen(gameScreen);
 	}
+	
+	public void switchToMainMenuScreen(){
+		mainMenuScreen.show();
+		setScreen(mainMenuScreen);
+		
+	}
 
 
 	public void shutdown() {

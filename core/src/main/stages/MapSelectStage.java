@@ -40,6 +40,8 @@ public class MapSelectStage extends AbstractStage {
 		mapTable.setPosition(centerWidth, centerHeight, center);
 
 		mapTable.add(addAlphaMapButton()).width(200f).height(200f);
+		mapTable.add(addMap1Button()).width(200f).height(200f);
+		mapTable.add(addMap2Button()).width(200f).height(200f);
 
 		return mapTable;
 	}
@@ -51,6 +53,34 @@ public class MapSelectStage extends AbstractStage {
 			@Override
 			public void clicked(InputEvent event, float x, float y){
 				map = new Map("AlphaMap", new Texture("maps/AlphaMap.png"));
+				startGameButton.fire(new ChangeListener.ChangeEvent()); //button should be enabled
+			}
+		});
+
+		return alphaMap;
+	}
+	
+	private Actor addMap1Button() {
+		Actor alphaMap = ActorFactory.createImageButton(new Texture("maps/map1.png"));
+
+		alphaMap.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				map = new Map("map1", new Texture("maps/map1.png"));
+				startGameButton.fire(new ChangeListener.ChangeEvent()); //button should be enabled
+			}
+		});
+
+		return alphaMap;
+	}
+	
+	private Actor addMap2Button() {
+		Actor alphaMap = ActorFactory.createImageButton(new Texture("maps/map2.png"));
+
+		alphaMap.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				map = new Map("map2", new Texture("maps/map2.png"));
 				startGameButton.fire(new ChangeListener.ChangeEvent()); //button should be enabled
 			}
 		});

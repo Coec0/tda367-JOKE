@@ -131,11 +131,18 @@ public class ActorFactory {
 
 	public static Actor createImage(float x, float y, float rotateDegrees, int posAlignment, Texture texture) {
 		Image image = new Image(texture);
-
+		
 		image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
 		image.rotateBy(rotateDegrees);
 		image.setPosition(x, y, posAlignment);
 
 		return image;
 	}
+	
+	public static Actor createImage(float x, float y, float rotateDegrees, float scale, int posAlignment, Texture texture) {
+		Image image = (Image) createImage(x, y, rotateDegrees, posAlignment, texture);
+		image.setScale(scale);
+		return image;
+	}
+		
 }

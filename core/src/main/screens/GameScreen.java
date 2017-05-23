@@ -146,7 +146,7 @@ public class GameScreen implements Screen{
 		SS = new SuperpowerStage(SC);
 		
 		
-		EndGamePopupStage EGP = new EndGamePopupStage();
+		EndGamePopupStage EGP = new EndGamePopupStage(IAMain);
 		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
 		
 		

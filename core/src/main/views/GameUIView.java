@@ -1,5 +1,7 @@
 package views;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 import buildings.BoardObject;
@@ -8,6 +10,7 @@ import observers.BuildingObserver;
 import observers.PrototypeObserver;
 import observers.WhiteHouseObserver;
 import politics.parties.PartyFactory;
+import stages.EndGamePopupStage;
 import stages.NextWaveStage;
 import stages.PoliticalMeterStage;
 import stages.RightGameUIStage;
@@ -43,13 +46,13 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 		addToView(HS);
 		addToView(PMS);
 		addToView(SS);
-		//addToView(EGP);
 	}
 
 	@Override
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
 		if(whitehouse.isGameOver()){
 			addToView(EGP);
+			Gdx.input.setInputProcessor((InputProcessor) EGP); //easy fix for disabling all other buttons
 		}
 		PMS.updatePartyMeter(whitehouse.getParliament());
 		TL.updateUI(Float.toString(whitehouse.getMoney()), Float.toString(whitehouse.getHealth()));
