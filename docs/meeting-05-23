@@ -1,0 +1,47 @@
+Datum: 23 maj
+Ordförande: Kevin
+Deltagare: Alla
+
+1. Mål
+Ingenting just nu som hindrar oss från att gå vidare.
+
+2. Rapport från tidigare möte
+Kevin: Gjort mappstruktur i assets, gjort dom sista nödvändiga texturerna som behövs, gjort två nya maps, gjort nya aliens.
+Gjort klart NetGunner. Fixat storlek på det mesta. Fixat en end-game screen
+Emil: Finetunat torn, gjort alien waves och fixat färdigt superpowers, kommentarer i många klasser
+Johan: Fixade lite handlers för texture, arbete i olika stages så UI ser bättre ut.
+Oscar: Alla exectuive orders är klara och bör fungera, cooldown-klass som räknar på waves, Drawables collector
+är inte längre singleton. Städat upp i SpriteAdapter, fixat hur väggen sätts ut och gjort så man inte kan "köpa" superpowers
+om man inte har råd
+
+3. Diskussion
+Bug i UI som orsakar att knappar i huvudmenyn inte kan klickas på efter att man förlorar som måste fixas
+ - Klass (controller) som styr input för alla knappar?
+
+4. Bestämt
+Uppgraderingar ska kosta pengar, vyn ska uppdateras när ett torn uppgraderas
+Tydligare på super powers hur mycket dom kostar
+Mer information om ett torn när man highlightar det
+Startpositioner för aliens ska fixas
+Antal waves måste bli oändliga
+Mer balansering
+Väggar ska inte kunnas sättas ut mitt i en wave
+Waves ska bara skickas med knappen och inte space, bara en ska kunna skickas i taget.
+Stå vilken wave man är på i UI.
+Prototyper för projectiles
+Refaktorisera building MVC, byta namn till BoardObject
+Politiska partier måste vara rätt.
+Ui ändras så att man ser vilket torn/executive order som tillhör respektive parti.
+UI-positioner
+Basen (vita huset) måste göras mindre och kunna förändra sig beroende på vilken bana man spelar.
+Viewport på menyn så att om aspect ration ändras så ska knappar fortfarande kunna klickas
+JUnit-tester till Model-klasserna
+
+5. Inför nästa möte
+Kevin: Tester till Djikstra och Pathfinder, startpositioner för aliens, vita huset mindre och förändra sig, byta namn på MVC
+till BoardObject, oändligt antal waves
+Emil: Uppgraderingar ska kosta pengar, mer balansering, tydligare information om super powers, JUnit till någon modell,
+ändra politiska partier,
+Johan: Junit tester, tydligare information om highlightat torn.
+Oscar: Väggar ska inte sättas ut mitt i en wave, bara en ska ska kunna skickas i taget, ska stå vilken wave som man är på,
+UI-fixar så att man ser vilket torn som tillhör vilket parti. UI-positioner och Viewport.
