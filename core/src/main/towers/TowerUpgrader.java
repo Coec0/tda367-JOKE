@@ -10,64 +10,58 @@ public class TowerUpgrader {
      * This class handles all permament tower upgrades
      */
 
-    private final float costIncreaseMultiplier = 2;
 
     private float radiusMultiplier;
     private float damageMultiplier;
     private float cooldownMultiplier;
 
-    private float radiusUpgradeCost;
-    private float damageUpgradeCost;
-    private float cooldownUpgradeCost;
+    private float radiusUpgradeCostMultiplier;
+    private float damageUpgradeCostMultiplier;
+    private float cooldownUpgradeCostMultiplier;
 
-    Array<Tower> upgradedTowers;
 
     // work In progress
+
+    //TODO change cost for turret after upgrading
     public TowerUpgrader(){
         radiusMultiplier = 1.3f;
         damageMultiplier = 1.3f;
         cooldownMultiplier = 0.9f;
 
-        radiusUpgradeCost = 200;
-        damageUpgradeCost = 175;
-        cooldownUpgradeCost = 190;
-
-        upgradedTowers = new Array<Tower>();
+        radiusUpgradeCostMultiplier = 1.5f;
+        damageUpgradeCostMultiplier = 1.4f;
+        cooldownUpgradeCostMultiplier = 1.45f;
 
     }
 
     public void upgradeRadius(Tower tower){
         tower.setRadius(tower.getRadius() * radiusMultiplier);
-        upgradedTowers.add(tower);
-        increaseCost(radiusUpgradeCost);
+        tower.setValue(tower.getValue() * radiusUpgradeCostMultiplier);
     }
 
     public void upgradeDamage(Tower tower){
         tower.setDamage(tower.getDamage() * damageMultiplier);
-        upgradedTowers.add(tower);
+        tower.setValue(tower.getValue() * damageUpgradeCostMultiplier);
     }
 
 
     public void reduceCooldown(Tower tower){
         tower.getCooldownObject().setCooldownTime(tower.getCooldownObject().getCooldownTime() * cooldownMultiplier);
-        upgradedTowers.add(tower);
+        tower.setValue(tower.getValue() * cooldownUpgradeCostMultiplier);
     }
 
     //getters for model
 
-    public float getRadiusUpgradeCost() {
-        return radiusUpgradeCost;
+    public float getRadiusUpgradeCost(Tower tower) {
+        return radiusUpgradeCostMultiplier * (tower.getValue()/2);
     }
 
-    public float getDamageUpgradeCost() {
-        return damageUpgradeCost;
+    public float getDamageUpgradeCost(Tower tower) {
+        return damageUpgradeCostMultiplier * (tower.getValue()/2);
     }
 
-    public float getCooldownUpgradeCost() {
-        return cooldownUpgradeCost;
+    public float getCooldownUpgradeCost(Tower tower) {
+        return cooldownUpgradeCostMultiplier  * (tower.getValue()/2);
     }
 
-    public void increaseCost(float value){
-        value = value * costIncreaseMultiplier;
-    }
 }

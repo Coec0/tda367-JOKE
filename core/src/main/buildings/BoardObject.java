@@ -17,7 +17,7 @@ public abstract class BoardObject implements Voter {
 		this.cost = cost;
 		this.size = size;
 		this.name = name;
-		setValue(cost);
+		initValue(cost);
 		this.pos = new SpriteAdapter(x, y);
 		setActive(false);
 	}
@@ -28,7 +28,9 @@ public abstract class BoardObject implements Voter {
 		return value;
 	}
 
-	private void setValue(float value) {
+	public void setValue(float value) {this.value = value;}
+
+	private void initValue(float value) {
 		this.value = value*0.7f;
 	}
 	
