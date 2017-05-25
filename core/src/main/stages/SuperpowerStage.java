@@ -49,9 +49,9 @@ public class SuperpowerStage extends Stage {
         table.setWidth(WIDTH);
 
         table.add(nukeB).width(WIDTH/4).height(HEIGHT);
+        table.add(boostB).width(WIDTH/4).height(HEIGHT);
         table.add(minutemenB).width(WIDTH/4).height(HEIGHT);
         table.add(wallB).width(WIDTH/4).height(HEIGHT);
-        table.add(boostB).width(WIDTH/4).height(HEIGHT);
         return table;
     }
 /*
@@ -80,9 +80,13 @@ public class SuperpowerStage extends Stage {
 
     private void createSuperPowerButtons(ClickListener superC){
         nukeB = addSuperPowerButton("nuke", "nuke", PortraitTextureHandler.getNukePortrait(),superC);
+        nukeB.setColor(Color.BLUE);
         minutemenB = addSuperPowerButton("minutemen", "minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
+        minutemenB.setColor(Color.RED);
         boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
+        boostB.setColor(Color.BLUE);
         wallB = addSuperPowerButton("wall","wall", PortraitTextureHandler.getWallPortrait(), superC);
+        wallB.setColor(Color.RED);
     }
     
     
@@ -90,7 +94,7 @@ public class SuperpowerStage extends Stage {
     private void disableITB(Touchable disable, ImageTextButton button){
     	button.setTouchable(disable);
     	if(disable == Touchable.disabled){
-    		button.setColor(Color.RED);
+    		button.setColor(button.getColor());
     	}else{
     		button.setColor(Color.WHITE);
     	}
