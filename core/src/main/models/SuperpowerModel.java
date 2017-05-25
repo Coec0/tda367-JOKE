@@ -107,6 +107,8 @@ public class SuperpowerModel implements UpdateObserver {
     			BModel.purchaseHighlightedObject(x, y);
     			finder.removeNeighbor(rs);
     			finder.calculateAllShortest();
+    			this.wall.setSuperPowerCost((int)(this.wall.getSuperPowerCost()* 1.2f));
+    			notifyObservers(this.wall);
     			removePoints(PartyFactory.Republican(0, wall.getSuperPowerCost()));
     		}
     	}
