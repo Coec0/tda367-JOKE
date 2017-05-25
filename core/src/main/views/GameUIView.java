@@ -70,9 +70,9 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 		}
 		
 		if(minutemenCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()){
-			SS.disableMinuteman(Touchable.disabled);
+			SS.disableMinutemen(Touchable.disabled);
 		} else {
-			SS.disableMinuteman(Touchable.enabled);
+			SS.disableMinutemen(Touchable.enabled);
 		}
 		
 		if(wallCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints()){
@@ -119,14 +119,19 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 
 	@Override
 	public void actOnSuperPowerChange(Superpower superpower) {
-		if(superpower.getName().equals("NUKE"))
+		if(superpower.getName().equals("NUKE")){
 			nukeCost = superpower.getSuperPowerCost();
-		else if(superpower.getName().equals("TOWERBOOSTER"))
+			SS.updateNukeCost(superpower.getSuperPowerCost());
+		} else if(superpower.getName().equals("TOWERBOOSTER")) {
 			towerBoosterCost = superpower.getSuperPowerCost();
-		else if(superpower.getName().equals("WALL"))
+			SS.updateTowerBoostCost(superpower.getSuperPowerCost());
+		} else if(superpower.getName().equals("WALL")) {
 			wallCost = superpower.getSuperPowerCost();
-		else if(superpower.getName().equals("MINUTEMEN"))
+			SS.updateWallCost(superpower.getSuperPowerCost());
+		} else if(superpower.getName().equals("MINUTEMEN")) {
 			minutemenCost = superpower.getSuperPowerCost();
+			SS.updateMinuteMenCost(superpower.getSuperPowerCost());
+		}
 	}
 
 }

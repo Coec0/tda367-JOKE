@@ -52,13 +52,6 @@ public class SuperpowerStage extends Stage {
         table.add(minutemenB).width(WIDTH/4).height(HEIGHT);
         table.add(wallB).width(WIDTH/4).height(HEIGHT);
         table.add(boostB).width(WIDTH/4).height(HEIGHT);
-
-        /*
-        table.add(addSuperpowerButton(100,"nuke", superC)).expand().top();
-        table.add(addSuperpowerButton(200,"wall", superC));
-        table.add(addSuperpowerButton(300,"minutemen", superC));
-        table.add(addSuperpowerButton(400,"towerboost", superC));
-*/
         return table;
     }
 /*
@@ -90,8 +83,9 @@ public class SuperpowerStage extends Stage {
         minutemenB = addSuperPowerButton("minutemen", "minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
         boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
         wallB = addSuperPowerButton("wall","wall", PortraitTextureHandler.getWallPortrait(), superC);
-
     }
+    
+    
     
     private void disableITB(Touchable disable, ImageTextButton button){
     	button.setTouchable(disable);
@@ -106,7 +100,7 @@ public class SuperpowerStage extends Stage {
     	disableITB(disable, nukeB);
     }
     
-    public void disableMinuteman(Touchable disable){
+    public void disableMinutemen(Touchable disable){
     	disableITB(disable, minutemenB);
     }
     
@@ -118,6 +112,22 @@ public class SuperpowerStage extends Stage {
     	disableITB(disable, boostB);
     }
 
+    public void updateNukeCost(int cost){
+    	nukeB.setText("nuke(" + cost+")" );
+    }
+    
+    public void updateMinuteMenCost(int cost){
+    	minutemenB.setText("minutemen(" + cost+")" );
+    }
+    
+    public void updateWallCost(int cost){
+    	wallB.setText("wall(" + cost+")" );
+    }
+    
+    public void updateTowerBoostCost(int cost){
+    	boostB.setText("towerboost(" + cost+")" );
+    }
+    
     private ImageTextButton addSuperPowerButton(String name, String text ,Texture texture, ClickListener CL) {
         return addImageTextButton(name, text, texture, CL);
     }
