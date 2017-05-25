@@ -11,14 +11,9 @@ import enemies.Enemy;
  * This class does only kill all enemies alive on the map
  */
 public class Nuke implements Superpower {
-
-    public Nuke(){
-
-    }
-
-    @Override
-    public void usePower() {
-
+	private int superPowerCost;
+    public Nuke(int superPowerCost){
+    	this.superPowerCost = superPowerCost;
     }
 
     public void perform(Array<Enemy> enemies){
@@ -26,4 +21,14 @@ public class Nuke implements Superpower {
             enemy.kill();
         }
     }
+
+	@Override
+	public int getSuperPowerCost() {
+		return superPowerCost;
+	}
+
+	@Override
+	public void setSuperPowerCost(int cost) {
+		this.superPowerCost = cost;
+	}
 }

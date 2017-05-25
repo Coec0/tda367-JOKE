@@ -4,11 +4,12 @@ import buildings.BoardObject;
 import factories.ProjectileFactory;
 import politics.parties.Party;
 import projectiles.Projectile;
+import superpowers.Superpower;
 
 /**
  * Created by Emil on 2017-05-14.
  */
-public class Minutemen extends Tower {
+public class Minutemen extends Tower implements Superpower{
     //Tower specific stats, name and description
 
     private static final int RADIUS = 1000;
@@ -21,12 +22,17 @@ public class Minutemen extends Tower {
     private static final float DAMAGE = 50;
     private static final float SPEED = 50;
 
-    public Minutemen(int x, int y, float radius, float cooldown, float cost, float damage){
+    
+    private int superPowerCost;
+    
+    public Minutemen(int x, int y, float radius, float cooldown, float cost, float damage,int superPowerCost){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
+    	this.superPowerCost = superPowerCost;
     }
 
-    public Minutemen(int x, int y){
-        this(x, y, RADIUS, COOLDOWN, COST, DAMAGE);
+    public Minutemen(int x, int y, int superPowerCost){
+
+        this(x, y, RADIUS, COOLDOWN, COST, DAMAGE, superPowerCost);
     }
 
     public String getDescription(){
@@ -42,7 +48,17 @@ public class Minutemen extends Tower {
 
 	@Override
 	public BoardObject clone(int x, int y) {
-		return new Minutemen(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost(), getDamage());
+		return new Minutemen(x, y, getRadius(), getCooldownObject().getCooldownTime(), getCost(), getDamage(), superPowerCost);
+	}
+
+	@Override
+	public int getSuperPowerCost() {
+		return superPowerCost;
+	}
+
+	@Override
+	public void setSuperPowerCost(int cost) {
+		this.superPowerCost = cost;
 	}
 
 }

@@ -9,7 +9,8 @@ import towers.Tower;
  * Created by Emil on 2017-05-15.
  */
 public class TowerBoost implements Superpower {
-
+	private int superPowerCost;
+	
     //Modifier stats to be used
     private final float radiusModifier = 20f;
     private final float damageModifier = 1.3f;
@@ -20,10 +21,11 @@ public class TowerBoost implements Superpower {
     private CooldownObject duration;
     private CooldownHandler cdh;
 
-    public TowerBoost(CooldownHandler cdh){
+    public TowerBoost(CooldownHandler cdh, int superPowerCost){
         duration = new CooldownObject(durationFrames, false);
         this. cdh = cdh;
         cdh.addCooldownObject(duration);
+        this.superPowerCost = superPowerCost;
     }
 
     /**
@@ -78,8 +80,13 @@ public class TowerBoost implements Superpower {
     }
 
 
-    @Override
-    public void usePower() {
+	@Override
+	public int getSuperPowerCost() {
+		return superPowerCost;
+	}
 
-    }
+	@Override
+	public void setSuperPowerCost(int cost) {
+		this.superPowerCost = cost;
+	}
 }

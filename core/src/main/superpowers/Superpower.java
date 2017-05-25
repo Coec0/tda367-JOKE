@@ -1,5 +1,6 @@
 package superpowers;
 
 public interface Superpower {
-    void usePower();
+    int getSuperPowerCost();
+    void setSuperPowerCost(int cost);
 }

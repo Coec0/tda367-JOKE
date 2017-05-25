@@ -102,7 +102,7 @@ public class BOPrototypes {
 		soldier = new Soldier(0, 0);
 		sniper = new Sniper(0, 0);
 		tank = new Tank(0, 0);
-		minutemen = new Minutemen(0,0);
+		minutemen = new Minutemen(0,0, 200);
 		netGunner = new NetGunner(0,0);
 		
 		towers.add(ranger);

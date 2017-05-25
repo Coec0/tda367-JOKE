@@ -38,9 +38,9 @@ public class SuperpowerModel implements UpdateObserver {
     	this.BModel = BModel;
     	this.finder = finder;
     	this.AModel = AModel;
-        nuke = new Nuke();
+        nuke = new Nuke(500);
         this.cdh = cdh;
-        towerBoost = new TowerBoost(cdh);
+        towerBoost = new TowerBoost(cdh, 300);
         this.whitehouse = BModel.getWhiteHouses().peek();
     }
 
