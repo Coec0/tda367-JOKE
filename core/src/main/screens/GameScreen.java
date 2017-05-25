@@ -82,11 +82,12 @@ public class GameScreen implements Screen{
 		BOPrototypes prot = new BOPrototypes();
 //		map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
-		finder = new PathFinder(Mapnodes, Mapnodes.peek(), map.getStartingNodes(),radar);
+		MapNode lastMapNode = Mapnodes.peek();
+		finder = new PathFinder(Mapnodes, lastMapNode, map.getStartingNodes(),radar);
 		
 		CooldownHandler cdh = new CooldownHandler();
 		WavesCDHandler wcd = new WavesCDHandler();
-		WhiteHouse WH = new WhiteHouse("WhiteHouse", 1280, Gdx.graphics.getHeight() - 330,100, 100000);
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", (int) lastMapNode.getPos().getX(), (int) lastMapNode.getPos().getY(),100, 100000);
 		
 		
 		AlienView AW= new AlienView(DC);
