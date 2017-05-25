@@ -21,7 +21,7 @@ public class AlienModel implements UpdateObserver {
 	private PathFinder finder;
 
 	private Array<Enemy> enemies;
-	private Array<Node> defaultPath;
+	private Array<Array<Node>> defaultPaths;
 	private Array<Node> direction;
 	
 	private int frames = 10; //value-time inbetween aliens
@@ -41,9 +41,17 @@ public class AlienModel implements UpdateObserver {
 		EWC = new EnemyWavesCreator();
 		enemies = new Array<Enemy>(false, 10);
 		nettedEnemies = new Array<Enemy>(false,10);
-		defaultPath = finder.getShortestPath(this.startingPos.get(0));
+		defaultPaths = calcAllDefaultPaths(startingPos);
 		this.wavescdhandler = wavescdhandler;
 		//direction = finder.getDirectionList();
+	}
+	
+	public  Array<Array<Node>> calcAllDefaultPaths(Array<MapNode> startingPos){
+		Array<Array<Node>> defaultPaths = new Array<Array<Node>>();
+		for(MapNode start : startingPos){
+			defaultPaths.add(finder.getShortestPath(start));
+		}
+		return defaultPaths;
 	}
 	
 	public void openBorders(){
@@ -53,12 +61,11 @@ public class AlienModel implements UpdateObserver {
 	public void addEnemy(Enemy enemy){
 		
 		if(enemy instanceof HighAlien){
-			enemy.setPath(defaultPath);
+			enemy.setPath(defaultPaths.random());
 		}else if(EWC.hasLevelRandomSpawn()){
 			enemy.setPath(finder.getShortestPath(startingPos.random()));
 		}else{
-			System.out.println("hejehj");
-			enemy.setPath(defaultPath);
+			enemy.setPath(defaultPaths.get(0));
 		}
 		enemy.setStartignPos();
 		enemies.add(enemy);
