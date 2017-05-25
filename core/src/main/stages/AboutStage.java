@@ -1,9 +1,8 @@
 package stages;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.example.illegalaliens.IllegalAliensMain;
+import controllers.MainMenuController;
 import factories.ActorFactory;
 
 /**
@@ -12,30 +11,21 @@ import factories.ActorFactory;
  */
 public class AboutStage extends AbstractStage {
 
-    private IllegalAliensMain game;
-    private StageSwitcher stageSwitcher;
+    private MainMenuController mainMenuController;
 
-    public AboutStage(IllegalAliensMain game, StageSwitcher stageSwitcher) {
-        this.game = game;
-        this.stageSwitcher = stageSwitcher;
+    public AboutStage(MainMenuController mainMenuController) {
+        this.mainMenuController = mainMenuController;
 
         this.addActor(addBackButton());
         this.addActor(addAboutLabel());
         this.addActor(addAboutTextArea());
+
+        this.setVisible(false);
     }
 
     private Actor addBackButton() {
-        Actor backButton = ActorFactory.createTextButton("Back to Main menu",
-                centerWidth, centerHeight - 150, center);
-
-        backButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                stageSwitcher.showStage(stageSwitcher.getMainMenuStage());
-            }
-        });
-
-        return backButton;
+        return ActorFactory.createTextButton("backToMainMenu","Back to Main menu",
+                centerWidth, centerHeight - 150, center, mainMenuController);
     }
 
     private Actor addAboutLabel() {

@@ -6,21 +6,23 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.IllegalAliensMain;
+import controllers.MainMenuController;
 import factories.ActorFactory;
-import map.Map;
 
 public class MainMenuStage extends AbstractStage {
 
     private IllegalAliensMain game;
-    private StageSwitcher stageSwitcher;
+    private MainMenuController mainMenuController;
 
-    public MainMenuStage(IllegalAliensMain game, StageSwitcher stageSwitcher) {
+    public MainMenuStage(IllegalAliensMain game, MainMenuController mainMenuController) {
         this.game = game;
-        this.stageSwitcher = stageSwitcher;
+        this.mainMenuController = mainMenuController;
 
         this.addActor(addAlienImage());
         this.addActor(addWelcomeText());
         this.addActor(addTable());
+
+        this.setVisible(false);
     }
 
     private Actor addAlienImage() {
@@ -55,30 +57,11 @@ public class MainMenuStage extends AbstractStage {
     }
 
     private Actor addStartButton() {
-        Actor startButton = ActorFactory.createTextButton("Start");
-
-        startButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                //game.startGame(new Map("map2", new Texture("maps/map2.png")));
-                stageSwitcher.showStage(stageSwitcher.getMapSelectStage());
-            }
-        });
-
-        return startButton;
+        return ActorFactory.createTextButton("mapSelectStage", "Start", mainMenuController);
     }
 
     private Actor addAboutButton() {
-        Actor aboutButton = ActorFactory.createTextButton("About");
-
-        aboutButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                stageSwitcher.showStage(stageSwitcher.getAboutStage());
-            }
-        });
-
-        return aboutButton;
+        return ActorFactory.createTextButton("aboutStage", "About", mainMenuController);
     }
 
     private Actor addSettingsButton() {

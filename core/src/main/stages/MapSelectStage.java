@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.IllegalAliensMain;
+import controllers.MainMenuController;
 import factories.ActorFactory;
 import map.Map;
 
@@ -17,19 +18,21 @@ import map.Map;
 public class MapSelectStage extends AbstractStage {
 
 	private IllegalAliensMain game;
-	private StageSwitcher stageSwitcher;
 	private Map map;
 
+	private MainMenuController mainMenuController;
 	private Actor startGameButton;
 
-	public MapSelectStage(IllegalAliensMain game, StageSwitcher stageSwitcher) {
+	public MapSelectStage(IllegalAliensMain game, MainMenuController mainMenuController) {
 		this.game = game;
-		this.stageSwitcher = stageSwitcher;
+		this.mainMenuController = mainMenuController;
 
 		this.addActor(addTopLabel());
 		this.addActor(addMapTable());
 		this.addActor(addStartGameButton());
 		this.addActor(addBackButton());
+
+		this.setVisible(false);
 	}
 
 	private Table addMapTable() {
@@ -110,16 +113,8 @@ public class MapSelectStage extends AbstractStage {
 	}
 
 	private Actor addBackButton() {
-		Actor backButton = ActorFactory.createTextButton("Back to Main menu", centerWidth - 100, centerHeight - 100, center);
-
-		backButton.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				stageSwitcher.showStage(stageSwitcher.getMainMenuStage());
-			}
-		});
-
-		return backButton;
+		return ActorFactory.createTextButton("backToMainMenu","Back to Main menu",
+				centerWidth - 100, centerHeight - 100, center, mainMenuController);
 	}
 
 	private Actor addTopLabel() {
