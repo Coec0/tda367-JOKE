@@ -13,9 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import textures.PortraitTextureHandler;
 
-import javax.sound.sampled.Port;
+import textures.PortraitTextureHandler;
 
 /**
  * Created by Emil on 2017-05-07.
@@ -26,7 +25,8 @@ public class SuperpowerStage extends Stage {
     private Skin skin;
     private Table table;
     private ImageTextButton nukeB, minutemenB, wallB, boostB;
-
+    
+    
     private final int WIDTH = 400;
     private final int HEIGHT = 100;
     public SuperpowerStage(ClickListener superC){
@@ -93,39 +93,29 @@ public class SuperpowerStage extends Stage {
 
     }
     
-    //ONLY TEMPORARY
-    public int getPowerCost(){
-    	return 200;
-    }
-    
-    public void disableRepublican(Touchable disable){
-    	nukeB.setTouchable(disable);
+    private void disableITB(Touchable disable, ImageTextButton button){
+    	button.setTouchable(disable);
     	if(disable == Touchable.disabled){
-    		nukeB.setColor(Color.RED);
-    		minutemenB.setColor(Color.RED);
+    		button.setColor(Color.RED);
     	}else{
-    		nukeB.setColor(Color.WHITE);
-    		minutemenB.setColor(Color.WHITE);
+    		button.setColor(Color.WHITE);
     	}
-    	minutemenB.setTouchable(disable);
     }
     
-    public void disableDemocrat(Touchable disable){
-    	if(disable == Touchable.disabled){
-    		boostB.setColor(Color.RED);
-    		wallB.setColor(Color.RED);
-    	}else{
-    		boostB.setColor(Color.WHITE);
-    		wallB.setColor(Color.WHITE);
-    	}
-    	boostB.setTouchable(disable);
-    	wallB.setTouchable(disable);
+    public void disableNuke(Touchable disable){
+    	disableITB(disable, nukeB);
     }
     
+    public void disableMinuteman(Touchable disable){
+    	disableITB(disable, minutemenB);
+    }
     
-    //Remove in future but not now :)
-    public void updateSuperPowerButton(String power, int cost, boolean disable){
-    	System.out.println("UpdateSuper");
+    public void disableWall(Touchable disable){
+    	disableITB(disable, wallB);
+    }
+    
+    public void disableTowerBoost(Touchable disable){
+    	disableITB(disable, boostB);
     }
 
     private ImageTextButton addSuperPowerButton(String name, String text ,Texture texture, ClickListener CL) {

@@ -8,6 +8,7 @@ import buildings.BoardObject;
 import buildings.WhiteHouse;
 import observers.BuildingObserver;
 import observers.PrototypeObserver;
+import observers.SuperpowerObserver;
 import observers.WhiteHouseObserver;
 import politics.parties.PartyFactory;
 import stages.EndGamePopupStage;
@@ -17,10 +18,11 @@ import stages.RightGameUIStage;
 import stages.SelectedBoardObjectStage;
 import stages.SuperpowerStage;
 import stages.TopLeftGameUIStage;
+import superpowers.Superpower;
 import towers.BOPrototypes;
 import utilities.DrawablesCollector;
 
-public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver, PrototypeObserver {
+public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver, PrototypeObserver, SuperpowerObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
 	private SelectedBoardObjectStage SBOS;
@@ -28,7 +30,7 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	private NextWaveStage NW;
 	private SuperpowerStage SS;
 	private EndGamePopupStage EGP;
-	
+	private int nukeCost=0, minutemenCost=0, wallCost=0, towerBoosterCost=0;
 
 	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,
 					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP) {
@@ -61,16 +63,28 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	}
 
 	private void updateSuperPowerButtons(WhiteHouse whitehouse) {
-		if(SS.getPowerCost()> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()){
-			SS.disableDemocrat(Touchable.disabled);
-			System.out.println("DISBALED");
+		if(nukeCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()){
+			SS.disableNuke(Touchable.disabled);
 		} else {
-			SS.disableDemocrat(Touchable.enabled);
+			SS.disableNuke(Touchable.enabled);
 		}
-		if(SS.getPowerCost()> whitehouse.getParty(PartyFactory.Republican(0)).getPoints()){
-			SS.disableRepublican(Touchable.disabled);
+		
+		if(minutemenCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()){
+			SS.disableMinuteman(Touchable.disabled);
 		} else {
-			SS.disableRepublican(Touchable.enabled);
+			SS.disableMinuteman(Touchable.enabled);
+		}
+		
+		if(wallCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints()){
+			SS.disableWall(Touchable.disabled);
+		} else {
+			SS.disableWall(Touchable.enabled);
+		}
+		
+		if(towerBoosterCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints()){
+			SS.disableTowerBoost(Touchable.disabled);
+		} else {
+			SS.disableTowerBoost(Touchable.enabled);
 		}
 		
 //		SS.updateSuperPowerButton(power, cost, disable);
@@ -101,6 +115,18 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	public void actOnPrototypeChange(BOPrototypes prototypes) {
 		HS.updatePurchables(prototypes);
 		
+	}
+
+	@Override
+	public void actOnSuperPowerChange(Superpower superpower) {
+		if(superpower.getName().equals("NUKE"))
+			nukeCost = superpower.getSuperPowerCost();
+		else if(superpower.getName().equals("TOWERBOOSTER"))
+			towerBoosterCost = superpower.getSuperPowerCost();
+		else if(superpower.getName().equals("WALL"))
+			wallCost = superpower.getSuperPowerCost();
+		else if(superpower.getName().equals("MINUTEMEN"))
+			minutemenCost = superpower.getSuperPowerCost();
 	}
 
 }

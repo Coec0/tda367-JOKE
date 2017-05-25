@@ -31,4 +31,9 @@ public class Nuke implements Superpower {
 	public void setSuperPowerCost(int cost) {
 		this.superPowerCost = cost;
 	}
+
+	@Override
+	public String getName() {
+		return "NUKE";
+	}
 }

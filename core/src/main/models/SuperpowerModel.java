@@ -45,7 +45,7 @@ public class SuperpowerModel implements UpdateObserver {
         this.cdh = cdh;
         
         minuteman = new Minutemen(0, 0, 400);
-        wall = new Wall("wall", 0, 0, 15, 200);
+        wall = new Wall("WALL", 0, 0, 15, 200);
         nuke = new Nuke(500);
         towerBoost = new TowerBoost(cdh, 300);
         this.whitehouse = BModel.getWhiteHouses().peek();
@@ -64,9 +64,9 @@ public class SuperpowerModel implements UpdateObserver {
      * @param enemies all enemies in the map
      */
     public void useNuke(Array<Enemy> enemies){
-    	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>200){
+    	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>nuke.getSuperPowerCost()){
     		nuke.perform(enemies);
-    		removePoints(PartyFactory.Republican(0, 200));
+    		removePoints(PartyFactory.Democrat(0, nuke.getSuperPowerCost()));
     	}
     }
 
@@ -76,13 +76,13 @@ public class SuperpowerModel implements UpdateObserver {
      * @param prototypes to help create the minutemen
      */
     public void useMinutemen(BOPrototypes prototypes){
-    	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>200){
+    	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>minuteman.getSuperPowerCost()){
     		minutemenActive = true;
     		BModel.addBoardObject(minuteman.clone(600, 495));
     		BModel.addBoardObject(minuteman.clone(550, 485));
     		BModel.addBoardObject(minuteman.clone(650, 485));
     		BModel.addBoardObject(minuteman.clone(500, 485));
-    		removePoints(PartyFactory.Republican(0, 200));
+    		removePoints(PartyFactory.Democrat(0, minuteman.getSuperPowerCost()));
     	}
     }
 
@@ -94,7 +94,7 @@ public class SuperpowerModel implements UpdateObserver {
      */
 
     public void useWall(int x, int y){
-    	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>200 && !AModel.getWaveAlive()){
+    	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>wall.getSuperPowerCost() && !AModel.getWaveAlive()){
     		
     		
     		Node node = new Node(x,y);
@@ -107,7 +107,7 @@ public class SuperpowerModel implements UpdateObserver {
     			BModel.purchaseHighlightedObject(x, y);
     			finder.removeNeighbor(rs);
     			finder.calculateAllShortest();
-    			removePoints(PartyFactory.Democrat(0, 200));
+    			removePoints(PartyFactory.Republican(0, wall.getSuperPowerCost()));
     		}
     	}
     }
@@ -118,7 +118,7 @@ public class SuperpowerModel implements UpdateObserver {
      */
 
     public void useTowerBoost(Array<Tower> towers){
-    	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>200){
+    	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>towerBoost.getSuperPowerCost()){
     		boostActive = true;
     		this.towers = towers;
     		if(this.towers.size > 0) {
@@ -126,7 +126,7 @@ public class SuperpowerModel implements UpdateObserver {
     				towerBoost.boostTower(tower);
     			}
     		}
-    		removePoints(PartyFactory.Democrat(0, 200));
+    		removePoints(PartyFactory.Republican(0, towerBoost.getSuperPowerCost()));
         }
     }
 

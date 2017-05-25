@@ -150,7 +150,7 @@ public class GameScreen implements Screen{
 		EndGamePopupStage EGP = new EndGamePopupStage(IAMain);
 		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
 		
-		
+		SM.addObserver(HV);
 		BM.addObserver(HV);
 		prot.addObserver(HV);
 		imp.addProcessor(HS);
