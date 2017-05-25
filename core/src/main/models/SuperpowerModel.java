@@ -2,20 +2,23 @@ package models;
 
 import com.badlogic.gdx.utils.Array;
 
+import buildings.BoardObject;
 import buildings.Wall;
 import buildings.WhiteHouse;
 import cooldown.CooldownHandler;
 import enemies.Enemy;
+import observers.SuperpowerObserver;
 import observers.UpdateObserver;
 import path.PathFinder;
 import path.RoadSection;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
 import superpowers.Nuke;
+import superpowers.Superpower;
 import superpowers.TowerBoost;
 import towers.BOPrototypes;
+import towers.Minutemen;
 import towers.Tower;
-import towers.TowerFactory;
 import utilities.Node;
 
 /**
@@ -29,7 +32,8 @@ public class SuperpowerModel implements UpdateObserver {
     private TowerBoost towerBoost;
     private Array<Tower> towers;
     private CooldownHandler cdh;
-
+    private Wall wall;
+    private Minutemen minuteman;
     private boolean boostActive = false;
     private boolean minutemenActive = false;
     private WhiteHouse whitehouse;
@@ -38,12 +42,22 @@ public class SuperpowerModel implements UpdateObserver {
     	this.BModel = BModel;
     	this.finder = finder;
     	this.AModel = AModel;
-        nuke = new Nuke(500);
         this.cdh = cdh;
+        
+        minuteman = new Minutemen(0, 0, 400);
+        wall = new Wall("wall", 0, 0, 15, 200);
+        nuke = new Nuke(500);
         towerBoost = new TowerBoost(cdh, 300);
         this.whitehouse = BModel.getWhiteHouses().peek();
     }
 
+    
+    private void notifySuperPowers() {
+		notifyObservers(nuke);
+		notifyObservers(towerBoost);
+		notifyObservers(wall);
+		notifyObservers(minuteman);
+	}
 
     /**
      * Kills all enemies on the map if the user has enough republican points
@@ -64,10 +78,10 @@ public class SuperpowerModel implements UpdateObserver {
     public void useMinutemen(BOPrototypes prototypes){
     	if(whitehouse.getParty(PartyFactory.Republican(0)).getPoints()>200){
     		minutemenActive = true;
-    		BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,600,495));
-    		BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,550,485));
-    		BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,650,485));
-    		BModel.addBoardObject(TowerFactory.createMinutemen(prototypes,500,485));
+    		BModel.addBoardObject(minuteman.clone(600, 495));
+    		BModel.addBoardObject(minuteman.clone(550, 485));
+    		BModel.addBoardObject(minuteman.clone(650, 485));
+    		BModel.addBoardObject(minuteman.clone(500, 485));
     		removePoints(PartyFactory.Republican(0, 200));
     	}
     }
@@ -152,6 +166,24 @@ public class SuperpowerModel implements UpdateObserver {
         }
     }
 
+    
+	private Array<SuperpowerObserver> observers = new Array<SuperpowerObserver>(false, 10);
+
+	public void addObserver(SuperpowerObserver observer) {
+		observers.add(observer);
+		notifySuperPowers();
+	}
+
+
+	public void removeObserver(SuperpowerObserver observer) {
+		observers.removeValue(observer, false);
+	}
+
+	private void notifyObservers(Superpower superpower) {
+		for (SuperpowerObserver observer : observers)
+			observer.actOnSuperPowerChange(superpower);
+	}
+
 
     @Override
     public void update(float deltaTime) {
@@ -162,5 +194,10 @@ public class SuperpowerModel implements UpdateObserver {
             checkBoost();
         }
     }
+
+
+	public BoardObject getWall(int x, int y) {
+		return wall.clone(x, y);
+	}
 
 }
