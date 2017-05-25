@@ -10,15 +10,17 @@ public class Map {
 	private Texture texture;
 	private MapParser mapParser;
 	private Array<MapNode> mapNodes;
+	private String mapName;
 
 	public Map(String mapName) {
+		this.mapName = mapName;
 		mapParser = new MapParser(mapName);
 		mapNodes = this.addMapNodes(mapParser);
 	}
 
 	public Map(String mapName, Texture texture) {
 		this.texture = texture;
-
+		this.mapName = mapName;
 		mapParser = new MapParser(mapName);
 		mapNodes = this.addMapNodes(mapParser);
 	}
@@ -29,13 +31,25 @@ public class Map {
 	 */
 	public Array<MapNode> getStartingNodes(){
 		Array<MapNode> startingNodes = new Array<MapNode>();
-
-		startingNodes.add(mapNodes.get(0));
-		startingNodes.add(mapNodes.get(1));
-		startingNodes.add(mapNodes.get(2));
-		startingNodes.add(mapNodes.get(3));
-		startingNodes.add(mapNodes.get(4));
-
+		
+		if(mapName.equals("map1")){
+			startingNodes.add(mapNodes.get(0));
+			startingNodes.add(mapNodes.get(1));
+			startingNodes.add(mapNodes.get(2));
+			startingNodes.add(mapNodes.get(3));
+		}else if(mapName.equals("map2")){
+			startingNodes.add(mapNodes.get(0));
+			startingNodes.add(mapNodes.get(1));
+			startingNodes.add(mapNodes.get(2));
+			startingNodes.add(mapNodes.get(3));
+			startingNodes.add(mapNodes.get(4));
+		}else if (mapName.equals("AlphaMap")){
+			startingNodes.add(mapNodes.get(0));
+			startingNodes.add(mapNodes.get(1));
+			startingNodes.add(mapNodes.get(2));
+			startingNodes.add(mapNodes.get(3));
+		}
+		
 		return startingNodes;
 	}
 
