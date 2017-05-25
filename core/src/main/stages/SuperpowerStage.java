@@ -6,15 +6,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
 import textures.PortraitTextureHandler;
+
+import javax.swing.*;
+import javax.tools.Tool;
 
 /**
  * Created by Emil on 2017-05-07.
@@ -25,13 +25,19 @@ public class SuperpowerStage extends Stage {
     private Skin skin;
     private Table table;
     private ImageTextButton nukeB, minutemenB, wallB, boostB;
-    
-    
+    private TextTooltip nukeTooltip, boostTooltip, minutemenTooltip, wallTooltip;
+
+
     private final int WIDTH = 400;
     private final int HEIGHT = 100;
     public SuperpowerStage(ClickListener superC){
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         this.table = new Table();
+
+        nukeTooltip = new TextTooltip("A nuke that kills all enemies",skin);
+        boostTooltip = new TextTooltip("Temporarily boosts all your owned towers",skin);
+        minutemenTooltip = new TextTooltip("4 minutemen are called in to assist you",skin);
+        wallTooltip = new TextTooltip("Blocks a path, forcing enemies to a possible chokepoint",skin);
         createSuperPowerButtons(superC);
 
         table.setPosition(Gdx.graphics.getWidth() / 4, 0);
@@ -40,6 +46,8 @@ public class SuperpowerStage extends Stage {
 
         table.add(addSuperpowerTable(superC));
         this.addActor(table);
+
+
 
     }
 
@@ -50,6 +58,7 @@ public class SuperpowerStage extends Stage {
 
         table.add(nukeB).width(WIDTH/4).height(HEIGHT);
         table.add(minutemenB).width(WIDTH/4).height(HEIGHT);
+        table.add(boostB).width(WIDTH/4).height(HEIGHT);
         table.add(wallB).width(WIDTH/4).height(HEIGHT);
         table.add(boostB).width(WIDTH/4).height(HEIGHT);
         return table;
@@ -81,12 +90,21 @@ public class SuperpowerStage extends Stage {
     private void createSuperPowerButtons(ClickListener superC){
         nukeB = addSuperPowerButton("nuke", "nuke", PortraitTextureHandler.getNukePortrait(),superC);
         nukeB.setColor(Color.BLUE);
+        nukeB.addListener(nukeTooltip);
+
         minutemenB = addSuperPowerButton("minutemen", "minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
         minutemenB.setColor(Color.BLUE);
         boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
         boostB.setColor(Color.RED);
+        minutemenB.addListener(minutemenTooltip);
+
+        boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
+        boostB.setColor(Color.RED);
+        boostB.addListener(boostTooltip);
+
         wallB = addSuperPowerButton("wall","wall", PortraitTextureHandler.getWallPortrait(), superC);
         wallB.setColor(Color.RED);
+        wallB.addListener(wallTooltip);
     }
     
     
