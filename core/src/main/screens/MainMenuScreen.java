@@ -5,6 +5,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.example.illegalaliens.IllegalAliensMain;
+import controllers.MainMenuController;
+import stages.AboutStage;
+import stages.MainMenuStage;
+import stages.MapSelectStage;
 import stages.StageSwitcher;
 
 public class MainMenuScreen implements Screen {
@@ -13,17 +17,27 @@ public class MainMenuScreen implements Screen {
 	private SpriteBatch batch;
 
 	private StageSwitcher stageSwitcher;
+	private MainMenuController mainMenuController;
+
+	private MainMenuStage mainMenuStage;
+	private AboutStage aboutStage;
+	private MapSelectStage mapSelectStage;
 	
 	public MainMenuScreen(IllegalAliensMain game, SpriteBatch batch){
 		this.game = game;
 		this.batch = batch;
 
-		stageSwitcher = new StageSwitcher(game);
+		stageSwitcher = new StageSwitcher();
+		mainMenuController = new MainMenuController(this);
+
+		mainMenuStage = new MainMenuStage(game, mainMenuController);
+		aboutStage = new AboutStage(mainMenuController);
+		mapSelectStage = new MapSelectStage(game, mainMenuController);
 	}
 
 	@Override
 	public void show() {
-		stageSwitcher.showStage(stageSwitcher.getMainMenuStage());
+		stageSwitcher.showStage(mainMenuStage);
 	}
 
 	@Override
@@ -32,7 +46,9 @@ public class MainMenuScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
-		stageSwitcher.drawStages();
+		mainMenuStage.draw();
+		aboutStage.draw();
+		mapSelectStage.draw();
 		batch.end();
 	}
 
@@ -62,7 +78,19 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		stageSwitcher.dispose();
+
+	}
+
+	public void showMainMenuStage() {
+		stageSwitcher.showStage(mainMenuStage);
+	}
+
+	public void showAboutStage() {
+		stageSwitcher.showStage(aboutStage);
+	}
+
+	public void showMapSelectStage() {
+		stageSwitcher.showStage(mapSelectStage);
 	}
 	
 
