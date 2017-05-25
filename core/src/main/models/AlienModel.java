@@ -72,7 +72,7 @@ public class AlienModel implements UpdateObserver {
 		notifyObservers(enemy, false);
 	}
 	
-	public boolean getWaveOn(){
+	public boolean isWaveOn(){
 		return waveON;
 	}
 	

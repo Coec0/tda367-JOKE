@@ -80,7 +80,7 @@ public class SuperpowerModel implements UpdateObserver {
      */
 
     public void useWall(int x, int y){
-    	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>200){
+    	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>200 && !AModel.getWaveAlive()){
     		
     		
     		Node node = new Node(x,y);
