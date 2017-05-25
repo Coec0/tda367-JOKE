@@ -37,10 +37,10 @@ public class ActorFactory {
 		return textButton;
 	}
 
-	public static Actor createTextButton(String name, String text, float x, float y, ClickListener clickListener) {
+	public static Actor createTextButton(String name, String text, float x, float y, int posAlignment, ClickListener clickListener) {
 		TextButton textButton = new TextButton(text, skin, "default");
 		textButton.setName(name);
-		textButton.setPosition(x, y);
+		textButton.setPosition(x, y, posAlignment);
 		textButton.addListener(clickListener);
 		return textButton;
 	}
