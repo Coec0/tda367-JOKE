@@ -87,7 +87,7 @@ public final class PathFinder {
 	}
 	
 	
-	private MapNode findMapNode(Node node, Array<MapNode> allNodes){
+	public MapNode findMapNode(Node node, Array<MapNode> allNodes){
 		for(MapNode mn : allNodes){
 			if(mn.getPos().equals(node)){
 				return mn;
@@ -235,7 +235,7 @@ public final class PathFinder {
 	 * @param pathNodes
 	 * @return full path
 	 */
-	private Array<Node> getFullPath(float speed, Array<Node> pathNodes){
+	public Array<Node> getFullPath(float speed, Array<Node> pathNodes){
 		
 		Array<Node> fullPath = new Array<Node>();
 		Array<Node> pixelPath;
