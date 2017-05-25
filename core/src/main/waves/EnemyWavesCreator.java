@@ -9,19 +9,14 @@ import enemies.*;
 
 public class EnemyWavesCreator{
 	
-	private int enemyCounter = 0;
-	private int frames;
-
-	LevelCreator levelCreator = new LevelCreator();
-	
-	private Array<Level> levels;
+	private int levelIndex = 0;
+	private LevelCreator levelCreator = new LevelCreator();
 	private Level currentLevel;
 	private int currentWaveIndex;
 
 
 
 	public EnemyWavesCreator(){
-		levels = levelCreator.getAllLevels();
 		nextLevel();
 		currentWaveIndex = 0;
 	}
@@ -36,46 +31,14 @@ public class EnemyWavesCreator{
 			nextLevel();
 			currentWaveIndex = 0;
 		}
-		enemyCounter = 0;
 		return currentLevel.getNextWave(true);
 		
 		
 	}
 		
 	private void nextLevel(){
-		currentLevel = levels.pop();
+		levelIndex++;
+		currentLevel = levelCreator.getLevel(levelIndex);
 	}
-	/*private void spawnNextEnemy(){ 
-	if(enemyCounter < wave.size){
-		cont.spawnAlien(AlienFactory.createAlien()); //TODO remove hardcoded alien!
-		enemyCounter++;
-	}else{
-		waveON = false;
-	}*/
 	
-	
-	
-	/*@Override
-	public boolean keyDown (int keycode) {
-		if(keycode == Keys.SPACE){
-			nextWave();
-			waveON = true;
-			return true;
-		}
-		return false;
-	}*/
-	
-	/*
-	@Override
-	public void update(float deltaTime) {
-		frames++;
-		if(frames > 10){
-			if(waveON){
-				spawnNextEnemy();
-			}
-			frames = 0;
-			
-		}
-	}
-	*/
 }

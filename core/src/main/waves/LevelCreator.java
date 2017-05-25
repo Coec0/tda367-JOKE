@@ -66,18 +66,33 @@ public class LevelCreator {
         levels.add(new Level(3,L3,true));
         levels.add(new Level(3,L4,true));
         levels.add(new Level(3,L5,true));
-        levels.add(new Level(50,L6,true));
+        levels.add(new Level(3,L6,true));
 
         levels.reverse();
 
     }
 
 
-    public Level getLevel(int i){
-        return levels.get(i); //Todo: implement index out of bounds
+    public Level getLevel(int levelIndex){
+    	if(levels.size <= levelIndex){
+    		return getExtendedLevel(levelIndex);
+    	}
+        return levels.get(levelIndex);
     }
+    
     public Array<Level> getAllLevels(){
         return levels;
+    }
+    
+    public Level getExtendedLevel(int levelIndex){
+    	System.out.println("hjhsjhsbvsbvsklbvs");   
+    	Array<LevelHelperObject> extendedLevel = new Array<LevelHelperObject>();
+    	extendedLevel.add(new LevelHelperObject(sneakyAlien,7 + levelIndex));
+    	extendedLevel.add(new LevelHelperObject(alienWithHelmet,7 + levelIndex));
+    	extendedLevel.add(new LevelHelperObject(highAlien,10 + levelIndex));
+    	extendedLevel.add(new LevelHelperObject(toughAlien, 10 + levelIndex));
+    	return new Level(3,extendedLevel,true);
+    	
     }
 
 
