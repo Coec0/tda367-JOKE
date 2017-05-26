@@ -19,12 +19,15 @@ Contributors:
     2. Executive orders
     3. Presidental powers
     4. Towers
+    5. Tower upgrades
 4. Project Structure
 5. Necessary (circular) dependencies
-
+6. Current flaws
 
 ## Introduction
-This Readme should be used to learn basic information about the game and its structure.
+This Readme aims to fulfill two purposes:
+- provide information about the game (as a complement to the information available in-game)
+- provde information about the system structure
 
 Run the game by either downloading the source code and launching it via an IDE or Terminal or by downloading
 the JAR file (coming later).
@@ -52,7 +55,7 @@ presidental powers. These are strong and expensive powers which will help you wh
 Executive orders are tricky. The special thing about them is that there is always a drawback for the benefits. There are six
 executive orders, three for each political side. When used, you gain a large amount of points/votes for the corresponding party.
 Available executive orders:
-- Civil War (republican): Removes all democrat towers and gives a large number of politcal points
+- Civil War (republican): Removes all democrat towers and gives a large number of political points
 - Civil War (democrat): Removes all republican towers and gives a large number of politcal points
 - Declare War: Gives instant money, but purchasing towers are more expensive for a few rounds
 - Open Borders: More aliens are spawned in the coming waves (possibly more income)
@@ -103,3 +106,7 @@ the android hierchary.
 ## Necessary (circular) dependencies
 A ciruclar dependency, which cannot be removed, exists within the code. The 'Screen' classes and 'Game' class is built like
 that in the used framework (LibGDX). More information about the unremovable (without breaking the game) dependency can be found [here](https://gamedev.stackexchange.com/questions/67232/how-to-remove-a-circular-dependency-as-pointed-out-in-a-libgdx-tutorial).
+
+## Current flaws
+- UI is not particulary user friendly
+- Not enough information about the game inside the game
