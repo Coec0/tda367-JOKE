@@ -3,7 +3,7 @@ package com.example.illegalaliens.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.example.illegalaliens.IllegalAliensMain;
+import com.example.illegalaliens.screens.IllegalAliensMain;
 
 public class HtmlLauncher extends GwtApplication {
 
