@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.example.illegalaliens.utilities.cooldown.CooldownObject;
+
 public class CoolDownObjectTest {
 	/**
 	 * Test class for CoolDownObject

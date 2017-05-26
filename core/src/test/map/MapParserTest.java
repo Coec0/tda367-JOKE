@@ -1,6 +1,8 @@
 package map;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.utilities.path.map.MapParser;
+
 import org.junit.Before;
 import org.junit.Test;
 

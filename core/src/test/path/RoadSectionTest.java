@@ -2,7 +2,9 @@ package path;
 
 import org.junit.Before;
 import org.junit.Test;
-import utilities.Node;
+
+import com.example.illegalaliens.utilities.Node;
+import com.example.illegalaliens.utilities.path.RoadSection;
 
 import static org.junit.Assert.*;
 

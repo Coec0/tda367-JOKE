@@ -5,13 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
-
-import hiscore.DatabaseResolver;
-import hiscore.HiscoreDB;
-import map.Map;
-import screens.EndGameScreen;
-import screens.GameScreen;
-import screens.MainMenuScreen;
+import com.example.illegalaliens.hiscore.DatabaseResolver;
+import com.example.illegalaliens.hiscore.HiscoreDB;
+import com.example.illegalaliens.screens.EndGameScreen;
+import com.example.illegalaliens.screens.GameScreen;
+import com.example.illegalaliens.screens.MainMenuScreen;
+import com.example.illegalaliens.utilities.path.map.Map;
 
 
 public class IllegalAliensMain extends Game {

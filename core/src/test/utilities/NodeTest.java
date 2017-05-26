@@ -3,6 +3,8 @@ package utilities;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.example.illegalaliens.utilities.Node;
+
 import static org.junit.Assert.*;
 
 /**

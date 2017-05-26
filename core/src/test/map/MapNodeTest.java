@@ -1,10 +1,11 @@
 package map;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.utilities.Node;
+import com.example.illegalaliens.utilities.path.map.MapNode;
 
 import org.junit.Before;
 import org.junit.Test;
-import utilities.Node;
 
 import static org.junit.Assert.*;
 

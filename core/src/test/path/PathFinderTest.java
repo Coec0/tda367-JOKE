@@ -3,12 +3,13 @@ package path;
 import org.junit.Test;
 
 import com.badlogic.gdx.utils.Array;
-
-import map.Map;
-import map.MapNode;
-import path.PathFinder;
-import utilities.Node;
-import utilities.Radar;
+import com.example.illegalaliens.utilities.Node;
+import com.example.illegalaliens.utilities.Radar;
+import com.example.illegalaliens.utilities.path.DijkstraSolver;
+import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadSection;
+import com.example.illegalaliens.utilities.path.map.Map;
+import com.example.illegalaliens.utilities.path.map.MapNode;
 
 import static org.junit.Assert.*;
 

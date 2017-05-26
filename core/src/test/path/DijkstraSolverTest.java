@@ -7,10 +7,10 @@ import org.junit.Test;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
-
-import map.Map;
-import map.MapNode;
-import utilities.Node;
+import com.example.illegalaliens.utilities.Node;
+import com.example.illegalaliens.utilities.path.DijkstraSolver;
+import com.example.illegalaliens.utilities.path.map.Map;
+import com.example.illegalaliens.utilities.path.map.MapNode;
 
 public class DijkstraSolverTest {
 	private Map map;

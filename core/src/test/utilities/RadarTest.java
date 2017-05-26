@@ -1,10 +1,11 @@
 package utilities;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.models.boardobjects.towers.Soldier;
+import com.example.illegalaliens.models.enemies.Alien;
+import com.example.illegalaliens.models.enemies.Enemy;
+import com.example.illegalaliens.utilities.Radar;
 
-import boardobjects.towers.Soldier;
-import enemies.Alien;
-import enemies.Enemy;
 import org.junit.Before;
 import org.junit.Test;
 

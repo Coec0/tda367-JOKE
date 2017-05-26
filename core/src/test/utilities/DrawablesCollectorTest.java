@@ -1,6 +1,9 @@
 package utilities;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.example.illegalaliens.utilities.DrawablesCollector;
+import com.example.illegalaliens.utilities.SpriteAdapter;
+
 import org.junit.Before;
 import org.junit.Test;
 
