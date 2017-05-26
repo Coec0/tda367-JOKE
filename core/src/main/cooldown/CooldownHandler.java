@@ -1,8 +1,7 @@
 package cooldown;
 
 import com.badlogic.gdx.utils.Array;
-
-import observers.UpdateObserver;
+import com.example.illegalaliens.UpdateObserver;
 
 public class CooldownHandler implements UpdateObserver {
 	

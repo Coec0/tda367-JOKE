@@ -5,12 +5,11 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 import boardobjects.BoardObject;
+import boardobjects.BoardObjectObserver;
 import boardobjects.WhiteHouse;
+import boardobjects.WhiteHouseObserver;
 import boardobjects.towers.BOPrototypes;
-import observers.BoardObjectObserver;
-import observers.PrototypeObserver;
-import observers.SuperpowerObserver;
-import observers.WhiteHouseObserver;
+import boardobjects.towers.PrototypeObserver;
 import politics.parties.PartyFactory;
 import stages.EndGamePopupStage;
 import stages.NextWaveStage;
@@ -20,6 +19,7 @@ import stages.SelectedBoardObjectStage;
 import stages.SuperpowerStage;
 import stages.TopLeftGameUIStage;
 import superpowers.Superpower;
+import superpowers.SuperpowerObserver;
 import utilities.DrawablesCollector;
 
 public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver {

@@ -1,12 +1,12 @@
 package controllers;
 
 import boardobjects.BoardObject;
+import boardobjects.BoardObjectObserver;
 import boardobjects.towers.Tower;
 import models.BoardObjectModel;
 import models.ProjectileModel;
-import observers.BoardObjectObserver;
-import observers.ProjectileObserver;
 import projectiles.Projectile;
+import projectiles.ProjectileObserver;
 import views.ProjectileView;
 
 /**

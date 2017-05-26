@@ -1,6 +1,4 @@
-package observers;
-
-import superpowers.Superpower;
+package superpowers;
 
 public interface SuperpowerObserver {
 	public void actOnSuperPowerChange(Superpower superpower);

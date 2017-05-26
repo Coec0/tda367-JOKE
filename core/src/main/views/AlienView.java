@@ -5,15 +5,15 @@ import com.badlogic.gdx.graphics.Texture;
 import enemies.Alien;
 import enemies.AlienWithHelmet;
 import enemies.Enemy;
+import enemies.EnemyObserver;
 import enemies.HighAlien;
 import enemies.SneakyAlien;
 import enemies.ToughAlien;
-import observers.AlienObserver;
 import textures.AlienTextureHandler;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
-public class AlienView extends View<Enemy> implements AlienObserver {
+public class AlienView extends View<Enemy> implements EnemyObserver {
 	
 	public AlienView(DrawablesCollector DC) {
 		super(DC);

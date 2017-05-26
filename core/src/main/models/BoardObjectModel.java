@@ -1,16 +1,16 @@
 package models;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.UpdateObserver;
 
 import boardobjects.BoardObject;
+import boardobjects.BoardObjectObserver;
 import boardobjects.WhiteHouse;
 import boardobjects.buildings.Building;
 import boardobjects.buildings.RiotShield;
 import boardobjects.towers.*;
 import cooldown.CooldownHandler;
 import enemies.Enemy;
-import observers.BoardObjectObserver;
-import observers.UpdateObserver;
 import path.PathFinder;
 import politics.parties.Voter;
 import utilities.Node;

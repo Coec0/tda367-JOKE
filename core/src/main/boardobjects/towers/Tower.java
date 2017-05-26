@@ -5,9 +5,9 @@ import com.badlogic.gdx.utils.Array;
 import boardobjects.BoardObject;
 import cooldown.CooldownObject;
 import enemies.Enemy;
-import observers.ProjectileObserver;
 import politics.parties.Party;
 import projectiles.Projectile;
+import projectiles.ProjectileObserver;
 import towers.targetmethods.ITargetState;
 import towers.targetmethods.TargetFirst;
 

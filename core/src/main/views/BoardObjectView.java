@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 import boardobjects.BoardObject;
+import boardobjects.BoardObjectObserver;
 import boardobjects.Wall;
 import boardobjects.WhiteHouse;
 import boardobjects.buildings.RiotShield;
 import boardobjects.towers.*;
-import observers.BoardObjectObserver;
 import textures.BuildingTextureHandler;
 import textures.TowerTextureHandler;
 import utilities.DrawablesCollector;

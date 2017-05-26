@@ -1,6 +1,4 @@
-package observers;
-
-import projectiles.Projectile;
+package projectiles;
 
 /**
  * Created by Emil on 2017-04-28.

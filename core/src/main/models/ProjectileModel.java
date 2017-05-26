@@ -2,11 +2,11 @@ package models;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.UpdateObserver;
 
 import enemies.Enemy;
-import observers.ProjectileObserver;
-import observers.UpdateObserver;
 import projectiles.Projectile;
+import projectiles.ProjectileObserver;
 import utilities.Radar;
 
 /**

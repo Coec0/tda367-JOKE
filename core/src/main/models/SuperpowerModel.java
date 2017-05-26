@@ -1,6 +1,7 @@
 package models;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.UpdateObserver;
 
 import boardobjects.BoardObject;
 import boardobjects.Wall;
@@ -10,14 +11,13 @@ import boardobjects.towers.Minutemen;
 import boardobjects.towers.Tower;
 import cooldown.CooldownHandler;
 import enemies.Enemy;
-import observers.SuperpowerObserver;
-import observers.UpdateObserver;
 import path.PathFinder;
 import path.RoadSection;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
 import superpowers.Nuke;
 import superpowers.Superpower;
+import superpowers.SuperpowerObserver;
 import superpowers.TowerBoost;
 import utilities.Node;
 

@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Array;
 import hiscore.DatabaseResolver;
 import hiscore.HiscoreDB;
 import map.Map;
-import observers.UpdateObserver;
 import screens.EndGameScreen;
 import screens.GameScreen;
 import screens.MainMenuScreen;

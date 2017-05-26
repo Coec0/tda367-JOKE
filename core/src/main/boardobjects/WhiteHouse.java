@@ -3,13 +3,12 @@ package boardobjects;
 import com.badlogic.gdx.utils.Array;
 
 import enemies.Enemy;
-import observers.AlienObserver;
-import observers.WhiteHouseObserver;
+import enemies.EnemyObserver;
 import politics.Parliament;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
 
-public class WhiteHouse extends BoardObject implements AlienObserver{
+public class WhiteHouse extends BoardObject implements EnemyObserver{
 	private int health=20; //temp
 	private float money;
 	private Parliament parliament;	

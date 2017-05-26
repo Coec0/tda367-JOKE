@@ -1,18 +1,18 @@
 package models;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.UpdateObserver;
 
 import cooldown.WavesCDHandler;
 import enemies.Alien;
 import enemies.AlienFactory;
 import enemies.AlienWithHelmet;
 import enemies.Enemy;
+import enemies.EnemyObserver;
 import enemies.HighAlien;
 import enemies.SneakyAlien;
 import enemies.ToughAlien;
 import map.MapNode;
-import observers.AlienObserver;
-import observers.UpdateObserver;
 import path.PathFinder;
 import utilities.Node;
 import waves.EnemyWavesCreator;
@@ -193,18 +193,18 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	
-	private Array<AlienObserver> observers = new Array<AlienObserver>(false, 10);
+	private Array<EnemyObserver> observers = new Array<EnemyObserver>(false, 10);
 
-	public void addObserver(AlienObserver observer) {
+	public void addObserver(EnemyObserver observer) {
 		observers.add(observer);
 	}
 
-	public void removeObserver(AlienObserver observer) {
+	public void removeObserver(EnemyObserver observer) {
 		observers.removeValue(observer, false);
 	}
 
 	private void notifyObservers(Enemy enemy, boolean remove) {
-		for (AlienObserver observer : observers)
+		for (EnemyObserver observer : observers)
 			observer.actOnEnemyChange(enemy, remove);
 	}
 }

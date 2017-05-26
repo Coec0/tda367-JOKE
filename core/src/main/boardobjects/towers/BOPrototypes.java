@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.Array;
 
 import boardobjects.buildings.Building;
 import boardobjects.buildings.RiotShield;
-import observers.PrototypeObserver;
 
 public class BOPrototypes {
 	private Tower ranger, soldier, sniper, tank, minutemen, netGunner;
