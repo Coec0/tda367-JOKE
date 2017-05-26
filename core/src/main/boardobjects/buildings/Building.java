@@ -1,5 +1,6 @@
-package buildings;
+package boardobjects.buildings;
 
+import boardobjects.BoardObject;
 import cooldown.CooldownObject;
 import politics.parties.Party;
 

@@ -1,5 +1,6 @@
 package models;
 
+import boardobjects.towers.BOPrototypes;
 import cooldown.WavesCDHandler;
 import cooldown.WavesCooldown;
 import executive_orders.CivilWar;
@@ -8,7 +9,6 @@ import executive_orders.OpenBorders;
 import executive_orders.TowerChanger;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
-import towers.BOPrototypes;
 
 public class ExecutiveOrdersModel implements WavesCooldown {
 

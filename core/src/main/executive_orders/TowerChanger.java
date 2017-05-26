@@ -1,9 +1,9 @@
 package executive_orders;
 
-import buildings.WhiteHouse;
+import boardobjects.WhiteHouse;
+import boardobjects.towers.BOPrototypes;
 import cooldown.WavesCooldown;
 import politics.parties.Party;
-import towers.BOPrototypes;
 
 public class TowerChanger implements ExecutiveOrder, WavesCooldown {
 	private BOPrototypes prots;

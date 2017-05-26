@@ -1,4 +1,4 @@
-package buildings;
+package boardobjects;
 
 import politics.parties.Party;
 import politics.parties.Voter;

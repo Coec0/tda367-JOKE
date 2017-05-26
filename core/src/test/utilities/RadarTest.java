@@ -1,7 +1,8 @@
 package utilities;
 
-import towers.Soldier;
 import com.badlogic.gdx.utils.Array;
+
+import boardobjects.towers.Soldier;
 import enemies.Alien;
 import enemies.Enemy;
 import org.junit.Before;

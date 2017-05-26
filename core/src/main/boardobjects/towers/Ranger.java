@@ -1,7 +1,7 @@
-package towers;
+package boardobjects.towers;
 
 
-import buildings.BoardObject;
+import boardobjects.BoardObject;
 import politics.parties.Party;
 import politics.parties.PartyFactory;
 import projectiles.Bullet;

@@ -14,7 +14,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.IllegalAliensMain;
 
-import buildings.WhiteHouse;
+import boardobjects.WhiteHouse;
+import boardobjects.towers.BOPrototypes;
 import controllers.AlienController;
 import controllers.BoardObjectController;
 import controllers.ExecutiveOrdersController;
@@ -37,7 +38,6 @@ import stages.RightGameUIStage;
 import stages.SelectedBoardObjectStage;
 import stages.SuperpowerStage;
 import stages.TopLeftGameUIStage;
-import towers.BOPrototypes;
 import utilities.DrawablesCollector;
 import utilities.Node;
 import utilities.Radar;

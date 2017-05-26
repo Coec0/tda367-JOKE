@@ -2,9 +2,12 @@ package models;
 
 import com.badlogic.gdx.utils.Array;
 
-import buildings.BoardObject;
-import buildings.Wall;
-import buildings.WhiteHouse;
+import boardobjects.BoardObject;
+import boardobjects.Wall;
+import boardobjects.WhiteHouse;
+import boardobjects.towers.BOPrototypes;
+import boardobjects.towers.Minutemen;
+import boardobjects.towers.Tower;
 import cooldown.CooldownHandler;
 import enemies.Enemy;
 import observers.SuperpowerObserver;
@@ -16,9 +19,6 @@ import politics.parties.PartyFactory;
 import superpowers.Nuke;
 import superpowers.Superpower;
 import superpowers.TowerBoost;
-import towers.BOPrototypes;
-import towers.Minutemen;
-import towers.Tower;
 import utilities.Node;
 
 /**

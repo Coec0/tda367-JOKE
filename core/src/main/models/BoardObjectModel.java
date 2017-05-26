@@ -2,10 +2,11 @@ package models;
 
 import com.badlogic.gdx.utils.Array;
 
-import buildings.BoardObject;
-import buildings.Building;
-import buildings.WhiteHouse;
-import towers.*;
+import boardobjects.BoardObject;
+import boardobjects.WhiteHouse;
+import boardobjects.buildings.Building;
+import boardobjects.buildings.RiotShield;
+import boardobjects.towers.*;
 import cooldown.CooldownHandler;
 import enemies.Enemy;
 import observers.BoardObjectObserver;

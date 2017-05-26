@@ -1,8 +1,8 @@
-package towers;
+package boardobjects.towers;
 
 import com.badlogic.gdx.utils.Array;
 
-import buildings.BoardObject;
+import boardobjects.BoardObject;
 import cooldown.CooldownObject;
 import enemies.Enemy;
 import observers.ProjectileObserver;

@@ -7,8 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import boardobjects.towers.Tower;
 import factories.ActorFactory;
-import towers.Tower;
 import utilities.DrawablesCollector;
 
 /**

@@ -3,13 +3,14 @@ package views;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
-import buildings.BoardObject;
-import buildings.Wall;
-import buildings.WhiteHouse;
+import boardobjects.BoardObject;
+import boardobjects.Wall;
+import boardobjects.WhiteHouse;
+import boardobjects.buildings.RiotShield;
+import boardobjects.towers.*;
 import observers.BoardObjectObserver;
 import textures.BuildingTextureHandler;
 import textures.TowerTextureHandler;
-import towers.*;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 

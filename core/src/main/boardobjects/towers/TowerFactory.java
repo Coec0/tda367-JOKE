@@ -1,4 +1,6 @@
-package towers;
+package boardobjects.towers;
+
+import boardobjects.buildings.RiotShield;
 
 public class TowerFactory {
 	/**

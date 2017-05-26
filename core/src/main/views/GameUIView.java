@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
-import buildings.BoardObject;
-import buildings.WhiteHouse;
+import boardobjects.BoardObject;
+import boardobjects.WhiteHouse;
+import boardobjects.towers.BOPrototypes;
 import observers.BoardObjectObserver;
 import observers.PrototypeObserver;
 import observers.SuperpowerObserver;
@@ -19,7 +20,6 @@ import stages.SelectedBoardObjectStage;
 import stages.SuperpowerStage;
 import stages.TopLeftGameUIStage;
 import superpowers.Superpower;
-import towers.BOPrototypes;
 import utilities.DrawablesCollector;
 
 public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver {

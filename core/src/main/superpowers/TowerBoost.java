@@ -1,9 +1,10 @@
 package superpowers;
 
 import com.badlogic.gdx.utils.Array;
+
+import boardobjects.towers.Tower;
 import cooldown.CooldownHandler;
 import cooldown.CooldownObject;
-import towers.Tower;
 
 /**
  * Created by Emil on 2017-05-15.

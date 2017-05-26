@@ -1,6 +1,6 @@
 package observers;
 
-import buildings.WhiteHouse;
+import boardobjects.WhiteHouse;
 
 public interface WhiteHouseObserver {
 	void actOnWhiteHouseChange(WhiteHouse whitehouse);

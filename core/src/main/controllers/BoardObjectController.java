@@ -8,11 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import buildings.BoardObject;
-import buildings.Wall;
-import towers.BOPrototypes;
-import towers.Tower;
-import towers.TowerFactory;
+import boardobjects.BoardObject;
+import boardobjects.Wall;
+import boardobjects.towers.BOPrototypes;
+import boardobjects.towers.Tower;
+import boardobjects.towers.TowerFactory;
 import towers.targetmethods.TargetClosest;
 import towers.targetmethods.TargetFirst;
 import towers.targetmethods.TargetFurthest;

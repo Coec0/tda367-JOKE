@@ -1,4 +1,4 @@
-package buildings;
+package boardobjects;
 
 import superpowers.Superpower;
 import utilities.Node;

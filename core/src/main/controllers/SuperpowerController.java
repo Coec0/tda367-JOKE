@@ -6,12 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import buildings.Wall;
+import boardobjects.Wall;
+import boardobjects.towers.BOPrototypes;
 import models.AlienModel;
 import models.BoardObjectModel;
 import models.SuperpowerModel;
 import path.PathFinder;
-import towers.BOPrototypes;
 import utilities.Node;
 
 /**

@@ -1,6 +1,6 @@
 package observers;
 
-import towers.BOPrototypes;
+import boardobjects.towers.BOPrototypes;
 
 public interface PrototypeObserver {
 	public void actOnPrototypeChange(BOPrototypes prototypes);

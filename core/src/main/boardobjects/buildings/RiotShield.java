@@ -1,9 +1,8 @@
-package towers;
+package boardobjects.buildings;
 
 import com.badlogic.gdx.utils.Array;
 
-import buildings.BoardObject;
-import buildings.Building;
+import boardobjects.BoardObject;
 import enemies.Enemy;
 import politics.parties.Party;
 import politics.parties.PartyFactory;

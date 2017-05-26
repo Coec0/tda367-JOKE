@@ -2,7 +2,7 @@ package executive_orders;
 
 import com.badlogic.gdx.utils.Array;
 
-import buildings.BoardObject;
+import boardobjects.BoardObject;
 import models.BoardObjectModel;
 import politics.parties.Party;
 

@@ -8,8 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import buildings.BoardObject;
-import towers.Tower;
+import boardobjects.BoardObject;
+import boardobjects.towers.Tower;
 import utilities.DrawablesCollector;
 
 public class SelectedBuildingStage extends SelectedBoardObjectStage {

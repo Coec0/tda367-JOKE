@@ -12,8 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
+import boardobjects.towers.BOPrototypes;
 import textures.TowerTextureHandler;
-import towers.BOPrototypes;
 
 public class RightGameUIStage extends Stage {
 

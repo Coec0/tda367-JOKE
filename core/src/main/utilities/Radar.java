@@ -1,8 +1,8 @@
 package utilities;
 
-import towers.Tower;
 import com.badlogic.gdx.utils.Array;
 
+import boardobjects.towers.Tower;
 import enemies.Enemy;
 
 public class Radar {

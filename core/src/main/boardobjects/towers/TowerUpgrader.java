@@ -1,4 +1,4 @@
-package towers;
+package boardobjects.towers;
 
 import com.badlogic.gdx.utils.Array;
 
