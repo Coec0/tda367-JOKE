@@ -1,4 +1,4 @@
-package com.example.illegalaliens.utilities.waves;
+package com.example.illegalaliens.models.enemies.levels;
 
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.models.enemies.*;

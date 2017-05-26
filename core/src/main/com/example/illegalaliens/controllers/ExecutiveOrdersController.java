@@ -3,7 +3,7 @@ package com.example.illegalaliens.controllers;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.example.illegalaliens.models.ExecutiveOrdersModel;
+import com.example.illegalaliens.models.executive_orders.ExecutiveOrdersModel;
 
 public class ExecutiveOrdersController extends ClickListener implements InputProcessor {
 	

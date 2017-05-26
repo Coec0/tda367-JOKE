@@ -1,10 +1,12 @@
-package com.example.illegalaliens.utilities.waves;
+package com.example.illegalaliens.models.enemies.waves;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.controllers.AlienController;
 import com.example.illegalaliens.models.enemies.*;
+import com.example.illegalaliens.models.enemies.levels.Level;
+import com.example.illegalaliens.models.enemies.levels.LevelCreator;
 
 public class EnemyWavesCreator{
 	

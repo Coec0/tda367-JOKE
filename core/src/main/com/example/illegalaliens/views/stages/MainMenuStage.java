@@ -1,21 +1,17 @@
 package com.example.illegalaliens.views.stages;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.example.illegalaliens.IllegalAliensMain;
-import com.example.illegalaliens.controllers.MainMenuController;
-import com.example.illegalaliens.factories.ActorFactory;
 
 public class MainMenuStage extends AbstractStage {
 
-    private IllegalAliensMain game;
-    private MainMenuController mainMenuController;
+    private ClickListener mainMenuController;
 
-    public MainMenuStage(IllegalAliensMain game, MainMenuController mainMenuController) {
-        this.game = game;
+    public MainMenuStage(ClickListener mainMenuController) {
         this.mainMenuController = mainMenuController;
 
         this.addActor(addAlienImage());
@@ -67,12 +63,7 @@ public class MainMenuStage extends AbstractStage {
     private Actor addSettingsButton() {
         Actor settingsButton = ActorFactory.createTextButton("Settings");
 
-        settingsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                //TODO
-            }
-        });
+        settingsButton.addListener(mainMenuController);
 
         return settingsButton;
     }
@@ -83,7 +74,7 @@ public class MainMenuStage extends AbstractStage {
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.shutdown();
+            	Gdx.app.exit();
             }
         });
 
@@ -93,12 +84,7 @@ public class MainMenuStage extends AbstractStage {
     private Actor addHiscoreButton() {
         Actor hiscoreButton = ActorFactory.createTextButton("Hiscore");
 
-        hiscoreButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                //TODO
-            }
-        });
+        hiscoreButton.addListener(mainMenuController);
 
         return hiscoreButton;
     }

@@ -4,28 +4,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.example.illegalaliens.IllegalAliensMain;
-import com.example.illegalaliens.factories.ActorFactory;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.example.illegalaliens.controllers.MainMenuController;
 
 public class EndGamePopupStage extends Stage{
 	Skin skin = new Skin(Gdx.files.internal("ui/skin/plain-james-ui.json"));
 	private float WIDTH = 300;
 	private float HEIGHT = 250;
-	private StageSwitcher stageSwitcher;
-	private IllegalAliensMain illegalAliensMain;
+	private ClickListener MMCont;
 	
-	public EndGamePopupStage(IllegalAliensMain illegalAliensMain){
-		this.illegalAliensMain = illegalAliensMain;
+	public EndGamePopupStage(ClickListener MMCont){
+		this.MMCont = MMCont;
 		Pixmap background = new Pixmap(10, 10, Pixmap.Format.Alpha);
 		background.setColor(0, 0, 0, 0.7f);
 		background.fill();
@@ -51,13 +46,8 @@ public class EndGamePopupStage extends Stage{
 		table.row();
 		TextButton tb = new TextButton("Go to MainMenu",skin);
 		
-		tb.addListener(new ClickListener() {
-			@Override
-            public void clicked(InputEvent event, float x, float y){
-				System.out.println("hejehejhe");
-				illegalAliensMain.switchToMainMenuScreen();
-            }
-        });
+		tb.setName("goToMainMenu");
+		tb.addListener(MMCont);
 		
 	
 		table.add(tb).fill();

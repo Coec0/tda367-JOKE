@@ -1,9 +1,9 @@
 package com.example.illegalaliens.models.boardobjects.towers;
 
-import com.example.illegalaliens.factories.ProjectileFactory;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.projectiles.Projectile;
+import com.example.illegalaliens.models.projectiles.ProjectileFactory;
 import com.example.illegalaliens.models.superpowers.Superpower;
 
 /**

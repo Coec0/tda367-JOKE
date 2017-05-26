@@ -12,19 +12,20 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.example.illegalaliens.IllegalAliensMain;
 import com.example.illegalaliens.controllers.AlienController;
 import com.example.illegalaliens.controllers.BoardObjectController;
 import com.example.illegalaliens.controllers.ExecutiveOrdersController;
+import com.example.illegalaliens.controllers.MainMenuController;
 import com.example.illegalaliens.controllers.ProjectileController;
 import com.example.illegalaliens.controllers.SuperpowerController;
 import com.example.illegalaliens.models.AlienModel;
 import com.example.illegalaliens.models.BoardObjectModel;
-import com.example.illegalaliens.models.ExecutiveOrdersModel;
 import com.example.illegalaliens.models.ProjectileModel;
-import com.example.illegalaliens.models.SuperpowerModel;
 import com.example.illegalaliens.models.boardobjects.WhiteHouse;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
+import com.example.illegalaliens.models.enemies.waves.EnemyWavesCreator;
+import com.example.illegalaliens.models.executive_orders.ExecutiveOrdersModel;
+import com.example.illegalaliens.models.superpowers.SuperpowerModel;
 import com.example.illegalaliens.utilities.DrawablesCollector;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
@@ -34,7 +35,6 @@ import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
 import com.example.illegalaliens.utilities.path.PathFinder;
 import com.example.illegalaliens.utilities.path.map.Map;
 import com.example.illegalaliens.utilities.path.map.MapNode;
-import com.example.illegalaliens.utilities.waves.EnemyWavesCreator;
 import com.example.illegalaliens.views.AlienView;
 import com.example.illegalaliens.views.BoardObjectView;
 import com.example.illegalaliens.views.GameUIView;
@@ -67,11 +67,13 @@ public class GameScreen implements Screen{
 	private SuperpowerStage SS;
 
 	private Map map;
+	private MainMenuController MMController;
 
-	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch) {
+	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch, MainMenuController MMController) {
 		this.IAMain = illegalAliensMain;
 		this.map = map;
 		this.batch = batch;
+		this.MMController = MMController;
 	}
 
 	@Override
@@ -146,7 +148,7 @@ public class GameScreen implements Screen{
 		SS = new SuperpowerStage(SC);
 		
 		
-		EndGamePopupStage EGP = new EndGamePopupStage(IAMain);
+		EndGamePopupStage EGP = new EndGamePopupStage(MMController);
 		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
 		
 		SM.addObserver(HV);
@@ -158,6 +160,7 @@ public class GameScreen implements Screen{
 		imp.addProcessor(SC);
 		imp.addProcessor(SS);
 		imp.addProcessor(EOC);
+		imp.addProcessor(EGP);
 		
 		BOModel.getWhiteHouses().peek().addObserver(HV);
 		BOModel.getWhiteHouses().peek().setHealth(20); //Fixes display issue on HV

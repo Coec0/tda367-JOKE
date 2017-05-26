@@ -1,8 +1,5 @@
-package com.example.illegalaliens.factories;
+package com.example.illegalaliens.models.projectiles;
 
-import com.example.illegalaliens.models.projectiles.Bullet;
-import com.example.illegalaliens.models.projectiles.Missile;
-import com.example.illegalaliens.models.projectiles.Projectile;
 import com.example.illegalaliens.utilities.Node;
 
 public class ProjectileFactory {

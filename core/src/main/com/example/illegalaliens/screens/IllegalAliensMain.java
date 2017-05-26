@@ -1,27 +1,22 @@
-package com.example.illegalaliens;
+package com.example.illegalaliens.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.UpdateObserver;
 import com.example.illegalaliens.hiscore.DatabaseResolver;
 import com.example.illegalaliens.hiscore.HiscoreDB;
-import com.example.illegalaliens.screens.EndGameScreen;
-import com.example.illegalaliens.screens.GameScreen;
-import com.example.illegalaliens.screens.MainMenuScreen;
 import com.example.illegalaliens.utilities.path.map.Map;
 
 
 public class IllegalAliensMain extends Game {
 
-	private SpriteBatch batch;
-	private GameScreen gameScreen;
-	private EndGameScreen endGameScreen;
-	private MainMenuScreen mainMenuScreen;
 	private Array<UpdateObserver> observers;
 	private Skin skin;
-
+	private SpriteBatch batch;
+	private MainMenuScreen mainMenuScreen;
 	private DatabaseResolver databaseResolver;
 
 	public IllegalAliensMain(DatabaseResolver databaseResolver) {
@@ -30,40 +25,24 @@ public class IllegalAliensMain extends Game {
 	
 	@Override
 	public void create() {
-
+		this.batch = new SpriteBatch();
 		HiscoreDB hiscoreDB = new HiscoreDB(databaseResolver);
 		hiscoreDB.create();
 
-		batch = new SpriteBatch();
+		mainMenuScreen = new MainMenuScreen(this, batch);
+		
 		observers = new Array<UpdateObserver>(false, 10);
 
-		mainMenuScreen = new MainMenuScreen(this, batch);
+		
 //		gameScreen = new GameScreen(this, batch);
-		endGameScreen = new EndGameScreen(this, batch);
 
-		setScreen(mainMenuScreen);
+		this.switchToMainMenuScreen();
 	}
 
 	@Override
 	public void render() {
 		notifyObservers();
 		super.render();
-	}
-
-	public void startGame(Map map) {
-		gameScreen = new GameScreen(this, map, batch);
-		setScreen(gameScreen);
-	}
-	
-	public void switchToMainMenuScreen(){
-		mainMenuScreen.show();
-		setScreen(mainMenuScreen);
-		
-	}
-
-
-	public void shutdown() {
-		Gdx.app.exit();
 	}
 
 	public void addObserver(UpdateObserver observer) {
@@ -77,5 +56,16 @@ public class IllegalAliensMain extends Game {
 	private void notifyObservers() {
 		for (UpdateObserver observer : observers)
 			observer.update(Gdx.graphics.getDeltaTime());
+	}
+		
+	
+	public void startGame(Map map) {
+		setScreen(new GameScreen(this, map, batch, mainMenuScreen.getMainMenuController()));
+	}
+	
+	public void switchToMainMenuScreen(){
+		mainMenuScreen.show();
+		setScreen(mainMenuScreen);
+		
 	}
 }

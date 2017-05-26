@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.models.AlienModel;
 import com.example.illegalaliens.models.BoardObjectModel;
-import com.example.illegalaliens.models.SuperpowerModel;
 import com.example.illegalaliens.models.boardobjects.Wall;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
+import com.example.illegalaliens.models.superpowers.SuperpowerModel;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.path.PathFinder;
 

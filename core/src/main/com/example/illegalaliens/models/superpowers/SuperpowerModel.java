@@ -1,7 +1,9 @@
-package com.example.illegalaliens.models;
+package com.example.illegalaliens.models.superpowers;
 
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.UpdateObserver;
+import com.example.illegalaliens.models.AlienModel;
+import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.Wall;
 import com.example.illegalaliens.models.boardobjects.WhiteHouse;
@@ -11,10 +13,6 @@ import com.example.illegalaliens.models.boardobjects.towers.Tower;
 import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.politics.parties.PartyFactory;
-import com.example.illegalaliens.models.superpowers.Nuke;
-import com.example.illegalaliens.models.superpowers.Superpower;
-import com.example.illegalaliens.models.superpowers.SuperpowerObserver;
-import com.example.illegalaliens.models.superpowers.TowerBoost;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
 import com.example.illegalaliens.utilities.path.PathFinder;

@@ -3,7 +3,6 @@ package com.example.illegalaliens.views.stages;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.controllers.MainMenuController;
-import com.example.illegalaliens.factories.ActorFactory;
 
 /**
  * Stage for About
@@ -11,9 +10,9 @@ import com.example.illegalaliens.factories.ActorFactory;
  */
 public class AboutStage extends AbstractStage {
 
-    private MainMenuController mainMenuController;
+    private ClickListener mainMenuController;
 
-    public AboutStage(MainMenuController mainMenuController) {
+    public AboutStage(ClickListener mainMenuController) {
         this.mainMenuController = mainMenuController;
 
         this.addActor(addBackButton());

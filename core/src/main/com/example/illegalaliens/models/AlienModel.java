@@ -10,11 +10,11 @@ import com.example.illegalaliens.models.enemies.EnemyObserver;
 import com.example.illegalaliens.models.enemies.HighAlien;
 import com.example.illegalaliens.models.enemies.SneakyAlien;
 import com.example.illegalaliens.models.enemies.ToughAlien;
+import com.example.illegalaliens.models.enemies.waves.EnemyWavesCreator;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
 import com.example.illegalaliens.utilities.path.PathFinder;
 import com.example.illegalaliens.utilities.path.map.MapNode;
-import com.example.illegalaliens.utilities.waves.EnemyWavesCreator;
 
 public class AlienModel implements UpdateObserver {
 	private PathFinder finder;

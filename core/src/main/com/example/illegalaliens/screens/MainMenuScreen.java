@@ -4,40 +4,41 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.example.illegalaliens.IllegalAliensMain;
 import com.example.illegalaliens.controllers.MainMenuController;
+import com.example.illegalaliens.models.MainMenuModel;
+import com.example.illegalaliens.utilities.DrawablesCollector;
+import com.example.illegalaliens.views.MainMenuView;
 import com.example.illegalaliens.views.stages.AboutStage;
 import com.example.illegalaliens.views.stages.MainMenuStage;
 import com.example.illegalaliens.views.stages.MapSelectStage;
-import com.example.illegalaliens.views.stages.StageSwitcher;
 
 public class MainMenuScreen implements Screen {
 
-	private IllegalAliensMain game;
 	private SpriteBatch batch;
-
-	private StageSwitcher stageSwitcher;
+	private DrawablesCollector DC;
 	private MainMenuController mainMenuController;
-
-	private MainMenuStage mainMenuStage;
-	private AboutStage aboutStage;
-	private MapSelectStage mapSelectStage;
-	
+	private MainMenuModel model;
 	public MainMenuScreen(IllegalAliensMain game, SpriteBatch batch){
-		this.game = game;
+
 		this.batch = batch;
-
-		stageSwitcher = new StageSwitcher();
-		mainMenuController = new MainMenuController(this);
-
-		mainMenuStage = new MainMenuStage(game, mainMenuController);
-		aboutStage = new AboutStage(mainMenuController);
-		mapSelectStage = new MapSelectStage(game, mainMenuController);
+		DC = new DrawablesCollector();
+		model = new MainMenuModel(game);
+		mainMenuController = new MainMenuController(model);
+		MainMenuStage mainMenuStage = new MainMenuStage(mainMenuController);
+		AboutStage aboutStage = new AboutStage(mainMenuController);
+		MapSelectStage mapSelectStage = new MapSelectStage(mainMenuController);
+		
+		MainMenuView mainMenuView = new MainMenuView(DC, mainMenuStage, aboutStage, mapSelectStage);
+		model.addObserver(mainMenuView);
 	}
 
+	public MainMenuController getMainMenuController(){
+		return mainMenuController;
+	}
+	
 	@Override
 	public void show() {
-		stageSwitcher.showStage(mainMenuStage);
+		model.showMainMenuStage();
 	}
 
 	@Override
@@ -46,9 +47,7 @@ public class MainMenuScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
-		mainMenuStage.draw();
-		aboutStage.draw();
-		mapSelectStage.draw();
+		DC.drawStages();
 		batch.end();
 	}
 
@@ -79,18 +78,6 @@ public class MainMenuScreen implements Screen {
 	@Override
 	public void dispose() {
 
-	}
-
-	public void showMainMenuStage() {
-		stageSwitcher.showStage(mainMenuStage);
-	}
-
-	public void showAboutStage() {
-		stageSwitcher.showStage(aboutStage);
-	}
-
-	public void showMapSelectStage() {
-		stageSwitcher.showStage(mapSelectStage);
 	}
 	
 

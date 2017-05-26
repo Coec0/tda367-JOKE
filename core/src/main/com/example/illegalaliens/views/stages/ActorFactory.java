@@ -1,4 +1,4 @@
-package com.example.illegalaliens.factories;
+package com.example.illegalaliens.views.stages;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

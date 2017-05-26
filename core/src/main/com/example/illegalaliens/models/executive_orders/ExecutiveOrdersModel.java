@@ -1,10 +1,8 @@
-package com.example.illegalaliens.models;
+package com.example.illegalaliens.models.executive_orders;
 
+import com.example.illegalaliens.models.AlienModel;
+import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
-import com.example.illegalaliens.models.executive_orders.CivilWar;
-import com.example.illegalaliens.models.executive_orders.DeclareWar;
-import com.example.illegalaliens.models.executive_orders.OpenBorders;
-import com.example.illegalaliens.models.executive_orders.TowerChanger;
 import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.politics.parties.PartyFactory;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;

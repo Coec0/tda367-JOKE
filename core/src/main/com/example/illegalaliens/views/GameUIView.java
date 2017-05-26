@@ -53,7 +53,6 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
 		if(whitehouse.isGameOver()){
 			addToView(EGP);
-			Gdx.input.setInputProcessor((InputProcessor) EGP); //easy fix for disabling all other buttons
 		}
 		PMS.updatePartyMeter(whitehouse.getParliament());
 		TL.updateUI(Float.toString(whitehouse.getMoney()), Float.toString(whitehouse.getHealth()));
