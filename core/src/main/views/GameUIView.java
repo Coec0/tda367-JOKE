@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 import buildings.BoardObject;
 import buildings.WhiteHouse;
-import observers.BuildingObserver;
+import observers.BoardObjectObserver;
 import observers.PrototypeObserver;
 import observers.SuperpowerObserver;
 import observers.WhiteHouseObserver;
@@ -22,7 +22,7 @@ import superpowers.Superpower;
 import towers.BOPrototypes;
 import utilities.DrawablesCollector;
 
-public class GameUIView extends SimpleView implements WhiteHouseObserver, BuildingObserver, PrototypeObserver, SuperpowerObserver {
+public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
 	private SelectedBoardObjectStage SBOS;
@@ -92,7 +92,7 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, Buildi
 	}
 
 	@Override
-	public void actOnBuildingChange(BoardObject BO, boolean remove, boolean clickedOn) {
+	public void actOnBoardObjectChange(BoardObject BO, boolean remove, boolean clickedOn) {
 		if(!remove && clickedOn){
 			SBOS.setBoardObjectStage(BO);
 			removeFromView(HS);

@@ -24,17 +24,17 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	private final String openbordersHASH="kih7ytrg27a8gd67";
 	private boolean openBordersOnCooldown=false, civilOnCooldown=false, towerChangerOnCooldown=false, declareWarOnCooldown=false;
 
-	public ExecutiveOrdersModel(BuildingModel BM, AlienModel AM, WavesCDHandler wcd, BOPrototypes prots){
+	public ExecutiveOrdersModel(BoardObjectModel BOModel, AlienModel AM, WavesCDHandler wcd, BOPrototypes prots){
 		this.wcd = wcd;
 		republican = PartyFactory.Republican(0);
 		democrat = PartyFactory.Democrat(0);
-		CWD = new CivilWar(BM, republican, democrat);
-		CWR = new CivilWar(BM, democrat, republican);
+		CWD = new CivilWar(BOModel, republican, democrat);
+		CWR = new CivilWar(BOModel, democrat, republican);
 		
-		TC = new TowerChanger(BM.getWhiteHouses().peek(), prots, 0.5f, 0.5f , PartyFactory.Republican(100));
-		OC = new TowerChanger(BM.getWhiteHouses().peek(), prots, 1.5f, 1.5f, PartyFactory.Democrat(100));
+		TC = new TowerChanger(BOModel.getWhiteHouses().peek(), prots, 0.5f, 0.5f , PartyFactory.Republican(100));
+		OC = new TowerChanger(BOModel.getWhiteHouses().peek(), prots, 1.5f, 1.5f, PartyFactory.Democrat(100));
 		
-		DW = new DeclareWar(BM.getWhiteHouses().peek(), 30000, PartyFactory.Republican(30), prots);
+		DW = new DeclareWar(BOModel.getWhiteHouses().peek(), 30000, PartyFactory.Republican(30), prots);
 		OB = new OpenBorders(AM, PartyFactory.Democrat(30));
 	}
 	

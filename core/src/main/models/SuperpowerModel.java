@@ -27,7 +27,7 @@ import utilities.Node;
 public class SuperpowerModel implements UpdateObserver {
     private Nuke nuke;
     private PathFinder finder;
-    private BuildingModel BModel;
+    private BoardObjectModel BOModel;
     private AlienModel AModel; //buildingmodel and alienmodel should be moved
     private TowerBoost towerBoost;
     private Array<Tower> towers;
@@ -38,8 +38,8 @@ public class SuperpowerModel implements UpdateObserver {
     private boolean minutemenActive = false;
     private WhiteHouse whitehouse;
 
-    public SuperpowerModel(PathFinder finder,BuildingModel BModel, AlienModel AModel, CooldownHandler cdh){
-    	this.BModel = BModel;
+    public SuperpowerModel(PathFinder finder,BoardObjectModel BOModel, AlienModel AModel, CooldownHandler cdh){
+    	this.BOModel = BOModel;
     	this.finder = finder;
     	this.AModel = AModel;
         this.cdh = cdh;
@@ -48,7 +48,7 @@ public class SuperpowerModel implements UpdateObserver {
         wall = new Wall("WALL", 0, 0, 15, 200);
         nuke = new Nuke(500);
         towerBoost = new TowerBoost(cdh, 300);
-        this.whitehouse = BModel.getWhiteHouses().peek();
+        this.whitehouse = BOModel.getWhiteHouses().peek();
     }
 
     
@@ -78,10 +78,10 @@ public class SuperpowerModel implements UpdateObserver {
     public void useMinutemen(BOPrototypes prototypes){
     	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>minuteman.getSuperPowerCost()){
     		minutemenActive = true;
-    		BModel.addBoardObject(minuteman.clone(600, 495));
-    		BModel.addBoardObject(minuteman.clone(550, 485));
-    		BModel.addBoardObject(minuteman.clone(650, 485));
-    		BModel.addBoardObject(minuteman.clone(500, 485));
+    		BOModel.addBoardObject(minuteman.clone(600, 495));
+    		BOModel.addBoardObject(minuteman.clone(550, 485));
+    		BOModel.addBoardObject(minuteman.clone(650, 485));
+    		BOModel.addBoardObject(minuteman.clone(500, 485));
     		removePoints(PartyFactory.Democrat(0, minuteman.getSuperPowerCost()));
     	}
     }
@@ -101,10 +101,10 @@ public class SuperpowerModel implements UpdateObserver {
     		RoadSection rs = finder.findRoadSection(node);
     	
     		if(finder.canRemoveNeighbors(rs)){
-    			Wall wall = ((Wall)BModel.getHighlighted());
+    			Wall wall = ((Wall)BOModel.getHighlighted());
     			wall.setPos(node);
     			wall.rotateTowards(rs.getStart());
-    			BModel.purchaseHighlightedObject(x, y);
+    			BOModel.purchaseHighlightedObject(x, y);
     			finder.removeNeighbor(rs);
     			finder.calculateAllShortest();
     			this.wall.setSuperPowerCost((int)(this.wall.getSuperPowerCost()* 1.2f));
@@ -163,7 +163,7 @@ public class SuperpowerModel implements UpdateObserver {
 
     private void checkWave(){
         if (AModel.getAllEnemies().size < 1 && (!AModel.getWaveAlive())){
-            BModel.deleteMinutemen();
+            BOModel.deleteMinutemen();
             minutemenActive = false;
         }
     }

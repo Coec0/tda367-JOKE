@@ -6,15 +6,15 @@ import com.badlogic.gdx.graphics.Texture;
 import buildings.BoardObject;
 import buildings.Wall;
 import buildings.WhiteHouse;
-import observers.BuildingObserver;
+import observers.BoardObjectObserver;
 import textures.BuildingTextureHandler;
 import textures.TowerTextureHandler;
 import towers.*;
 import utilities.DrawablesCollector;
 import utilities.SpriteAdapter;
 
-public class BuildingView extends View<BoardObject> implements BuildingObserver{
-    public BuildingView(DrawablesCollector DC) {
+public class BoardObjectView extends View<BoardObject> implements BoardObjectObserver{
+    public BoardObjectView(DrawablesCollector DC) {
 		super(DC);
 	}
 
@@ -22,14 +22,14 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 
 
 
-    public void placeTexture(BoardObject building){
-    	onMouse = new SpriteAdapter(selectTexture(building));
-    	onMouse.setSize(onMouse.getWidth() * super.getScale(onMouse, building.getSize()), onMouse.getHeight()*super.getScale(onMouse, building.getSize()));
+    public void placeTexture(BoardObject boardObject){
+    	onMouse = new SpriteAdapter(selectTexture(boardObject));
+    	onMouse.setSize(onMouse.getWidth() * super.getScale(onMouse, boardObject.getSize()), onMouse.getHeight()*super.getScale(onMouse, boardObject.getSize()));
     	onMouse.setAlpha(0.5f);
     	
-    	radiusCircle = getRoundSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getRadius(), false, Color.GOLD);
+    	radiusCircle = getRoundSpriteAdapter(boardObject.getSpriteAdapter().getX(), boardObject.getSpriteAdapter().getY(), boardObject.getRadius(), false, Color.GOLD);
     	
-    	sizeCircle = getRoundSpriteAdapter(building.getSpriteAdapter().getX(), building.getSpriteAdapter().getY(), building.getSize(), true, Color.RED);
+    	sizeCircle = getRoundSpriteAdapter(boardObject.getSpriteAdapter().getX(), boardObject.getSpriteAdapter().getY(), boardObject.getSize(), true, Color.RED);
     	sizeCircle.setAlpha(0.5f);
     	addToView(onMouse);
     	showBoardObjectOverlay(true);
@@ -106,7 +106,7 @@ public class BuildingView extends View<BoardObject> implements BuildingObserver{
 	}
 	
 	@Override
-	public void actOnBuildingChange(BoardObject boardObject, boolean remove, boolean clickedOn) {
+	public void actOnBoardObjectChange(BoardObject boardObject, boolean remove, boolean clickedOn) {
 		if( !clickedOn && !remove){ //When placed on ground
 			addToView(boardObject.getSpriteAdapter(), boardObject, boardObject.getSize());
 			removePlaceTexture();

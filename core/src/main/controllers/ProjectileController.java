@@ -2,9 +2,9 @@ package controllers;
 
 import buildings.BoardObject;
 import towers.Tower;
-import models.BuildingModel;
+import models.BoardObjectModel;
 import models.ProjectileModel;
-import observers.BuildingObserver;
+import observers.BoardObjectObserver;
 import observers.ProjectileObserver;
 import projectiles.Projectile;
 import views.ProjectileView;
@@ -12,15 +12,15 @@ import views.ProjectileView;
 /**
  * Created by Emil on 2017-04-26.
  */
-public class ProjectileController implements ProjectileObserver, BuildingObserver {
+public class ProjectileController implements ProjectileObserver, BoardObjectObserver {
     private ProjectileModel PM;
     private ProjectileView PW;
 
-    public ProjectileController(ProjectileModel PM, ProjectileView PW, BuildingModel BM) {
+    public ProjectileController(ProjectileModel PM, ProjectileView PW, BoardObjectModel BOModel) {
         this.PM = PM;
         this.PW = PW;
         PM.addObserver(this);
-        BM.addObserver(this);
+        BOModel.addObserver(this);
     }
 
     public void spawnProjectile(Projectile projectile) {
@@ -54,8 +54,8 @@ public class ProjectileController implements ProjectileObserver, BuildingObserve
 
 
     @Override
-    public void actOnBuildingChange(BoardObject building, boolean remove, boolean clickedOn) {
-    if(building instanceof Tower && !clickedOn)	// Not a good fix, should prob make another observer instead
-       updateTowerObservers((Tower)building, remove);
+    public void actOnBoardObjectChange(BoardObject boardObject, boolean remove, boolean clickedOn) {
+    if(boardObject instanceof Tower && !clickedOn)	// Not a good fix, should prob make another observer instead
+       updateTowerObservers((Tower)boardObject, remove);
     }
 }

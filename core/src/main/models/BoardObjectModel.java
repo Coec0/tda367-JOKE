@@ -8,14 +8,14 @@ import buildings.WhiteHouse;
 import towers.*;
 import cooldown.CooldownHandler;
 import enemies.Enemy;
-import observers.BuildingObserver;
+import observers.BoardObjectObserver;
 import observers.UpdateObserver;
 import path.PathFinder;
 import politics.parties.Voter;
 import utilities.Node;
 import utilities.Radar;
 
-public class BuildingModel implements UpdateObserver {
+public class BoardObjectModel implements UpdateObserver {
 	private Array<Tower> towers;
 	private Array<WhiteHouse> whitehouses;
 	private Array<BoardObject> boardObjects;
@@ -27,7 +27,7 @@ public class BuildingModel implements UpdateObserver {
 	private CooldownHandler cdh;
 	private PathFinder finder;
 
-    public BuildingModel(Array<Enemy> enemies, CooldownHandler cdh, Radar radar, PathFinder finder) {
+    public BoardObjectModel(Array<Enemy> enemies, CooldownHandler cdh, Radar radar, PathFinder finder) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		boardObjects = new Array<BoardObject>(false, 40);
@@ -262,19 +262,19 @@ public class BuildingModel implements UpdateObserver {
 		useBuildingPowers(); // Maybe move from here
 	}
 
-	private Array<BuildingObserver> observers = new Array<BuildingObserver>(false, 10);
+	private Array<BoardObjectObserver> observers = new Array<BoardObjectObserver>(false, 10);
 
-	public void addObserver(BuildingObserver observer) {
+	public void addObserver(BoardObjectObserver observer) {
 		observers.add(observer);
 	}
 
-	public void removeObserver(BuildingObserver observer) {
+	public void removeObserver(BoardObjectObserver observer) {
 		observers.removeValue(observer, false);
 	}
 
-	private void notifyObservers(BoardObject building, boolean remove, boolean clickedOn) {
-		for (BuildingObserver observer : observers)
-			observer.actOnBuildingChange(building, remove, clickedOn);
+	private void notifyObservers(BoardObject boardObject, boolean remove, boolean clickedOn) {
+		for (BoardObjectObserver observer : observers)
+			observer.actOnBoardObjectChange(boardObject, remove, clickedOn);
 	}
 
 

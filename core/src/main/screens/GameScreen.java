@@ -16,7 +16,7 @@ import com.example.illegalaliens.IllegalAliensMain;
 
 import buildings.WhiteHouse;
 import controllers.AlienController;
-import controllers.BuildingController;
+import controllers.BoardObjectController;
 import controllers.ExecutiveOrdersController;
 import controllers.ProjectileController;
 import controllers.SuperpowerController;
@@ -25,7 +25,7 @@ import cooldown.WavesCDHandler;
 import map.Map;
 import map.MapNode;
 import models.AlienModel;
-import models.BuildingModel;
+import models.BoardObjectModel;
 import models.ExecutiveOrdersModel;
 import models.ProjectileModel;
 import models.SuperpowerModel;
@@ -43,7 +43,7 @@ import utilities.Node;
 import utilities.Radar;
 import utilities.SpriteAdapter;
 import views.AlienView;
-import views.BuildingView;
+import views.BoardObjectView;
 import views.GameUIView;
 import views.ProjectileView;
 import waves.EnemyWavesCreator;
@@ -93,8 +93,8 @@ public class GameScreen implements Screen{
 		AlienView AW= new AlienView(DC);
 		AlienModel AM = new AlienModel(finder, map.getStartingNodes(), wcd);
 		AlienController AController = new AlienController(AW, AM);
-		BuildingView TW = new BuildingView(DC);
-		BuildingModel BM = new BuildingModel(AM.getAllEnemies(), cdh,radar, finder);
+		BoardObjectView BOView = new BoardObjectView(DC);
+		BoardObjectModel BOModel = new BoardObjectModel(AM.getAllEnemies(), cdh,radar, finder);
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView(DC);
 		
@@ -104,7 +104,7 @@ public class GameScreen implements Screen{
 		
 		camera = new OrthographicCamera();
 		WP = new FitViewport(width, height, camera);
-		ProjectileController PC = new ProjectileController(PM, PW, BM);
+		ProjectileController PC = new ProjectileController(PM, PW, BOModel);
 		//Maybe move these later
 		
 		
@@ -115,35 +115,35 @@ public class GameScreen implements Screen{
 		//camera.position.set(1280/2, 720/2, 0);
 		
 		
-		BuildingController TController = new BuildingController(BM, AM, TW, WP,finder, prot);
+		BoardObjectController BOController = new BoardObjectController(BOModel, AM, BOView, WP,finder, prot);
 		
 		
-		IAMain.addObserver(BM);
+		IAMain.addObserver(BOModel);
 		IAMain.addObserver(AM);
 		IAMain.addObserver(PM);
 		
 		IAMain.addObserver(cdh);
 		InputMultiplexer imp = new InputMultiplexer();
 		imp.addProcessor(AController);
-		imp.addProcessor(TController);
+		imp.addProcessor(BOController);
 
 		Gdx.input.setInputProcessor(imp);
 		
 		AM.addObserver(WH);
-		BM.addWhiteHouse(WH);
+		BOModel.addWhiteHouse(WH);
 		
-		SuperpowerModel SM = new SuperpowerModel(finder,BM, AM, cdh);
-		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BM, prot);
+		SuperpowerModel SM = new SuperpowerModel(finder,BOModel, AM, cdh);
+		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BOModel, prot);
 		IAMain.addObserver(SM);
 		
-		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BM,AM, wcd,prot);
+		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BOModel,AM, wcd,prot);
 		ExecutiveOrdersController EOC= new ExecutiveOrdersController(EOM);
 		
-		SelectedBoardObjectStage SBOS = new SelectedBoardObjectStage(imp, TController, DC);
+		SelectedBoardObjectStage SBOS = new SelectedBoardObjectStage(imp, BOController, DC);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		TopLeftGameUIStage TL = new TopLeftGameUIStage();
 		NextWaveStage NW = new NextWaveStage(AController);
-		HS = new RightGameUIStage(AController, TController,EOC, prot);
+		HS = new RightGameUIStage(AController, BOController,EOC, prot);
 		SS = new SuperpowerStage(SC);
 		
 		
@@ -151,7 +151,7 @@ public class GameScreen implements Screen{
 		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
 		
 		SM.addObserver(HV);
-		BM.addObserver(HV);
+		BOModel.addObserver(HV);
 		prot.addObserver(HV);
 		imp.addProcessor(HS);
 		imp.addProcessor(SBOS);
@@ -160,8 +160,8 @@ public class GameScreen implements Screen{
 		imp.addProcessor(SS);
 		imp.addProcessor(EOC);
 		
-		BM.getWhiteHouses().peek().addObserver(HV);
-		BM.getWhiteHouses().peek().setHealth(20); //Fixes display issue on HV
+		BOModel.getWhiteHouses().peek().addObserver(HV);
+		BOModel.getWhiteHouses().peek().setHealth(20); //Fixes display issue on HV
 		
 	}
 

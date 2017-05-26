@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import buildings.Wall;
 import models.AlienModel;
-import models.BuildingModel;
+import models.BoardObjectModel;
 import models.SuperpowerModel;
 import path.PathFinder;
 import towers.BOPrototypes;
@@ -21,18 +21,18 @@ public class SuperpowerController extends ClickListener implements InputProcesso
 
     private SuperpowerModel SModel;
     private AlienModel AModel;
-    private BuildingModel BModel;
+    private BoardObjectModel BOModel;
     private Viewport VP;
     private BOPrototypes prototypes;
 
     private PathFinder finder;
 
-    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BuildingModel BModel, BOPrototypes prototypes){
+    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BoardObjectModel BOModel, BOPrototypes prototypes){
     	this.finder = finder;
         this.SModel = SModel;
         this.VP = VP;
         this.AModel = AModel;
-        this.BModel = BModel;
+        this.BOModel = BOModel;
         this.prototypes = prototypes;
     }
 
@@ -42,13 +42,13 @@ public class SuperpowerController extends ClickListener implements InputProcesso
             SModel.useNuke(AModel.getAllEnemies());
         }
         if(event.getListenerActor().getName().equals("wall")){
-        	BModel.clickedBuilding(SModel.getWall((int) x, (int) y)); 
+        	BOModel.clickedBuilding(SModel.getWall((int) x, (int) y)); 
         }
         if(event.getListenerActor().getName().equals("minutemen")){
             SModel.useMinutemen(prototypes);
         }
         if(event.getListenerActor().getName().equals("towerboost")){
-            SModel.useTowerBoost(BModel.getTowers());
+            SModel.useTowerBoost(BOModel.getTowers());
         }
     }
     @Override
@@ -74,7 +74,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
 		if(v.x >= VP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
-    	if(BModel.getHighlighted() != null && BModel.getHighlighted() instanceof Wall && !BModel.getHighlighted().isActive() && finder.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
+    	if(BOModel.getHighlighted() != null && BOModel.getHighlighted() instanceof Wall && !BOModel.getHighlighted().isActive() && finder.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
     		SModel.useWall((int)v.x, (int)v.y);
     	}
         return false;

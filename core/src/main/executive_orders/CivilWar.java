@@ -3,15 +3,15 @@ package executive_orders;
 import com.badlogic.gdx.utils.Array;
 
 import buildings.BoardObject;
-import models.BuildingModel;
+import models.BoardObjectModel;
 import politics.parties.Party;
 
 public class CivilWar implements ExecutiveOrder{
-	private BuildingModel BM;
+	private BoardObjectModel BOModel;
 	private Party killParty;
 	private Party killerParty;
-	public CivilWar(BuildingModel BM, Party killerParty, Party killParty){
-		this.BM  = BM;
+	public CivilWar(BoardObjectModel BOModel, Party killerParty, Party killParty){
+		this.BOModel  = BOModel;
 		this.killParty = killParty;
 		this.killerParty = killerParty;
 	}
@@ -19,9 +19,9 @@ public class CivilWar implements ExecutiveOrder{
 	@Override
 	public void execute() {
 		int points= 0;
-		Array<BoardObject> gonnaSell = new Array<BoardObject>(false, BM.getAllBoardObjects().size);
-		for(BoardObject BO : BM.getAllBoardObjects()){
-			System.out.println("BoardObjects "+BM.getAllBoardObjects().size);
+		Array<BoardObject> gonnaSell = new Array<BoardObject>(false, BOModel.getAllBoardObjects().size);
+		for(BoardObject BO : BOModel.getAllBoardObjects()){
+			System.out.println("BoardObjects "+BOModel.getAllBoardObjects().size);
 			if(BO.getParty() != null && BO.getParty().equals(killParty)){
 				points += BO.getParty().getPoints();
 				gonnaSell.add(BO);
@@ -29,9 +29,9 @@ public class CivilWar implements ExecutiveOrder{
 			}
 		}
 		for(BoardObject BO : gonnaSell){
-			BM.sellBoardObject(BO, false);
+			BOModel.sellBoardObject(BO, false);
 		}
-		BM.getWhiteHouses().peek().voteParty(new Party(killerParty.getName(), 0, points));
+		BOModel.getWhiteHouses().peek().voteParty(new Party(killerParty.getName(), 0, points));
 	}
 
 	@Override
