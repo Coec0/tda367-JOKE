@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.UpdateObserver;
 import com.example.illegalaliens.hiscore.DatabaseResolver;
@@ -35,7 +35,7 @@ public class IllegalAliensMain extends Game {
 	public void create() {
 		
 		camera = new OrthographicCamera();
-		WP = new FitViewport(width, height, camera);
+		WP = new StretchViewport(width, height, camera);
 		
 		this.batch = new SpriteBatch();
 		HiscoreDB hiscoreDB = new HiscoreDB(databaseResolver);

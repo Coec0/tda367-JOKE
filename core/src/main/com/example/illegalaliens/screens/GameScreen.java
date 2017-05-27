@@ -198,8 +198,8 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		WP.update(width-200*width/this.width, (height-height/this.height), true);
-		WP.setScreenY(WP.getBottomGutterHeight()*2);
+		WP.update(width-200*width/this.width, (height-112-height/this.height), true);
+		WP.setScreenY(WP.getTopGutterHeight());
 		DC.refreshStagesVP();
 	}
 
