@@ -88,21 +88,19 @@ public class SuperpowerStage extends Stage {
     }
 
     private void createSuperPowerButtons(ClickListener superC){
-        nukeB = addSuperPowerButton("nuke", "nuke", PortraitTextureHandler.getNukePortrait(),superC);
+        nukeB = addSuperPowerButton("nuke", "Nuke", PortraitTextureHandler.getNukePortrait(),superC);
         nukeB.setColor(Color.BLUE);
         nukeB.addListener(nukeTooltip);
 
-        minutemenB = addSuperPowerButton("minutemen", "minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
+        minutemenB = addSuperPowerButton("minutemen", "Minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
         minutemenB.setColor(Color.BLUE);
-        boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
-        boostB.setColor(Color.RED);
-        minutemenB.addListener(minutemenTooltip);
 
-        boostB = addSuperPowerButton("towerboost", "towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
+
+        boostB = addSuperPowerButton("towerboost", "Towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
         boostB.setColor(Color.RED);
         boostB.addListener(boostTooltip);
 
-        wallB = addSuperPowerButton("wall","wall", PortraitTextureHandler.getWallPortrait(), superC);
+        wallB = addSuperPowerButton("wall","Wall", PortraitTextureHandler.getWallPortrait(), superC);
         wallB.setColor(Color.RED);
         wallB.addListener(wallTooltip);
     }
@@ -135,19 +133,19 @@ public class SuperpowerStage extends Stage {
     }
 
     public void updateNukeCost(int cost){
-    	nukeB.setText("nuke(" + cost+")" );
+    	nukeB.setText("Nuke (" + cost+")" );
     }
     
     public void updateMinuteMenCost(int cost){
-    	minutemenB.setText("minutemen(" + cost+")" );
+    	minutemenB.setText("Minutemen (" + cost+")" );
     }
     
     public void updateWallCost(int cost){
-    	wallB.setText("wall(" + cost+")" );
+    	wallB.setText("Wall (" + cost+")" );
     }
     
     public void updateTowerBoostCost(int cost){
-    	boostB.setText("towerboost(" + cost+")" );
+    	boostB.setText("Towerboost (" + cost+")" );
     }
     
     private ImageTextButton addSuperPowerButton(String name, String text ,Texture texture, ClickListener CL) {

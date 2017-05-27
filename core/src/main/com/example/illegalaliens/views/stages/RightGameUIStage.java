@@ -62,11 +62,11 @@ public class RightGameUIStage extends Stage {
 	}
 	
 	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){
-		civilWarRep = addTextButton("CWR", "CivilWar Repub", executiveOrdersC);
+		civilWarRep = addTextButton("CWR", "CivilWar (REP)", executiveOrdersC);
 		civilWarRep.setColor(Color.RED);
-		civilWarDem = addTextButton("CWD", "CivilWar Demo", executiveOrdersC);
+		civilWarDem = addTextButton("CWD", "CivilWar (DEM)", executiveOrdersC);
 		civilWarDem.setColor(Color.BLUE);
-		taxCut = addTextButton("TC", "Tax cut", executiveOrdersC);
+		taxCut = addTextButton("TC", "Tax Cut", executiveOrdersC);
 		taxCut.setColor(Color.RED);
 		obamaCare = addTextButton("OC", "Obama Care", executiveOrdersC);
 		obamaCare.setColor(Color.BLUE);
