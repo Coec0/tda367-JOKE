@@ -132,7 +132,7 @@ public class GameScreen implements Screen{
 
 		Gdx.input.setInputProcessor(imp);
 		
-		AM.addObserver(WH);
+		AM.addEnemyObserver(WH);
 		BOModel.addWhiteHouse(WH);
 		
 		SuperpowerModel SM = new SuperpowerModel(finder,BOModel, AM, cdh);
@@ -153,6 +153,7 @@ public class GameScreen implements Screen{
 		EndGamePopupStage EGP = new EndGamePopupStage(MMController);
 		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
 		
+		AM.addWavesObserver(HV);
 		SM.addObserver(HV);
 		BOModel.addObserver(HV);
 		prot.addObserver(HV);

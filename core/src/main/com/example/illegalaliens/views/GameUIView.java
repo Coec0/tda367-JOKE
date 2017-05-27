@@ -1,7 +1,5 @@
 package com.example.illegalaliens.views;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.BoardObjectObserver;
@@ -9,19 +7,20 @@ import com.example.illegalaliens.models.boardobjects.WhiteHouse;
 import com.example.illegalaliens.models.boardobjects.WhiteHouseObserver;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
 import com.example.illegalaliens.models.boardobjects.towers.PrototypeObserver;
+import com.example.illegalaliens.models.enemies.waves.WavesObserver;
 import com.example.illegalaliens.models.politics.parties.PartyFactory;
 import com.example.illegalaliens.models.superpowers.Superpower;
 import com.example.illegalaliens.models.superpowers.SuperpowerObserver;
 import com.example.illegalaliens.utilities.DrawablesCollector;
+import com.example.illegalaliens.views.stages.BottomLeftGameUIStage;
 import com.example.illegalaliens.views.stages.EndGamePopupStage;
 import com.example.illegalaliens.views.stages.NextWaveStage;
 import com.example.illegalaliens.views.stages.PoliticalMeterStage;
 import com.example.illegalaliens.views.stages.RightGameUIStage;
 import com.example.illegalaliens.views.stages.SelectedBoardObjectStage;
 import com.example.illegalaliens.views.stages.SuperpowerStage;
-import com.example.illegalaliens.views.stages.BottomLeftGameUIStage;
 
-public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver {
+public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver, WavesObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
 	private SelectedBoardObjectStage SBOS;
@@ -30,6 +29,8 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	private SuperpowerStage SS;
 	private EndGamePopupStage EGP;
 	private int nukeCost=0, minutemenCost=0, wallCost=0, towerBoosterCost=0;
+	private WhiteHouse whitehouse;
+	private boolean waveOn=false;
 
 	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, BottomLeftGameUIStage TL,
 					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP) {
@@ -51,6 +52,7 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 
 	@Override
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
+		this.whitehouse = whitehouse;
 		if(whitehouse.isGameOver()){
 			addToView(EGP);
 		}
@@ -85,10 +87,21 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 			SS.disableTowerBoost(Touchable.enabled);
 		}
 		
+		waveUpdate(waveOn);
 //		SS.updateSuperPowerButton(power, cost, disable);
 		
 	}
-
+	
+	private void waveUpdate(boolean waveOn){
+		if(!waveOn){
+			SS.disableWall(Touchable.disabled);
+		} else {
+			SS.disableMinutemen(Touchable.disabled);
+			SS.disableNuke(Touchable.disabled);
+			SS.disableTowerBoost(Touchable.disabled);
+		}
+	}
+	
 	@Override
 	public void actOnBoardObjectChange(BoardObject BO, boolean remove, boolean clickedOn) {
 		if(!remove && clickedOn){
@@ -130,6 +143,15 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 			minutemenCost = superpower.getSuperPowerCost();
 			SS.updateMinuteMenCost(superpower.getSuperPowerCost());
 		}
+	}
+
+	@Override
+	public void actOnWavesChange(int wave, boolean finished) {
+		waveOn = finished;
+	
+		updateSuperPowerButtons(whitehouse);
+	
+		
 	}
 
 }

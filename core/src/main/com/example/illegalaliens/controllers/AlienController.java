@@ -19,7 +19,7 @@ public class AlienController extends ClickListener implements ActionListener, In
 	public AlienController(AlienView AView, AlienModel AModel) {
 		this.AView = AView;
 		this.AModel = AModel;
-		AModel.addObserver(AView);
+		AModel.addEnemyObserver(AView);
 	}
 
 	public void spawnAlien(Enemy enemy){

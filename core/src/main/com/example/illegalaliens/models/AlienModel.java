@@ -2,15 +2,11 @@ package com.example.illegalaliens.models;
 
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.UpdateObserver;
-import com.example.illegalaliens.models.enemies.Alien;
-import com.example.illegalaliens.models.enemies.AlienFactory;
-import com.example.illegalaliens.models.enemies.AlienWithHelmet;
 import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.models.enemies.EnemyObserver;
 import com.example.illegalaliens.models.enemies.HighAlien;
-import com.example.illegalaliens.models.enemies.SneakyAlien;
-import com.example.illegalaliens.models.enemies.ToughAlien;
 import com.example.illegalaliens.models.enemies.waves.EnemyWavesCreator;
+import com.example.illegalaliens.models.enemies.waves.WavesObserver;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
 import com.example.illegalaliens.utilities.path.PathFinder;
@@ -22,7 +18,7 @@ public class AlienModel implements UpdateObserver {
 	private Array<Enemy> enemies;
 	private Array<Array<Node>> defaultPaths;
 	private Array<Node> direction;
-	
+	private int waveCounter=0;
 	private int frames = 10; //value-time inbetween aliens
 	private boolean waveON;
 	private boolean waveAlive;
@@ -68,7 +64,7 @@ public class AlienModel implements UpdateObserver {
 		}
 		enemy.setStartignPos();
 		enemies.add(enemy);
-		notifyObservers(enemy, false);
+		notifyEnemyObservers(enemy, false);
 	}
 	
 	public boolean isWaveOn(){
@@ -91,7 +87,7 @@ public class AlienModel implements UpdateObserver {
 				}if(enemy.isInNet()){
 					if(!nettedEnemies.contains(enemy, false)){
 						nettedEnemies.add(enemy);
-						notifyObservers(enemy, false);
+						notifyEnemyObservers(enemy, false);
 					}
 				}
 			}
@@ -125,7 +121,7 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	public void removeEnemy(Enemy enemy){
-		notifyObservers(enemy, true);
+		notifyEnemyObservers(enemy, true);
 		enemies.removeValue(enemy, false);
 		enemy=null; //Clear
 	}
@@ -152,6 +148,8 @@ public class AlienModel implements UpdateObserver {
 			wave = EWC.getNextWave();
 		}
 		wavescdhandler.registerNewWave();
+		notifyWavesObservers(waveCounter, false);
+		waveCounter++;
 		waveON = true;
 		waveAlive = true;
 		
@@ -168,8 +166,10 @@ public class AlienModel implements UpdateObserver {
 			frames = 0;
 			
 		}
-		if (!(waveON) && enemies.size == 0)
+		if (!(waveON) && enemies.size == 0){
 			waveAlive=false;
+			notifyWavesObservers(waveCounter, true);
+		}
 	}
 	
 	private void spawnNextEnemy(){ 
@@ -182,19 +182,33 @@ public class AlienModel implements UpdateObserver {
 		}
 	}
 	
+	private Array<WavesObserver> wavesObservers = new Array<WavesObserver>(false, 10);
+
+	public void addWavesObserver(WavesObserver observer) {
+		wavesObservers.add(observer);
+	}
+
+	public void removeWavesObserver(WavesObserver observer) {
+		wavesObservers.removeValue(observer, false);
+	}
+
+	private void notifyWavesObservers(int wave, boolean finished) {
+		for (WavesObserver observer : wavesObservers)
+			observer.actOnWavesChange(wave, finished);
+	}
 	
-	private Array<EnemyObserver> observers = new Array<EnemyObserver>(false, 10);
+	private Array<EnemyObserver> enemyObservers = new Array<EnemyObserver>(false, 10);
 
-	public void addObserver(EnemyObserver observer) {
-		observers.add(observer);
+	public void addEnemyObserver(EnemyObserver observer) {
+		enemyObservers.add(observer);
 	}
 
-	public void removeObserver(EnemyObserver observer) {
-		observers.removeValue(observer, false);
+	public void removeEnemyObserver(EnemyObserver observer) {
+		enemyObservers.removeValue(observer, false);
 	}
 
-	private void notifyObservers(Enemy enemy, boolean remove) {
-		for (EnemyObserver observer : observers)
+	private void notifyEnemyObservers(Enemy enemy, boolean remove) {
+		for (EnemyObserver observer : enemyObservers)
 			observer.actOnEnemyChange(enemy, remove);
 	}
 }
