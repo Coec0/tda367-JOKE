@@ -79,8 +79,19 @@ public class TowerBoost implements Superpower {
         return (!duration.isOnCooldown());
     }
 
+    public float getRadiusModifier() {
+        return radiusModifier;
+    }
 
-	@Override
+    public float getDamageModifier() {
+        return damageModifier;
+    }
+
+    public float getCooldownModifier() {
+        return cooldownModifier;
+    }
+
+    @Override
 	public int getSuperPowerCost() {
 		return superPowerCost;
 	}
