@@ -11,18 +11,18 @@ public class TowerUpgrader {
      */
 
 
+    //Variables to multiply the current value with
     private float radiusMultiplier;
     private float damageMultiplier;
     private float cooldownMultiplier;
 
+    //Cost multipliers
     private float radiusUpgradeCostMultiplier;
     private float damageUpgradeCostMultiplier;
     private float cooldownUpgradeCostMultiplier;
 
 
-    // work In progress
 
-    //TODO change cost for turret after upgrading
     public TowerUpgrader(){
         radiusMultiplier = 1.3f;
         damageMultiplier = 1.3f;

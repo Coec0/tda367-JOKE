@@ -24,8 +24,9 @@ import com.example.illegalaliens.utilities.path.RoadSection;
 public class SuperpowerModel implements UpdateObserver {
     private Nuke nuke;
     private PathFinder finder;
+    //Model dependency needed in this class
     private BoardObjectModel BOModel;
-    private AlienModel AModel; //buildingmodel and alienmodel should be moved
+    private AlienModel AModel;
     private TowerBoost towerBoost;
     private Array<Tower> towers;
     private CooldownHandler cdh;
@@ -75,10 +76,10 @@ public class SuperpowerModel implements UpdateObserver {
     public void useMinutemen(BOPrototypes prototypes){
     	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>minuteman.getSuperPowerCost()){
     		minutemenActive = true;
-    		BOModel.addBoardObject(minuteman.clone(600, 495));
-    		BOModel.addBoardObject(minuteman.clone(550, 485));
-    		BOModel.addBoardObject(minuteman.clone(650, 485));
-    		BOModel.addBoardObject(minuteman.clone(500, 485));
+    		BOModel.addBoardObject(minuteman.clone(700, 110));
+    		BOModel.addBoardObject(minuteman.clone(650, 110));
+    		BOModel.addBoardObject(minuteman.clone(600, 110));
+    		BOModel.addBoardObject(minuteman.clone(550, 110));
     		removePoints(PartyFactory.Democrat(0, minuteman.getSuperPowerCost()));
     	}
     }

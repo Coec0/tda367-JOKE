@@ -12,12 +12,12 @@ public class TowerBoost implements Superpower {
 	private int superPowerCost;
 	
     //Modifier stats to be used
-    private final float radiusModifier = 20f;
+    private final float radiusModifier = 1.15f;
     private final float damageModifier = 1.3f;
     private final float cooldownModifier = 0.1f;
 
     //Duration for the boost
-    private final float durationFrames = 50;
+    private final float durationFrames = 200f;
     private CooldownObject duration;
     private CooldownHandler cdh;
 
