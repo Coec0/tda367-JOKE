@@ -1,5 +1,7 @@
 package com.example.illegalaliens.hiscore;
 
+import com.badlogic.gdx.utils.IntArray;
+
 import java.sql.*;
 
 /**
@@ -37,6 +39,28 @@ public class HiscoreDB {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public IntArray getScores() {
+		IntArray scores = new IntArray(true, 25);
+
+		String query = "SELECT score FROM hiscore";
+
+		try {
+			Statement st = connection.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			while (rs.next()) {
+				scores.add(rs.getInt("score"));
+			}
+
+			st.close();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return scores;
 	}
 
 	public void clearHiscores() {
