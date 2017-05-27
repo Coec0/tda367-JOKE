@@ -1,6 +1,7 @@
 package com.example.illegalaliens.views.stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -49,8 +50,8 @@ public class RightGameUIStage extends Stage {
 	private Table getExecutivesTable(){
 		Table table = new Table();
 		table.setWidth(WIDTH);
-		table.add(civilWarDem).width(WIDTH/2);
 		table.add(civilWarRep).width(WIDTH/2);
+		table.add(civilWarDem).width(WIDTH/2);
 		table.row();
 		table.add(taxCut).width(WIDTH/2);
 		table.add(obamaCare).width(WIDTH/2);
@@ -62,11 +63,17 @@ public class RightGameUIStage extends Stage {
 	
 	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){
 		civilWarRep = addTextButton("CWR", "CivilWar Repub", executiveOrdersC);
+		civilWarRep.setColor(Color.RED);
 		civilWarDem = addTextButton("CWD", "CivilWar Demo", executiveOrdersC);
+		civilWarDem.setColor(Color.BLUE);
 		taxCut = addTextButton("TC", "Tax cut", executiveOrdersC);
+		taxCut.setColor(Color.RED);
 		obamaCare = addTextButton("OC", "Obama Care", executiveOrdersC);
+		obamaCare.setColor(Color.BLUE);
 		declareWar = addTextButton("DW", "Declare War", executiveOrdersC);
+		declareWar.setColor(Color.RED);
 		openBorders = addTextButton("OB", "Open Borders", executiveOrdersC);
+		openBorders.setColor(Color.BLUE);
 	}
 	
 	public void updatePurchables(BOPrototypes protos){
@@ -80,11 +87,17 @@ public class RightGameUIStage extends Stage {
 	
 	private void createPurchablesButtons(ClickListener buildingC){
 		soldierB = addTowerButton(620, "soldier", TowerTextureHandler.getSoldierTexture(), buildingC);
+		soldierB.setColor(Color.RED);
 		tankB = addTowerButton(620, "tank", TowerTextureHandler.getTankTexture(),buildingC);
+		tankB.setColor(Color.BLUE);
 		rangerB = addTowerButton(620, "ranger", TowerTextureHandler.getRangerTexture(), buildingC);
+		rangerB.setColor(Color.RED);
 		riotshieldB = addTowerButton(620, "riotshield", TowerTextureHandler.getRiotshieldTexture(), buildingC);
+		riotshieldB.setColor(Color.BLUE);
 		sniperB = addTowerButton(620, "sniper", TowerTextureHandler.getSniperTexture(), buildingC);
+		sniperB.setColor(Color.RED);
 		netGunnerB = addTowerButton(620,"netgunner", TowerTextureHandler.getNetGunnerTexture(),buildingC);
+		netGunnerB.setColor(Color.BLUE);
 	}
 	
 	private Table getTowersTable(){
@@ -98,7 +111,6 @@ public class RightGameUIStage extends Stage {
 		table.row();
 		table.add(sniperB).width(WIDTH/2).height(WIDTH/2);//.expand().top();table.row();
 		table.add(netGunnerB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
-
 		return table;
 	}
 
