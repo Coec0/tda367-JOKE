@@ -30,6 +30,10 @@ public class MainMenuModel {
 	public void showSelectMapStage(){
 		notifyObservers("SelectMap");
 	}
+
+	public void showHiscoreStage() {
+		notifyObservers("Hiscore");
+	}
 	
 	public void switchToMainMenuScreen(){
 		game.switchToMainMenuScreen();

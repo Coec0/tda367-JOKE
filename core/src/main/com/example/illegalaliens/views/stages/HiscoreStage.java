@@ -1,10 +1,9 @@
-package stages;
+package com.example.illegalaliens.views.stages;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.IntArray;
-import controllers.MainMenuController;
-import factories.ActorFactory;
+import com.example.illegalaliens.controllers.MainMenuController;
 
 /**
  * Stage for Hiscore

@@ -11,6 +11,7 @@ import com.example.illegalaliens.models.MainMenuModel;
 import com.example.illegalaliens.utilities.DrawablesCollector;
 import com.example.illegalaliens.views.MainMenuView;
 import com.example.illegalaliens.views.stages.AboutStage;
+import com.example.illegalaliens.views.stages.HiscoreStage;
 import com.example.illegalaliens.views.stages.MainMenuStage;
 import com.example.illegalaliens.views.stages.MapSelectStage;
 
@@ -34,8 +35,9 @@ public class MainMenuScreen implements Screen {
 		MainMenuStage mainMenuStage = new MainMenuStage(mainMenuController);
 		AboutStage aboutStage = new AboutStage(mainMenuController);
 		MapSelectStage mapSelectStage = new MapSelectStage(mainMenuController);
+		HiscoreStage hiscoreStage = new HiscoreStage(mainMenuController, game.getScores());
 		
-		MainMenuView mainMenuView = new MainMenuView(DC, mainMenuStage, aboutStage, mapSelectStage);
+		MainMenuView mainMenuView = new MainMenuView(DC, mainMenuStage, aboutStage, mapSelectStage, hiscoreStage);
 		model.addObserver(mainMenuView);
 		
 	}

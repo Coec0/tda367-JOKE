@@ -30,6 +30,8 @@ public class MainMenuController extends ClickListener {
 			model.switchToMainMenuScreen();
 		} else if(event.getListenerActor().getName().equals("AlphaMap")){
 			model.setMap(event.getListenerActor().getName());
+		} else if (event.getListenerActor().getName().equals("hiscoreStage")) {
+			model.showHiscoreStage();
 		}
 			
 	}
