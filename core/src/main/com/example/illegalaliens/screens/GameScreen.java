@@ -183,7 +183,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(173f/255f, 201f/255f, 208f/255f, 0);
+		Gdx.gl.glClearColor(148f/255f, 204f/255f, 233f/255f, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
 		WP.apply();

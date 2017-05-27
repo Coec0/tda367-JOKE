@@ -73,7 +73,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		mainTable.row();
 		mainTable.add().expand().fill();
 		mainTable.row();
-		mainTable.add(removeButton);
+		mainTable.add(removeButton).expand();
 
 		return mainTable;
 	}
@@ -195,7 +195,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 	}
 
 	private Actor addRemoveButton(ClickListener clickListener) {
-		removeButton = ActorFactory.createTextButton("remove", "---Garbage bin---", clickListener);
+		removeButton = ActorFactory.createTextButton("remove", "Sell", clickListener);
 		return removeButton;
 	}
 
