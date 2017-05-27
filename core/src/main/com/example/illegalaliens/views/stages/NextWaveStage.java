@@ -1,19 +1,32 @@
 package com.example.illegalaliens.views.stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class NextWaveStage extends Stage{
 	private Skin skin;
+	private TextButton nwB;
 	
 	public NextWaveStage(ClickListener CL){
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
-		this.addActor(addNextWaveButton(CL));
+		nwB = addNextWaveButton(CL);
+		this.addActor(nwB);
 	}
 	
+	public void disableButton(boolean disable){
+		if(disable){
+			nwB.setTouchable(Touchable.disabled);
+			nwB.setColor(Color.GRAY);
+		} else {
+			nwB.setTouchable(Touchable.enabled);
+			nwB.setColor(Color.WHITE);
+		}
+	}
 	
 	private TextButton addTextButton(int x, int y, String name, String text,
 			ClickListener CL) {

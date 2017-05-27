@@ -30,7 +30,7 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	private EndGamePopupStage EGP;
 	private int nukeCost=0, minutemenCost=0, wallCost=0, towerBoosterCost=0;
 	private WhiteHouse whitehouse;
-	private boolean waveOn=false;
+	private boolean waveFinished=true;
 
 	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, BottomLeftGameUIStage TL,
 					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP) {
@@ -87,13 +87,13 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 			SS.disableTowerBoost(Touchable.enabled);
 		}
 		
-		waveUpdate(waveOn);
+		waveUpdate(waveFinished);
 //		SS.updateSuperPowerButton(power, cost, disable);
 		
 	}
 	
-	private void waveUpdate(boolean waveOn){
-		if(!waveOn){
+	private void waveUpdate(boolean waveFinished){
+		if(!waveFinished){
 			SS.disableWall(Touchable.disabled);
 		} else {
 			SS.disableMinutemen(Touchable.disabled);
@@ -147,8 +147,9 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 
 	@Override
 	public void actOnWavesChange(int wave, boolean finished) {
-		waveOn = finished;
-	
+		System.out.println("StartNextWave");
+		waveFinished = finished;
+		NW.disableButton(!finished);
 		updateSuperPowerButtons(whitehouse);
 	
 		

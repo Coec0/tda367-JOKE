@@ -166,7 +166,7 @@ public class AlienModel implements UpdateObserver {
 			frames = 0;
 			
 		}
-		if (!(waveON) && enemies.size == 0){
+		if (!(waveON) && enemies.size == 0 && waveAlive){
 			waveAlive=false;
 			notifyWavesObservers(waveCounter, true);
 		}
