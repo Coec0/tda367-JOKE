@@ -6,14 +6,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.example.illegalaliens.views.textures.PortraitTextureHandler;
-
-import javax.swing.*;
-import javax.tools.Tool;
 
 /**
  * Created by Emil on 2017-05-07.
@@ -27,8 +28,8 @@ public class SuperpowerStage extends Stage {
     private TextTooltip nukeTooltip, boostTooltip, minutemenTooltip, wallTooltip;
 
 
-    private final int WIDTH = 400;
-    private final int HEIGHT = 100;
+    private final int WIDTH = 450;
+    private final int HEIGHT = 70;
     public SuperpowerStage(ClickListener superC){
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         this.table = new Table();
@@ -57,7 +58,7 @@ public class SuperpowerStage extends Stage {
 
         table.add(nukeB).width(WIDTH/4).height(HEIGHT);
         table.add(minutemenB).width(WIDTH/4).height(HEIGHT);
-        table.add(boostB).width(WIDTH/4).height(HEIGHT);
+        table.add().width(WIDTH/8).height(HEIGHT);
         table.add(wallB).width(WIDTH/4).height(HEIGHT);
         table.add(boostB).width(WIDTH/4).height(HEIGHT);
         return table;
