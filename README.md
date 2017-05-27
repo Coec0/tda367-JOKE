@@ -23,6 +23,7 @@ Contributors:
 4. Project Structure
 5. Necessary (circular) dependencies
 6. Current flaws
+7. Future goals
 
 ## Introduction
 This Readme aims to fulfill two purposes:
@@ -37,7 +38,6 @@ the course **TDA367**. The course aims to develop an application with the MVC de
 object oriented way.
 
 Application was implemented using the [LibGDX](http://libgdx.badlogicgames.com) as framework, Git as versioning tool and Gradle as dependency handler.
-
 
 ## Documents
 Documents, such as meetings reports, report, SDD and RAD are found in the docs folder.
@@ -76,7 +76,7 @@ Available presidental powers:
 ### Game Description: Towers
 Towers are pretty straightforward. You purchase them and put them on the map, and they automatically attacks the enemies. The
 only exception is Riot Shield, as it doesnt attack and damage enemies. Instead, they push back nearby enemies (think of it
-as a delay mechanism).
+as a delay mechanism). You can also set their targeting state (e.g target first, target last etc).
 Available towers:
 - Soldier: Weak, regular tower
 - Ranger: Basically a stronger soldier
@@ -104,9 +104,16 @@ the android hierchary.
 
 
 ## Necessary (circular) dependencies
-A ciruclar dependency, which cannot be removed, exists within the code. The 'Screen' classes and 'Game' class is built like
-that in the used framework (LibGDX). More information about the unremovable (without breaking the game) dependency can be found [here](https://gamedev.stackexchange.com/questions/67232/how-to-remove-a-circular-dependency-as-pointed-out-in-a-libgdx-tutorial).
+One of the goals during development has been to minimize all kind of unnecessary dependencies, by analyzing with STAN. Sadly, one circular dependency cannot be removed since it has its roots in the framework itself (LibGDX). The affected classes are **Screen** and **Game**. More information about the unremovable (without breaking the game) dependency can be found [here](https://gamedev.stackexchange.com/questions/67232/how-to-remove-a-circular-dependency-as-pointed-out-in-a-libgdx-tutorial).
 
 ## Current flaws
 - UI is not particulary user friendly
-- Not enough information about the game inside the game
+- The game descriptions in this readme should also be available as information in-game
+- Game has to be further balanced
+
+## Future goals
+- More balancing (high priority)
+- Provide more information and help inside the game (high priority)
+- Clean up the User Interface (high/medium priority)
+- Add particle effects (medium priority)
+- Add sound effects (low priority)
