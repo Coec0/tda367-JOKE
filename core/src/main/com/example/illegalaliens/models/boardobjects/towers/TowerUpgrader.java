@@ -64,4 +64,15 @@ public class TowerUpgrader {
         return cooldownUpgradeCostMultiplier  * (tower.getValue()/2);
     }
 
+    public float getRadiusMultiplier() {
+        return radiusMultiplier;
+    }
+
+    public float getDamageMultiplier() {
+        return damageMultiplier;
+    }
+
+    public float getCooldownMultiplier() {
+        return cooldownMultiplier;
+    }
 }
