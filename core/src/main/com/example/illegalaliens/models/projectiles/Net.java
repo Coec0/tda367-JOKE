@@ -17,7 +17,7 @@ public class Net extends Projectile{
 
 	@Override
 	public void damage(Radar radar, Array<Enemy> enemies) {
-		Enemy enemy = radar.scan(this.getPosition(), this.getRadius(), enemies).first();
+		Enemy enemy = super.scanEnemies(radar,this.getPosition(), this.getRadius(), enemies).first();
 		enemy.placeInNet(netSpeed);
 		this.reduceHealth();
 		

@@ -24,7 +24,7 @@ public class AOEProjectile extends Projectile implements IAOEProjectile {
     }
 
     public void damage(Radar radar, Array<Enemy> allEnemies) {
-        Array<Enemy> enemies = radar.scan(this.getPosition(), this.getAOERadius(), allEnemies);
+        Array<Enemy> enemies = super.scanEnemies(radar,this.getPosition(), this.getAOERadius(), allEnemies);
         for (Enemy enemy: enemies) {
             enemy.hurt(this.getDamage());
         }

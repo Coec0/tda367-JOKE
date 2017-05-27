@@ -43,7 +43,7 @@ public class BoardObjectModel implements UpdateObserver {
 		if(finder.isOnRoad(new Node(x, y), sprite.getSize()))
 			return false;
 		for(BoardObject BO : getAllBoardObjects()){
-			if(radar.isNodeWithinRadius(new Node(x, y), BO.getPos(), sprite.getSize(), BO.getSize()))
+			if(radar.isNodeWithinRadius(new Node(x, y),sprite.getSize(),BO.getPos(), BO.getSize()))
 				return false;
 		}
 		return true;		
@@ -222,7 +222,7 @@ public class BoardObjectModel implements UpdateObserver {
 		for (Building b : buildings){
 			if (b instanceof RiotShield){
 				b = (RiotShield )b;
-				foundAliens = radar.scan(b.getPos(),b.getRadius(),enemies);
+				foundAliens = scanEnemies(b.getPos(),b.getRadius(),enemies);
 				((RiotShield) b).updateEnemies(foundAliens);
 			}
 
@@ -236,12 +236,22 @@ public class BoardObjectModel implements UpdateObserver {
 
 
 	}
+	
+	public Array<Enemy> scanEnemies(Node pos, float radius, Array<Enemy> allEnemies){
+    	Array<Enemy> foundEnemies = new Array<Enemy>();
+    	for(Enemy enemy : allEnemies){
+    		if(radar.isNodeWithinRadius(pos, radius, enemy.getPos(), enemy.getRadius())){
+    			foundEnemies.add(enemy);
+    		}
+    	}
+    	return foundEnemies;
+    }
 
 	private void setTargets() {
 		Array<Enemy> foundAliens;
 		for (Tower tower : towers) {
 
-			foundAliens = radar.scan(tower.getPos(), tower.getRadius(), enemies); // tmp
+			foundAliens = scanEnemies(tower.getPos(), tower.getRadius(), enemies); // tmp
 			tower.setTarget(foundAliens);
 		}
 		

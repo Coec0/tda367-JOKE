@@ -1,6 +1,9 @@
 package com.example.illegalaliens.models.projectiles;
 
+import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.utilities.Node;
+import com.example.illegalaliens.utilities.Radar;
 import com.example.illegalaliens.utilities.SpriteAdapter;
 
 /**
@@ -27,7 +30,15 @@ public abstract class Projectile implements IProjectile {
         this.health = health;
     }
 
-
+    public Array<Enemy> scanEnemies(Radar radar, Node pos, float radius, Array<Enemy> allEnemies){
+    	Array<Enemy> foundEnemies = new Array<Enemy>();
+    	for(Enemy enemy : allEnemies){
+    		if(radar.isNodeWithinRadius(pos, radius, enemy.getPos(), enemy.getRadius())){
+    			foundEnemies.add(enemy);
+    		}
+    	}
+    	return foundEnemies;
+    }
 
     public void setSpritePosition(Node position){
         sprite.setPosition(position.getX(), position.getY());

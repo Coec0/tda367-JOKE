@@ -12,33 +12,21 @@ public class Radar {
 	 * @param radius
 	 * @return array of known enemies
 	 */
-	public Array<Enemy> scan(Node center, float radius,Array<Enemy> enemies){
-		Array<Enemy> knownEnemies = new Array<Enemy>();
+	public Array<Node> scan(Node center, float centerRadius,Array<Node> nodes , float[] nodesRadius){
+		Array<Node> knownNodes = new Array<Node>();
 		
-		for(Enemy enemy : enemies) {
-			if (isNodeWithinRadius(center, enemy.getPos(), radius,enemy.getRadius())) {
-				knownEnemies.add(enemy);
+		for(int i = 0;i < nodes.size; i++){
+			if (isNodeWithinRadius(center, centerRadius, nodes.get(i), nodesRadius[i])) {
+				knownNodes.add(nodes.get(i));
 			}
 		}
-		return knownEnemies;
+		return knownNodes;
     }
-
-    public Array<Tower> towerScan(Node center, float radius, Array<Tower> towers){
-		Array<Tower> knownTowers = new Array<Tower>();
-
-		for(Tower tower: towers){
-			if(isNodeWithinRadius(center, tower.getPos(), radius, tower.getRadius())){
-				knownTowers.add(tower);
-			}
-		}
-
-		return knownTowers;
-	}
 	
-	public Array<Node> scanNodeArray(Array<Node> nodes, float nodesRadius , Node center ,float centerRadius){
+	public Array<Node> scan(Node center, float centerRadius, Array<Node> nodes, float nodesRadius){
 		Array<Node> foundNodes = new Array<Node>();
 		for(Node node : nodes){
-			if(isNodeWithinRadius(center,node,centerRadius,nodesRadius)){
+			if(isNodeWithinRadius(center,centerRadius ,node,nodesRadius)){
 				foundNodes.add(node);
 			}
 		}
@@ -54,7 +42,7 @@ public class Radar {
 	 * @param otherRadius
 	 * @return true if within radius
 	 */
-    public boolean isNodeWithinRadius(Node center, Node other, float centerRadius, float otherRadius ) {
+    public boolean isNodeWithinRadius(Node center, float centerRadius ,Node other , float otherRadius ) {
 		return center.getDistanceTo(other) <= centerRadius + otherRadius;
 	}
 

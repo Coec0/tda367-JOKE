@@ -45,7 +45,7 @@ public final class PathFinder {
 			roadNetwork = calcRoadNetwork(allNodes, roadSections);
 		}
 		
-		if(radar.scanNodeArray(roadNetwork, roadRadius, center, centerRadius).size != 0){
+		if(radar.scan(center,centerRadius, roadNetwork ,roadRadius).size != 0){
 			return true;
 		}
 		return false;
@@ -77,7 +77,7 @@ public final class PathFinder {
 	 */
 	public RoadSection findRoadSection(Node node){
 		for(RoadSection rs : roadSections){
-			Array<Node> nodes = radar.scanNodeArray(rs.getPixelWalk(), roadRadius , node, 1);
+			Array<Node> nodes = radar.scan(node,roadRadius ,rs.getPixelWalk(), 1);
 			if(nodes.size != 0){
 				return rs;
 			}

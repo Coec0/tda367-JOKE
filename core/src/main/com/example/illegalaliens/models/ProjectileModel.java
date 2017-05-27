@@ -58,7 +58,7 @@ public class ProjectileModel implements UpdateObserver{
 
 
     public Array<Enemy> scan(Projectile projectile){
-        Array<Enemy> enemies = radar.scan(projectile.getPosition(), projectile.getRadius(),aModel.getAllEnemies()); //hardcoded
+        Array<Enemy> enemies = projectile.scanEnemies(radar,projectile.getPosition(), projectile.getRadius(),aModel.getAllEnemies()); //hardcoded
         return enemies;
     }
 

@@ -12,7 +12,7 @@ public class SingleProjectile extends Projectile {
     }
 
     public void damage(Radar radar, Array<Enemy> allEnemies) {
-        Enemy enemy = radar.scan(this.getPosition(), this.getRadius(), allEnemies).first();
+        Enemy enemy = super.scanEnemies(radar,this.getPosition(), this.getRadius(), allEnemies).first();
         enemy.hurt(this.getDamage());
         this.reduceHealth();
     }
