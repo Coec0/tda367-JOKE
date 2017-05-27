@@ -24,7 +24,7 @@ public class NextWaveStage extends Stage{
 			nwB.setColor(Color.GRAY);
 		} else {
 			nwB.setTouchable(Touchable.enabled);
-			nwB.setColor(Color.WHITE);
+			nwB.setColor(Color.GREEN);
 		}
 	}
 	
@@ -38,6 +38,7 @@ public class NextWaveStage extends Stage{
 		textButton.setSize(200,113);
 		textButton.getLabel().setFontScale(1.3f);
 		textButton.addListener(CL);
+		textButton.setColor(Color.GREEN);
 
 		return textButton;
 	}
