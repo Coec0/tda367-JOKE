@@ -11,13 +11,13 @@ public class Soldier extends Tower {
     //Tower specific stats, name and description
     private static final String NAME = "SOLDIER";
     private static String DESCRIPTION = "A regular soldier";
-    private static final int RADIUS = 300;
+    private static final int RADIUS = 230;
     private static final int COST = 50;
-    private static final float COOLDOWN = 15;
+    private static final float COOLDOWN = 25;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
 	private static final float SIZE = 25;
-    private static final float DAMAGE = 30;
-    private static final float SPEED = 10;
+    private static final float DAMAGE = 20;
+    private static final float SPEED = 20;
 
     public Soldier(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
