@@ -82,11 +82,7 @@ public class MainMenuStage extends AbstractStage {
     }
 
     private Actor addHiscoreButton() {
-        Actor hiscoreButton = ActorFactory.createTextButton("Hiscore");
-
-        hiscoreButton.addListener(mainMenuController);
-
-        return hiscoreButton;
+        return ActorFactory.createTextButton("hiscoreStage", "Hiscore", mainMenuController);
     }
 
     private Actor addWelcomeText() {
