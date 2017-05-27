@@ -14,16 +14,15 @@ public class MainMenuStage extends AbstractStage {
     public MainMenuStage(ClickListener mainMenuController) {
         this.mainMenuController = mainMenuController;
 
-        this.addActor(addAlienImage());
-        this.addActor(addWelcomeText());
+        this.addActor(addLogo());
         this.addActor(addTable());
 
         this.setVisible(false);
     }
 
-    private Actor addAlienImage() {
-        return ActorFactory.createImage(centerWidth, centerHeight + 100, 180, center,
-                new Texture("aliens/alien/alien.png")
+    private Actor addLogo() {
+        return ActorFactory.createImage(centerWidth, centerHeight + 100, 0, center,
+                new Texture("logo_transparent.png")
         );
     }
 
