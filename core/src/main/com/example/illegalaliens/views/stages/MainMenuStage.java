@@ -16,6 +16,7 @@ public class MainMenuStage extends AbstractStage {
 
         this.addActor(addLogo());
         this.addActor(addTable());
+        this.addActor(addWelcomeText());
 
         this.setVisible(false);
     }
@@ -85,8 +86,8 @@ public class MainMenuStage extends AbstractStage {
     }
 
     private Actor addWelcomeText() {
-        return ActorFactory.createTextField("You will perish",
-                centerWidth, centerHeight, 150f, 30f, true, center
+        return ActorFactory.createTextField("Illegal Aliens - alpha version",
+                centerWidth, centerHeight + 300, 350f, 30f, true, center
         );
     }
 }
