@@ -62,6 +62,7 @@ public class MainMenuScreen implements Screen {
 	public void resize(int width, int height) {
 		WP.update(width-200*width/this.width, height, true);
 		DC.refreshStagesVP();
+		
 	}
 
 	@Override
