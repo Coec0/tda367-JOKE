@@ -43,7 +43,7 @@ public class RightGameUIStage extends Stage {
 
 		table.add(getTowersTable()).expand().top();
 		table.row();
-		table.add(getExecutivesTable()).expand();
+		table.add(getExecutivesTable()).expand().top();
 		this.addActor(table);
 	}
 	

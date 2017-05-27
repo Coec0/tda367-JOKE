@@ -22,13 +22,15 @@ public class NextWaveStage extends Stage{
 		textButton.setName(name);
 		textButton.setTransform(false);
 		textButton.setPosition(x, y);
+		textButton.setSize(200,113);
+		textButton.getLabel().setFontScale(1.3f);
 		textButton.addListener(CL);
 
 		return textButton;
 	}
 
 	private TextButton addNextWaveButton(ClickListener CL) {
-		int x = Gdx.graphics.getWidth() - 150;
+		int x = Gdx.graphics.getWidth() - 200;
 		int y = 0;
 		return addTextButton(x, y, "nextWave", "Send next wave", CL);
 	}
