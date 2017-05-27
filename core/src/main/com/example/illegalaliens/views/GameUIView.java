@@ -19,19 +19,19 @@ import com.example.illegalaliens.views.stages.PoliticalMeterStage;
 import com.example.illegalaliens.views.stages.RightGameUIStage;
 import com.example.illegalaliens.views.stages.SelectedBoardObjectStage;
 import com.example.illegalaliens.views.stages.SuperpowerStage;
-import com.example.illegalaliens.views.stages.TopLeftGameUIStage;
+import com.example.illegalaliens.views.stages.BottomLeftGameUIStage;
 
 public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
 	private SelectedBoardObjectStage SBOS;
-	private TopLeftGameUIStage TL;
+	private BottomLeftGameUIStage TL;
 	private NextWaveStage NW;
 	private SuperpowerStage SS;
 	private EndGamePopupStage EGP;
 	private int nukeCost=0, minutemenCost=0, wallCost=0, towerBoosterCost=0;
 
-	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, TopLeftGameUIStage TL,
+	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, BottomLeftGameUIStage TL,
 					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP) {
 		super(DC);
 		this.EGP = EGP;

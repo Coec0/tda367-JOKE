@@ -6,20 +6,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
-public class TopLeftGameUIStage extends Stage {
+public class BottomLeftGameUIStage extends Stage {
 	private Label health;
 	private Label money;
 	private Skin skin;
 	private Table table;
 
-	public TopLeftGameUIStage() {
+	public BottomLeftGameUIStage() {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		health = new Label("No Lives", skin);
 		money = new Label("No money", skin);
 
 		table = new Table();
 		//table.setDebug(true);
-		table.setPosition(0, Gdx.graphics.getHeight() - health.getHeight());
+		table.setPosition(0, health.getHeight());
 		table.add(health).padRight(10);
 		table.add(money).right();
 		updateTable();

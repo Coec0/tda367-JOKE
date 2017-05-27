@@ -43,7 +43,7 @@ import com.example.illegalaliens.views.stages.PoliticalMeterStage;
 import com.example.illegalaliens.views.stages.RightGameUIStage;
 import com.example.illegalaliens.views.stages.SelectedBoardObjectStage;
 import com.example.illegalaliens.views.stages.SuperpowerStage;
-import com.example.illegalaliens.views.stages.TopLeftGameUIStage;
+import com.example.illegalaliens.views.stages.BottomLeftGameUIStage;
 
 public class GameScreen implements Screen{
 	private SpriteBatch batch;
@@ -144,7 +144,7 @@ public class GameScreen implements Screen{
 		
 		SelectedBoardObjectStage SBOS = new SelectedBoardObjectStage(imp, BOController, DC);
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
-		TopLeftGameUIStage TL = new TopLeftGameUIStage();
+		BottomLeftGameUIStage TL = new BottomLeftGameUIStage();
 		NextWaveStage NW = new NextWaveStage(AController);
 		HS = new RightGameUIStage(AController, BOController,EOC, prot);
 		SS = new SuperpowerStage(SC);
