@@ -12,13 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.models.politics.Parliament;
 import com.example.illegalaliens.models.politics.parties.Party;
 
 public class PoliticalMeterStage extends Stage {
 
-	private final int HEIGHT = 200;
+	private final int HEIGHT = 10;
 	private final int WIDTH = 500;
 	private Table table;
 	private Array<Party> parties;
@@ -28,8 +29,9 @@ public class PoliticalMeterStage extends Stage {
 		
 		partyLabels = new Array<Label>(false, 5);
 		table = new Table();
-		//table.setDebug(true);
-		table.setPosition((Gdx.graphics.getWidth() - 200 - WIDTH) / 2, 0);
+
+//		table.setDebug(true);
+		table.setPosition((Gdx.graphics.getWidth() - 200 - WIDTH) / 2, 85);
 		table.setWidth(WIDTH);
 		table.setHeight(HEIGHT);
 		parties = new Array<Party>(false, 5);
@@ -68,7 +70,7 @@ public class PoliticalMeterStage extends Stage {
 			}
 		}
 		for(Label label : partyLabels){
-			label.setText(String.valueOf(((Party)label.getParent().getUserObject()).getPoints()));
+			label.setText(String.valueOf(((Party)label.getParent().getUserObject()).getPoints()+ " PP"));
 		}
 		table.invalidate();
 		
@@ -105,12 +107,15 @@ public class PoliticalMeterStage extends Stage {
 		Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		Table table = new Table();
 		table.setUserObject(party);
-		Label label = new Label(String.valueOf(party.getPoints()), skin);
+		Label label = new Label(String.valueOf(party.getPoints()) + "PP", skin);
 		label.setName(party.getName());
 		partyLabels.add(label);
-		table.add(label);
+		if(party.getName().equals("Democrat"))
+			table.add(label).align(Align.left);
+		else
+			table.add(label).align(Align.right);
 		table.row();
-		table.add(partyLabel(color, party)).expand().fill();
+		table.add(partyLabel(color, party)).expand().fill().height(HEIGHT);
 		
 		return table;
 	}
