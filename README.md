@@ -65,6 +65,7 @@ Available executive orders:
 ### Game Description: Presidental powers (Super powers)
 As mentioned when describing the political system, the presidental powers are very strong and are purchased with
 politcal points. These can only be used when you have accumulated enough votes for a specific party.
+
 Available presidental powers:
 - Nuke (Harry S. Truman, Democrat): Kills all enemies on the map
 - Wall (Donald Trump, Republican): Gives you the option to place a wall to block a path
@@ -77,6 +78,7 @@ Available presidental powers:
 Towers are pretty straightforward. You purchase them and put them on the map, and they automatically attacks the enemies. The
 only exception is Riot Shield, as it doesnt attack and damage enemies. Instead, they push back nearby enemies (think of it
 as a delay mechanism). You can also set their targeting state (e.g target first, target last etc).
+
 Available towers:
 - Soldier: Weak, regular tower
 - Ranger: Basically a stronger soldier
@@ -89,6 +91,17 @@ Available towers:
 Towers can be upgraded. As of now, the radius, damage and cooldown can be upgraded for in-game currency (money).
 
 *Note: The upgrade cost scales with the tower value; a stronger tower equals more expensive upgrades.*
+
+### Game Description: Enemies
+Enemies spawn and travel via the roads to the White House. They automatically finds the shortest road available from their
+spawn position.
+
+Attacking enemies:
+- Alien: The most simple and weak enemy
+- Alien with helmet: An alien with more health compared to the regular one
+- Sneaky alien: Small and fast alien
+- High alien: These aliens ignore potential walls on the map
+- Tough alien: A very strong but also very slow enemy
 
 ## Project structure in GitHub
 - **android**: contains android specific code as well as the assets folder containing all textures/images used in the game
