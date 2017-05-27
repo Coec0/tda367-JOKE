@@ -2,6 +2,7 @@ package com.example.illegalaliens.views.stages;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.IntArray;
 import com.example.illegalaliens.controllers.MainMenuController;
 
@@ -11,10 +12,10 @@ import com.example.illegalaliens.controllers.MainMenuController;
  */
 public class HiscoreStage extends AbstractStage {
 
-    private MainMenuController mainMenuController;
+    private ClickListener mainMenuController;
     private IntArray hiscores;
 
-    public HiscoreStage(MainMenuController mainMenuController, IntArray hiscores) {
+    public HiscoreStage(ClickListener mainMenuController, IntArray hiscores) {
         this.mainMenuController = mainMenuController;
         this.hiscores = hiscores;
 
