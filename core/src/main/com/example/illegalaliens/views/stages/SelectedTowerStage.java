@@ -1,6 +1,7 @@
 package com.example.illegalaliens.views.stages;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -55,7 +56,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 	private Table addMainTable() {
 		mainTable = new Table();
 
-		mainTable.setPosition(width - stageWidth, 50);
+		mainTable.setPosition(Gdx.graphics.getWidth() - stageWidth, 50);
 		mainTable.setWidth(stageWidth);
 		mainTable.setHeight(660);
 //		mainTable.setDebug(true);
@@ -169,7 +170,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		description.setDisabled(true);
 		description.setWidth(stageWidth);
 		description.setHeight(50);
-		description.setPosition(width - stageWidth, 500);
+		description.setPosition(Gdx.graphics.getWidth() - stageWidth, 500);
 
 		description.addListener(new ChangeListener() {
 			@Override

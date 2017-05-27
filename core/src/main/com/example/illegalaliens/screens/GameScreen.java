@@ -5,12 +5,10 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.controllers.AlienController;
 import com.example.illegalaliens.controllers.BoardObjectController;
@@ -52,8 +50,8 @@ public class GameScreen implements Screen{
 	private Sprite backgroundSprite;
 	private DrawablesCollector DC;
 	private PathFinder finder;
-	private final int width = 1280;
-	private final int height = 720;
+	private final int width;
+	private final int height;
 	
 	private Array<Node> nodes = new Array<Node>();
 	private Array<MapNode> Mapnodes;
@@ -69,11 +67,15 @@ public class GameScreen implements Screen{
 	private Map map;
 	private MainMenuController MMController;
 
-	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch, MainMenuController MMController) {
+	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch, MainMenuController MMController, Viewport WP, Camera camera) {
 		this.IAMain = illegalAliensMain;
 		this.map = map;
 		this.batch = batch;
 		this.MMController = MMController;
+		this.WP = WP;
+		this.camera = camera;
+		this.width = Gdx.graphics.getWidth();
+		this.height = Gdx.graphics.getHeight();
 	}
 
 	@Override
@@ -103,8 +105,8 @@ public class GameScreen implements Screen{
 		
 		
 		
-		camera = new OrthographicCamera();
-		WP = new FitViewport(width, height, camera);
+//		camera = new OrthographicCamera();
+//		WP = new FitViewport(width, height, camera);
 		ProjectileController PC = new ProjectileController(PM, PW, BOModel);
 		//Maybe move these later
 		
@@ -196,7 +198,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		WP.update(width-200*width/this.width, height, true);
+		WP.update(width-200*width/this.width, height-height/this.height, true);
 		
 		DC.refreshStagesVP();
 	}

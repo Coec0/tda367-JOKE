@@ -39,7 +39,7 @@ public class SuperpowerStage extends Stage {
         wallTooltip = new TextTooltip("Blocks a path, forcing enemies to a possible chokepoint",skin);
         createSuperPowerButtons(superC);
 
-        table.setPosition(Gdx.graphics.getWidth() / 4, 0);
+        table.setPosition((Gdx.graphics.getWidth()-200-WIDTH) / 2, 0);
         table.setHeight(HEIGHT);
         table.setWidth(WIDTH);
 

@@ -2,8 +2,10 @@ package com.example.illegalaliens.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.controllers.MainMenuController;
 import com.example.illegalaliens.models.MainMenuModel;
 import com.example.illegalaliens.utilities.DrawablesCollector;
@@ -18,8 +20,13 @@ public class MainMenuScreen implements Screen {
 	private DrawablesCollector DC;
 	private MainMenuController mainMenuController;
 	private MainMenuModel model;
-	public MainMenuScreen(IllegalAliensMain game, SpriteBatch batch){
-
+	private final int width = 1280;
+	private final int height = 720;
+	private Viewport WP;
+	private Camera camera;
+	public MainMenuScreen(IllegalAliensMain game, SpriteBatch batch, Viewport WP, Camera camera){
+		this.WP = WP;
+		this.camera = camera;
 		this.batch = batch;
 		DC = new DrawablesCollector();
 		model = new MainMenuModel(game);
@@ -30,6 +37,7 @@ public class MainMenuScreen implements Screen {
 		
 		MainMenuView mainMenuView = new MainMenuView(DC, mainMenuStage, aboutStage, mapSelectStage);
 		model.addObserver(mainMenuView);
+		
 	}
 
 	public MainMenuController getMainMenuController(){
@@ -45,16 +53,15 @@ public class MainMenuScreen implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		batch.begin();
+		camera.update();
+		WP.apply();
 		DC.drawStages();
-		batch.end();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
+		WP.update(width-200*width/this.width, height, true);
+		DC.refreshStagesVP();
 	}
 
 	@Override

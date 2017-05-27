@@ -38,7 +38,7 @@ public class RightGameUIStage extends Stage {
 //		table.setDebug(true);
 		table.setPosition(Gdx.graphics.getWidth() - WIDTH, 0);
 		table.setWidth(WIDTH);
-		table.setHeight(720);
+		table.setHeight(Gdx.graphics.getHeight());
 
 		table.add(getTowersTable()).expand().top();
 		table.row();
