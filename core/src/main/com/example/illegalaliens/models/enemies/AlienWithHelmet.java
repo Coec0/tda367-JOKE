@@ -24,4 +24,9 @@ public class AlienWithHelmet extends Enemy{
 	public AlienWithHelmet(int x, int y, float speed, float health) {
 		super(x, y, speed, health,RADIUS);
 	}
+
+	@Override
+	public Enemy clone() {
+		return new AlienWithHelmet();
+	}
 }

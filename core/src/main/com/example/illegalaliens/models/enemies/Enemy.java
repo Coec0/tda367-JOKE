@@ -1,6 +1,7 @@
 package com.example.illegalaliens.models.enemies;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.SpriteAdapter;
 
@@ -22,6 +23,8 @@ public abstract class Enemy {
 		this.speed = speed;
 		this.health = health;
 	}
+	
+	public abstract Enemy clone();
 	
 	public float getMoney(){ //Override in subclasses or make abstract for specific
 		return money;        //values in future

@@ -23,6 +23,11 @@ public class HighAlien extends Enemy {
 	public HighAlien(int x, int y, float speed, float health) {
 		super(x, y, speed, health,RADIUS);
 	}
+
+	@Override
+	public Enemy clone() {
+		return new HighAlien();
+	}
 	
 	
 }

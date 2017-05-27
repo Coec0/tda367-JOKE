@@ -174,16 +174,7 @@ public class AlienModel implements UpdateObserver {
 	
 	private void spawnNextEnemy(){ 
 		if(enemyCounter < wave.size){
-			if (wave.get(enemyCounter) instanceof Alien)
-				addEnemy(AlienFactory.createAlien());
-			if (wave.get(enemyCounter) instanceof AlienWithHelmet)
-				addEnemy(AlienFactory.createAlienWithHelmet());
-			if (wave.get(enemyCounter) instanceof SneakyAlien)
-				addEnemy(AlienFactory.createSneakyAlien());
-			if (wave.get(enemyCounter) instanceof HighAlien)
-				addEnemy(AlienFactory.createHighAlien());
-			if (wave.get(enemyCounter) instanceof ToughAlien)
-				addEnemy(AlienFactory.createToughAlien());
+			addEnemy(wave.get(enemyCounter).clone());
 			enemyCounter++;
 		}else{
 			enemyCounter = 0;

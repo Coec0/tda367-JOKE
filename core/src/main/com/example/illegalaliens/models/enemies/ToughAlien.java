@@ -25,5 +25,10 @@ public class ToughAlien extends Enemy {
 		super(x, y, speed, health,RADIUS);
 	}
 
+	@Override
+	public Enemy clone() {
+		return new ToughAlien();
+	}
+
 
 }
