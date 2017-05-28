@@ -5,6 +5,7 @@ import com.example.illegalaliens.UpdateObserver;
 import com.example.illegalaliens.models.AlienModel;
 import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
+import com.example.illegalaliens.models.boardobjects.Superpower;
 import com.example.illegalaliens.models.boardobjects.Wall;
 import com.example.illegalaliens.models.boardobjects.WhiteHouse;
 import com.example.illegalaliens.models.boardobjects.towers.Minutemen;
@@ -14,7 +15,7 @@ import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.politics.parties.PartyFactory;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
-import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadManager;
 import com.example.illegalaliens.utilities.path.RoadSection;
 
 /**
@@ -22,7 +23,7 @@ import com.example.illegalaliens.utilities.path.RoadSection;
  */
 public class SuperpowerModel implements UpdateObserver {
     private Nuke nuke;
-    private PathFinder finder;
+    private RoadManager manager;
     //Model dependency needed in this class
     private BoardObjectModel BOModel;
     private AlienModel AModel;
@@ -35,9 +36,9 @@ public class SuperpowerModel implements UpdateObserver {
     private boolean minutemenActive = false;
     private WhiteHouse whitehouse;
 
-    public SuperpowerModel(PathFinder finder,BoardObjectModel BOModel, AlienModel AModel, CooldownHandler cdh){
+    public SuperpowerModel(RoadManager manager,BoardObjectModel BOModel, AlienModel AModel, CooldownHandler cdh){
     	this.BOModel = BOModel;
-    	this.finder = finder;
+    	this.manager = manager;
     	this.AModel = AModel;
         this.cdh = cdh;
         
@@ -95,15 +96,15 @@ public class SuperpowerModel implements UpdateObserver {
     		
     		
     		Node node = new Node(x,y);
-    		RoadSection rs = finder.findRoadSection(node);
+    		RoadSection rs = manager.findRoadSection(node);
     	
-    		if(finder.canRemoveNeighbors(rs)){
+    		if(manager.canRemoveNeighbors(rs)){
     			Wall wall = ((Wall)BOModel.getHighlighted());
     			wall.setPos(node);
     			wall.rotateTowards(rs.getStart());
     			BOModel.purchaseHighlightedObject(x, y);
-    			finder.removeNeighbor(rs);
-    			finder.calculateAllShortest();
+    			manager.removeNeighbor(rs);
+    			manager.calculateAllShortest();
     			this.wall.setSuperPowerCost((int)(this.wall.getSuperPowerCost()* 1.2f));
     			notifyObservers(this.wall);
     			removePoints(PartyFactory.Republican(0, wall.getSuperPowerCost()));

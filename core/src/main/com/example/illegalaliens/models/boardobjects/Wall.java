@@ -1,6 +1,5 @@
 package com.example.illegalaliens.models.boardobjects;
 
-import com.example.illegalaliens.models.superpowers.Superpower;
 import com.example.illegalaliens.utilities.Node;
 
 public class Wall extends BoardObject implements Superpower {

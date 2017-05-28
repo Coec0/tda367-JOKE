@@ -1,5 +1,6 @@
 package com.example.illegalaliens.models.superpowers;
 
+import com.example.illegalaliens.models.boardobjects.Superpower;
 import com.example.illegalaliens.models.boardobjects.towers.Tower;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
 import com.example.illegalaliens.utilities.cooldown.CooldownObject;

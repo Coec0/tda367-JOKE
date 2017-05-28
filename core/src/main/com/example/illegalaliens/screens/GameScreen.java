@@ -29,7 +29,7 @@ import com.example.illegalaliens.utilities.Radar;
 import com.example.illegalaliens.utilities.SpriteAdapter;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
-import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadManager;
 import com.example.illegalaliens.utilities.path.map.Map;
 import com.example.illegalaliens.utilities.path.map.MapNode;
 import com.example.illegalaliens.views.AlienView;
@@ -48,7 +48,7 @@ public class GameScreen implements Screen{
 	private SpriteBatch batch;
 	private Sprite backgroundSprite;
 	private DrawablesCollector DC;
-	private PathFinder finder;
+	private RoadManager manager;
 	private final int width;
 	private final int height;
 	
@@ -83,7 +83,7 @@ public class GameScreen implements Screen{
 		BOPrototypes prot = new BOPrototypes();
 		addNodes(map);
 		MapNode lastMapNode = Mapnodes.peek();
-		finder = new PathFinder(Mapnodes, lastMapNode, map.getStartingNodes(),radar);
+		manager = new RoadManager(Mapnodes, lastMapNode, map.getStartingNodes(),radar);
 		
 		CooldownHandler cdh = new CooldownHandler();
 		WavesCDHandler wcd = new WavesCDHandler();
@@ -91,10 +91,10 @@ public class GameScreen implements Screen{
 		
 		
 		AlienView AW= new AlienView(DC);
-		AlienModel AM = new AlienModel(finder, map.getStartingNodes(), wcd);
+		AlienModel AM = new AlienModel(manager, map.getStartingNodes(), wcd);
 		AlienController AController = new AlienController(AW, AM);
 		BoardObjectView BOView = new BoardObjectView(DC);
-		BoardObjectModel BOModel = new BoardObjectModel(AM.getAllEnemies(), cdh,radar, finder);
+		BoardObjectModel BOModel = new BoardObjectModel(AM.getAllEnemies(), cdh,radar, manager);
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView(DC);
 		
@@ -116,8 +116,8 @@ public class GameScreen implements Screen{
 		AM.addEnemyObserver(WH);
 		BOModel.addWhiteHouse(WH);
 		
-		SuperpowerModel SM = new SuperpowerModel(finder,BOModel, AM, cdh);
-		SuperpowerController SC = new SuperpowerController(SM, VP, AM,finder, BOModel);
+		SuperpowerModel SM = new SuperpowerModel(manager,BOModel, AM, cdh);
+		SuperpowerController SC = new SuperpowerController(SM, VP, AM,manager, BOModel);
 		IAMain.addObserver(SM);
 		
 		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BOModel,AM, wcd,prot);

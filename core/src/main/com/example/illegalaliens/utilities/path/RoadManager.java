@@ -5,7 +5,7 @@ import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
 import com.example.illegalaliens.utilities.path.map.MapNode;
 
-public final class PathFinder {
+public final class RoadManager {
 	
 
 	private Array<Array<Node>> shortestPaths;
@@ -20,7 +20,7 @@ public final class PathFinder {
 	
 	
 
-	public PathFinder(Array<MapNode> allNodes, MapNode endNode,Array<MapNode> startingNodes,Radar radar) {
+	public RoadManager(Array<MapNode> allNodes, MapNode endNode,Array<MapNode> startingNodes,Radar radar) {
 		this.startingNodes = startingNodes;
 		this.endNode = endNode;
 		this.allNodes = allNodes;

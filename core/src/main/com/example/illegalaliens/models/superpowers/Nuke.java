@@ -1,6 +1,7 @@
 package com.example.illegalaliens.models.superpowers;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.models.boardobjects.Superpower;
 import com.example.illegalaliens.models.enemies.Enemy;
 
 /**

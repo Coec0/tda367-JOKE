@@ -1,4 +1,4 @@
-package com.example.illegalaliens.models.superpowers;
+package com.example.illegalaliens.models.boardobjects;
 
 public interface Superpower {
     int getSuperPowerCost();

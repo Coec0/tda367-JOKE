@@ -9,16 +9,16 @@ import com.example.illegalaliens.models.enemies.waves.EnemyWavesCreator;
 import com.example.illegalaliens.models.enemies.waves.WavesObserver;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
-import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadManager;
 import com.example.illegalaliens.utilities.path.map.MapNode;
 
 public class AlienModel implements UpdateObserver {
-	private PathFinder finder;
+	private RoadManager manager;
 
 	private Array<Enemy> enemies;
 	private Array<Array<Node>> defaultPaths;
 	private int waveCounter=0;
-	private int frames = 10; //value-time inbetween aliens
+	private int frames = 10;
 	private boolean waveON;
 	private boolean waveAlive;
 	private EnemyWavesCreator EWC;
@@ -29,9 +29,9 @@ public class AlienModel implements UpdateObserver {
 	private Array<Enemy> nettedEnemies;
 	private boolean openBorders = false;
 
-	public AlienModel(PathFinder finder, Array<MapNode> startingPos, WavesCDHandler wavescdhandler) {
+	public AlienModel(RoadManager manager, Array<MapNode> startingPos, WavesCDHandler wavescdhandler) {
 		this.startingPos = startingPos;
-		this.finder = finder;
+		this.manager = manager;
 		EWC = new EnemyWavesCreator();
 		enemies = new Array<Enemy>(false, 10);
 		nettedEnemies = new Array<Enemy>(false,10);
@@ -42,7 +42,7 @@ public class AlienModel implements UpdateObserver {
 	private Array<Array<Node>> calcAllDefaultPaths(Array<MapNode> startingPos){
 		Array<Array<Node>> defaultPaths = new Array<Array<Node>>();
 		for(MapNode start : startingPos){
-			defaultPaths.add(finder.getShortestPath(start));
+			defaultPaths.add(manager.getShortestPath(start));
 		}
 		return defaultPaths;
 	}
@@ -56,7 +56,7 @@ public class AlienModel implements UpdateObserver {
 		if(enemy instanceof HighAlien){
 			enemy.setPath(defaultPaths.random());
 		}else if(EWC.hasLevelRandomSpawn()){
-			enemy.setPath(finder.getShortestPath(startingPos.random()));
+			enemy.setPath(manager.getShortestPath(startingPos.random()));
 		}else{
 			enemy.setPath(defaultPaths.get(0));
 		}

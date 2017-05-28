@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
 import com.example.illegalaliens.utilities.path.DijkstraSolver;
-import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadManager;
 import com.example.illegalaliens.utilities.path.RoadSection;
 import com.example.illegalaliens.utilities.path.map.Map;
 import com.example.illegalaliens.utilities.path.map.MapNode;
@@ -26,7 +26,7 @@ public class PathFinderTest {
 	private Radar radar;
 	private float roadRadius;
 	private Map map;
-	private PathFinder finder;
+	private RoadManager finder;
 	
 	@Before
 	public void setUp(){
@@ -39,7 +39,7 @@ public class PathFinderTest {
 		roadSections = new Array<RoadSection>();
 		DSolver = new DijkstraSolver();
 		roadRadius = 4;
-		finder = new PathFinder(allNodes,endNode,startingNodes, radar);
+		finder = new RoadManager(allNodes,endNode,startingNodes, radar);
 	}
 	
 	@Test

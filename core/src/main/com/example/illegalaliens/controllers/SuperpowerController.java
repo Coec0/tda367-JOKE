@@ -10,7 +10,7 @@ import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.boardobjects.Wall;
 import com.example.illegalaliens.models.superpowers.SuperpowerModel;
 import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadManager;
 
 /**
  * Created by Emil on 2017-05-04.
@@ -22,10 +22,10 @@ public class SuperpowerController extends ClickListener implements InputProcesso
     private BoardObjectModel BOModel;
     private Viewport VP;
 
-    private PathFinder finder;
+    private RoadManager manager;
 
-    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BoardObjectModel BOModel ){
-    	this.finder = finder;
+    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, RoadManager manager, BoardObjectModel BOModel ){
+    	this.manager = manager;
         this.SModel = SModel;
         this.VP = VP;
         this.AModel = AModel;
@@ -70,7 +70,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
 		if(v.x >= VP.getWorldWidth()) //Makes sure you cant click on ui
 			return false;
 		
-    	if(BOModel.getHighlighted() != null && BOModel.getHighlighted() instanceof Wall && !BOModel.getHighlighted().isActive() && finder.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
+    	if(BOModel.getHighlighted() != null && BOModel.getHighlighted() instanceof Wall && !BOModel.getHighlighted().isActive() && manager.isOnRoad(new Node((int)v.x,(int)v.y), 1)){
     		SModel.useWall((int)v.x, (int)v.y);
     	}
         return false;

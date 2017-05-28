@@ -13,7 +13,7 @@ import com.example.illegalaliens.models.politics.parties.Voter;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
-import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadManager;
 
 public class BoardObjectModel implements UpdateObserver {
 	private Array<Tower> towers;
@@ -25,22 +25,22 @@ public class BoardObjectModel implements UpdateObserver {
 	private Radar radar;
 	private TowerUpgrader upgrader;
 	private CooldownHandler cdh;
-	private PathFinder finder;
+	private RoadManager manager;
 
-    public BoardObjectModel(Array<Enemy> enemies, CooldownHandler cdh, Radar radar, PathFinder finder) {
+    public BoardObjectModel(Array<Enemy> enemies, CooldownHandler cdh, Radar radar, RoadManager manager) {
 		towers = new Array<Tower>(false, 100);
 		whitehouses = new Array<WhiteHouse>(false, 4);
 		boardObjects = new Array<BoardObject>(false, 40);
 		buildings = new Array<Building>(false, 30);
 		this.enemies = enemies;
 		this.radar = radar;
-        this.finder = finder;
+        this.manager = manager;
 		upgrader = new TowerUpgrader();
 		this.cdh = cdh;	
 	}
     
 	public boolean isFreeSpace(int x, int y, BoardObject sprite){
-		if(finder.isOnRoad(new Node(x, y), sprite.getSize()))
+		if(manager.isOnRoad(new Node(x, y), sprite.getSize()))
 			return false;
 		for(BoardObject BO : getAllBoardObjects()){
 			if(radar.isNodeWithinRadius(new Node(x, y),sprite.getSize(),BO.getPos(), BO.getSize()))

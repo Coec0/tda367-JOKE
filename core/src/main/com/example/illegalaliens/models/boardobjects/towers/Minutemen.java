@@ -1,11 +1,11 @@
 package com.example.illegalaliens.models.boardobjects.towers;
 
 import com.example.illegalaliens.models.boardobjects.BoardObject;
+import com.example.illegalaliens.models.boardobjects.Superpower;
 import com.example.illegalaliens.models.boardobjects.towers.targetmethods.TargetClosest;
 import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.projectiles.Projectile;
 import com.example.illegalaliens.models.projectiles.ProjectileFactory;
-import com.example.illegalaliens.models.superpowers.Superpower;
 
 /**
  * Created by Emil on 2017-05-14.
