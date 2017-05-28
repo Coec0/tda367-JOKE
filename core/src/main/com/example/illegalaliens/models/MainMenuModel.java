@@ -2,6 +2,7 @@ package com.example.illegalaliens.models;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.IntArray;
 import com.example.illegalaliens.screens.IllegalAliensMain;
 import com.example.illegalaliens.utilities.path.map.Map;
 
@@ -20,19 +21,19 @@ public class MainMenuModel {
 	}
 	
 	public void showMainMenuStage(){
-		notifyObservers("MainMenu");
+		notifyObservers("MainMenu", null);
 	}
 	
 	public void showAboutStage(){
-		notifyObservers("About");
+		notifyObservers("About", null);
 	}
 	
 	public void showSelectMapStage(){
-		notifyObservers("SelectMap");
+		notifyObservers("SelectMap", null);
 	}
 
 	public void showHiscoreStage() {
-		notifyObservers("Hiscore");
+		notifyObservers("Hiscore", game.getScores());
 	}
 	
 	public void switchToMainMenuScreen(){
@@ -58,8 +59,8 @@ public class MainMenuModel {
 		observers.removeValue(observer, false);
 	}
 
-	private void notifyObservers(String id) {
+	private void notifyObservers(String id, IntArray scores) {
 		for (MainMenuObserver observer : observers)
-			observer.actOnMainMenuChange(id);
+			observer.actOnMainMenuChange(id, scores);
 	}
 }

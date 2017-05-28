@@ -1,5 +1,6 @@
 package com.example.illegalaliens.views;
 
+import com.badlogic.gdx.utils.IntArray;
 import com.example.illegalaliens.models.MainMenuObserver;
 import com.example.illegalaliens.utilities.DrawablesCollector;
 import com.example.illegalaliens.views.stages.*;
@@ -42,11 +43,12 @@ public class MainMenuView extends SimpleView implements MainMenuObserver{
 		stageSwitcher.showStage(mapSelectStage);
 	}
 
-	private void showHiscoreStage() {
+	private void showHiscoreStage(IntArray scores) {
 		stageSwitcher.showStage(hiscoreStage);
+		hiscoreStage.refreshHiscoreTable(scores);
 	}
 	
-	private void showIDStage(String id){
+	private void showIDStage(String id, IntArray scores){
 		if(id.equals("MainMenu")){
 			showMainMenuStage();
 		}else if(id.equals("About")){
@@ -54,13 +56,13 @@ public class MainMenuView extends SimpleView implements MainMenuObserver{
 		}else if(id.equals("SelectMap")){
 			showMapSelectStage();
 		} else if (id.equals("Hiscore")) {
-			showHiscoreStage();
+			showHiscoreStage(scores);
 		}
 	}
 
 	@Override
-	public void actOnMainMenuChange(String id) {
-		showIDStage(id);
+	public void actOnMainMenuChange(String id, IntArray scores) {
+		showIDStage(id, scores);
 	}
 
 }
