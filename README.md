@@ -1,4 +1,4 @@
-# Illegal Aliens (readme under construction)
+# Illegal Aliens
 This is the Readme for the application Illegal Aliens (https://github.com/Coec0/tda367-JOKE)
 
 @author Emil Josefsson
@@ -26,16 +26,17 @@ Contributors:
 7. Future goals
 
 ## Introduction
-This Readme aims to fulfill two purposes:
+This Readme aims to fulfill three purposes:
 - provide information about the game (as a complement to the information available in-game)
 - provde information about the system structure
+- provide information about flaws
 
 Run the game by either downloading the source code and launching it via an IDE or Terminal or by downloading
 the JAR file (coming later).
 
 The game was developed by four students at Chalmers University of Technology as an object oriented project in
 the course **TDA367**. The course aims to develop an application with the MVC design pattern as core and in an
-object oriented way.
+object oriented way. Course page can be found [here](http://www.cse.chalmers.se/edu/year/2017/course/tda367/).
 
 Application was implemented using the [LibGDX](http://libgdx.badlogicgames.com) as framework, Git as versioning tool and Gradle as dependency handler.
 
