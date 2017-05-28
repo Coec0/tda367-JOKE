@@ -90,28 +90,31 @@ public class SuperpowerStage extends Stage {
     
     
     
-    private void disableITB(Touchable disable, ImageTextButton button){
-    	button.setTouchable(disable);
-    	if(disable == Touchable.disabled){
+    private void disableITB(boolean disable, ImageTextButton button){
+    	if(disable)
+			button.setTouchable(Touchable.disabled);
+		else
+			button.setTouchable(Touchable.enabled);
+    	if(disable){
     		button.getColor().a = 0.7f;
     	}else{
     		button.getColor().a = 1f;
     	}
     }
     
-    public void disableNuke(Touchable disable){
+    public void disableNuke(boolean disable){
     	disableITB(disable, nukeB);
     }
     
-    public void disableMinutemen(Touchable disable){
+    public void disableMinutemen(boolean disable){
     	disableITB(disable, minutemenB);
     }
     
-    public void disableWall(Touchable disable){
+    public void disableWall(boolean disable){
     	disableITB(disable, wallB);
     }
     
-    public void disableTowerBoost(Touchable disable){
+    public void disableTowerBoost(boolean disable){
     	disableITB(disable, boostB);
     }
 
