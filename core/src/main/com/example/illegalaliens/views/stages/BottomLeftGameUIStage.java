@@ -54,9 +54,8 @@ public class BottomLeftGameUIStage extends Stage {
 	}
 
 	private void updateTable() {
-		System.out.println("Update");
 		health.pack();
 		money.pack();
-		table.setWidth(health.getWidth() + money.getWidth()+ 10); //10 is padding
+		table.setWidth(health.getWidth() + money.getWidth()+ 10);
 	}
 }

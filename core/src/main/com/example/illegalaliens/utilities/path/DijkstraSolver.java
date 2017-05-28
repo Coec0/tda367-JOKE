@@ -23,7 +23,6 @@ public class DijkstraSolver {
 		
 		if(startNode.getNeighbors().size == 0){		//return empty if start has no neighbors. 
 													//no need to waste computing power if this is the case
-			System.out.println("Dijkstra: start no neighbors");
 			return new Array<Node>();
 		}
 		
@@ -38,7 +37,6 @@ public class DijkstraSolver {
 		}
 		
 		if(endNode.getPathLength() == Float.MAX_VALUE){ //return empty if we never found a way to the endNode
-			System.out.println("Dijkstra: end pathlenght inf");
 			return new Array<Node>();
 		}
 		

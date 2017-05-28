@@ -153,7 +153,6 @@ public class BoardObjectModel implements UpdateObserver {
 		BO.setActive(false);
 		if(BO instanceof Tower){
 			towers.removeValue((Tower)BO, false);
-			System.out.println("deleting");
 		} else if(BO instanceof Building){
 			buildings.removeValue((Building)BO, false);
 		}
