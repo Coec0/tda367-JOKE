@@ -71,7 +71,7 @@ public class IllegalAliensMain extends Game {
 	}
 
     public void startGame(Map map) {
-        setScreen(new GameScreen(this, map, batch, mainMenuScreen.getMainMenuController(), VP, camera));
+        setScreen(new GameScreen(this, map, batch, mainMenuScreen.getMainMenuController(), VP, camera, hiscoreDB));
     }
 
     public void switchToMainMenuScreen(){

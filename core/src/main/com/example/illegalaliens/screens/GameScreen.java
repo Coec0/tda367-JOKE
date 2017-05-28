@@ -16,6 +16,7 @@ import com.example.illegalaliens.controllers.ExecutiveOrdersController;
 import com.example.illegalaliens.controllers.MainMenuController;
 import com.example.illegalaliens.controllers.ProjectileController;
 import com.example.illegalaliens.controllers.SuperpowerController;
+import com.example.illegalaliens.hiscore.HiscoreDB;
 import com.example.illegalaliens.models.AlienModel;
 import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.ProjectileModel;
@@ -65,13 +66,17 @@ public class GameScreen implements Screen{
 	private Map map;
 	private MainMenuController MMController;
 
-	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch, MainMenuController MMController, Viewport VP, Camera camera) {
+	private HiscoreDB hiscoreDB;
+
+	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch, MainMenuController MMController,
+					  Viewport VP, Camera camera, HiscoreDB hiscoreDB) {
 		this.IAMain = illegalAliensMain;
 		this.map = map;
 		this.batch = batch;
 		this.MMController = MMController;
 		this.VP = VP;
 		this.camera = camera;
+		this.hiscoreDB = hiscoreDB;
 		this.width = Gdx.graphics.getWidth();
 		this.height = Gdx.graphics.getHeight();
 	}
@@ -87,7 +92,8 @@ public class GameScreen implements Screen{
 		
 		CooldownHandler cdh = new CooldownHandler();
 		WavesCDHandler wcd = new WavesCDHandler();
-		WhiteHouse WH = new WhiteHouse("WhiteHouse", (int) lastMapNode.getPos().getX(), (int) lastMapNode.getPos().getY(),50, 100);
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", (int) lastMapNode.getPos().getX(), (int) lastMapNode.getPos().getY(),
+				50, 100, hiscoreDB);
 		
 		
 		AlienView AW= new AlienView(DC);
