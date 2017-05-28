@@ -36,11 +36,12 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 	private Label cooldownUpgradeCostLabel;
 	private Label radiusUpgradeCostLabel;
 
+	private Label sellValueLabel;
 
 	private Actor removeButton;
 
-	private Tower tower;
-	private TowerUpgrader towerUpgrader = new TowerUpgrader();
+	private Tower tower; //needed to get tower stats
+	private TowerUpgrader towerUpgrader = new TowerUpgrader(); //Needed to get upgrade costs
 
 	public SelectedTowerStage(ClickListener clickListener, DrawablesCollector DC) {
 		this.clickListener = clickListener;
@@ -51,7 +52,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		this.addActor(addDamageLabel());
 		this.addActor(addRadiusLabel());
 		this.addActor(addTargetLabel());
-
+		this.addActor(addSellValueLabel());
 		this.addActor(addUpgradeCostDamageLabel());
 		this.addActor(addUpgradeCostRadiusLabel());
 		this.addActor(addUpgradeCostCooldownLabel());
@@ -155,6 +156,9 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		infoTable.row();
 		infoTable.add(ActorFactory.createLabel("Target:")).width(100);
 		infoTable.add(targetLabel).width(100);
+		infoTable.row();
+		infoTable.add(ActorFactory.createLabel("Sells for:")).width(100);
+		infoTable.add(sellValueLabel).width(100);
 
 		return infoTable;
 	}
@@ -204,7 +208,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		damageUpgradeCostLabel.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				damageUpgradeCostLabel.setText(String.valueOf(towerUpgrader.getDamageUpgradeCost(tower)));
+				damageUpgradeCostLabel.setText(String.valueOf((int)towerUpgrader.getDamageUpgradeCost(tower)));
 			}
 		});
 
@@ -217,7 +221,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		radiusUpgradeCostLabel.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				radiusUpgradeCostLabel.setText(String.valueOf(towerUpgrader.getRadiusUpgradeCost(tower)));
+				radiusUpgradeCostLabel.setText(String.valueOf((int)towerUpgrader.getRadiusUpgradeCost(tower)));
 			}
 		});
 
@@ -230,7 +234,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		cooldownUpgradeCostLabel.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				cooldownUpgradeCostLabel.setText(String.valueOf(towerUpgrader.getCooldownUpgradeCost(tower)));
+				cooldownUpgradeCostLabel.setText(String.valueOf((int)towerUpgrader.getCooldownUpgradeCost(tower)));
 			}
 		});
 
@@ -271,6 +275,17 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		return removeButton;
 	}
 
+	private Actor addSellValueLabel(){
+		sellValueLabel = ActorFactory.createLabel("");
+		sellValueLabel.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				sellValueLabel.setText(String.valueOf((int)tower.getValue()));
+			}
+		});
+		return sellValueLabel;
+	}
+
 	public void setTower(Tower tower) {
 		this.tower = tower;
 
@@ -279,6 +294,7 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		damageLabel.fire(new ChangeListener.ChangeEvent());
 		radiusLabel.fire(new ChangeListener.ChangeEvent());
 		targetLabel.fire(new ChangeListener.ChangeEvent());
+		sellValueLabel.fire(new ChangeListener.ChangeEvent());
 		damageUpgradeCostLabel.fire(new ChangeListener.ChangeEvent());
 		cooldownUpgradeCostLabel.fire(new ChangeListener.ChangeEvent());
 		radiusUpgradeCostLabel.fire(new ChangeListener.ChangeEvent());
