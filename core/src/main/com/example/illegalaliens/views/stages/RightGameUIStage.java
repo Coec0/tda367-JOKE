@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -60,6 +62,33 @@ public class RightGameUIStage extends Stage {
 		table.add(openBorders).width(WIDTH/2);
 		return table;
 	}
+	
+	private void disableEO(Touchable disable, Button button){
+    	button.setTouchable(disable);
+    	if(disable == Touchable.disabled){
+    		button.getColor().a = 0.7f;
+    	}else{
+    		button.getColor().a = 1f;
+    	}
+    }
+    
+    public void disableCivilWar(Touchable disable){
+    	disableEO(disable, civilWarRep);
+    	disableEO(disable, civilWarDem);
+    }
+    
+    public void disableOpenBorders(Touchable disable){
+    	disableEO(disable, openBorders);
+    }
+    
+    public void disableTowerChanger(Touchable disable){
+    	disableEO(disable, taxCut);
+    	disableEO(disable, obamaCare);
+    }
+    
+    public void disableDeclareWar(Touchable disable){
+    	disableEO(disable, declareWar);
+    }
 	
 	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){
 		civilWarRep = addTextButton("CWR", "CivilWar (REP)", executiveOrdersC);

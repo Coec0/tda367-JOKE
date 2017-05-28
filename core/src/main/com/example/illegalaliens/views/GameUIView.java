@@ -8,6 +8,7 @@ import com.example.illegalaliens.models.boardobjects.WhiteHouseObserver;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
 import com.example.illegalaliens.models.boardobjects.towers.PrototypeObserver;
 import com.example.illegalaliens.models.enemies.waves.WavesObserver;
+import com.example.illegalaliens.models.executive_orders.ExecutiveOrderObserver;
 import com.example.illegalaliens.models.politics.parties.PartyFactory;
 import com.example.illegalaliens.models.superpowers.Superpower;
 import com.example.illegalaliens.models.superpowers.SuperpowerObserver;
@@ -20,7 +21,7 @@ import com.example.illegalaliens.views.stages.RightGameUIStage;
 import com.example.illegalaliens.views.stages.SelectedBoardObjectStage;
 import com.example.illegalaliens.views.stages.SuperpowerStage;
 
-public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver, WavesObserver {
+public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver, WavesObserver, ExecutiveOrderObserver {
 	private RightGameUIStage HS;
 	private PoliticalMeterStage PMS;
 	private SelectedBoardObjectStage SBOS;
@@ -152,6 +153,42 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 		NW.disableButton(!finished);
 		updateSuperPowerButtons(whitehouse);
 	
+		
+	}
+
+	@Override
+	public void actOnExecutiveOrdersChange(String EO, boolean onCD) {
+		if(EO.equals("CW")){
+			if(onCD){
+				HS.disableCivilWar(Touchable.disabled);
+			} else {
+				HS.disableCivilWar(Touchable.enabled);
+			}
+		} else if(EO.equals("TC")){
+			if(onCD){
+				HS.disableTowerChanger(Touchable.disabled);
+			} else {
+				HS.disableTowerChanger(Touchable.enabled);
+			}
+		} else if(EO.equals("OB")){
+			if(onCD){
+				HS.disableOpenBorders(Touchable.disabled);
+			} else {
+				HS.disableOpenBorders(Touchable.enabled);
+			}
+		} else if(EO.equals("OB")){
+			if(onCD){
+				HS.disableOpenBorders(Touchable.disabled);
+			} else {
+				HS.disableOpenBorders(Touchable.enabled);
+			}
+		} else if(EO.equals("DW")){
+			if(onCD){
+				HS.disableDeclareWar(Touchable.disabled);
+			} else {
+				HS.disableDeclareWar(Touchable.enabled);
+			}
+		}
 		
 	}
 
