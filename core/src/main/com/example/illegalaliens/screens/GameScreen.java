@@ -21,7 +21,6 @@ import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.ProjectileModel;
 import com.example.illegalaliens.models.boardobjects.WhiteHouse;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
-import com.example.illegalaliens.models.enemies.waves.EnemyWavesCreator;
 import com.example.illegalaliens.models.executive_orders.ExecutiveOrdersModel;
 import com.example.illegalaliens.models.superpowers.SuperpowerModel;
 import com.example.illegalaliens.utilities.DrawablesCollector;

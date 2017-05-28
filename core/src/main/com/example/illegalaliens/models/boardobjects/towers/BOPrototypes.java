@@ -94,7 +94,7 @@ public class BOPrototypes {
 		notifyObservers();
 	}
 	
-	public void reset(){
+	private void reset(){
 		towers = new Array<Tower>(false, 4);
 		buildings = new Array<Building>(false, 2);
 		ranger = new Ranger(0, 0);

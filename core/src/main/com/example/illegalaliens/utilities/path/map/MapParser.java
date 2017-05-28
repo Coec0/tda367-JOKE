@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MapParser {
 
     private Scanner scanner;
-    int i = 0;
+    private int i = 0;
     public MapParser(String mapName) {
         try {
             scanner = new Scanner(new File("maps/" + mapName + "Nodes.txt"));

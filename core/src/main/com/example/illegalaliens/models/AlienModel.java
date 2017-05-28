@@ -41,7 +41,7 @@ public class AlienModel implements UpdateObserver {
 		//direction = finder.getDirectionList();
 	}
 	
-	public  Array<Array<Node>> calcAllDefaultPaths(Array<MapNode> startingPos){
+	private Array<Array<Node>> calcAllDefaultPaths(Array<MapNode> startingPos){
 		Array<Array<Node>> defaultPaths = new Array<Array<Node>>();
 		for(MapNode start : startingPos){
 			defaultPaths.add(finder.getShortestPath(start));
@@ -53,7 +53,7 @@ public class AlienModel implements UpdateObserver {
 		openBorders = true;
 	}
 	
-	public void addEnemy(Enemy enemy){
+	private void addEnemy(Enemy enemy){
 		
 		if(enemy instanceof HighAlien){
 			enemy.setPath(defaultPaths.random());
@@ -109,7 +109,7 @@ public class AlienModel implements UpdateObserver {
 		return null;
 	}
 	
-	public void moveEnemy(Enemy enemy){
+	private void moveEnemy(Enemy enemy){
 		int position = (int)(enemy.getNodeArrayPos()+((int)enemy.getSpeed()));
 		if(position >= enemy.getPath().size){
 			removeEnemy(enemy);
@@ -120,20 +120,12 @@ public class AlienModel implements UpdateObserver {
 		}
 	}
 	
-	public void removeEnemy(Enemy enemy){
+	private void removeEnemy(Enemy enemy){
 		notifyEnemyObservers(enemy, true);
 		enemies.removeValue(enemy, false);
 		enemy=null; //Clear
 	}
-	
-	//Gonna listen from a tower that attacked it
-	public void damaged(Enemy enemy, float dmg){
-		enemy.hurt(dmg);
-		
-		if(enemy.isDead()){
-			removeEnemy(enemy);
-		}
-	}
+
 	
 	public void startNextWave(){
 		if(openBorders){

@@ -1,6 +1,5 @@
 package com.example.illegalaliens.models.projectiles;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.example.illegalaliens.utilities.Node;
 
 

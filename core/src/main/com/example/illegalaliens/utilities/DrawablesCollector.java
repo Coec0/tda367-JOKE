@@ -44,7 +44,7 @@ public class DrawablesCollector {
 	 * Draw all sprites. Must be called inside SpriteBatch
 	 * @param batch
 	 */
-	public void drawSprites(SpriteBatch batch) {
+	private void drawSprites(SpriteBatch batch) {
 		if(getSprites() != null){
 			for(SpriteAdapter sprite : getSprites()){
 				sprite.draw(batch);

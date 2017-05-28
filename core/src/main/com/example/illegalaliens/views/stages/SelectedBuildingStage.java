@@ -1,7 +1,6 @@
 package com.example.illegalaliens.views.stages;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -9,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.towers.Tower;
-import com.example.illegalaliens.utilities.DrawablesCollector;
 
 public class SelectedBuildingStage extends SelectedBoardObjectStage {
 	private Skin skin;

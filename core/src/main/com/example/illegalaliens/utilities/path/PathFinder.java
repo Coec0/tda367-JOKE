@@ -104,7 +104,7 @@ public final class PathFinder {
 		return null;
 	}
 	
-	public Array<Node> calcAllPixelWalk(Array<RoadSection> roadSections){
+	private Array<Node> calcAllPixelWalk(Array<RoadSection> roadSections){
 		Array<Node> nodes = new Array<Node>();
 		for(RoadSection section : roadSections){
 			nodes.addAll(section.getPixelWalk());
@@ -171,7 +171,7 @@ public final class PathFinder {
 		return true;
 	}
 	
-	public void addShortest(Array<Node> tmp , MapNode startNode){
+	private void addShortest(Array<Node> tmp , MapNode startNode){
 		shortestPaths.add(getFullPath(0.05f,tmp)); //10 = speed
 		startingNodes.add(startNode); //add at same time so shortest and starting are in match
 	}
@@ -198,7 +198,7 @@ public final class PathFinder {
 	 * @param allNodes	The net of MapNode that dijkstra will find path in.
 	 * @return	Returns only the nodes that that forms the path. In correct order. 
 	 */
-	public Array<Node> calculateShortest(MapNode startNode,Array<MapNode> allNodes){
+	private Array<Node> calculateShortest(MapNode startNode,Array<MapNode> allNodes){
 		Array<Node> tmp = DSolver.solve(startNode, endNode,allNodes);
 		return tmp;
 	}

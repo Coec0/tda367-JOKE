@@ -33,7 +33,7 @@ public class Party {
 		return points;
 	}
 
-	public void setPoints(int points) {
+	private void setPoints(int points) {
 		this.points = points;
 	}
 	
@@ -74,7 +74,7 @@ public class Party {
 		return name;
 	}
 
-	public void setName(String name) {
+	private void setName(String name) {
 		this.name = name;
 	}
 }

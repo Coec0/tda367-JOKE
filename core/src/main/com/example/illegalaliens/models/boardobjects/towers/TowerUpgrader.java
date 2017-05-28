@@ -1,7 +1,5 @@
 package com.example.illegalaliens.models.boardobjects.towers;
 
-import com.badlogic.gdx.utils.Array;
-
 /**
  * Created by Emil on 2017-05-03.
  */

@@ -1,7 +1,6 @@
 package com.example.illegalaliens.models.enemies;
 
 import com.badlogic.gdx.utils.Array;
-import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.SpriteAdapter;
 
@@ -16,7 +15,7 @@ public abstract class Enemy {
 	private float money = 20;
 	private boolean inNet = false;
 	
-	public Enemy(int x, int y, float speed, float health,float radius) {
+	protected Enemy(int x, int y, float speed, float health,float radius) {
 		this.pos = new SpriteAdapter(x, y);
 		
 		this.radius = radius;

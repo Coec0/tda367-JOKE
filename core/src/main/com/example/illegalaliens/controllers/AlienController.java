@@ -8,7 +8,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.models.AlienModel;
-import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.views.AlienView;
 
 public class AlienController extends ClickListener implements ActionListener, InputProcessor{

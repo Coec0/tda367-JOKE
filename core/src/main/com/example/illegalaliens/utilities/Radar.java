@@ -1,8 +1,6 @@
 package com.example.illegalaliens.utilities;
 
 import com.badlogic.gdx.utils.Array;
-import com.example.illegalaliens.models.boardobjects.towers.Tower;
-import com.example.illegalaliens.models.enemies.Enemy;
 
 public class Radar {
 

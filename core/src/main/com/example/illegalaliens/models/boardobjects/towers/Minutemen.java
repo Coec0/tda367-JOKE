@@ -2,7 +2,6 @@ package com.example.illegalaliens.models.boardobjects.towers;
 
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.towers.targetmethods.TargetClosest;
-import com.example.illegalaliens.models.boardobjects.towers.targetmethods.TargetFirst;
 import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.projectiles.Projectile;
 import com.example.illegalaliens.models.projectiles.ProjectileFactory;

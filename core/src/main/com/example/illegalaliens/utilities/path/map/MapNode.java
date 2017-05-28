@@ -83,7 +83,7 @@ public class MapNode {
 		return neighbors;
 	}
 	
-	public float getDistanceTo(MapNode other) {
+	private float getDistanceTo(MapNode other) {
 		return (float) pos.getDistanceTo(other.getPos());
 	}
 

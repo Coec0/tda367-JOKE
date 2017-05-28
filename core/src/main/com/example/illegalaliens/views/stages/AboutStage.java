@@ -2,7 +2,6 @@ package com.example.illegalaliens.views.stages;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.example.illegalaliens.controllers.MainMenuController;
 
 /**
  * Stage for About

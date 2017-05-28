@@ -1,13 +1,10 @@
 package com.example.illegalaliens.controllers;
 
-import javax.swing.plaf.BorderUIResource;
-
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.example.illegalaliens.models.AlienModel;
 import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.Wall;
@@ -21,7 +18,6 @@ import com.example.illegalaliens.models.boardobjects.towers.targetmethods.Target
 import com.example.illegalaliens.models.boardobjects.towers.targetmethods.TargetStrongest;
 import com.example.illegalaliens.models.boardobjects.towers.targetmethods.TargetWeakest;
 import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.path.PathFinder;
 import com.example.illegalaliens.views.BoardObjectView;
 
 public class BoardObjectController extends ClickListener implements InputProcessor {
@@ -140,7 +136,7 @@ public class BoardObjectController extends ClickListener implements InputProcess
 		return false;
 	}
     
-    public BoardObject getClickedBoardObject(int x, int y){
+    private BoardObject getClickedBoardObject(int x, int y){
     
     	for(BoardObject boardObject : BOModel.getAllBoardObjects()){
     		if(isInRadius(x,y,boardObject)){
@@ -151,7 +147,7 @@ public class BoardObjectController extends ClickListener implements InputProcess
     	
     }
     
-    public boolean isInRadius(int x, int y, BoardObject boardObject){
+    private boolean isInRadius(int x, int y, BoardObject boardObject){
     	Node node = new Node(x,y);
     	return node.getDistanceTo(boardObject.getPos()) <= boardObject.getSize();
     }

@@ -47,24 +47,24 @@ public class ProjectileModel implements UpdateObserver{
         projectile.getSpriteAdapter().rotateTowards(projectile.getNewPosition(), 90);
     }
 
-    public void move(Projectile p){
+    private void move(Projectile p){
             p.setNewPosition();   
     }
 
-    public boolean checkIfHitEnemies(Projectile projectile) {
+    private boolean checkIfHitEnemies(Projectile projectile) {
         Array<Enemy> enemies = scan(projectile);
         return (enemies.size != 0);
     }
 
 
-    public Array<Enemy> scan(Projectile projectile){
+    private Array<Enemy> scan(Projectile projectile){
         Array<Enemy> enemies = projectile.scanEnemies(radar,projectile.getPosition(), projectile.getRadius(),aModel.getAllEnemies()); //hardcoded
         return enemies;
     }
 
 
 
-    public boolean ifOutOfBounds(Projectile p){
+    private boolean ifOutOfBounds(Projectile p){
         return (p.getPosition().getY() > Gdx.graphics.getHeight() && p.getPosition().getY() < 0 && p.getPosition().getX() > Gdx.graphics.getWidth() && p.getPosition().getX() < 0);
     }
 
@@ -74,7 +74,7 @@ public class ProjectileModel implements UpdateObserver{
     }
 
 
-    public void checkForRemoval(Projectile p){
+    private void checkForRemoval(Projectile p){
             if (ifOutOfBounds(p) || (checkIfHitEnemies(p) && p.getHealth() == 0)){
                 notifyObservers(p, "remove");
             }

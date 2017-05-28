@@ -23,17 +23,17 @@ public class ProjectileController implements ProjectileObserver, BoardObjectObse
         BOModel.addObserver(this);
     }
 
-    public void spawnProjectile(Projectile projectile) {
+    private void spawnProjectile(Projectile projectile) {
         PM.addProjectile(projectile);
         PW.addToView(projectile.getSpriteAdapter(), projectile, projectile.getRadius());
     }
 
-    public void removeProjectile(Projectile projectile) {
+    private void removeProjectile(Projectile projectile) {
         PM.removeProjectile(projectile);
         PW.removeFromView(projectile.getSpriteAdapter());
     }
 
-    public void updateTowerObservers(Tower tower, boolean remove) {
+    private void updateTowerObservers(Tower tower, boolean remove) {
             if(!remove){
                 tower.addObserver(this);
 

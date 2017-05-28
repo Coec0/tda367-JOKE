@@ -2,11 +2,9 @@ package com.example.illegalaliens.models.boardobjects.towers;
 
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
-import com.example.illegalaliens.models.boardobjects.buildings.Building;
 import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.politics.parties.PartyFactory;
-import com.example.illegalaliens.models.projectiles.Bullet;
 import com.example.illegalaliens.models.projectiles.Net;
 import com.example.illegalaliens.models.projectiles.Projectile;
 

@@ -22,7 +22,7 @@ public class BoardObjectView extends View<BoardObject> implements BoardObjectObs
 
 
 
-    public void placeTexture(BoardObject boardObject){
+    private void placeTexture(BoardObject boardObject){
     	onMouse = new SpriteAdapter(selectTexture(boardObject));
     	onMouse.setSize(onMouse.getWidth() * super.getScale(onMouse, boardObject.getSize()), onMouse.getHeight()*super.getScale(onMouse, boardObject.getSize()));
     	onMouse.setAlpha(0.5f);
@@ -62,7 +62,7 @@ public class BoardObjectView extends View<BoardObject> implements BoardObjectObs
     	radiusCircle.setPosition(x, y);
     }
     
-    public void removePlaceTexture(){
+    private void removePlaceTexture(){
     	removeFromView(onMouse);
     }
     

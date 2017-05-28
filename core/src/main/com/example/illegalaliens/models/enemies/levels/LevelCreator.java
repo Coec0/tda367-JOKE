@@ -13,23 +13,23 @@ import com.example.illegalaliens.models.enemies.*;
 public class LevelCreator {
 
     //Array containing all the levels created in constructor
-    Array<Level> levels = new Array<Level>();
+    private Array<Level> levels = new Array<Level>();
 
 
-    Array<LevelHelperObject> L1 = new Array<LevelHelperObject>();
-    Array<LevelHelperObject> L2 = new Array<LevelHelperObject>();
-    Array<LevelHelperObject> L3 = new Array<LevelHelperObject>();
-    Array<LevelHelperObject> L4 = new Array<LevelHelperObject>();
-    Array<LevelHelperObject> L5 = new Array<LevelHelperObject>();
-    Array<LevelHelperObject> L6 = new Array<LevelHelperObject>();
+    private Array<LevelHelperObject> L1 = new Array<LevelHelperObject>();
+    private Array<LevelHelperObject> L2 = new Array<LevelHelperObject>();
+    private Array<LevelHelperObject> L3 = new Array<LevelHelperObject>();
+    private Array<LevelHelperObject> L4 = new Array<LevelHelperObject>();
+    private Array<LevelHelperObject> L5 = new Array<LevelHelperObject>();
+    private Array<LevelHelperObject> L6 = new Array<LevelHelperObject>();
 
 
     //Aliens available to use
-    Alien alien = new Alien();
-    HighAlien highAlien = new HighAlien();
-    SneakyAlien sneakyAlien = new SneakyAlien();
-    AlienWithHelmet alienWithHelmet = new AlienWithHelmet();
-    ToughAlien toughAlien = new ToughAlien();
+    private Alien alien = new Alien();
+    private HighAlien highAlien = new HighAlien();
+    private SneakyAlien sneakyAlien = new SneakyAlien();
+    private AlienWithHelmet alienWithHelmet = new AlienWithHelmet();
+    private ToughAlien toughAlien = new ToughAlien();
 
     public LevelCreator(){
         //level 1
@@ -82,7 +82,7 @@ public class LevelCreator {
         return levels;
     }
     
-    public Level getExtendedLevel(int levelIndex){ 
+    private Level getExtendedLevel(int levelIndex){
     	Array<LevelHelperObject> extendedLevel = new Array<LevelHelperObject>();
     	extendedLevel.add(new LevelHelperObject(sneakyAlien,7 + levelIndex));
     	extendedLevel.add(new LevelHelperObject(alienWithHelmet,7 + levelIndex));

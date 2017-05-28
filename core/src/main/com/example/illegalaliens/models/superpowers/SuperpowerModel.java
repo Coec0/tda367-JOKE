@@ -7,7 +7,6 @@ import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.Wall;
 import com.example.illegalaliens.models.boardobjects.WhiteHouse;
-import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
 import com.example.illegalaliens.models.boardobjects.towers.Minutemen;
 import com.example.illegalaliens.models.boardobjects.towers.Tower;
 import com.example.illegalaliens.models.enemies.Enemy;

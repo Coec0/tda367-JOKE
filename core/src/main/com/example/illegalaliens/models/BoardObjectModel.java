@@ -114,7 +114,7 @@ public class BoardObjectModel implements UpdateObserver {
 		notifyObservers(BO, false, false);
 	}
 	
-	public void addBoardObject(BoardObject BO, int x, int y){
+	private void addBoardObject(BoardObject BO, int x, int y){
 		BO.setPos(x, y);
 		this.addBoardObject(BO);
 	}
@@ -197,7 +197,7 @@ public class BoardObjectModel implements UpdateObserver {
 		}
 	}
 	
-	public void fireAllTowers(){
+	private void fireAllTowers(){
 		for(Tower tower : towers){
 			if(!tower.getCooldownObject().isOnCooldown() && tower.hasTarget()){
 				tower.shoot();
@@ -237,7 +237,7 @@ public class BoardObjectModel implements UpdateObserver {
 
 	}
 	
-	public Array<Enemy> scanEnemies(Node pos, float radius, Array<Enemy> allEnemies){
+	private Array<Enemy> scanEnemies(Node pos, float radius, Array<Enemy> allEnemies){
     	Array<Enemy> foundEnemies = new Array<Enemy>();
     	for(Enemy enemy : allEnemies){
     		if(radar.isNodeWithinRadius(pos, radius, enemy.getPos(), enemy.getRadius())){

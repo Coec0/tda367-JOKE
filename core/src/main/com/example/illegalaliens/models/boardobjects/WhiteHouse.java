@@ -72,7 +72,7 @@ public class WhiteHouse extends BoardObject implements EnemyObserver{
 	/**
 	 * Removes one health.
 	 */
-	public void removeHealth(){
+	private void removeHealth(){
 		setHealth(health-1);
 	}
 	
@@ -104,7 +104,7 @@ public class WhiteHouse extends BoardObject implements EnemyObserver{
 		setMoney(money+amount);
 	}
 	
-	public void setMoney(float amount){
+	private void setMoney(float amount){
 		money = amount;
 		notifyObservers(this);
 	}
