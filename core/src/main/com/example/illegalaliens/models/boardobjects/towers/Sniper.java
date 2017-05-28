@@ -15,7 +15,7 @@ public class Sniper extends Tower {
     private static final String NAME = "SNIPER";
     private static String DESCRIPTION = "Very long range";
     private static final int RADIUS = 1500;
-    private static final int COST = 150;
+    private static final int COST = 200;
     private static final float COOLDOWN = 75;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final float SIZE = 25;

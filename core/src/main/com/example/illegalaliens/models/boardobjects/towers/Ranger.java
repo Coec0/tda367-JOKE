@@ -15,12 +15,12 @@ public class Ranger extends Tower {
 
     private static final int RADIUS = 350;
     private static final String NAME = "RANGER";
-    private static final int COST = 200;
+    private static final int COST = 500;
     private static final float COOLDOWN = 15;
     private static String DESCRIPTION = "Soldier with higher rate of fire";
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final float SIZE = 35;
-    private static final float DAMAGE = 30;
+    private static final float DAMAGE = 25;
     private static final float SPEED = 25;
     private static final int projectileHealth = 2;
 

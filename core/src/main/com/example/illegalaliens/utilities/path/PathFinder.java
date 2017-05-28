@@ -158,7 +158,6 @@ public final class PathFinder {
 			
 			Array<Node> tmp = calculateShortest(startNode,allNodes);
 			if(tmp.size == 0){
-				System.out.println("Cant remove");
 				MapNode start = findMapNode(rs.getStart(),allNodes);
 				MapNode end = findMapNode(rs.getEnd(),allNodes);
 				start.addNeighbor(start.getLastRemovedNeighbor());
@@ -166,14 +165,12 @@ public final class PathFinder {
 				return false;
 			}
 		}
-		
-		System.out.println("Can remove");
 		return true;
 	}
 	
 	private void addShortest(Array<Node> tmp , MapNode startNode){
-		shortestPaths.add(getFullPath(0.05f,tmp)); //10 = speed
-		startingNodes.add(startNode); //add at same time so shortest and starting are in match
+		shortestPaths.add(getFullPath(0.05f,tmp)); 
+		startingNodes.add(startNode); 
 	}
 	
 	/**

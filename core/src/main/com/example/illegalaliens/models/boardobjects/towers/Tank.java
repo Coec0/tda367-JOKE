@@ -11,13 +11,13 @@ public class Tank extends Tower {
     //Tower specific stats, name and description
     private static final String NAME = "TANK";
     private static String DESCRIPTION = "Great damage but shoots slow";
-    private static final int RADIUS = 325;
-    private static final int COST = 1000;
+    private static final int RADIUS = 250;
+    private static final int COST = 2000;
     private static final float COOLDOWN = 50;
     private static final Party PARTY = PartyFactory.Democrat(10); // Just for now
     private static final float SIZE = 55;
     private static final float DAMAGE = 70;
-    private static final float SPEED = 35;
+    private static final float SPEED = 10;
     private static final int projectileHealth = 1;
 
     public Tank(int x, int y, float radius, float cooldown, float cost, float damage){

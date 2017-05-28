@@ -30,10 +30,10 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 		CWD = new CivilWar(BOModel, republican, democrat);
 		CWR = new CivilWar(BOModel, democrat, republican);
 		
-		TC = new TowerChanger(BOModel.getWhiteHouses().peek(), prots, 0.5f, 0.5f , PartyFactory.Republican(100));
-		OC = new TowerChanger(BOModel.getWhiteHouses().peek(), prots, 1.5f, 1.5f, PartyFactory.Democrat(100));
+		TC = new TowerChanger(BOModel.getWhiteHouses().peek(), prots, 0.7f, 0.7f , PartyFactory.Republican(100));
+		OC = new TowerChanger(BOModel.getWhiteHouses().peek(), prots, 2f, 1.4f, PartyFactory.Democrat(100));
 		
-		DW = new DeclareWar(BOModel.getWhiteHouses().peek(), 30000, PartyFactory.Republican(30), prots);
+		DW = new DeclareWar(BOModel.getWhiteHouses().peek(), 2000, PartyFactory.Republican(30), prots);
 		OB = new OpenBorders(AM, PartyFactory.Democrat(30));
 	}
 	
