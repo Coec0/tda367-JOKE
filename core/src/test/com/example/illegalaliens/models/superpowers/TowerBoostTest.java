@@ -1,5 +1,6 @@
+package com.example.illegalaliens.models.superpowers;
+
 import com.example.illegalaliens.models.boardobjects.towers.Soldier;
-import com.example.illegalaliens.models.superpowers.TowerBoost;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
 import org.junit.Before;
 import org.junit.Test;

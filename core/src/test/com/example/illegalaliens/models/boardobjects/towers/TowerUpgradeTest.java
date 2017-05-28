@@ -1,6 +1,5 @@
-import com.example.illegalaliens.models.boardobjects.towers.Soldier;
-import com.example.illegalaliens.models.boardobjects.towers.Tower;
-import com.example.illegalaliens.models.boardobjects.towers.TowerUpgrader;
+package com.example.illegalaliens.models.boardobjects.towers;
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
