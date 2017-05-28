@@ -65,12 +65,12 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	}
 
 	private void updateTowersButtons(WhiteHouse whitehouse) {
-		RGUIS.disableSoldier(protos.getSoldier(0, 0).getCost()>=whitehouse.getMoney());
-		RGUIS.disableRanger(protos.getRanger(0, 0).getCost()>=whitehouse.getMoney());
-		RGUIS.disableRiotShield(protos.getRiotShield(0, 0).getCost()>=whitehouse.getMoney());
-		RGUIS.disableSniper(protos.getSniper(0, 0).getCost()>=whitehouse.getMoney());
-		RGUIS.disableTank(protos.getTank(0, 0).getCost()>=whitehouse.getMoney());
-		RGUIS.disableNetGunner(protos.getNetGunner(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableSoldier(protos.getSoldier(0, 0).getCost()>whitehouse.getMoney());
+		RGUIS.disableRanger(protos.getRanger(0, 0).getCost()>whitehouse.getMoney());
+		RGUIS.disableRiotShield(protos.getRiotShield(0, 0).getCost()>whitehouse.getMoney());
+		RGUIS.disableSniper(protos.getSniper(0, 0).getCost()>whitehouse.getMoney());
+		RGUIS.disableTank(protos.getTank(0, 0).getCost()>whitehouse.getMoney());
+		RGUIS.disableNetGunner(protos.getNetGunner(0, 0).getCost()>whitehouse.getMoney());
 		
 	}
 
