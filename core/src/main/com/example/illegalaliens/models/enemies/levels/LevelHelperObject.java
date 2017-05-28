@@ -4,7 +4,7 @@ import com.example.illegalaliens.models.enemies.Enemy;
 
 public class LevelHelperObject {
 	private Enemy enemy;
-	private int amount;	//amount of enemy to spawn
+	private int amount;	
 	
 	public LevelHelperObject(Enemy enemy, int amount){
 		this.enemy = enemy;

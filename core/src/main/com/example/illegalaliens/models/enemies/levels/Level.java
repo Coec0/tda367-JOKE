@@ -24,7 +24,7 @@ public class Level {
 		Array<Enemy> wave = new Array<Enemy>();
 		currentWave++;
 		for(LevelHelperObject WHO : spawnableEnemies){
-			WHO.setAmount(WHO.getAmount() * currentWave); //need balanceing in future
+			WHO.setAmount(WHO.getAmount() * currentWave);
 			for(int i = 0; i < WHO.getAmount(); i++){
 				wave.add(WHO.getEnemy());
 			}

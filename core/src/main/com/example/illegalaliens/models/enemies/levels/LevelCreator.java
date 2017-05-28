@@ -68,8 +68,6 @@ public class LevelCreator {
         levels.add(new Level(3,L5,true));
         levels.add(new Level(3,L6,true));
 
-        levels.reverse();
-
     }
 
 
@@ -84,8 +82,7 @@ public class LevelCreator {
         return levels;
     }
     
-    public Level getExtendedLevel(int levelIndex){
-    	System.out.println("hjhsjhsbvsbvsklbvs");   
+    public Level getExtendedLevel(int levelIndex){ 
     	Array<LevelHelperObject> extendedLevel = new Array<LevelHelperObject>();
     	extendedLevel.add(new LevelHelperObject(sneakyAlien,7 + levelIndex));
     	extendedLevel.add(new LevelHelperObject(alienWithHelmet,7 + levelIndex));
