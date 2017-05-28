@@ -147,7 +147,6 @@ public class AlienModel implements UpdateObserver {
 		}else{
 			wave = EWC.getNextWave();
 		}
-		wavescdhandler.registerNewWave();
 		notifyWavesObservers(waveCounter, false);
 		waveCounter++;
 		waveON = true;
@@ -168,6 +167,7 @@ public class AlienModel implements UpdateObserver {
 		}
 		if (!(waveON) && enemies.size == 0 && waveAlive){
 			waveAlive=false;
+			wavescdhandler.registerNewWave();
 			notifyWavesObservers(waveCounter, true);
 		}
 	}

@@ -153,6 +153,7 @@ public class GameScreen implements Screen{
 		EndGamePopupStage EGP = new EndGamePopupStage(MMController);
 		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
 		
+		EOM.addObserver(HV);
 		AM.addWavesObserver(HV);
 		SM.addObserver(HV);
 		BOModel.addObserver(HV);

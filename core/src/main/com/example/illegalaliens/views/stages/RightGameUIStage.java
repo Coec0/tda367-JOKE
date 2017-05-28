@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -53,27 +55,59 @@ public class RightGameUIStage extends Stage {
 		table.add(civilWarRep).width(WIDTH/2);
 		table.add(civilWarDem).width(WIDTH/2);
 		table.row();
-		table.add(taxCut).width(WIDTH/2);
 		table.add(obamaCare).width(WIDTH/2);
+		table.add(taxCut).width(WIDTH/2);
 		table.row();
-		table.add(declareWar).width(WIDTH/2);
 		table.add(openBorders).width(WIDTH/2);
+		table.add(declareWar).width(WIDTH/2);
 		return table;
 	}
 	
+	private void disableEO(Touchable disable, Button button){
+    	button.setTouchable(disable);
+    	if(disable == Touchable.disabled){
+    		button.getColor().a = 0.7f;
+    	}else{
+    		button.getColor().a = 1f;
+    	}
+    }
+    
+    public void disableCivilWar(Touchable disable){
+    	disableEO(disable, civilWarRep);
+    	disableEO(disable, civilWarDem);
+    }
+    
+    public void disableOpenBorders(Touchable disable){
+    	disableEO(disable, openBorders);
+    }
+    
+    public void disableTowerChanger(Touchable disable){
+    	disableEO(disable, taxCut);
+    	disableEO(disable, obamaCare);
+    }
+    
+    public void disableDeclareWar(Touchable disable){
+    	disableEO(disable, declareWar);
+    }
+	
 	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){
-		civilWarRep = addTextButton("CWR", "CivilWar (REP)", executiveOrdersC);
-		civilWarRep.setColor(Color.RED);
 		civilWarDem = addTextButton("CWD", "CivilWar (DEM)", executiveOrdersC);
-		civilWarDem.setColor(Color.BLUE);
-		taxCut = addTextButton("TC", "Tax Cut", executiveOrdersC);
-		taxCut.setColor(Color.RED);
+		civilWarDem.setColor(Color.RED);
+
+		civilWarRep = addTextButton("CWR", "CivilWar (REP)", executiveOrdersC);
+		civilWarRep.setColor(Color.BLUE);
+
 		obamaCare = addTextButton("OC", "Obama Care", executiveOrdersC);
 		obamaCare.setColor(Color.BLUE);
-		declareWar = addTextButton("DW", "Declare War", executiveOrdersC);
-		declareWar.setColor(Color.RED);
+
+		taxCut = addTextButton("TC", "Tax Cut", executiveOrdersC);
+		taxCut.setColor(Color.RED);
+
 		openBorders = addTextButton("OB", "Open Borders", executiveOrdersC);
 		openBorders.setColor(Color.BLUE);
+
+		declareWar = addTextButton("DW", "Declare War", executiveOrdersC);
+		declareWar.setColor(Color.RED);
 	}
 	
 	public void updatePurchables(BOPrototypes protos){
@@ -103,14 +137,16 @@ public class RightGameUIStage extends Stage {
 	private Table getTowersTable(){
 		Table table = new Table();
 		table.setWidth(WIDTH);
-		table.add(soldierB).width(WIDTH/2).height(WIDTH/2);
 		table.add(tankB).width(WIDTH/2).height(WIDTH/2);
+		table.add(soldierB).width(WIDTH/2).height(WIDTH/2);
 		table.row();
-		table.add(rangerB).width(WIDTH/2).height(WIDTH/2);
 		table.add(riotshieldB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
+
+		table.add(rangerB).width(WIDTH/2).height(WIDTH/2);
 		table.row();
-		table.add(sniperB).width(WIDTH/2).height(WIDTH/2);//.expand().top();table.row();
 		table.add(netGunnerB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
+
+		table.add(sniperB).width(WIDTH/2).height(WIDTH/2);//.expand().top();table.row();
 		return table;
 	}
 

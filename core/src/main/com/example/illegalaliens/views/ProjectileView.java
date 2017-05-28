@@ -1,10 +1,7 @@
 package com.example.illegalaliens.views;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.example.illegalaliens.models.projectiles.ArtilleryRound;
-import com.example.illegalaliens.models.projectiles.BazookaMissile;
 import com.example.illegalaliens.models.projectiles.Bullet;
-import com.example.illegalaliens.models.projectiles.EngineerBullet;
 import com.example.illegalaliens.models.projectiles.Missile;
 import com.example.illegalaliens.models.projectiles.Net;
 import com.example.illegalaliens.models.projectiles.Projectile;
@@ -28,12 +25,6 @@ public class ProjectileView extends View<Projectile> {
             return ProjectileTextureHandler.getBulletTexture();
         if(projectile instanceof Missile)
             return ProjectileTextureHandler.getMissileTexture();
-        if(projectile instanceof ArtilleryRound)
-            return ProjectileTextureHandler.getArtilleryRoundTexture();
-        if(projectile instanceof EngineerBullet)
-            return ProjectileTextureHandler.getEngineerBulletTexture();
-        if (projectile instanceof BazookaMissile)
-            return ProjectileTextureHandler.getBazookaMissileTexture();
         if(projectile instanceof Net){
         	return ProjectileTextureHandler.getNetTexture();
         }

@@ -18,7 +18,7 @@ public class SelectedBuildingStage extends SelectedBoardObjectStage {
 	private Table target;
 	private Table upgrades;
 
-	public SelectedBuildingStage(ClickListener buildingC, DrawablesCollector DC) {
+	public SelectedBuildingStage(ClickListener buildingC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		Table table = new Table();

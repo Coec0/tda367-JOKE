@@ -1,5 +1,6 @@
 package com.example.illegalaliens.models.executive_orders;
 
+import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.models.AlienModel;
 import com.example.illegalaliens.models.BoardObjectModel;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
@@ -44,11 +45,13 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	private void civilWarCD(){
 		activateCD(5,civilwarHASH);
 		civilOnCooldown = true;
+		notifyObservers("CW", true);
 	}
 	
 	private void towerchangerCD(){
 		activateCD(5,towerchangerHASH);
 		towerChangerOnCooldown = true;
+		notifyObservers("TC", true);
 	}
 	
 	public void openBorders(){
@@ -56,6 +59,7 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 			OB.execute();
 			activateCD(1, openbordersHASH);
 			openBordersOnCooldown = true;
+			notifyObservers("OB", true);
 		}
 	}
 	
@@ -65,6 +69,7 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 			wcd.startCooldown(DW);
 			activateCD(7, declareHASH);
 			declareWarOnCooldown =true;
+			notifyObservers("DW", true);
 		}
 	}
 	
@@ -112,14 +117,31 @@ public class ExecutiveOrdersModel implements WavesCooldown {
 	public void afterCD(String hash) {
 		if(hash.equals(civilwarHASH)){
 			civilOnCooldown = false;
+			notifyObservers("CW", false);
 		} else if(hash.equals(towerchangerHASH)){
 			towerChangerOnCooldown = false;
+			notifyObservers("TC", false);
 		} else if(hash.equals(declareHASH)){
 			declareWarOnCooldown = false;
+			notifyObservers("DW", false);
 		} else if(hash.equals(openbordersHASH)){
 			openBordersOnCooldown = false;
+			notifyObservers("OB", false);
 		}
-			
-		
+	}
+	
+	private Array<ExecutiveOrderObserver> observers = new Array<ExecutiveOrderObserver>(false, 10);
+
+	public void addObserver(ExecutiveOrderObserver observer) {
+		observers.add(observer);
+	}
+
+	public void removeObserver(ExecutiveOrderObserver observer) {
+		observers.removeValue(observer, false);
+	}
+
+	private void notifyObservers(String EO, boolean onCD) {
+		for (ExecutiveOrderObserver observer : observers)
+			observer.actOnExecutiveOrdersChange(EO, onCD);
 	}
 }
