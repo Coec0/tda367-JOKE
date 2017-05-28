@@ -11,11 +11,13 @@ public class DeclareWar implements ExecutiveOrder, WavesCooldown {
 	private WhiteHouse whitehouse;
 	private Party party;
 	private BOPrototypes prots;
-	public DeclareWar(WhiteHouse whitehouse, int amount, Party party, BOPrototypes prots){
+	private float costChange;
+	public DeclareWar(WhiteHouse whitehouse, int amount, Party party, BOPrototypes prots, float costChange){
 		this.whitehouse = whitehouse;
 		this.amount = amount;
 		this.party= party;
 		this.prots = prots;
+		this.costChange = costChange;
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class DeclareWar implements ExecutiveOrder, WavesCooldown {
 	
 	private void giveMoney(int amount){
 		whitehouse.addMoney(amount);
-		prots.changeCost(2f);
+		prots.changeCost(costChange);
 	}
 
 	@Override
@@ -46,6 +48,6 @@ public class DeclareWar implements ExecutiveOrder, WavesCooldown {
 
 	@Override
 	public void afterCD(String hash) {
-		prots.revertCost(1.5f);
+		prots.revertCost(costChange);
 	}
 }
