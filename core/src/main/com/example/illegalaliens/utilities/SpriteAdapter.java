@@ -76,10 +76,13 @@ public class SpriteAdapter extends Sprite{
 	
 	@Override
 	public void setTexture(Texture texture){
+		float x = this.getX();
+		float y = this.getY();
 		super.setSize(Math.abs(texture.getWidth()), Math.abs(texture.getHeight()));
 		super.setTexture(texture);
 		super.setRegion(0, 0, texture.getWidth(), texture.getHeight());
 		super.setOriginCenter();
 		super.translate(-texture.getWidth()/2, -texture.getHeight()/2);
+		this.setPosition(x, y);
 	}
 }
