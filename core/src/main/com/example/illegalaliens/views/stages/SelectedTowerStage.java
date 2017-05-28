@@ -59,7 +59,6 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 		mainTable.setPosition(Gdx.graphics.getWidth() - stageWidth, 50);
 		mainTable.setWidth(stageWidth);
 		mainTable.setHeight(660);
-//		mainTable.setDebug(true);
 
 		mainTable.add(nameLabel).width(stageWidth);
 		mainTable.row();

@@ -39,14 +39,14 @@ public class SuperpowerStage extends Stage {
         table.setHeight(HEIGHT);
         table.setWidth(WIDTH);
 
-        table.add(addSuperpowerTable(superC));
+        table.add(addSuperpowerTable());
         this.addActor(table);
 
 
 
     }
 
-    private Table addSuperpowerTable(ClickListener superC){
+    private Table addSuperpowerTable(){
 
         Table table = new Table();
         table.setWidth(WIDTH);
@@ -58,14 +58,7 @@ public class SuperpowerStage extends Stage {
         table.add(boostB).width(WIDTH/4).height(HEIGHT);
         return table;
     }
-/*
-    private TextButton addSuperpowerButton(int x, String name, ClickListener CL){
-        int width = 200;
-        int height = 50;
-        int y = 35;
-        return addTextButton(x, y, width, height, name, "Superpower: " + name, CL);
-    }
-*/
+
     private ImageTextButton addImageTextButton(String name, String text, Texture texture, ClickListener CL){
         Skin skin = new Skin(Gdx.files.internal("ui/skin/plain-james-ui.json"));
         ImageTextButton imageButton = new ImageTextButton(text, skin);
@@ -144,16 +137,4 @@ public class SuperpowerStage extends Stage {
         return addImageTextButton(name, text, texture, CL);
     }
 
-    private TextButton addTextButton(int x, int y, float width, float height, String name, String text ,ClickListener CL){
-        TextButton textButton = new TextButton(text, skin, "default");
-
-        textButton.setName(name);
-        textButton.setTransform(false);
-        textButton.setWidth(width);
-        textButton.setHeight(height);
-        textButton.setPosition(x, y);
-        textButton.addListener(CL);
-
-        return textButton;
-    }
 }

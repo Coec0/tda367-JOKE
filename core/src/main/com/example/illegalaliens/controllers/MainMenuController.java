@@ -5,32 +5,32 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.example.illegalaliens.models.MainMenuModel;
 
 public class MainMenuController extends ClickListener {
-	private MainMenuModel model;
-	public MainMenuController(MainMenuModel model) {
-		this.model = model;
+	private MainMenuModel MMmodel;
+	public MainMenuController(MainMenuModel MMmodel) {
+		this.MMmodel = MMmodel;
 		
 	}
 
 	@Override
 	public void clicked(InputEvent event, float x, float y) {
 		if (event.getListenerActor().getName().equals("backToMainMenu")) {
-			model.showMainMenuStage();
+			MMmodel.showMainMenuStage();
 		} else if (event.getListenerActor().getName().equals("mapSelectStage")) {
-			model.showSelectMapStage();
+			MMmodel.showSelectMapStage();
 		} else if (event.getListenerActor().getName().equals("aboutStage")) {
-			model.showAboutStage();
+			MMmodel.showAboutStage();
 		} else if (event.getListenerActor().getName().equals("map1")){
-			model.setMap(event.getListenerActor().getName());
+			MMmodel.setMap(event.getListenerActor().getName());
 		} else if (event.getListenerActor().getName().equals("map2")) {
-			model.setMap(event.getListenerActor().getName());
+			MMmodel.setMap(event.getListenerActor().getName());
 		} else if (event.getListenerActor().getName().equals("startGame")) {
-			model.startGame();
+			MMmodel.startGame();
 		} else if(event.getListenerActor().getName().equals("goToMainMenu")){
-			model.switchToMainMenuScreen();
+			MMmodel.switchToMainMenuScreen();
 		} else if(event.getListenerActor().getName().equals("AlphaMap")){
-			model.setMap(event.getListenerActor().getName());
+			MMmodel.setMap(event.getListenerActor().getName());
 		} else if (event.getListenerActor().getName().equals("hiscoreStage")) {
-			model.showHiscoreStage();
+			MMmodel.showHiscoreStage();
 		}
 			
 	}
