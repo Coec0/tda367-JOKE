@@ -42,13 +42,13 @@ public class SelectedBuildingStage extends SelectedBoardObjectStage {
 		table.row();
 		table.add(description).width(180).bottom();
 		table.row();
-		table.add(removeButton(buildingC));
+		table.add(removeButton(buildingC)).expand();
 		this.addActor(table);
 		table.setVisible(false);
 	}
 
 	private TextButton removeButton(ClickListener CL) {
-		return addTextButton("remove", "----Garbage bin----", CL);
+		return addTextButton("remove", "Sell", CL);
 	}
 
 	private TextButton addTargetButton(String name, String text, ClickListener CL) {
