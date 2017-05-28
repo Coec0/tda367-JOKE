@@ -24,7 +24,6 @@ public class MainMenuController extends ClickListener {
 		} else if (event.getListenerActor().getName().equals("map2")) {
 			model.setMap(event.getListenerActor().getName());
 		} else if (event.getListenerActor().getName().equals("startGame")) {
-			System.out.println("STARTINGGAMEEE");
 			model.startGame();
 		} else if(event.getListenerActor().getName().equals("goToMainMenu")){
 			model.switchToMainMenuScreen();

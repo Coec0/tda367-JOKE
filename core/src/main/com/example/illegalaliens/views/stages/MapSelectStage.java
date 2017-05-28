@@ -14,7 +14,6 @@ import com.example.illegalaliens.utilities.path.map.Map;
  */
 public class MapSelectStage extends AbstractStage {
 
-	private Map map;
 
 	private ClickListener mainMenuController;
 	private Actor startGameButton;
@@ -47,31 +46,26 @@ public class MapSelectStage extends AbstractStage {
 	private Actor addAlphaMapButton() {
 		Actor alphaMap = ActorFactory.createImageButton(new Texture("maps/AlphaMap.png"));
 
-		alphaMap.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y){
-				map = new Map("AlphaMap", new Texture("maps/AlphaMap.png"));
-				startGameButton.fire(new ChangeListener.ChangeEvent()); //button should be enabled
-			}
-		});
+		alphaMap.setName("AlphaMap");
+		alphaMap.addListener(mainMenuController);
 
 		return alphaMap;
 	}
 	
 	private Actor addMap1Button() {
-		Actor alphaMap = ActorFactory.createImageButton(new Texture("maps/map1.png"));
-		alphaMap.setName("map1");
-		alphaMap.addListener(mainMenuController);
+		Actor map1 = ActorFactory.createImageButton(new Texture("maps/map1.png"));
+		map1.setName("map1");
+		map1.addListener(mainMenuController);
 
-		return alphaMap;
+		return map1;
 	}
 	
 	private Actor addMap2Button() {
-		Actor alphaMap = ActorFactory.createImageButton(new Texture("maps/map2.png"));
-		alphaMap.setName("map2");
-		alphaMap.addListener(mainMenuController);
+		Actor map2 = ActorFactory.createImageButton(new Texture("maps/map2.png"));
+		map2.setName("map2");
+		map2.addListener(mainMenuController);
 
-		return alphaMap;
+		return map2;
 	}
 
 	private Actor addStartGameButton() {
