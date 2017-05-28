@@ -133,15 +133,18 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 		if(superpower.getName().equals("NUKE")){
 			nukeCost = superpower.getSuperPowerCost();
 			SS.updateNukeCost(superpower.getSuperPowerCost());
+			SS.disableNuke(true);
 		} else if(superpower.getName().equals("TOWERBOOSTER")) {
 			towerBoosterCost = superpower.getSuperPowerCost();
 			SS.updateTowerBoostCost(superpower.getSuperPowerCost());
+			SS.disableTowerBoost(true);
 		} else if(superpower.getName().equals("WALL")) {
 			wallCost = superpower.getSuperPowerCost();
 			SS.updateWallCost(superpower.getSuperPowerCost());
 		} else if(superpower.getName().equals("MINUTEMEN")) {
 			minutemenCost = superpower.getSuperPowerCost();
 			SS.updateMinuteMenCost(superpower.getSuperPowerCost());
+			SS.disableMinutemen(true);
 		}
 	}
 

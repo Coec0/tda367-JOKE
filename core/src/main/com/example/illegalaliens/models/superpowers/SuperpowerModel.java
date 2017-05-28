@@ -63,6 +63,7 @@ public class SuperpowerModel implements UpdateObserver {
     	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>=nuke.getSuperPowerCost()){
     		nuke.perform(enemies);
     		removePoints(PartyFactory.Democrat(0, nuke.getSuperPowerCost()));
+    		notifyObservers(nuke);
     	}
     }
 
@@ -79,6 +80,7 @@ public class SuperpowerModel implements UpdateObserver {
     		BOModel.addBoardObject(minuteman.clone(600, 110));
     		BOModel.addBoardObject(minuteman.clone(550, 110));
     		removePoints(PartyFactory.Democrat(0, minuteman.getSuperPowerCost()));
+    		notifyObservers(minuteman);
     	}
     }
 
@@ -125,6 +127,7 @@ public class SuperpowerModel implements UpdateObserver {
     			}
     		}
     		removePoints(PartyFactory.Republican(0, towerBoost.getSuperPowerCost()));
+    		notifyObservers(towerBoost);
         }
     }
 
