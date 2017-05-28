@@ -25,7 +25,6 @@ public class SuperpowerStage extends Stage {
     private Skin skin;
     private Table table;
     private ImageTextButton nukeB, minutemenB, wallB, boostB;
-    private TextTooltip nukeTooltip, boostTooltip, minutemenTooltip, wallTooltip;
 
 
     private final int WIDTH = 450;
@@ -34,10 +33,6 @@ public class SuperpowerStage extends Stage {
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         this.table = new Table();
 
-        nukeTooltip = new TextTooltip("A nuke that kills all enemies",skin);
-        boostTooltip = new TextTooltip("Temporarily boosts all your owned towers",skin);
-        minutemenTooltip = new TextTooltip("4 minutemen are called in to assist you",skin);
-        wallTooltip = new TextTooltip("Blocks a path, forcing enemies to a possible chokepoint",skin);
         createSuperPowerButtons(superC);
 
         table.setPosition((Gdx.graphics.getWidth()-200-WIDTH) / 2, 0);
@@ -90,7 +85,6 @@ public class SuperpowerStage extends Stage {
     private void createSuperPowerButtons(ClickListener superC){
         nukeB = addSuperPowerButton("nuke", "Nuke", PortraitTextureHandler.getNukePortrait(),superC);
         nukeB.setColor(Color.BLUE);
-        nukeB.addListener(nukeTooltip);
 
         minutemenB = addSuperPowerButton("minutemen", "Minutemen", PortraitTextureHandler.getMinutemenPortrait(), superC);
         minutemenB.setColor(Color.BLUE);
@@ -98,11 +92,9 @@ public class SuperpowerStage extends Stage {
 
         boostB = addSuperPowerButton("towerboost", "Towerboost",PortraitTextureHandler.getBoostPortrait(), superC);
         boostB.setColor(Color.RED);
-        boostB.addListener(boostTooltip);
 
         wallB = addSuperPowerButton("wall","Wall", PortraitTextureHandler.getWallPortrait(), superC);
         wallB.setColor(Color.RED);
-        wallB.addListener(wallTooltip);
     }
     
     
