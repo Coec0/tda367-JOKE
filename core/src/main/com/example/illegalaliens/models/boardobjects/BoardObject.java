@@ -3,11 +3,11 @@ package com.example.illegalaliens.models.boardobjects;
 import com.example.illegalaliens.models.politics.parties.Party;
 import com.example.illegalaliens.models.politics.parties.Voter;
 import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 
 public abstract class BoardObject implements Voter {
 	private String name;
-	private SpriteAdapter pos;
+	private IAAdapter pos;
 	private float size;
 	private boolean active;
 	private float cost;
@@ -18,7 +18,7 @@ public abstract class BoardObject implements Voter {
 		this.size = size;
 		this.name = name;
 		initValue(cost);
-		this.pos = new SpriteAdapter(x, y);
+		this.pos = new IAAdapter(x, y);
 		setActive(false);
 	}
 
@@ -63,7 +63,7 @@ public abstract class BoardObject implements Voter {
 		this.pos.setPosition(x, y);
 	}
 
-	public SpriteAdapter getSpriteAdapter() {
+	public IAAdapter getSpriteAdapter() {
 		return pos;
 	}
 

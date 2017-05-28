@@ -7,11 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
 public class DrawablesCollector {
-	private Array<SpriteAdapter> sprites;
+	private Array<IAAdapter> sprites;
 	private Array<Stage> stages;
 	
 	public DrawablesCollector(){
-		sprites = new Array<SpriteAdapter>(false, 10);
+		sprites = new Array<IAAdapter>(false, 10);
 		stages = new Array<Stage>(false, 10);
 	}
 	
@@ -19,7 +19,7 @@ public class DrawablesCollector {
 	 * Get all the sprites that should be drawn
 	 * @return
 	 */
-	public Array<SpriteAdapter> getSprites(){
+	public Array<IAAdapter> getSprites(){
 		return sprites;
 	}
 	
@@ -27,7 +27,7 @@ public class DrawablesCollector {
 	 * Add sprite that should be drawn by the screen
 	 * @param sprite
 	 */
-	public void addSprite(SpriteAdapter sprite){
+	public void addSprite(IAAdapter sprite){
 		if(!sprites.contains(sprite, false))
 			sprites.add(sprite);
 	}
@@ -36,7 +36,7 @@ public class DrawablesCollector {
 	 * Remove a specific sprite
 	 * @param sprite
 	 */
-	public void removeSprite(SpriteAdapter sprite){
+	public void removeSprite(IAAdapter sprite){
 		sprites.removeValue(sprite, false);
 	}	
 	
@@ -46,7 +46,7 @@ public class DrawablesCollector {
 	 */
 	private void drawSprites(SpriteBatch batch) {
 		if(getSprites() != null){
-			for(SpriteAdapter sprite : getSprites()){
+			for(IAAdapter sprite : getSprites()){
 				sprite.draw(batch);
 			}
 		}

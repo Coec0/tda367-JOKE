@@ -3,20 +3,20 @@ package com.example.illegalaliens.utilities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class SpriteAdapter extends Sprite{
+public class IAAdapter extends Sprite{
 
-	public SpriteAdapter(){
+	public IAAdapter(){
 		super();
 		super.setOriginCenter();
 	}
 	
-	public SpriteAdapter(int x, int y){
+	public IAAdapter(int x, int y){
 		super();
 		super.setPosition(x, y);
 		super.setOriginCenter();
 	}
 	
-	public SpriteAdapter(Texture texture){
+	public IAAdapter(Texture texture){
 		super(texture);
 		super.setOriginCenter();
 	}
@@ -27,7 +27,7 @@ public class SpriteAdapter extends Sprite{
 	 * @param offset
 	 * Degrees
 	 */
-	public SpriteAdapter rotateTowards(Node node, float offset) {
+	public IAAdapter rotateTowards(Node node, float offset) {
 		float angle = this.getAngleTo(node);
 
 		angle -= offset;
@@ -39,7 +39,7 @@ public class SpriteAdapter extends Sprite{
 		return this;
 	}
 	
-	public SpriteAdapter rotateTowards(Node node) {
+	public IAAdapter rotateTowards(Node node) {
 		return rotateTowards(node, 0);
 	}
 

@@ -2,10 +2,10 @@ package com.example.illegalaliens.models.enemies;
 
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 
 public abstract class Enemy {
-	private SpriteAdapter pos;
+	private IAAdapter pos;
 	private float speed;
 	private float health; //Maybe int in future
 	private int nodeArrayPos = 0;
@@ -16,7 +16,7 @@ public abstract class Enemy {
 	private boolean inNet = false;
 	
 	protected Enemy(int x, int y, float speed, float health,float radius) {
-		this.pos = new SpriteAdapter(x, y);
+		this.pos = new IAAdapter(x, y);
 		
 		this.radius = radius;
 		this.speed = speed;
@@ -91,7 +91,7 @@ public abstract class Enemy {
 		this.pos.setPosition(x, y);
 	}
 
-	public SpriteAdapter getSpriteAdapter(){
+	public IAAdapter getSpriteAdapter(){
 		return pos;
 	}
 	

@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 
 import static org.junit.Assert.*;
 
@@ -14,13 +14,13 @@ import static org.junit.Assert.*;
  */
 public class SpriteAdapterTest {
 
-    private SpriteAdapter spriteAdapterA;
-    private SpriteAdapter spriteAdapterB;
+    private IAAdapter spriteAdapterA;
+    private IAAdapter spriteAdapterB;
 
     @Before
     public void setUp() throws Exception {
-        spriteAdapterA = new SpriteAdapter(100,100);
-        spriteAdapterB = new SpriteAdapter(200,200);
+        spriteAdapterA = new IAAdapter(100,100);
+        spriteAdapterB = new IAAdapter(200,200);
     }
 
     @Test

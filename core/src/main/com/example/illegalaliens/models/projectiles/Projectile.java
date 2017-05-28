@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 
 /**
  * Created by Emil on 2017-04-04.
@@ -12,7 +12,7 @@ import com.example.illegalaliens.utilities.SpriteAdapter;
 public abstract class Projectile implements IProjectile {
     private Node direction;
     private Node position;
-    private SpriteAdapter sprite;
+    private IAAdapter sprite;
     private float radius;
     private float speed;
     private float damage;
@@ -24,7 +24,7 @@ public abstract class Projectile implements IProjectile {
         this.direction = direction;
         //System.out.println(this.direction.getX() + " " + this.direction.getY());
         this.position = position;
-        this.sprite = new SpriteAdapter((int)position.getX(), (int)position.getY());
+        this.sprite = new IAAdapter((int)position.getX(), (int)position.getY());
         this.direction = createDirectionVector();
         this.damage = damage;
         this.health = health;
@@ -87,7 +87,7 @@ public abstract class Projectile implements IProjectile {
         return new Node(x/pyt,y/pyt);
     }
 
-    public SpriteAdapter getSpriteAdapter(){
+    public IAAdapter getSpriteAdapter(){
         return sprite;
     }
 

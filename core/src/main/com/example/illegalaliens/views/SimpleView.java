@@ -2,7 +2,7 @@ package com.example.illegalaliens.views;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.example.illegalaliens.utilities.DrawablesCollector;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 
 public abstract class SimpleView {
 	private DrawablesCollector DC;
@@ -11,11 +11,11 @@ public abstract class SimpleView {
 		this.DC = DC;
 	}
 	
-	public void addToView(SpriteAdapter sprite){
+	public void addToView(IAAdapter sprite){
 		DC.addSprite(sprite);
 	}
 	
-	public void removeFromView(SpriteAdapter sprite) {
+	public void removeFromView(IAAdapter sprite) {
 		DC.removeSprite(sprite);
 	}
 	

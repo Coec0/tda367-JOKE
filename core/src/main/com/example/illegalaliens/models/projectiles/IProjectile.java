@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 
 public interface IProjectile {
 
@@ -14,7 +14,7 @@ public interface IProjectile {
     int getHealth();
     float getRadius();
     Node getPosition();
-    SpriteAdapter getSpriteAdapter();
+    IAAdapter getSpriteAdapter();
     Node getNewPosition();
 
     //setters

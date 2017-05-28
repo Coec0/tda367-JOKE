@@ -27,7 +27,7 @@ import com.example.illegalaliens.models.superpowers.SuperpowerModel;
 import com.example.illegalaliens.utilities.DrawablesCollector;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
 import com.example.illegalaliens.utilities.path.RoadManager;
@@ -214,7 +214,7 @@ public class GameScreen implements Screen{
 	public void dispose() {
 		batch.dispose();
 		if(DC.getSprites() != null){
-			for(SpriteAdapter sprite : DC.getSprites()){
+			for(IAAdapter sprite : DC.getSprites()){
 				sprite.getTexture().dispose();
 			}
 		}

@@ -9,7 +9,7 @@ import com.example.illegalaliens.models.boardobjects.WhiteHouse;
 import com.example.illegalaliens.models.boardobjects.buildings.RiotShield;
 import com.example.illegalaliens.models.boardobjects.towers.*;
 import com.example.illegalaliens.utilities.DrawablesCollector;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 import com.example.illegalaliens.views.textures.BuildingTextureHandler;
 import com.example.illegalaliens.views.textures.TowerTextureHandler;
 
@@ -18,10 +18,10 @@ public class BoardObjectView extends View<BoardObject> implements BoardObjectObs
 		super(DC);
 	}
 
-	private SpriteAdapter onMouse, sizeCircle, radiusCircle;
+	private IAAdapter onMouse, sizeCircle, radiusCircle;
 
     private void placeTexture(BoardObject boardObject){
-    	onMouse = new SpriteAdapter(selectTexture(boardObject));
+    	onMouse = new IAAdapter(selectTexture(boardObject));
     	onMouse.setSize(onMouse.getWidth() * super.getScale(onMouse, boardObject.getSize()), onMouse.getHeight()*super.getScale(onMouse, boardObject.getSize()));
     	onMouse.setAlpha(0.5f);
     	
@@ -90,13 +90,13 @@ public class BoardObjectView extends View<BoardObject> implements BoardObjectObs
 		
 	}
 	
-	private SpriteAdapter getRoundSpriteAdapter(float x, float y, float rads, boolean filled, Color color){
+	private IAAdapter getRoundSpriteAdapter(float x, float y, float rads, boolean filled, Color color){
 		Texture texture;
 		if(!filled)
 			texture = new Texture("shapes/ring/ring1024.png");
 		else
 			texture = new Texture("shapes/circle/circle256.png");
-		SpriteAdapter sa = new SpriteAdapter(texture);
+		IAAdapter sa = new IAAdapter(texture);
 		sa.setSize(rads*2, rads*2);
 		sa.setPosition(x, y);
 		sa.setColor(color);

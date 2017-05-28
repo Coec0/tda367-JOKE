@@ -2,7 +2,7 @@ package com.example.illegalaliens.utilities;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.example.illegalaliens.utilities.DrawablesCollector;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,13 +13,13 @@ import static org.junit.Assert.*;
 public class DrawablesCollectorTest {
 
     private DrawablesCollector drawablesCollector;
-    private SpriteAdapter spriteAdapter;
+    private IAAdapter spriteAdapter;
     private Stage stage;
 
     @Before
     public void setUp() throws Exception {
         drawablesCollector = new DrawablesCollector();
-        spriteAdapter = new SpriteAdapter();
+        spriteAdapter = new IAAdapter();
 //        stage = new Stage();
     }
 

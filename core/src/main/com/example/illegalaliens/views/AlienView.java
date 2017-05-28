@@ -9,7 +9,7 @@ import com.example.illegalaliens.models.enemies.HighAlien;
 import com.example.illegalaliens.models.enemies.SneakyAlien;
 import com.example.illegalaliens.models.enemies.ToughAlien;
 import com.example.illegalaliens.utilities.DrawablesCollector;
-import com.example.illegalaliens.utilities.SpriteAdapter;
+import com.example.illegalaliens.utilities.IAAdapter;
 import com.example.illegalaliens.views.textures.AlienTextureHandler;
 
 public class AlienView extends View<Enemy> implements EnemyObserver {
@@ -51,7 +51,7 @@ public class AlienView extends View<Enemy> implements EnemyObserver {
 
 	@Override
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
-		SpriteAdapter sprite = enemy.getSpriteAdapter();
+		IAAdapter sprite = enemy.getSpriteAdapter();
 		if(!remove){
 			if(enemy.isInNet()){
 				sprite.setTexture(selectTexture(enemy));
