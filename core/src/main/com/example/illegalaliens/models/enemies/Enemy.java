@@ -13,7 +13,7 @@ public abstract class Enemy {
 	private Node direction = new Node(0,1); //x and y values for the start direction. Faces towards east now
 	private float radius;
 	private Array<Node> path;
-	private float money=20;
+	private float money = 20;
 	private boolean inNet = false;
 	
 	public Enemy(int x, int y, float speed, float health,float radius) {

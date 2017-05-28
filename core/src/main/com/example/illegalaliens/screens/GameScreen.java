@@ -56,10 +56,9 @@ public class GameScreen implements Screen{
 	private Array<Node> nodes = new Array<Node>();
 	private Array<MapNode> Mapnodes;
 	private IllegalAliensMain IAMain;
-	private EnemyWavesCreator ewc;
-	
+
 	private Camera camera;
-	private Viewport WP;
+	private Viewport VP;
 	private GameUIView HV;
 	private RightGameUIStage HS;
 	private SuperpowerStage SS;
@@ -67,12 +66,12 @@ public class GameScreen implements Screen{
 	private Map map;
 	private MainMenuController MMController;
 
-	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch, MainMenuController MMController, Viewport WP, Camera camera) {
+	public GameScreen(IllegalAliensMain illegalAliensMain, Map map, SpriteBatch batch, MainMenuController MMController, Viewport VP, Camera camera) {
 		this.IAMain = illegalAliensMain;
 		this.map = map;
 		this.batch = batch;
 		this.MMController = MMController;
-		this.WP = WP;
+		this.VP = VP;
 		this.camera = camera;
 		this.width = Gdx.graphics.getWidth();
 		this.height = Gdx.graphics.getHeight();
@@ -83,7 +82,6 @@ public class GameScreen implements Screen{
 		DC = new DrawablesCollector();
 		Radar radar = new Radar();
 		BOPrototypes prot = new BOPrototypes();
-//		map = new Map("AlphaMap", new Texture("AlphaMap.png"));
 		addNodes(map);
 		MapNode lastMapNode = Mapnodes.peek();
 		finder = new PathFinder(Mapnodes, lastMapNode, map.getStartingNodes(),radar);
@@ -118,7 +116,7 @@ public class GameScreen implements Screen{
 		//camera.position.set(1280/2, 720/2, 0);
 		
 		
-		BoardObjectController BOController = new BoardObjectController(BOModel, AM, BOView, WP,finder, prot);
+		BoardObjectController BOController = new BoardObjectController(BOModel, BOView, VP, prot);
 		
 		
 		IAMain.addObserver(BOModel);
@@ -136,7 +134,7 @@ public class GameScreen implements Screen{
 		BOModel.addWhiteHouse(WH);
 		
 		SuperpowerModel SM = new SuperpowerModel(finder,BOModel, AM, cdh);
-		SuperpowerController SC = new SuperpowerController(SM, WP, AM,finder, BOModel, prot);
+		SuperpowerController SC = new SuperpowerController(SM, VP, AM,finder, BOModel);
 		IAMain.addObserver(SM);
 		
 		ExecutiveOrdersModel EOM = new ExecutiveOrdersModel(BOModel,AM, wcd,prot);
@@ -187,7 +185,7 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClearColor(212f/255f, 212f/255f, 212f/255f, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
-		WP.apply();
+		VP.apply();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		backgroundSprite.draw(batch);
@@ -200,8 +198,8 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		WP.update(width-200*width/this.width, (height-112*height/this.height), true);
-		WP.setScreenY(WP.getTopGutterHeight());
+		VP.update(width-200*width/this.width, (height-112*height/this.height), true);
+		VP.setScreenY(VP.getTopGutterHeight());
 		DC.refreshStagesVP();
 	}
 

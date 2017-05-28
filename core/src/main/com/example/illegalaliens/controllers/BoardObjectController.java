@@ -28,7 +28,6 @@ public class BoardObjectController extends ClickListener implements InputProcess
 
 	private BoardObjectView BOView;
     private BoardObjectModel BOModel;
-    private AlienModel AModeL;
     private Viewport WP;
 //    private BoardObject onMouse;
 //    private BoardObject highlighted;
@@ -36,10 +35,9 @@ public class BoardObjectController extends ClickListener implements InputProcess
    
     
 
-    public BoardObjectController(BoardObjectModel BOModel, AlienModel AModel, BoardObjectView BOView, Viewport WP,PathFinder finder, BOPrototypes prototypes){
+    public BoardObjectController(BoardObjectModel BOModel, BoardObjectView BOView, Viewport WP, BOPrototypes prototypes){
         this.BOView = BOView;
         this.BOModel = BOModel;
-        this.AModeL = AModel;
         this.WP = WP;
         this.prototypes = prototypes;
         BOModel.addObserver(BOView);

@@ -22,17 +22,15 @@ public class SuperpowerController extends ClickListener implements InputProcesso
     private AlienModel AModel;
     private BoardObjectModel BOModel;
     private Viewport VP;
-    private BOPrototypes prototypes;
 
     private PathFinder finder;
 
-    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BoardObjectModel BOModel, BOPrototypes prototypes){
+    public SuperpowerController(SuperpowerModel SModel, Viewport VP, AlienModel AModel, PathFinder finder, BoardObjectModel BOModel ){
     	this.finder = finder;
         this.SModel = SModel;
         this.VP = VP;
         this.AModel = AModel;
         this.BOModel = BOModel;
-        this.prototypes = prototypes;
     }
 
     @Override
@@ -44,7 +42,7 @@ public class SuperpowerController extends ClickListener implements InputProcesso
         	BOModel.clickedBuilding(SModel.getWall((int) x, (int) y)); 
         }
         if(event.getListenerActor().getName().equals("minutemen")){
-            SModel.useMinutemen(prototypes);
+            SModel.useMinutemen();
         }
         if(event.getListenerActor().getName().equals("towerboost")){
             SModel.useTowerBoost(BOModel.getTowers());

@@ -71,9 +71,9 @@ public class SuperpowerModel implements UpdateObserver {
     /**
      * Creates and adds 4 minutemen via BuildingModel with help from prototypes for them
      * if republican points are above 200
-     * @param prototypes to help create the minutemen
+     *
      */
-    public void useMinutemen(BOPrototypes prototypes){
+    public void useMinutemen(){
     	if(whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()>=minuteman.getSuperPowerCost()){
     		minutemenActive = true;
     		BOModel.addBoardObject(minuteman.clone(700, 110));

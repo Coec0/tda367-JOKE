@@ -68,8 +68,7 @@ public abstract class Projectile implements IProjectile {
     public Node getNewPosition(){
         float newX = position.getX() + (direction.getX() * speed);
         float newY = position.getY() + (direction.getY() * speed);
-        Node newPosition = new Node(newX, newY);
-        return newPosition;
+        return new Node(newX, newY);
     }
     public Node getPosition(){
         return position;

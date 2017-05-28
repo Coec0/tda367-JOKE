@@ -22,10 +22,6 @@ public class AlienController extends ClickListener implements ActionListener, In
 		AModel.addEnemyObserver(AView);
 	}
 
-	public void spawnAlien(Enemy enemy){
-		AModel.addEnemy(enemy);
-	}
-	
 	 @Override
      public void clicked(InputEvent event, float x, float y){
 		 if(event.getListenerActor().getName().equals("nextWave"))
