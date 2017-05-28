@@ -43,8 +43,6 @@ public class MainMenuStage extends AbstractStage {
         table.row();
         table.add(addHiscoreButton()).width(100);
         table.row();
-        table.add(addSettingsButton()).width(100);
-        table.row();
         table.add(addAboutButton()).width(100);
         table.row();
         table.add(addExitButton()).width(100);
@@ -58,14 +56,6 @@ public class MainMenuStage extends AbstractStage {
 
     private Actor addAboutButton() {
         return ActorFactory.createTextButton("aboutStage", "About", mainMenuController);
-    }
-
-    private Actor addSettingsButton() {
-        Actor settingsButton = ActorFactory.createTextButton("Settings");
-
-        settingsButton.addListener(mainMenuController);
-
-        return settingsButton;
     }
 
     private Actor addExitButton() {
