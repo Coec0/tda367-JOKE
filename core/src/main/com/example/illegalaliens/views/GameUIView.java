@@ -1,6 +1,5 @@
 package com.example.illegalaliens.views;
 
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.BoardObjectObserver;
 import com.example.illegalaliens.models.boardobjects.Superpower;
@@ -22,7 +21,7 @@ import com.example.illegalaliens.views.stages.SelectedBoardObjectStage;
 import com.example.illegalaliens.views.stages.SuperpowerStage;
 
 public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardObjectObserver, PrototypeObserver, SuperpowerObserver, WavesObserver, ExecutiveOrderObserver {
-	private RightGameUIStage HS;
+	private RightGameUIStage RGUIS;
 	private PoliticalMeterStage PMS;
 	private SelectedBoardObjectStage SBOS;
 	private BottomLeftGameUIStage TL;
@@ -30,20 +29,22 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	private SuperpowerStage SS;
 	private EndGamePopupStage EGP;
 	private int nukeCost=0, minutemenCost=0, wallCost=0, towerBoosterCost=0;
-	private WhiteHouse whitehouse;
+	private final WhiteHouse whitehouse;
+	private final BOPrototypes protos;
 	private boolean waveFinished=true;
 
 	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, BottomLeftGameUIStage TL,
-					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP) {
+					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP, WhiteHouse whitehouse, BOPrototypes protos) {
 		super(DC);
 		this.EGP = EGP;
-		this.HS = HS;
+		this.RGUIS = HS;
 		this.PMS = PMS;
 		this.SBOS = SBOS;
 		this.TL = TL;
 		this.NW = NW;
 		this.SS = SS;
-		
+		this.whitehouse = whitehouse;
+		this.protos = protos;
 		addToView(NW);
 		addToView(TL);
 		addToView(HS);
@@ -53,7 +54,6 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 
 	@Override
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
-		this.whitehouse = whitehouse;
 		if(whitehouse.isGameOver()){
 			addToView(EGP);
 		}
@@ -61,44 +61,44 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 		TL.updateUI(Integer.toString((int)whitehouse.getMoney()), Integer.toString((int)whitehouse.getHealth()));
 		
 		updateSuperPowerButtons(whitehouse);
+		updateTowersButtons(whitehouse);
+	}
+
+	private void updateTowersButtons(WhiteHouse whitehouse) {
+		RGUIS.disableSoldier(protos.getSoldier(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableRanger(protos.getRanger(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableRiotShield(protos.getRiotShield(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableSniper(protos.getSniper(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableTank(protos.getTank(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableNetGunner(protos.getNetGunner(0, 0).getCost()>=whitehouse.getMoney());
+		
 	}
 
 	private void updateSuperPowerButtons(WhiteHouse whitehouse) {
-		if(nukeCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()){
-			SS.disableNuke(Touchable.disabled);
-		} else {
-			SS.disableNuke(Touchable.enabled);
-		}
 		
-		if(minutemenCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints()){
-			SS.disableMinutemen(Touchable.disabled);
-		} else {
-			SS.disableMinutemen(Touchable.enabled);
+			SS.disableNuke(nukeCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints());
+			SS.disableMinutemen(minutemenCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints());
+			SS.disableWall(wallCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints());
+			SS.disableTowerBoost(towerBoosterCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints());
+			
+		if(whitehouse.getParty(PartyFactory.Democrat(0)).getVotes()< whitehouse.getParty(PartyFactory.Republican(0)).getVotes()){
+			SS.disableNuke(true);
+			SS.disableMinutemen(true);
+		} else if(whitehouse.getParty(PartyFactory.Democrat(0)).getVotes()> whitehouse.getParty(PartyFactory.Republican(0)).getVotes()){
+			SS.disableWall(true);
+			SS.disableTowerBoost(true);
 		}
-		
-		if(wallCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints()){
-			SS.disableWall(Touchable.disabled);
-		} else {
-			SS.disableWall(Touchable.enabled);
-		}
-		
-		if(towerBoosterCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints()){
-			SS.disableTowerBoost(Touchable.disabled);
-		} else {
-			SS.disableTowerBoost(Touchable.enabled);
-		}
-		
 		waveUpdate(waveFinished);
 
 	}
 	
 	private void waveUpdate(boolean waveFinished){
 		if(!waveFinished){
-			SS.disableWall(Touchable.disabled);
+			SS.disableWall(true);
 		} else {
-			SS.disableMinutemen(Touchable.disabled);
-			SS.disableNuke(Touchable.disabled);
-			SS.disableTowerBoost(Touchable.disabled);
+			SS.disableMinutemen(true);
+			SS.disableNuke(true);
+			SS.disableTowerBoost(true);
 		}
 	}
 	
@@ -106,26 +106,26 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	public void actOnBoardObjectChange(BoardObject BO, boolean remove, boolean clickedOn) {
 		if(!remove && clickedOn){
 			SBOS.setBoardObjectStage(BO);
-			removeFromView(HS);
+			removeFromView(RGUIS);
 			addToView(SBOS);
 		} else if(remove){
 			removeFromView(SBOS);
 			removeFromView(SBOS.getSelectedBuildingStage());
 			removeFromView(SBOS.getSelectedTowerStage());
-			addToView(HS);
+			addToView(RGUIS);
 		} else if(!remove && !clickedOn){
 			removeFromView(SBOS);
 			removeFromView(SBOS.getSelectedBuildingStage());
 			removeFromView(SBOS.getSelectedTowerStage());
-			addToView(HS);
+			addToView(RGUIS);
 		}
 
 	}
 
 	@Override
 	public void actOnPrototypeChange(BOPrototypes prototypes) {
-		HS.updatePurchables(prototypes);
-		
+		RGUIS.updatePurchables(prototypes);
+		updateTowersButtons(whitehouse);
 	}
 
 	@Override
@@ -157,35 +157,15 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	@Override
 	public void actOnExecutiveOrdersChange(String EO, boolean onCD) {
 		if(EO.equals("CW")){
-			if(onCD){
-				HS.disableCivilWar(Touchable.disabled);
-			} else {
-				HS.disableCivilWar(Touchable.enabled);
-			}
+			RGUIS.disableCivilWar(onCD);
 		} else if(EO.equals("TC")){
-			if(onCD){
-				HS.disableTowerChanger(Touchable.disabled);
-			} else {
-				HS.disableTowerChanger(Touchable.enabled);
-			}
+			RGUIS.disableTowerChanger(onCD);
 		} else if(EO.equals("OB")){
-			if(onCD){
-				HS.disableOpenBorders(Touchable.disabled);
-			} else {
-				HS.disableOpenBorders(Touchable.enabled);
-			}
+			RGUIS.disableOpenBorders(onCD);
 		} else if(EO.equals("OB")){
-			if(onCD){
-				HS.disableOpenBorders(Touchable.disabled);
-			} else {
-				HS.disableOpenBorders(Touchable.enabled);
-			}
+			RGUIS.disableOpenBorders(onCD);
 		} else if(EO.equals("DW")){
-			if(onCD){
-				HS.disableDeclareWar(Touchable.disabled);
-			} else {
-				HS.disableDeclareWar(Touchable.enabled);
-			}
+			RGUIS.disableDeclareWar(onCD);
 		}
 		
 	}

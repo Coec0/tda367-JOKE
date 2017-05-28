@@ -20,7 +20,6 @@ public class CivilWar implements ExecutiveOrder{
 		int points= 0;
 		Array<BoardObject> gonnaSell = new Array<BoardObject>(false, BOModel.getAllBoardObjects().size);
 		for(BoardObject BO : BOModel.getAllBoardObjects()){
-			System.out.println("BoardObjects "+BOModel.getAllBoardObjects().size);
 			if(BO.getParty() != null && BO.getParty().equals(killParty)){
 				points += BO.getParty().getPoints();
 				gonnaSell.add(BO);

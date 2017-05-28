@@ -14,13 +14,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.example.illegalaliens.models.boardobjects.WhiteHouse;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
 import com.example.illegalaliens.views.textures.TowerTextureHandler;
 
 public class RightGameUIStage extends Stage {
 
 	private Skin skin;
-
 	//  *Buildings/Towers*
 
 	private ImageTextButton soldierB,tankB, rangerB, sniperB, netGunnerB, riotshieldB;
@@ -30,13 +30,11 @@ public class RightGameUIStage extends Stage {
 	
 	private static final int WIDTH = 200;
 	
-	public RightGameUIStage(ClickListener buildingC, ClickListener executiveOrdersC, BOPrototypes protos) {
+	public RightGameUIStage(ClickListener buildingC, ClickListener executiveOrdersC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		createPurchablesButtons(buildingC);
 		createExecutiveOrdersButtons(executiveOrdersC);
-		
-		updatePurchables(protos);
 		Table table = new Table();
 //		table.setDebug(true);
 		table.setPosition(Gdx.graphics.getWidth() - WIDTH, 0);
@@ -63,31 +61,58 @@ public class RightGameUIStage extends Stage {
 		return table;
 	}
 	
-	private void disableEO(Touchable disable, Button button){
-    	button.setTouchable(disable);
-    	if(disable == Touchable.disabled){
+	private void disableButton(boolean disable, Button button){
+		if(disable)
+			button.setTouchable(Touchable.disabled);
+		else
+			button.setTouchable(Touchable.enabled);
+    	if(disable == true){
     		button.getColor().a = 0.7f;
     	}else{
     		button.getColor().a = 1f;
     	}
     }
     
-    public void disableCivilWar(Touchable disable){
-    	disableEO(disable, civilWarRep);
-    	disableEO(disable, civilWarDem);
+	public void disableSoldier(boolean disable){
+		disableButton(disable, soldierB);
+	}
+	
+	public void disableTank(boolean disable){
+		disableButton(disable, tankB);
+	}
+	
+	public void disableRanger(boolean disable){
+		disableButton(disable, rangerB);
+	}
+	
+	public void disableRiotShield(boolean disable){
+		disableButton(disable, riotshieldB);
+	}
+	
+	public void disableNetGunner(boolean disable){
+		disableButton(disable, netGunnerB);
+	}
+	
+	public void disableSniper(boolean disable){
+		disableButton(disable, sniperB);
+	}
+	
+    public void disableCivilWar(boolean disable){
+    	disableButton(disable, civilWarRep);
+    	disableButton(disable, civilWarDem);
     }
     
-    public void disableOpenBorders(Touchable disable){
-    	disableEO(disable, openBorders);
+    public void disableOpenBorders(boolean disable){
+    	disableButton(disable, openBorders);
     }
     
-    public void disableTowerChanger(Touchable disable){
-    	disableEO(disable, taxCut);
-    	disableEO(disable, obamaCare);
+    public void disableTowerChanger(boolean disable){
+    	disableButton(disable, taxCut);
+    	disableButton(disable, obamaCare);
     }
     
-    public void disableDeclareWar(Touchable disable){
-    	disableEO(disable, declareWar);
+    public void disableDeclareWar(boolean disable){
+    	disableButton(disable, declareWar);
     }
 	
 	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){

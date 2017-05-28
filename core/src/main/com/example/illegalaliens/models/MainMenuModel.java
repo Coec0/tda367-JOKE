@@ -13,11 +13,12 @@ public class MainMenuModel {
 	
 	public MainMenuModel(IllegalAliensMain game){
 		this.game = game;
-		this.map = new Map("map1", new Texture("maps/map1.png"));
+		this.map = new Map("AlphaMap", new Texture("maps/AlphaMap.png"));
 	}
 	
 	public void setMap(String id){
 		map = new Map(id, new Texture("maps/"+ id + ".png"));
+		notifyObservers(id,null);
 	}
 	
 	public void showMainMenuStage(){
@@ -30,6 +31,7 @@ public class MainMenuModel {
 	
 	public void showSelectMapStage(){
 		notifyObservers("SelectMap", null);
+		notifyObservers("AlphaMap",null);
 	}
 
 	public void showHiscoreStage() {
@@ -43,12 +45,7 @@ public class MainMenuModel {
 	public void startGame(){
 		game.startGame(map);
 	}
-	
-	
-	
-	
-	
-	
+
 	private Array<MainMenuObserver> observers = new Array<MainMenuObserver>(false, 10);
 
 	public void addObserver(MainMenuObserver observer) {

@@ -78,8 +78,7 @@ public class AlienModel implements UpdateObserver {
 		for(Enemy enemy : enemies){
 			enemy.rotateEnemy();
 			moveEnemy(enemy);
-				if(enemy.isDead()){ //check if alien is dead
-					System.out.println("dead");
+				if(enemy.isDead()){
 					removeEnemy(enemy);
 				}if(enemy.isInNet()){
 					if(!nettedEnemies.contains(enemy, false)){

@@ -22,7 +22,6 @@ public abstract class Projectile implements IProjectile {
         this.radius = radius;
         this.speed = speed;
         this.direction = direction;
-        //System.out.println(this.direction.getX() + " " + this.direction.getY());
         this.position = position;
         this.sprite = new IAAdapter((int)position.getX(), (int)position.getY());
         this.direction = createDirectionVector();

@@ -27,7 +27,6 @@ public abstract class View<T> extends SimpleView {
 	
 	public float getScale(IAAdapter sprite, float radius){
 		float diameter = radius*2;
-		System.out.println(sprite.getWidth());
 		if(sprite.getWidth() < sprite.getHeight()){
 			return (diameter/sprite.getWidth())*1.1f;
 		}else{

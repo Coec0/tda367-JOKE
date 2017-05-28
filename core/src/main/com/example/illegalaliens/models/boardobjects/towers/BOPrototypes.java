@@ -122,6 +122,7 @@ public class BOPrototypes {
 
 	public void addObserver(PrototypeObserver observer) {
 		observers.add(observer);
+		notifyObservers();
 	}
 
 	public void removeObserver(PrototypeObserver observer) {
