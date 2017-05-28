@@ -8,7 +8,7 @@ This is the Readme for the application Illegal Aliens (https://github.com/Coec0/
 Contributors:
 - Oscar Carlsson: (Coec0)
 - Emil Josefsson: (josefssonemil)
-- Kevin Rudnick: (kevrud96)
+- Kevin Rudnick: (96kevrud)
 - Johan Svennungsson: (knya)
 
 ## Contents
