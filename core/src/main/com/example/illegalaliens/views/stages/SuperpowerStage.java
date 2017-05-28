@@ -19,8 +19,6 @@ import com.example.illegalaliens.views.textures.PortraitTextureHandler;
  */
 public class SuperpowerStage extends Stage {
 
-
-    private Skin skin;
     private Table table;
     private ImageTextButton nukeB, minutemenB, wallB, boostB;
 
@@ -28,7 +26,6 @@ public class SuperpowerStage extends Stage {
     private final int WIDTH = 450;
     private final int HEIGHT = 70;
     public SuperpowerStage(ClickListener superC){
-        skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         this.table = new Table();
 
         createSuperPowerButtons(superC);
@@ -38,8 +35,12 @@ public class SuperpowerStage extends Stage {
         table.setWidth(WIDTH);
 
         table.add(addSuperpowerTable());
+        disableMinutemen(true);
+        disableWall(true);
+        disableNuke(true);
+        disableTowerBoost(true);
         this.addActor(table);
-
+        
 
 
     }

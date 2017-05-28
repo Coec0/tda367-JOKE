@@ -1,6 +1,5 @@
 package com.example.illegalaliens.views;
 
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.example.illegalaliens.models.boardobjects.BoardObject;
 import com.example.illegalaliens.models.boardobjects.BoardObjectObserver;
 import com.example.illegalaliens.models.boardobjects.Superpower;
@@ -76,11 +75,19 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	}
 
 	private void updateSuperPowerButtons(WhiteHouse whitehouse) {
-		SS.disableNuke(nukeCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints());
-		SS.disableMinutemen(minutemenCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints());
-		SS.disableWall(wallCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints());
-		SS.disableTowerBoost(towerBoosterCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints());
-
+		
+			SS.disableNuke(nukeCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints());
+			SS.disableMinutemen(minutemenCost> whitehouse.getParty(PartyFactory.Democrat(0)).getPoints());
+			SS.disableWall(wallCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints());
+			SS.disableTowerBoost(towerBoosterCost> whitehouse.getParty(PartyFactory.Republican(0)).getPoints());
+			
+		if(whitehouse.getParty(PartyFactory.Democrat(0)).getVotes()< whitehouse.getParty(PartyFactory.Republican(0)).getVotes()){
+			SS.disableNuke(true);
+			SS.disableMinutemen(true);
+		} else if(whitehouse.getParty(PartyFactory.Democrat(0)).getVotes()> whitehouse.getParty(PartyFactory.Republican(0)).getVotes()){
+			SS.disableWall(true);
+			SS.disableTowerBoost(true);
+		}
 		waveUpdate(waveFinished);
 
 	}
