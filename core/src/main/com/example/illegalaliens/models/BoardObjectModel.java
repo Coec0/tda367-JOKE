@@ -60,7 +60,7 @@ public class BoardObjectModel implements UpdateObserver {
     	}
     }
 
-    
+
     /**
      * Sells object if placed. Removes from mouse if not placed
      */
@@ -123,16 +123,9 @@ public class BoardObjectModel implements UpdateObserver {
 	public Array<WhiteHouse> getWhiteHouses(){
 		return whitehouses;
 	}
-	public Tower getTower(int index) {
-		return towers.get(index);
-	}
 
 	public Array<Tower> getTowers(){
 		return towers;
-	}
-
-	public Tower peekTower() {
-		return towers.peek();
 	}
 
 	public void deleteMinutemen(){

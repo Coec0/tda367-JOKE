@@ -29,13 +29,6 @@ public class ProjectileModel implements UpdateObserver{
             move(projectile);
             if (checkIfHitEnemies(projectile)){
                 projectile.damage(radar, aModel.getAllEnemies());
-
-//                if(projectile instanceof IAOEProjectile){
-//                    aoeDamage(projectile);
-//                }
-//                else{
-//                    singleDamage(projectile);
-//                }
             }
             checkForRemoval(projectile);
         }
@@ -57,9 +50,8 @@ public class ProjectileModel implements UpdateObserver{
     }
 
 
-    private Array<Enemy> scan(Projectile projectile){
-        Array<Enemy> enemies = projectile.scanEnemies(radar,projectile.getPosition(), projectile.getRadius(),aModel.getAllEnemies()); //hardcoded
-        return enemies;
+    public Array<Enemy> scan(Projectile projectile){
+        return projectile.scanEnemies(radar,projectile.getPosition(), projectile.getRadius(),aModel.getAllEnemies());
     }
 
 
