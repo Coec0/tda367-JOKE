@@ -42,7 +42,7 @@ public class HiscoreDB {
 	}
 
 	public IntArray getScores() {
-		IntArray scores = new IntArray(true, 25);
+		IntArray scores = new IntArray();
 
 		String query = "SELECT score FROM hiscore";
 

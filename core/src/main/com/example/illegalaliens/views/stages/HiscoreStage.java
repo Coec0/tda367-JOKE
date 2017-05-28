@@ -29,7 +29,6 @@ public class HiscoreStage extends AbstractStage {
         Table hiscoreTable = new Table();
 
         hiscoreTable.setPosition(centerWidth, centerHeight, center);
-        hiscoreTable.addListener(mainMenuController);
 
         hiscoreTable.add(addHiscoreLabel()).width(center);
         hiscoreTable.row();
@@ -44,9 +43,11 @@ public class HiscoreStage extends AbstractStage {
             hiscores.reverse();
 
             for (int i = 0; i < hiscores.size; i++) {
-                hiscoreTable.add(addHiscoreIndexLabel(i)).width(100);
-                hiscoreTable.add(addHiscoreLabel(hiscores.get(i))).width(100);
-                hiscoreTable.row();
+                if (hiscores.size < 20) {
+                    hiscoreTable.add(addHiscoreIndexLabel(i)).width(100);
+                    hiscoreTable.add(addHiscoreLabel(hiscores.get(i))).width(100);
+                    hiscoreTable.row();
+                }
             }
         }
 
