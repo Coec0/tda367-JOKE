@@ -1,4 +1,4 @@
-package path;
+package com.example.illegalaliens.utilities.path;
 
 import org.junit.Test;
 

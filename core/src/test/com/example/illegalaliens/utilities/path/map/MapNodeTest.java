@@ -1,8 +1,7 @@
-package map;
+package com.example.illegalaliens.utilities.path.map;
 
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.path.map.MapNode;
 
 import org.junit.Before;
 import org.junit.Test;

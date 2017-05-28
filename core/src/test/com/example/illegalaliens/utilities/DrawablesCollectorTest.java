@@ -1,4 +1,4 @@
-package utilities;
+package com.example.illegalaliens.utilities;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.example.illegalaliens.utilities.DrawablesCollector;
