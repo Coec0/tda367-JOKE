@@ -16,7 +16,7 @@ public class Tank extends Tower {
     private static final float COOLDOWN = 50;
     private static final Party PARTY = PartyFactory.Democrat(10); // Just for now
     private static final float SIZE = 55;
-    private static final float DAMAGE = 70;
+    private static final float DAMAGE = 60;
     private static final float SPEED = 10;
     private static final int projectileHealth = 1;
 

@@ -7,7 +7,7 @@ import com.example.illegalaliens.utilities.Node;
  */
 public class Missile extends AOEProjectile {
 
-    private static final float AREAOFEFFECTRADIUS = 350;
+    private static final float AREAOFEFFECTRADIUS = 200;
     private static final float RADIUS = 20;
     //private static final int HEALTH = 1;
 

@@ -8,7 +8,7 @@ import com.example.illegalaliens.models.boardobjects.towers.TowerUpgrader;
 import com.example.illegalaliens.utilities.Radar;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
-import com.example.illegalaliens.utilities.path.PathFinder;
+import com.example.illegalaliens.utilities.path.RoadManager;
 import com.example.illegalaliens.utilities.path.map.Map;
 import com.example.illegalaliens.utilities.path.map.MapNode;
 import org.junit.Before;
@@ -35,14 +35,14 @@ public class BoardObjectModelTest {
         MapNode endNode = allNodes.peek();
         CooldownHandler cooldownHandler = new CooldownHandler();
         Radar radar = new Radar();
-        PathFinder pathFinder = new PathFinder(allNodes, endNode, startingNodes, radar);
+        RoadManager manager = new RoadManager(allNodes, endNode, startingNodes, radar);
         WavesCDHandler wavesCDHandler = new WavesCDHandler();
-        AlienModel alienModel = new AlienModel(pathFinder, map.getStartingNodes(), wavesCDHandler);
+        AlienModel alienModel = new AlienModel(manager, map.getStartingNodes(), wavesCDHandler);
 
         towerUpgrader = new TowerUpgrader();
-        boardObjectModel = new BoardObjectModel(alienModel.getAllEnemies(), cooldownHandler, radar, pathFinder);
+        boardObjectModel = new BoardObjectModel(alienModel.getAllEnemies(), cooldownHandler, radar, manager);
         soldier = new Soldier(2000,2000);
-        whiteHouse = new WhiteHouse("WhiteHouse", (int) endNode.getPos().getX(), (int) endNode.getPos().getY(),50, 1000);
+        whiteHouse = new WhiteHouse("WhiteHouse", (int) endNode.getPos().getX(), (int) endNode.getPos().getY(),50, 1000,null);
 
         boardObjectModel.addWhiteHouse(whiteHouse);
     }

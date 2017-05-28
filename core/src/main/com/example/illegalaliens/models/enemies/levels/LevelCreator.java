@@ -33,40 +33,40 @@ public class LevelCreator {
 
     public LevelCreator(){
         //level 1
-        L1.add(new LevelHelperObject(alien, 3));
+        L1.add(new LevelHelperObject(alien, 6));
         //level 2
-        L2.add(new LevelHelperObject(alien,5));
-        L2.add(new LevelHelperObject(sneakyAlien,3));
+        L2.add(new LevelHelperObject(alien,10));
+        L2.add(new LevelHelperObject(sneakyAlien,10));
         //level 3
-        L3.add(new LevelHelperObject(sneakyAlien,3));
-        L3.add(new LevelHelperObject(alien,3));
-        L3.add(new LevelHelperObject(alienWithHelmet,3));
+        L3.add(new LevelHelperObject(sneakyAlien,6));
+        L3.add(new LevelHelperObject(alien,6));
+        L3.add(new LevelHelperObject(alienWithHelmet,6));
 
         //level 4
-        L4.add(new LevelHelperObject(sneakyAlien,5));
-        L4.add(new LevelHelperObject(alien,5));
-        L4.add(new LevelHelperObject(alienWithHelmet,5));
-        L4.add(new LevelHelperObject(highAlien,5));
+        L4.add(new LevelHelperObject(sneakyAlien,10));
+        L4.add(new LevelHelperObject(alien,10));
+        L4.add(new LevelHelperObject(alienWithHelmet,10));
+        L4.add(new LevelHelperObject(highAlien,10));
         //level 5
-        L5.add(new LevelHelperObject(sneakyAlien,3));
-        L5.add(new LevelHelperObject(alien,3));
-        L5.add(new LevelHelperObject(alienWithHelmet,3));
-        L5.add(new LevelHelperObject(highAlien,5));
-        L5.add(new LevelHelperObject(toughAlien,5));
+        L5.add(new LevelHelperObject(sneakyAlien,10));
+        L5.add(new LevelHelperObject(alien,10));
+        L5.add(new LevelHelperObject(alienWithHelmet,10));
+        L5.add(new LevelHelperObject(highAlien,10));
+        L5.add(new LevelHelperObject(toughAlien,10));
 
         //level 6
-        L6.add(new LevelHelperObject(sneakyAlien,5));
-        L6.add(new LevelHelperObject(alien,5));
-        L6.add(new LevelHelperObject(alienWithHelmet,5));
-        L6.add(new LevelHelperObject(highAlien,5));
-        L6.add(new LevelHelperObject(toughAlien,10));
+        L6.add(new LevelHelperObject(sneakyAlien,10));
+        L6.add(new LevelHelperObject(alien,10));
+        L6.add(new LevelHelperObject(alienWithHelmet,10));
+        L6.add(new LevelHelperObject(highAlien,10));
+        L6.add(new LevelHelperObject(toughAlien,20));
 
-        levels.add(new Level(3,L1,true));
-        levels.add(new Level(3,L2,true));
-        levels.add(new Level(3,L3,true));
-        levels.add(new Level(3,L4,true));
-        levels.add(new Level(3,L5,true));
-        levels.add(new Level(3,L6,true));
+        levels.add(new Level(4,L1,true));
+        levels.add(new Level(4,L2,true));
+        levels.add(new Level(4,L3,true));
+        levels.add(new Level(4,L4,true));
+        levels.add(new Level(4,L5,true));
+        levels.add(new Level(4,L6,true));
 
     }
 
