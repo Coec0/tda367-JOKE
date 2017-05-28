@@ -98,23 +98,7 @@ public class GameScreen implements Screen{
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView(DC);
 		
-		
-		
-		
-		
-//		camera = new OrthographicCamera();
-//		WP = new FitViewport(width, height, camera);
 		ProjectileController PC = new ProjectileController(PM, PW, BOModel);
-		//Maybe move these later
-		
-		
-		//InputAdapter EWC = new EnemyWavesCreator(AController);
-        
-		
-		
-		//camera.position.set(1280/2, 720/2, 0);
-		
-		
 		BoardObjectController BOController = new BoardObjectController(BOModel, BOView, VP, prot);
 		
 		

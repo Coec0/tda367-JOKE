@@ -20,8 +20,6 @@ public class BoardObjectView extends View<BoardObject> implements BoardObjectObs
 
 	private SpriteAdapter onMouse, sizeCircle, radiusCircle;
 
-
-
     private void placeTexture(BoardObject boardObject){
     	onMouse = new SpriteAdapter(selectTexture(boardObject));
     	onMouse.setSize(onMouse.getWidth() * super.getScale(onMouse, boardObject.getSize()), onMouse.getHeight()*super.getScale(onMouse, boardObject.getSize()));

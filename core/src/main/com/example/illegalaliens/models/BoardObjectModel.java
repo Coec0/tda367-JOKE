@@ -60,10 +60,6 @@ public class BoardObjectModel implements UpdateObserver {
     	}
     }
 
-    /*public void clickedBuyBuilding(BoardObject building){
-    	onMouse = building;
-    	clickedBuilding(building);
-    }*/
     
     /**
      * Sells object if placed. Removes from mouse if not placed
@@ -206,16 +202,6 @@ public class BoardObjectModel implements UpdateObserver {
 		}
 	}
 
-	public boolean checkIfInRadius(Tower tower, Node enemyNode) {
-		float deltaX = enemyNode.getX() - tower.getPos().getX();
-		float deltaY = enemyNode.getY() - tower.getPos().getY();
-
-		if ((deltaX * deltaX) + (deltaY * deltaY) < (tower.getRadius() * tower.getRadius())) {
-			return true;
-		}
-
-		return false;
-	}
 
 	private void updateBuildings(){
 		Array<Enemy> foundAliens;
@@ -225,13 +211,6 @@ public class BoardObjectModel implements UpdateObserver {
 				foundAliens = scanEnemies(b.getPos(),b.getRadius(),enemies);
 				((RiotShield) b).updateEnemies(foundAliens);
 			}
-
-			/*if (b instanceof NetGunner){
-				b = (NetGunner) b;
-				foundAliens = radar.scan(b.getPos(), b.getRadius(), enemies);
-				((NetGunner) b).updateEnemies(foundAliens);
-			}*/
-
 		}
 
 

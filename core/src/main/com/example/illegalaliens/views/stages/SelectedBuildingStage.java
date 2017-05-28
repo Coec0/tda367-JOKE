@@ -21,7 +21,6 @@ public class SelectedBuildingStage extends SelectedBoardObjectStage {
 		
 		Table table = new Table();
 		table.setZIndex(9001); // Put on top
-		// table.setDebug(true);
 		table.setPosition(Gdx.graphics.getWidth() - 200, 50);
 		table.setWidth(200);
 		table.setHeight(670);

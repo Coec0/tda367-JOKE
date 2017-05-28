@@ -30,7 +30,7 @@ public class RightGameUIStage extends Stage {
 	
 	private static final int WIDTH = 200;
 	
-	public RightGameUIStage(ClickListener alienC, ClickListener buildingC, ClickListener executiveOrdersC, BOPrototypes protos) {
+	public RightGameUIStage(ClickListener buildingC, ClickListener executiveOrdersC, BOPrototypes protos) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		createPurchablesButtons(buildingC);
@@ -140,13 +140,13 @@ public class RightGameUIStage extends Stage {
 		table.add(tankB).width(WIDTH/2).height(WIDTH/2);
 		table.add(soldierB).width(WIDTH/2).height(WIDTH/2);
 		table.row();
-		table.add(riotshieldB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
+		table.add(riotshieldB).width(WIDTH/2).height(WIDTH/2);
 
 		table.add(rangerB).width(WIDTH/2).height(WIDTH/2);
 		table.row();
-		table.add(netGunnerB).width(WIDTH/2).height(WIDTH/2);//.expand().top();
+		table.add(netGunnerB).width(WIDTH/2).height(WIDTH/2);
 
-		table.add(sniperB).width(WIDTH/2).height(WIDTH/2);//.expand().top();table.row();
+		table.add(sniperB).width(WIDTH/2).height(WIDTH/2);
 		return table;
 	}
 
@@ -176,10 +176,6 @@ public class RightGameUIStage extends Stage {
 	}
 
 	private ImageTextButton addTowerButton(int y, String name, Texture texture, ClickListener CL) {
-		//int width = 200;
-		//int height = 100;
-		//int x = Gdx.graphics.getWidth() - width;
-
 		return addImageTextButton(name, "Tower", texture, CL);
 	}
 }

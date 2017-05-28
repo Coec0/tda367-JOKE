@@ -52,7 +52,6 @@ public class AlienView extends View<Enemy> implements EnemyObserver {
 	@Override
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
 		SpriteAdapter sprite = enemy.getSpriteAdapter();
-		//System.out.println(scale);
 		if(!remove){
 			if(enemy.isInNet()){
 				sprite.setTexture(selectTexture(enemy));

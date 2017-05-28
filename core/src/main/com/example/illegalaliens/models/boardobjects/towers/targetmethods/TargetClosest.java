@@ -15,8 +15,6 @@ public class TargetClosest implements ITargetState {
 
 	@Override
 	public Enemy getEnemy(Node pos, Array<Enemy> enemies) {
-		/*if(Aliens.size <=0)
-			return null;*/
 		Enemy closest = enemies.first();
 		float closestDist = getDistance(pos, closest.getPos());
 		float dist;

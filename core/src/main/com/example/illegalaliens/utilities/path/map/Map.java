@@ -72,8 +72,6 @@ public class Map {
 	 * @return
 	 */
 	public MapNode convertLineToMapNode(Array<String> segments) {
-//		Array<String> segments = mapParser.getParsedLine();
-
 		int x = Integer.parseInt(segments.get(1));
 		int y = Integer.parseInt(segments.get(2));
 

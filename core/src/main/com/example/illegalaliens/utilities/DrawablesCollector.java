@@ -87,7 +87,6 @@ public class DrawablesCollector {
 	
 	/**
 	 * Draw all stages. Must NOT be called inside SpriteBatch
-	 * @param batch
 	 */
 	public void drawStages() {
 		if(getStages() != null){

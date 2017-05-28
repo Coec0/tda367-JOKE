@@ -15,8 +15,7 @@ public class TargetFurthest implements ITargetState {
 
 	@Override
 	public Enemy getEnemy(Node pos, Array<Enemy> enemies) {
-		/*if(Aliens.size <=0)
-			return null;*/
+
 		Enemy furthest = enemies.first();
 		float furthestDist = getDistance(pos, furthest.getPos());
 		float dist;

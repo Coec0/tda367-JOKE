@@ -89,8 +89,7 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 		}
 		
 		waveUpdate(waveFinished);
-//		SS.updateSuperPowerButton(power, cost, disable);
-		
+
 	}
 	
 	private void waveUpdate(boolean waveFinished){
@@ -148,7 +147,6 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 
 	@Override
 	public void actOnWavesChange(int wave, boolean finished) {
-		System.out.println("StartNextWave");
 		waveFinished = finished;
 		NW.disableButton(!finished);
 		updateSuperPowerButtons(whitehouse);

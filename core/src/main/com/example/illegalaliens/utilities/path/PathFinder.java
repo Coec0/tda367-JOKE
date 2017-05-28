@@ -114,8 +114,8 @@ public final class PathFinder {
 	
 	/**
 	 * 
-	 * @param allNodes. All the MapNodes that forms a network
-	 * @param roadSections. All roadSections between all nodes. 
+	 * @param allNodes All the MapNodes that forms a network
+	 * @param roadSections All roadSections between all nodes.
 	 * @return Returns all the nodes between all the MapNodes.
 	 */
 	public Array<Node> calcRoadNetwork(Array<MapNode> allNodes, Array<RoadSection> roadSections){
@@ -147,7 +147,7 @@ public final class PathFinder {
 	
 	/**
 	 * Checks if it is possible to remove neighbors from a roadsection
-	 * @param rs. Roadsection to see if neighbors can be removed
+	 * @param rs Roadsection to see if neighbors can be removed
 	 * @return true if neighbors can be removed
 	 */
 	public boolean canRemoveNeighbors(RoadSection rs){

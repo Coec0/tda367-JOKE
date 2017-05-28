@@ -25,8 +25,6 @@ public class BoardObjectController extends ClickListener implements InputProcess
 	private BoardObjectView BOView;
     private BoardObjectModel BOModel;
     private Viewport WP;
-//    private BoardObject onMouse;
-//    private BoardObject highlighted;
     private BOPrototypes prototypes;
    
     
@@ -69,7 +67,6 @@ public class BoardObjectController extends ClickListener implements InputProcess
 		}
 
 		if(onMouse !=null){
-			//BView.placeTexture(onMouse);
 			BOModel.clickedBuilding(onMouse);
 		}
 			
@@ -130,7 +127,6 @@ public class BoardObjectController extends ClickListener implements InputProcess
     			BOModel.clickedBuilding(clicked);
     		}else{
     			BOModel.deselectHighlighted();
-    			//System.out.print("X: " + screenX + " Y: " + screenY);
     		}
     	}
 		return false;

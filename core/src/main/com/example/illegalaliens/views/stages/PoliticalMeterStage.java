@@ -29,8 +29,6 @@ public class PoliticalMeterStage extends Stage {
 		
 		partyLabels = new Array<Label>(false, 5);
 		table = new Table();
-
-//		table.setDebug(true);
 		table.setPosition((Gdx.graphics.getWidth() - 200 - WIDTH) / 2, 85);
 		table.setWidth(WIDTH);
 		table.setHeight(HEIGHT);
@@ -43,7 +41,6 @@ public class PoliticalMeterStage extends Stage {
 		for(Party party :parliament.getParties()){
 			if(!parties.contains(party, false)){
 				addParty(party);
-				System.out.println("addPart");
 			}
 			voteParty(party);
 

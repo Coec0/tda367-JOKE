@@ -7,7 +7,9 @@ public class Radar {
 	/**
 	 * Scans for all Enemies known by AlienModel.
 	 * @param center
-	 * @param radius
+	 * @param centerRadius
+	 * @param nodes
+	 * @param nodesRadius
 	 * @return array of known enemies
 	 */
 	public Array<Node> scan(Node center, float centerRadius,Array<Node> nodes , float[] nodesRadius){

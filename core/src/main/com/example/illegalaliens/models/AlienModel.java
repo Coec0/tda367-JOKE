@@ -17,7 +17,6 @@ public class AlienModel implements UpdateObserver {
 
 	private Array<Enemy> enemies;
 	private Array<Array<Node>> defaultPaths;
-	private Array<Node> direction;
 	private int waveCounter=0;
 	private int frames = 10; //value-time inbetween aliens
 	private boolean waveON;
@@ -38,7 +37,6 @@ public class AlienModel implements UpdateObserver {
 		nettedEnemies = new Array<Enemy>(false,10);
 		defaultPaths = calcAllDefaultPaths(startingPos);
 		this.wavescdhandler = wavescdhandler;
-		//direction = finder.getDirectionList();
 	}
 	
 	private Array<Array<Node>> calcAllDefaultPaths(Array<MapNode> startingPos){
@@ -77,10 +75,9 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	private void moveAllEnemies(){
-		//if(aliens.size>0){
-			for(Enemy enemy : enemies){
-				enemy.rotateEnemy();
-				moveEnemy(enemy);
+		for(Enemy enemy : enemies){
+			enemy.rotateEnemy();
+			moveEnemy(enemy);
 				if(enemy.isDead()){ //check if alien is dead
 					System.out.println("dead");
 					removeEnemy(enemy);
@@ -91,7 +88,7 @@ public class AlienModel implements UpdateObserver {
 					}
 				}
 			}
-		//}
+
 	}
 	
 	public Enemy peekEnemy(){
@@ -110,13 +107,12 @@ public class AlienModel implements UpdateObserver {
 	}
 	
 	private void moveEnemy(Enemy enemy){
-		int position = (int)(enemy.getNodeArrayPos()+((int)enemy.getSpeed()));
+		int position = (enemy.getNodeArrayPos()+((int)enemy.getSpeed()));
 		if(position >= enemy.getPath().size){
 			removeEnemy(enemy);
 		} else {	
 			enemy.setPos(enemy.getPath().get(position));
 			enemy.setNodeArrayPos(position);
-			//enemy.setDirection(direction.get(position));
 		}
 	}
 	

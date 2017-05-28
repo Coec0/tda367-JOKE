@@ -18,7 +18,6 @@ public class BottomLeftGameUIStage extends Stage {
 		money = new Label("No money", skin);
 
 		table = new Table();
-		//table.setDebug(true);
 		table.setPosition(0, health.getHeight());
 		table.add(health).padRight(10);
 		table.add(money).right();
