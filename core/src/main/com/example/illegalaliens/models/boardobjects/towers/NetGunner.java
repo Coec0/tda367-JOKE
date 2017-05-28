@@ -23,7 +23,7 @@ public class NetGunner extends Tower {
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final int COST = 400;
     private static final float COOLDOWN = 90;
-    private static final float DAMAGE = 0;
+    private static final float DAMAGE = 10;
     private static final float SPEED = 10;
     
     public NetGunner(int x, int y, float radius, float cooldown, float cost){
