@@ -1,7 +1,7 @@
 package com.example.illegalaliens.models.enemies;
 
 public class SneakyAlien extends Enemy {
-	private final static float SPEED=100;
+	private final static float SPEED=120;
 	private final static float HEALTH=15;
 	private final static int X = 0;
 	private final static int Y = 0;

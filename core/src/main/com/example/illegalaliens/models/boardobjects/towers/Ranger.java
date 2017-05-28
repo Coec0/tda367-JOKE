@@ -13,16 +13,16 @@ import com.example.illegalaliens.models.projectiles.Projectile;
 public class Ranger extends Tower {
     //Tower specific stats, name and description
 
-    private static final int RADIUS = 350;
+    private static final int RADIUS = 250;
     private static final String NAME = "RANGER";
-    private static final int COST = 500;
+    private static final int COST = 400;
     private static final float COOLDOWN = 15;
     private static String DESCRIPTION = "Soldier with higher rate of fire";
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
     private static final float SIZE = 35;
-    private static final float DAMAGE = 25;
+    private static final float DAMAGE = 20;
     private static final float SPEED = 25;
-    private static final int projectileHealth = 2;
+    private static final int projectileHealth = 1;
 
     public Ranger(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);

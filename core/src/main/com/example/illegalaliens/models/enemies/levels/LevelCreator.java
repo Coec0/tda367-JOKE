@@ -38,32 +38,32 @@ public class LevelCreator {
         L2.add(new LevelHelperObject(alien,10));
         L2.add(new LevelHelperObject(sneakyAlien,10));
         //level 3
-        L3.add(new LevelHelperObject(sneakyAlien,6));
-        L3.add(new LevelHelperObject(alien,6));
-        L3.add(new LevelHelperObject(alienWithHelmet,6));
+        L3.add(new LevelHelperObject(sneakyAlien,10));
+        L3.add(new LevelHelperObject(alien,5));
+        L3.add(new LevelHelperObject(alienWithHelmet,8));
 
         //level 4
-        L4.add(new LevelHelperObject(sneakyAlien,10));
-        L4.add(new LevelHelperObject(alien,10));
-        L4.add(new LevelHelperObject(alienWithHelmet,10));
-        L4.add(new LevelHelperObject(highAlien,10));
+        L4.add(new LevelHelperObject(sneakyAlien,13));
+        L4.add(new LevelHelperObject(alien,5));
+        L4.add(new LevelHelperObject(alienWithHelmet,15));
+        L4.add(new LevelHelperObject(highAlien,12));
         //level 5
-        L5.add(new LevelHelperObject(sneakyAlien,10));
-        L5.add(new LevelHelperObject(alien,10));
+        L5.add(new LevelHelperObject(sneakyAlien,15));
+        L5.add(new LevelHelperObject(alien,4));
         L5.add(new LevelHelperObject(alienWithHelmet,10));
         L5.add(new LevelHelperObject(highAlien,10));
-        L5.add(new LevelHelperObject(toughAlien,10));
+        L5.add(new LevelHelperObject(toughAlien,5));
 
         //level 6
         L6.add(new LevelHelperObject(sneakyAlien,10));
-        L6.add(new LevelHelperObject(alien,10));
+        L6.add(new LevelHelperObject(alien,1));
         L6.add(new LevelHelperObject(alienWithHelmet,10));
         L6.add(new LevelHelperObject(highAlien,10));
-        L6.add(new LevelHelperObject(toughAlien,20));
+        L6.add(new LevelHelperObject(toughAlien,10));
 
-        levels.add(new Level(4,L1,true));
-        levels.add(new Level(4,L2,true));
-        levels.add(new Level(4,L3,true));
+        levels.add(new Level(2,L1,true));
+        levels.add(new Level(3,L2,true));
+        levels.add(new Level(3,L3,true));
         levels.add(new Level(4,L4,true));
         levels.add(new Level(4,L5,true));
         levels.add(new Level(4,L6,true));
