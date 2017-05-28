@@ -58,7 +58,7 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 			addToView(EGP);
 		}
 		PMS.updatePartyMeter(whitehouse.getParliament());
-		TL.updateUI(Float.toString(whitehouse.getMoney()), Float.toString(whitehouse.getHealth()));
+		TL.updateUI(Integer.toString((int)whitehouse.getMoney()), Integer.toString((int)whitehouse.getHealth()));
 		
 		updateSuperPowerButtons(whitehouse);
 	}
