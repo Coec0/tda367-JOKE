@@ -1,14 +1,12 @@
 package com.example.illegalaliens.utilities.path;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
 import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.path.DijkstraSolver;
 import com.example.illegalaliens.utilities.path.map.Map;
 import com.example.illegalaliens.utilities.path.map.MapNode;
 
@@ -18,7 +16,6 @@ public class DijkstraSolverTest {
 	private Array<MapNode> startingNodes;
 	private MapNode endNode;
 	private DijkstraSolver solver;
-	private Array<Node> path;
 	
 	@Before
 	public void setUp(){

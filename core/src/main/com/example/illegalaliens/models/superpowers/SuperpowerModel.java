@@ -29,7 +29,6 @@ public class SuperpowerModel implements UpdateObserver {
     private AlienModel AModel;
     private TowerBoost towerBoost;
     private Array<Tower> towers;
-    private CooldownHandler cdh;
     private Wall wall;
     private Minutemen minuteman;
     private boolean boostActive = false;
@@ -40,7 +39,6 @@ public class SuperpowerModel implements UpdateObserver {
     	this.BOModel = BOModel;
     	this.manager = manager;
     	this.AModel = AModel;
-        this.cdh = cdh;
         
         minuteman = new Minutemen(0, 0, 200);
         wall = new Wall("WALL", 0, 0, 15, 200);

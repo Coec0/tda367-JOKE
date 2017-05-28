@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.illegalaliens.controllers.MainMenuController;
 import com.example.illegalaliens.models.MainMenuModel;
@@ -17,18 +16,15 @@ import com.example.illegalaliens.views.stages.MapSelectStage;
 
 public class MainMenuScreen implements Screen {
 
-	private SpriteBatch batch;
 	private DrawablesCollector DC;
 	private MainMenuController mainMenuController;
 	private MainMenuModel model;
 	private final int width = 1280;
-	private final int height = 720;
 	private Viewport WP;
 	private Camera camera;
-	public MainMenuScreen(IllegalAliensMain game, SpriteBatch batch, Viewport WP, Camera camera){
+	public MainMenuScreen(IllegalAliensMain game, Viewport WP, Camera camera){
 		this.WP = WP;
 		this.camera = camera;
-		this.batch = batch;
 		DC = new DrawablesCollector();
 		model = new MainMenuModel(game);
 		mainMenuController = new MainMenuController(model);

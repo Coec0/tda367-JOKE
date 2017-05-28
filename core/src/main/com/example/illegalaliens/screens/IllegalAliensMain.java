@@ -41,7 +41,7 @@ public class IllegalAliensMain extends Game {
 		hiscoreDB = new HiscoreDB(databaseResolver);
 		hiscoreDB.create();
 
-		mainMenuScreen = new MainMenuScreen(this, batch, VP, camera);
+		mainMenuScreen = new MainMenuScreen(this, VP, camera);
 
 		observers = new Array<UpdateObserver>(false, 10);
 

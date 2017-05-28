@@ -104,7 +104,7 @@ public class GameScreen implements Screen{
 		ProjectileModel PM = new ProjectileModel(AM,radar);
 		ProjectileView PW = new ProjectileView(DC);
 		
-		ProjectileController PC = new ProjectileController(PM, PW, BOModel);
+		new ProjectileController(PM, PW, BOModel);
 		BoardObjectController BOController = new BoardObjectController(BOModel, BOView, VP, prot);
 		
 		

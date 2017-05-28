@@ -12,11 +12,9 @@ import com.example.illegalaliens.views.AlienView;
 
 public class AlienController extends ClickListener implements ActionListener, InputProcessor{
 
-	private AlienView AView;
 	private AlienModel AModel;
 
 	public AlienController(AlienView AView, AlienModel AModel) {
-		this.AView = AView;
 		this.AModel = AModel;
 		AModel.addEnemyObserver(AView);
 	}

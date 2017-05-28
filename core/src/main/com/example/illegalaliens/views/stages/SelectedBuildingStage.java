@@ -12,7 +12,6 @@ import com.example.illegalaliens.models.boardobjects.towers.Tower;
 public class SelectedBuildingStage extends SelectedBoardObjectStage {
 	private Skin skin;
 	private Label description, name;
-	private BoardObject selectedBuilding;
 	private Table target;
 	private Table upgrades;
 
@@ -89,7 +88,6 @@ public class SelectedBuildingStage extends SelectedBoardObjectStage {
 			target.setVisible(false);
 			upgrades.setVisible(false);
 		}
-		selectedBuilding = building;
 		description.setText(building.getDescription());
 		name.setText(building.getName());
 	}

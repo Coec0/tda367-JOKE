@@ -19,11 +19,9 @@ public class TowerBoost implements Superpower {
     //Duration for the boost
     private final float durationFrames = 200f;
     private CooldownObject duration;
-    private CooldownHandler cdh;
 
     public TowerBoost(CooldownHandler cdh, int superPowerCost){
         duration = new CooldownObject(durationFrames, false);
-        this. cdh = cdh;
         cdh.addCooldownObject(duration);
         this.superPowerCost = superPowerCost;
     }

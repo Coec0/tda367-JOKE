@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.example.illegalaliens.models.boardobjects.WhiteHouse;
 import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
 import com.example.illegalaliens.views.textures.TowerTextureHandler;
 

@@ -18,8 +18,6 @@ import com.example.illegalaliens.utilities.DrawablesCollector;
  */
 public class SelectedTowerStage extends SelectedBoardObjectStage {
 
-	private ClickListener clickListener;
-
 	private Table mainTable;
 	private Table targetTable;
 	private Table infoTable;
@@ -44,7 +42,6 @@ public class SelectedTowerStage extends SelectedBoardObjectStage {
 	private TowerUpgrader towerUpgrader = new TowerUpgrader(); //Needed to get upgrade costs
 
 	public SelectedTowerStage(ClickListener clickListener, DrawablesCollector DC) {
-		this.clickListener = clickListener;
 
 		this.addActor(addNameLabel());
 		this.addActor(addDescription());

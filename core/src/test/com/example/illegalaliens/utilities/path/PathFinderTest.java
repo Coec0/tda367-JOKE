@@ -16,15 +16,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 public class PathFinderTest {
-	private Array<Array<Node>> shortestPaths;
 	private Array<MapNode> startingNodes;
 	private Array<MapNode> allNodes;
-	private Array<Node> roadNetwork;
 	private Array<RoadSection> roadSections;
 	private DijkstraSolver DSolver;
 	private MapNode endNode;
 	private Radar radar;
-	private float roadRadius;
 	private Map map;
 	private RoadManager finder;
 	
@@ -35,10 +32,8 @@ public class PathFinderTest {
 		allNodes = map.getMapNodes();
 		endNode = allNodes.peek();
 		radar = new Radar();
-		shortestPaths = new Array<Array<Node>>();
 		roadSections = new Array<RoadSection>();
 		DSolver = new DijkstraSolver();
-		roadRadius = 4;
 		finder = new RoadManager(allNodes,endNode,startingNodes, radar);
 	}
 	

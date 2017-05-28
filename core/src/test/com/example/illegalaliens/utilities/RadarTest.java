@@ -8,9 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.badlogic.gdx.utils.Array;
-import com.example.illegalaliens.models.enemies.Enemy;
-import com.example.illegalaliens.utilities.Node;
-import com.example.illegalaliens.utilities.Radar;
 
 /**
  * @author Johan Svennungsson
