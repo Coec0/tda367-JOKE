@@ -1,6 +1,7 @@
 package com.example.illegalaliens.models.boardobjects;
 
 import com.badlogic.gdx.utils.Array;
+import com.example.illegalaliens.hiscore.HiscoreDB;
 import com.example.illegalaliens.models.enemies.Enemy;
 import com.example.illegalaliens.models.enemies.EnemyObserver;
 import com.example.illegalaliens.models.politics.Parliament;
@@ -10,19 +11,22 @@ import com.example.illegalaliens.models.politics.parties.PartyFactory;
 public class WhiteHouse extends BoardObject implements EnemyObserver{
 	private int health=20; //temp
 	private float money;
-	private Parliament parliament;	
+	private Parliament parliament;
+	private int enemiesKilled;
 	private boolean gameOver = false;
+	private HiscoreDB hiscoreDB;
 	
-	public WhiteHouse(String name, int x, int y, float size, float money, Parliament parliament){
+	public WhiteHouse(String name, int x, int y, float size, float money, Parliament parliament, HiscoreDB hiscoreDB){
 		super(name, x, y,size, 0);
 		this.parliament = parliament;
+		this.hiscoreDB = hiscoreDB;
 		this.setMoney(money);
 		voteParty(PartyFactory.Democrat(5));
 		voteParty(PartyFactory.Republican(5));
 	}
 	
-	public WhiteHouse(String name, int x, int y, float size, float money){
-		this(name, x, y,size, money, new Parliament());
+	public WhiteHouse(String name, int x, int y, float size, float money, HiscoreDB hiscoreDB){
+		this(name, x, y,size, money, new Parliament(), hiscoreDB);
 	}
 	
 	/**
@@ -78,11 +82,15 @@ public class WhiteHouse extends BoardObject implements EnemyObserver{
 	
 	public void setHealth(int amount){
 		health = amount;
-		System.out.println(health);
-		notifyObservers(this);
-		if(amount <= 0){
+		if(amount == 0){
 			gameOver = true;
+			hiscoreDB.addScore(enemiesKilled);
 		}
+		notifyObservers(this);
+	}
+
+	public void addEnemyKilled() {
+		enemiesKilled++;
 	}
 	
 	public void addHealth(int amount){
@@ -142,6 +150,7 @@ public class WhiteHouse extends BoardObject implements EnemyObserver{
 	public void actOnEnemyChange(Enemy enemy, boolean remove) {
 		if(remove && enemy.isDead()){
 			addMoney(enemy.getMoney());
+			addEnemyKilled();
 		} else if(remove && !enemy.isDead()){
 			removeHealth();
 		}
@@ -150,7 +159,7 @@ public class WhiteHouse extends BoardObject implements EnemyObserver{
 
 	@Override
 	public BoardObject clone(int x, int y) {
-		return new WhiteHouse(getName(), x, y, getSize(), getMoney(), getParliament());
+		return new WhiteHouse(getName(), x, y, getSize(), getMoney(), getParliament(), hiscoreDB);
 	}
 
 }
