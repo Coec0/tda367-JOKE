@@ -168,6 +168,7 @@ public class BoardObjectModel implements UpdateObserver {
 		if(whitehouses.first().getMoney() >= upgrader.getDamageUpgradeCost(tower)){
 			upgrader.upgradeDamage(tower);
 			whitehouses.first().removeMoney(upgrader.getDamageUpgradeCost(tower));
+			notifyObservers(tower, false, true);
 		}
 	}
 
@@ -175,13 +176,14 @@ public class BoardObjectModel implements UpdateObserver {
 		if (whitehouses.first().getMoney() >= upgrader.getCooldownUpgradeCost(tower)) {
 			upgrader.reduceCooldown(tower);
 			whitehouses.first().removeMoney(upgrader.getCooldownUpgradeCost(tower));
-
+			notifyObservers(tower, false, true);
 		}
 	}
 	public void upgradeTowerRadius(Tower tower){
 		if (whitehouses.first().getMoney() >= upgrader.getRadiusUpgradeCost(tower)){
 			upgrader.upgradeRadius(tower);
 			whitehouses.first().removeMoney(upgrader.getRadiusUpgradeCost(tower));
+			notifyObservers(tower, false, true);
 		}
 	}
 	
