@@ -23,7 +23,8 @@ Contributors:
 4. Project Structure
 5. Necessary (circular) dependencies
 6. Current flaws
-7. Future goals
+7. Buglist (known)
+8. Future goals
 
 ## Introduction
 This Readme aims to fulfill three purposes:
@@ -124,6 +125,10 @@ One of the goals during development has been to minimize all kind of unnecessary
 - UI is not particulary user friendly
 - The game descriptions in this readme should also be available as information in-game
 - Game has to be further balanced
+## Buglist (known)
+- Tower can be upgraded while having it highlighted in-before purchasing it. Clicking the upgrade button causes a weird interaction; the tower is placed behind the UI (caused by not disabling UI during the time the tower is highlighted and stuck to the mouse)
+- When clicking on a tower on the right stage panel causes the tower to appear in the bottom left corner of the screen (caused by default position)
+- Walls are glitched on map 2 (caused by hardcoded map nodes)
 
 ## Future goals
 - More balancing (high priority)
