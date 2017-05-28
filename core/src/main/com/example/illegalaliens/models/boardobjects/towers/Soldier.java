@@ -12,12 +12,13 @@ public class Soldier extends Tower {
     private static final String NAME = "SOLDIER";
     private static String DESCRIPTION = "A regular soldier";
     private static final int RADIUS = 230;
-    private static final int COST = 50;
-    private static final float COOLDOWN = 25;
+    private static final int COST = 75;
+    private static final float COOLDOWN = 30;
     private static final Party PARTY = PartyFactory.Republican(3); // Just for now
 	private static final float SIZE = 25;
     private static final float DAMAGE = 20;
     private static final float SPEED = 20;
+    private static final int projectileHealth = 1;
 
     public Soldier(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
@@ -33,7 +34,7 @@ public class Soldier extends Tower {
 
     @Override
     public Projectile makeProjectile() {
-        Projectile p = ProjectileFactory.createBullet(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED);
+        Projectile p = ProjectileFactory.createBullet(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED,projectileHealth);
         super.notifyObservers(p, "spawn");
         return p;
        }

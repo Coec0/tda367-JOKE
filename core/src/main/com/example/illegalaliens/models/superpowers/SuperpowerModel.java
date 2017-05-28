@@ -42,7 +42,7 @@ public class SuperpowerModel implements UpdateObserver {
     	this.AModel = AModel;
         this.cdh = cdh;
         
-        minuteman = new Minutemen(0, 0, 400);
+        minuteman = new Minutemen(0, 0, 200);
         wall = new Wall("WALL", 0, 0, 15, 200);
         nuke = new Nuke(500);
         towerBoost = new TowerBoost(cdh, 300);

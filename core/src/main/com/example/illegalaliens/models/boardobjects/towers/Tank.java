@@ -12,12 +12,13 @@ public class Tank extends Tower {
     private static final String NAME = "TANK";
     private static String DESCRIPTION = "Great damage but shoots slow";
     private static final int RADIUS = 325;
-    private static final int COST = 100;
+    private static final int COST = 1000;
     private static final float COOLDOWN = 50;
     private static final Party PARTY = PartyFactory.Democrat(10); // Just for now
     private static final float SIZE = 55;
-    private static final float DAMAGE = 60;
+    private static final float DAMAGE = 70;
     private static final float SPEED = 35;
+    private static final int projectileHealth = 1;
 
     public Tank(int x, int y, float radius, float cooldown, float cost, float damage){
     	super(x, y, radius, NAME, cost, cooldown, SIZE, damage, PARTY);
@@ -34,7 +35,7 @@ public class Tank extends Tower {
    
     @Override
     public Projectile makeProjectile() {
-        Projectile p = ProjectileFactory.createMissile(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED);
+        Projectile p = ProjectileFactory.createMissile(super.getTarget().getPos(), super.getPos(), super.getDamage(), SPEED,projectileHealth);
         super.notifyObservers(p, "spawn");
         return p;
     }

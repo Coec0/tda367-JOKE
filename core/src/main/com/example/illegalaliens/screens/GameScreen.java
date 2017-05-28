@@ -90,7 +90,7 @@ public class GameScreen implements Screen{
 		
 		CooldownHandler cdh = new CooldownHandler();
 		WavesCDHandler wcd = new WavesCDHandler();
-		WhiteHouse WH = new WhiteHouse("WhiteHouse", (int) lastMapNode.getPos().getX(), (int) lastMapNode.getPos().getY(),50, 100000);
+		WhiteHouse WH = new WhiteHouse("WhiteHouse", (int) lastMapNode.getPos().getX(), (int) lastMapNode.getPos().getY(),50, 100);
 		
 		
 		AlienView AW= new AlienView(DC);

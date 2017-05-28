@@ -10,9 +10,9 @@ import com.example.illegalaliens.utilities.Node;
 public class Bullet extends SingleProjectile {
 
     private static final float RADIUS = 2;
-    private static final int HEALTH = 2;
+    //private static final int HEALTH = 2;
 
-    public Bullet(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED){
+    public Bullet(Node DIRECTION, Node POSITION, float DAMAGE, float SPEED, int HEALTH){
         super(HEALTH,DAMAGE, SPEED, RADIUS, DIRECTION, POSITION);
     }
 }
