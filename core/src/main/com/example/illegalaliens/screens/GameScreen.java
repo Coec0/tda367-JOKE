@@ -25,9 +25,9 @@ import com.example.illegalaliens.models.boardobjects.towers.BOPrototypes;
 import com.example.illegalaliens.models.executive_orders.ExecutiveOrdersModel;
 import com.example.illegalaliens.models.superpowers.SuperpowerModel;
 import com.example.illegalaliens.utilities.DrawablesCollector;
+import com.example.illegalaliens.utilities.IAAdapter;
 import com.example.illegalaliens.utilities.Node;
 import com.example.illegalaliens.utilities.Radar;
-import com.example.illegalaliens.utilities.IAAdapter;
 import com.example.illegalaliens.utilities.cooldown.CooldownHandler;
 import com.example.illegalaliens.utilities.cooldown.WavesCDHandler;
 import com.example.illegalaliens.utilities.path.RoadManager;
@@ -37,13 +37,13 @@ import com.example.illegalaliens.views.AlienView;
 import com.example.illegalaliens.views.BoardObjectView;
 import com.example.illegalaliens.views.GameUIView;
 import com.example.illegalaliens.views.ProjectileView;
+import com.example.illegalaliens.views.stages.BottomLeftGameUIStage;
 import com.example.illegalaliens.views.stages.EndGamePopupStage;
 import com.example.illegalaliens.views.stages.NextWaveStage;
 import com.example.illegalaliens.views.stages.PoliticalMeterStage;
 import com.example.illegalaliens.views.stages.RightGameUIStage;
 import com.example.illegalaliens.views.stages.SelectedBoardObjectStage;
 import com.example.illegalaliens.views.stages.SuperpowerStage;
-import com.example.illegalaliens.views.stages.BottomLeftGameUIStage;
 
 public class GameScreen implements Screen{
 	private SpriteBatch batch;
@@ -133,12 +133,12 @@ public class GameScreen implements Screen{
 		PoliticalMeterStage PMS = new PoliticalMeterStage();
 		BottomLeftGameUIStage TL = new BottomLeftGameUIStage();
 		NextWaveStage NW = new NextWaveStage(AController);
-		HS = new RightGameUIStage(BOController,EOC, prot, WH);
+		HS = new RightGameUIStage(BOController,EOC);
 		SS = new SuperpowerStage(SC);
 		
 		
 		EndGamePopupStage EGP = new EndGamePopupStage(MMController);
-		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP);
+		HV = new GameUIView(DC,PMS, HS, TL, SBOS, NW, SS,EGP, WH, prot);
 		
 		EOM.addObserver(HV);
 		AM.addWavesObserver(HV);

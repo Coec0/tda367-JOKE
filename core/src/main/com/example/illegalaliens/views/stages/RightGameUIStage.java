@@ -21,8 +21,6 @@ import com.example.illegalaliens.views.textures.TowerTextureHandler;
 public class RightGameUIStage extends Stage {
 
 	private Skin skin;
-	private BOPrototypes protos;
-	private WhiteHouse whitehouse;
 	//  *Buildings/Towers*
 
 	private ImageTextButton soldierB,tankB, rangerB, sniperB, netGunnerB, riotshieldB;
@@ -32,14 +30,11 @@ public class RightGameUIStage extends Stage {
 	
 	private static final int WIDTH = 200;
 	
-	public RightGameUIStage(ClickListener buildingC, ClickListener executiveOrdersC, BOPrototypes protos, WhiteHouse whitehouse) {
+	public RightGameUIStage(ClickListener buildingC, ClickListener executiveOrdersC) {
 		skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 		
 		createPurchablesButtons(buildingC);
 		createExecutiveOrdersButtons(executiveOrdersC);
-		this.protos = protos;
-		this.whitehouse = whitehouse;
-		updatePurchables();
 		Table table = new Table();
 //		table.setDebug(true);
 		table.setPosition(Gdx.graphics.getWidth() - WIDTH, 0);
@@ -66,7 +61,7 @@ public class RightGameUIStage extends Stage {
 		return table;
 	}
 	
-	private void disableEO(boolean disable, Button button){
+	private void disableButton(boolean disable, Button button){
 		if(disable)
 			button.setTouchable(Touchable.disabled);
 		else
@@ -78,22 +73,46 @@ public class RightGameUIStage extends Stage {
     	}
     }
     
+	public void disableSoldier(boolean disable){
+		disableButton(disable, soldierB);
+	}
+	
+	public void disableTank(boolean disable){
+		disableButton(disable, tankB);
+	}
+	
+	public void disableRanger(boolean disable){
+		disableButton(disable, rangerB);
+	}
+	
+	public void disableRiotShield(boolean disable){
+		disableButton(disable, riotshieldB);
+	}
+	
+	public void disableNetGunner(boolean disable){
+		disableButton(disable, netGunnerB);
+	}
+	
+	public void disableSniper(boolean disable){
+		disableButton(disable, sniperB);
+	}
+	
     public void disableCivilWar(boolean disable){
-    	disableEO(disable, civilWarRep);
-    	disableEO(disable, civilWarDem);
+    	disableButton(disable, civilWarRep);
+    	disableButton(disable, civilWarDem);
     }
     
     public void disableOpenBorders(boolean disable){
-    	disableEO(disable, openBorders);
+    	disableButton(disable, openBorders);
     }
     
     public void disableTowerChanger(boolean disable){
-    	disableEO(disable, taxCut);
-    	disableEO(disable, obamaCare);
+    	disableButton(disable, taxCut);
+    	disableButton(disable, obamaCare);
     }
     
     public void disableDeclareWar(boolean disable){
-    	disableEO(disable, declareWar);
+    	disableButton(disable, declareWar);
     }
 	
 	private void createExecutiveOrdersButtons(ClickListener executiveOrdersC){
@@ -116,7 +135,7 @@ public class RightGameUIStage extends Stage {
 		declareWar.setColor(Color.RED);
 	}
 	
-	public void updatePurchables(){
+	public void updatePurchables(BOPrototypes protos){
 		soldierB.setText(String.valueOf((protos.getSoldier(0, 0).getCost())));
 		tankB.setText(String.valueOf((protos.getTank(0, 0).getCost())));
 		rangerB.setText(String.valueOf((protos.getRanger(0, 0).getCost())));

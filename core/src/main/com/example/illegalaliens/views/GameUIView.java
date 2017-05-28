@@ -30,11 +30,12 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	private SuperpowerStage SS;
 	private EndGamePopupStage EGP;
 	private int nukeCost=0, minutemenCost=0, wallCost=0, towerBoosterCost=0;
-	private WhiteHouse whitehouse;
+	private final WhiteHouse whitehouse;
+	private final BOPrototypes protos;
 	private boolean waveFinished=true;
 
 	public GameUIView(DrawablesCollector DC, PoliticalMeterStage PMS, RightGameUIStage HS, BottomLeftGameUIStage TL,
-					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP) {
+					  SelectedBoardObjectStage SBOS, NextWaveStage NW, SuperpowerStage SS, EndGamePopupStage EGP, WhiteHouse whitehouse, BOPrototypes protos) {
 		super(DC);
 		this.EGP = EGP;
 		this.RGUIS = HS;
@@ -43,7 +44,8 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 		this.TL = TL;
 		this.NW = NW;
 		this.SS = SS;
-		
+		this.whitehouse = whitehouse;
+		this.protos = protos;
 		addToView(NW);
 		addToView(TL);
 		addToView(HS);
@@ -53,7 +55,6 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 
 	@Override
 	public void actOnWhiteHouseChange(WhiteHouse whitehouse) {
-		this.whitehouse = whitehouse;
 		if(whitehouse.isGameOver()){
 			addToView(EGP);
 		}
@@ -65,7 +66,12 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 	}
 
 	private void updateTowersButtons(WhiteHouse whitehouse) {
-//		if()
+		RGUIS.disableSoldier(protos.getSoldier(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableRanger(protos.getRanger(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableRiotShield(protos.getRiotShield(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableSniper(protos.getSniper(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableTank(protos.getTank(0, 0).getCost()>=whitehouse.getMoney());
+		RGUIS.disableNetGunner(protos.getNetGunner(0, 0).getCost()>=whitehouse.getMoney());
 		
 	}
 
@@ -111,7 +117,8 @@ public class GameUIView extends SimpleView implements WhiteHouseObserver, BoardO
 
 	@Override
 	public void actOnPrototypeChange(BOPrototypes prototypes) {
-		RGUIS.updatePurchables();
+		RGUIS.updatePurchables(prototypes);
+		updateTowersButtons(whitehouse);
 	}
 
 	@Override
