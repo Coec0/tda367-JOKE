@@ -14,16 +14,25 @@ public class MapSelectStage extends AbstractStage {
 
 	private ClickListener mainMenuController;
 	private Actor startGameButton;
+	private Actor alphaMapSelectedLabel;
+	private Actor map1SelectedLabel;
+	private Actor map2SelectedLabel;
 
 	public MapSelectStage(ClickListener mainMenuController) {
 		this.mainMenuController = mainMenuController;
 
 		this.addActor(addTopLabel());
+		this.addActor(addAlphaMapSelectedLabel());
+		this.addActor(addMap1SelectedLabel());
+		this.addActor(addMap2SelectedLabel());
+
+
 		this.addActor(addMapTable());
 		this.addActor(addStartGameButton());
 		this.addActor(addBackButton());
 
 		this.setVisible(false);
+		showLabel("AlphaMap");
 	}
 
 	private Table addMapTable() {
@@ -39,6 +48,42 @@ public class MapSelectStage extends AbstractStage {
 
 		return mapTable;
 	}
+
+
+	public void showLabel(String id){
+		if (id.equals("map1")){
+			map1SelectedLabel.setVisible(true);
+			map2SelectedLabel.setVisible(false);
+			alphaMapSelectedLabel.setVisible(false);
+
+		}
+		else if (id.equals("map2")){
+			map2SelectedLabel.setVisible(true);
+			map1SelectedLabel.setVisible(false);
+			alphaMapSelectedLabel.setVisible(false);
+
+		}
+		else if (id.equals("AlphaMap")){
+			alphaMapSelectedLabel.setVisible(true);
+			map1SelectedLabel.setVisible(false);
+			map2SelectedLabel.setVisible(false);
+		}
+	}
+
+	private Actor addAlphaMapSelectedLabel(){
+		alphaMapSelectedLabel = ActorFactory.createLabel("Alphamap selected", centerWidth - 225, centerHeight + 100, center);
+		return alphaMapSelectedLabel;
+	}
+	private Actor addMap1SelectedLabel(){
+		map1SelectedLabel = ActorFactory.createLabel("Map 1 selected", centerWidth , centerHeight + 100, center);
+		return map1SelectedLabel;
+	}
+	private Actor addMap2SelectedLabel(){
+		map2SelectedLabel = ActorFactory.createLabel("Map 2 selected", centerWidth + 225, centerHeight + 100, center);
+		return map2SelectedLabel;
+	}
+
+
 
 	private Actor addAlphaMapButton() {
 		Actor alphaMap = ActorFactory.createImageButton(new Texture("maps/AlphaMap.png"));
@@ -80,7 +125,7 @@ public class MapSelectStage extends AbstractStage {
 	}
 
 	private Actor addTopLabel() {
-		return ActorFactory.createLabel("Select map", centerWidth, centerHeight + 100, center);
+		return ActorFactory.createLabel("Select map", centerWidth, centerHeight + 200, center);
 	}
 
 

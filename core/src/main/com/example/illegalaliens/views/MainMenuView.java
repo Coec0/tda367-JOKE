@@ -63,6 +63,16 @@ public class MainMenuView extends SimpleView implements MainMenuObserver{
 	@Override
 	public void actOnMainMenuChange(String id, IntArray scores) {
 		showIDStage(id, scores);
+
+		if (id.equals("AlphaMap")){
+			mapSelectStage.showLabel("AlphaMap");
+		}
+		else if (id.equals("map1")){
+			mapSelectStage.showLabel("map1");
+		}
+		else if (id.equals("map2")){
+			mapSelectStage.showLabel("map2");
+		}
 	}
 
 }
