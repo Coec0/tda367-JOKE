@@ -22,4 +22,10 @@ public abstract class AbstractStage extends Stage implements IStage {
 	public Array<Actor> getActors() {
 		return super.getActors();
 	}
+
+	public void removeActors() {
+		for (Actor actor : getActors()) {
+			actor.remove();
+		}
+	}
 }

@@ -12,22 +12,20 @@ import com.badlogic.gdx.utils.IntArray;
 public class HiscoreStage extends AbstractStage {
 
     private ClickListener mainMenuController;
-    private IntArray hiscores;
 
     public HiscoreStage(ClickListener mainMenuController, IntArray hiscores) {
         this.mainMenuController = mainMenuController;
-        this.hiscores = hiscores;
 
-        this.addActor(addHiscoreTable());
+        this.addActor(addHiscoreTable(hiscores));
 
         this.setVisible(false);
     }
 
     private Actor addHiscoreLabel() {
-        return ActorFactory.createLabel("Hiscore");
+        return ActorFactory.createLabel("Hiscore - Aliens killed");
     }
 
-    private Table addHiscoreTable() {
+    private Table addHiscoreTable(IntArray hiscores) {
         Table hiscoreTable = new Table();
 
         hiscoreTable.setPosition(centerWidth, centerHeight, center);
@@ -68,6 +66,11 @@ public class HiscoreStage extends AbstractStage {
     private Actor addMainMenuButton() {
         return ActorFactory.createTextButton("backToMainMenu",
                 "Back to Main Menu", mainMenuController);
+    }
+
+    public void refreshHiscoreTable(IntArray hiscores) {
+        this.removeActors();
+        this.addActor(addHiscoreTable(hiscores));
     }
     
 
