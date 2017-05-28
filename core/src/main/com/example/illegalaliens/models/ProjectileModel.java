@@ -27,10 +27,10 @@ public class ProjectileModel implements UpdateObserver{
     public void update(float deltaTime) {
         for (Projectile projectile : projectiles){
             move(projectile);
-            if (checkIfHitEnemies(projectile)){
+            if (checkIfHitEnemies(projectile, aModel.getAllEnemies())){
                 projectile.damage(radar, aModel.getAllEnemies());
             }
-            checkForRemoval(projectile);
+            checkForRemoval(projectile, aModel.getAllEnemies());
         }
 
     }
@@ -44,14 +44,14 @@ public class ProjectileModel implements UpdateObserver{
             p.setNewPosition();   
     }
 
-    private boolean checkIfHitEnemies(Projectile projectile) {
-        Array<Enemy> enemies = scan(projectile);
+    private boolean checkIfHitEnemies(Projectile projectile, Array<Enemy> allEnemies) {
+        Array<Enemy> enemies = scan(projectile, allEnemies);
         return (enemies.size != 0);
     }
 
 
-    public Array<Enemy> scan(Projectile projectile){
-        return projectile.scanEnemies(radar,projectile.getPosition(), projectile.getRadius(),aModel.getAllEnemies());
+    public Array<Enemy> scan(Projectile projectile, Array<Enemy> enemies){
+        return projectile.scanEnemies(radar, projectile.getPosition(), projectile.getRadius(), enemies);
     }
 
 
@@ -66,8 +66,8 @@ public class ProjectileModel implements UpdateObserver{
     }
 
 
-    private void checkForRemoval(Projectile p){
-            if (ifOutOfBounds(p) || (checkIfHitEnemies(p) && p.getHealth() == 0)){
+    private void checkForRemoval(Projectile p, Array<Enemy> enemies){
+            if (ifOutOfBounds(p) || (checkIfHitEnemies(p, enemies) && p.getHealth() == 0)){
                 notifyObservers(p, "remove");
             }
     }
@@ -90,6 +90,10 @@ public class ProjectileModel implements UpdateObserver{
     private void notifyObservers(Projectile projectile, String change) {
         for (ProjectileObserver observer : observers)
             observer.actOnProjectileChange(projectile, change);
+    }
+
+    public Array<Projectile> getProjectiles() {
+        return projectiles;
     }
 
 
